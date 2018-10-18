@@ -10,5 +10,6 @@
   users.extraUsers.user.isNormalUser = true;
   users.extraUsers.user.uid = 1000;
   users.extraUsers.user.extraGroups = [ "wheel" ];
+  users.extraUsers.user.package
   system.stateVersion = "18.03";
 }
