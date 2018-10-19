@@ -11,11 +11,8 @@
   users.extraUsers.user.uid = 1000;
   users.extraUsers.user.extraGroups = [ "wheel" ];
   users.extraUsers.user.packages = [
-    pkgs.emacs
-    pkgs.chromium
-    pkgs.git
     (import ./installed/secrets/default.nix { inherit pkgs; })
-    (import ./installed/secrets/default.nix { inherit pkgs; })
+    (import ./custom/secrets/default.nix { inherit pkgs; })
   ];
   system.stateVersion = "18.03";
 }
