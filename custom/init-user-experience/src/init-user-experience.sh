@@ -1,9 +1,13 @@
 #!/bin/sh
 
-(wifi || true) &&
+(init-wifi || true) &&
     export OLD_HOME=${HOME} &&
     export HOME=$(mktemp -d) &&
     init-read-only-pass --upstream-url https://github.com/nextmoose/secrets.git --upstream-branch master &&
+    pass show gpg.secret.key > ${HOME}/gpg.secret.key &&
+    pass show gpg.owner.trust > ${HOME}/gpg.owner.trust &&
+    pass show gpg2.secret.key > ${HOME}/gpg2.secret.key &&
+    pass show gpg2.owner.trust > ${HOME}/gpg2.owner.trust &&
     mkdir ${OLD_HOME}/.ssh &&
     chmod 0700 ${OLD_HOME}/.ssh &&
     pass show upstream.id_rsa > ${OLD_HOME}/.ssh/upstream.id_rsa &&

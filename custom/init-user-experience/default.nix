@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
       cp init-user-experience.sh $out/scripts &&
       chmod 0500 $out/scripts/init-user-experience.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/init-user-experience.sh $out/bin/init-user-experience --set PATH ${lib.makeBinPath [ wifi initreadonlypass coreutils pass git  ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/init-user-experience.sh $out/bin/init-user-experience --set PATH ${lib.makeBinPath [ wifi initreadonlypass coreutils pass git which ]} --set STORE_DIR $out &&
       true
   '';
 }
