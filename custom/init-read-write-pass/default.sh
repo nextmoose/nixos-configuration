@@ -1,14 +1,12 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
-  readonlypass = 
-  precommit = pkgs.writeShellScriptBin "pre-commit" ''
-    echo This is a read only repository.  No commits are allowed. &&
-      exit 64
-  '';
-  prepush = pkgs.writeShellScriptBin "pre-push" ''
-    echo This is a read only repository.  No pushes are allowed. &&
-      exit 64
+  initreadonlypass = 
+  postcommit = writeShellScriptBin "post-commit" ''
+    while ! git push origin $(git rev-parse --abbrev-ref HEAD --)
+    do
+      sleep 1s
+    done
   '';
 in
 stdenv.mkDerivation rec {
@@ -24,7 +22,7 @@ stdenv.mkDerivation rec {
       mkdir $out/scripts &&
       cp init-read-only-pass.sh $out/scripts &&
       chmod 0500 $out/scripts/init-read-only-pass.sh &&
-      makeWrapper $out/scripts/init-read-only-pass.sh $out/bin/init-read-only-pass --set PATH ${lib.makeBinPath [ mktemp coreutils gzip gnutar gnupg pass precommit prepush which ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/init-read-only-pass.sh $out/bin/init-read-only-pass --set PATH ${lib.makeBinPath [ mktemp coreutils gzip gnutar gnupg pass postcommit which ]} --set STORE_DIR $out &&
       true
   '';
 }
