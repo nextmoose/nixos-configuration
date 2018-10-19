@@ -13,7 +13,9 @@
   users.extraUsers.user.packages = [
     (import ./installed/init-read-only-pass/default.nix { inherit pkgs; })
     (import ./installed/init-wifi/default.nix { inherit pkgs; })
+    (import ./custom/init-user-experience.nix { inherit pkgs; })
     pkgs.pass
+    pkgs.networkmanager
   ];
   system.stateVersion = "18.03";
 }
