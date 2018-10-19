@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   wifi = (import ../../installed/init-wifi/default.nix { inherit pkgs; });
+  initreadonlypass = (import ../../installed/init-read-only-pass/default.nix { inherit pkgs; });
 in
 stdenv.mkDerivation rec {
   name = "initialize-user-experience";
