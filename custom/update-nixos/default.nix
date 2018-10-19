@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
       cp update-nixos.sh $out/scripts &&
       chmod 0500 $out/scripts/update-nixos.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ coreutils ]} &&
+      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ coreutils rsync ]} &&
       true
   '';
 }
