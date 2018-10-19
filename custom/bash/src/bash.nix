@@ -5,7 +5,7 @@ let
     #!${stdenv.shell}
 
     set -e
-    echo hello
+    ${pkgs.bash}/bin/bash
   '';
 in
 dockerTools.buildImage {
@@ -17,7 +17,7 @@ dockerTools.buildImage {
       useradd --create-home user &&
       true
   '';
-  contents = [ pkgs.coreutils ];
+  contents = [ pkgs.coreutils pkgs.bash ];
   config = {
     Cmd = [ ];
     Entrypoint = [ entrypoint ];
