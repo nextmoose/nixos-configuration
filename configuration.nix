@@ -12,6 +12,8 @@
   users.extraUsers.user.extraGroups = [ "wheel" ];
   users.extraUsers.user.packages = [
     (import ./installed/init-read-only-pass/default.nix { inherit pkgs; })
+    (import ./installed/init-wifi/default.nix { inherit pkgs; })
+    pass
   ];
   system.stateVersion = "18.03";
 }
