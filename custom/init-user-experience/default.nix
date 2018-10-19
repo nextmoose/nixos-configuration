@@ -1,0 +1,18 @@
+{ pkgs ? import <nixpkgs> {} }:
+with import <nixpkgs> {};
+let
+in
+stdenv.mkDerivation rec {
+  name = "initialize-user-experience";
+  src = ./src;
+  buildInputs = [ makeWrapper ];
+  installPhase = ''
+    mkdir $out &&
+      mkdir $out/scripts &&
+      cp init-user-experience.sh $out/scripts &&
+      chmod 0500 $out/scripts/init-user-experience.sh &&
+      mkdir $out/bin &&
+      makeWrapper $out/scripts/init-user-experience.sh $out/bin/init-user-experience --set PATH ${lib.makeBinPath [  ]} --set STORE_DIR $out &&
+      true
+  '';
+}
