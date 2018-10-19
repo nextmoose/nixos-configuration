@@ -16,6 +16,8 @@
     (import ./custom/init-user-experience/default.nix { inherit pkgs; })
     (import ./custom/update-nixos/default.nix { inherit pkgs; })
     pkgs.pass
+    pkgs.git
+    pkgs.emacs
     pkgs.networkmanager
   ];
   system.stateVersion = "18.03";
