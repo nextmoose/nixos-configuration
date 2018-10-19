@@ -1,7 +1,7 @@
 #!/bin/sh
 
 (init-wifi || true) &&
-    init-read-only-pass --upstream-url https://github.com/desertedscorpion/passwordstore.git &&
+    init-read-only-pass --upstream-url https://github.com/desertedscorpion/passwordstore.git --upstream-branch master &&
     export OLD_HOME=${HOME} &&
     export HOME=$(mktemp -d) &&
     init-read-only-pass --upstream-url https://github.com/nextmoose/secrets.git --upstream-branch master &&

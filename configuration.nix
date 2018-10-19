@@ -45,6 +45,7 @@
     pkgs.git
     pkgs.emacs
     pkgs.networkmanager
+    pkgs.gnome-terminal
   ];
   system.stateVersion = "18.03";
 }
