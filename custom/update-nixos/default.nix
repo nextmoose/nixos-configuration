@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
-let
 stdenv.mkDerivation rec {
   name = "update-nixos";
   src = ./src;
