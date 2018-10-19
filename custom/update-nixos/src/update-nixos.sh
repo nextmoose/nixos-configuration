@@ -14,5 +14,5 @@ fi &&
 	    ${HOME}/projects/configuration/custom \
 	    /etc/nixos
     fi &&
-    /run/wrappers/bin/sudo nixos-rebuild switch
+    /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch
 	
