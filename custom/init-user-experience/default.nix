@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
+  wifi = (import ../../installed/init-wifi/default.nix { inherit pkgs; });
 in
 stdenv.mkDerivation rec {
   name = "initialize-user-experience";
