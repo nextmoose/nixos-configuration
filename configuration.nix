@@ -23,10 +23,13 @@
       externalInterface = "wl01";
     };
   };
-  services.xserver = {
-    enable = true;
-    windowManager.i3.enable = true;
-    libinput.enable = true;
+  services = {
+    physlock.enable = true;
+    xserver = {
+      enable = true;
+      windowManager.i3.enable = true;
+      libinput.enable = true;
+    };
   };
   sound.enable = true;
   time.timeZone = "US/Eastern";
