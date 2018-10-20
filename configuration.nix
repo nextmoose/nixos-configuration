@@ -2,19 +2,31 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  containers.experiment = {
-    config = { config, pkgs, ...}:
-    {
-      environment.variables.DISPLAY=":0";
-      services.mingetty.autologinUser = "user";
-      users.extraUsers.user = {
-        isNormalUser = true;
-	packages = [
-	  pkgs.chromium
-	  pkgs.firefox
-	  pkgs.emacs
-	  pkgs.git
-	];
+  containers = {
+    experiment = {
+      bindMounts = {
+        "/tmp/.X11-unix" = {
+	  hostPath = "/tmp/.X11-unix";
+        };
+        "/emory" = {
+	  hostPath = "/";
+	  isReadOnly = true;
+	  mountPoint = "/host";
+        };
+      };
+      config = { config, pkgs, ...}:
+      {
+        environment.variables.DISPLAY=":0";
+        services.mingetty.autologinUser = "user";
+        users.extraUsers.user = {
+          isNormalUser = true;
+	  packages = [
+	    pkgs.chromium
+	    pkgs.firefox
+	    pkgs.emacs
+	    pkgs.git
+	  ];
+        };
       };
     };
   };
@@ -43,6 +55,7 @@
     ${pkgs.xorg.xhost}/bin/xhost +local:
     nixos-container start experiment
   '';
+  security.sudo.wheelNeedsPassword = false;
   services = {
     cron = {
       enable = true;
