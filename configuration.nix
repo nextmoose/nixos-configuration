@@ -24,6 +24,12 @@
     };
   };
   services = {
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "*/10 * * * * user nix-collect-garbage"
+      ];
+    };
     physlock.enable = true;
     xserver = {
       enable = true;
@@ -33,8 +39,10 @@
   };
   sound.enable = true;
   time.timeZone = "US/Eastern";
-  virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    virtualbox.host.enable = true;
+  };
   users.mutableUsers = false;
   users.extraUsers.user.isNormalUser = true;
   users.extraUsers.user.uid = 1000;
