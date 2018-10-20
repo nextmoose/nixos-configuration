@@ -36,7 +36,7 @@
       libinput.enable = true;
       displayManager.auto = {
         enable = true;
-	user = user;
+	user = "user";
       };
     };
   };
