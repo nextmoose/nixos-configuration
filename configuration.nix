@@ -24,7 +24,7 @@
     };
   };
   programs.bash.shellInit = ''
-    ${pkgs.xhost}/bin/xhost +local:
+    ${pkgs.xorg.xhost}/bin/xhost +local:
   '';
   services = {
     cron = {
