@@ -56,6 +56,7 @@
     (import ./custom/update-nixos/default.nix { inherit pkgs; })
     (import ./custom/bash/default.nix { inherit pkgs; })
     (import ./custom/chromium/default.nix { inherit pkgs; })
+    (import ./custom/firefox/default.nix { inherit pkgs; })
     pkgs.pass
     pkgs.git
     pkgs.emacs
