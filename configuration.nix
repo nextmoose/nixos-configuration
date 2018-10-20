@@ -3,6 +3,25 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    old-secrets =
+      let
+        initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
+      in
+      {
+      config = { config, pkgs, ...}:
+      {
+        programs.bash.shellInit = ''
+	  ${initpass}/bin/init-read-only-pass --upstream-url https://github.com/desertedscorpion/passwordstore.git --upstream-branch master
+	'';
+        services.mingetty.autologinUser = "user";
+        users.extraUsers.user = {
+          isNormalUser = true;
+	  packages = [
+	    pkgs.pass
+	  ];
+        };
+      };
+    };
     experiment = {
       bindMounts = {
         "/tmp/.X11-unix" = {
