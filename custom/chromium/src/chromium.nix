@@ -1,7 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 let
-  entrypoint = writeShellScriptBin "entrypoint.sh" ''
+  entrypoint = writeScript "entrypoint.sh" ''
+    #!${stdenv.shell}
     ${pkgs.chromium}/bin/chromium
   '';
 in
@@ -11,12 +12,13 @@ dockerTools.buildImage {
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
     mkdir /home &&
-      useradd --create-home chromium &&
+      useradd --create-home user &&
       true
   '';
-  contents = [ pkgs.chromium ];
+  contents = [ pkgs.chromium pkgs.gnugrep pkgs.coreutils ];
   config = {
     Cmd = [ ];
     Entrypoint = [ entrypoint ];
+    User = "user";
   };
 }
