@@ -5,7 +5,7 @@ let
     #!${stdenv.shell}
 
     set -e
-    ${pkgs.chromium}/bin/bash
+    ${pkgs.chromium}/bin/chromium
   '';
 in
 dockerTools.buildImage {
