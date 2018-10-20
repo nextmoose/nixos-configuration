@@ -5,9 +5,16 @@
   containers.experiment = {
     config = { config, pkgs, ...}:
     {
+      environment.variables.DISPLAY=":0";
       services.mingetty.autologinUser = "user";
       users.extraUsers.user = {
         isNormalUser = true;
+	packages = [
+	  pkgs.chromium
+	  pkgs.firefox
+	  pkgs.emacs
+	  pkgs.git
+	];
       };
     };
   };
@@ -34,6 +41,7 @@
   };
   programs.bash.shellInit = ''
     ${pkgs.xorg.xhost}/bin/xhost +local:
+    nixos-container start experiment
   '';
   services = {
     cron = {
