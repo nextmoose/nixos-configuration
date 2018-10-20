@@ -4,10 +4,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
     old-secrets =
-      let
-        initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
-      in
-      {
+    let
+      initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
+    in
+    {
       autoStart = true;
       config = { config, pkgs, ...}:
       {
