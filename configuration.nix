@@ -2,6 +2,15 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  containers.experiment = {
+    config = { config, pkgs, ...}:
+    {
+      services.mingetty.autologinUser = "user";
+      users.extraUsers.user = {
+        isNormalUser = true;
+      };
+    };
+  };
   hardware.pulseaudio.enable = true;
   i18n = {
     consoleFont = "Lat2-Terminus16";
