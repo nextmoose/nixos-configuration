@@ -1,10 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 let
-  entrypoint = writeScript "entrypoint.sh" ''
-    #!${stdenv.shell}
-
-    set -e
+  entrypoint = writeShellScriptBin "entrypoint.sh" ''
     ${pkgs.chromium}/bin/chromium
   '';
 in
