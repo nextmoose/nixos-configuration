@@ -42,7 +42,14 @@
   sound.enable = true;
   time.timeZone = "US/Eastern";
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+	flags = [ "--all" ];
+	dates = "daily";
+      };
+    };
     virtualbox.host.enable = true;
   };
   users.mutableUsers = false;
