@@ -34,10 +34,6 @@
       enable = true;
       windowManager.i3.enable = true;
       libinput.enable = true;
-      displayManager.auto = {
-        enable = true;
-	user = "user";
-      };
     };
   };
   sound.enable = true;
