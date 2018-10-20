@@ -3,6 +3,28 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    configuration =
+    let
+      init-development-environment = (import ./custom/init-development-environment/default.nix { inherit pkgs; });
+    in
+    {
+      autoStart = true;
+      config = { config, pkgs, ...}:
+      {
+        programs.bash.shellInit = ''
+	  ${init-development-environment}/bin/init-development-environment &&
+	    true
+	'';
+	services.mingetty.autologinUser = "user";
+	users.extraUsers.user = {
+	  isNormalUser = true;
+	  packages = [
+	    pkgs.git
+	    pkgs.emacs
+	  ];
+	};
+      };
+    };
     old-secrets =
     let
       initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });

@@ -1,18 +1,15 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 stdenv.mkDerivation rec {
-  name = "firefox";
+  name = "init-development-environment";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      mkdir $out/etc &&
-      cp firefox.nix $out/etc &&
-      mkdir $out/scripts &&
       cp firefox.sh $out/scripts &&
-      chmod 0500 $out/scripts/firefox.sh &&
+      chmod 0500 $out/scripts/init-development-environment.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/firefox.sh $out/bin/firefox --set PATH ${lib.makeBinPath [ docker mktemp coreutils ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/init-development-environment.sh $out/bin/init-develpment-environment --set PATH ${lib.makeBinPath [ init-read-only-pass pass git ]} --set STORE_DIR $out &&
       true
   '';
 }
