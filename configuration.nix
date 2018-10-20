@@ -23,6 +23,9 @@
       externalInterface = "wl01";
     };
   };
+  programs.bash.shellInit = ''
+    ${pkgs.xhost}/bin/xhost +local:
+  '';
   services = {
     cron = {
       enable = true;
@@ -52,12 +55,12 @@
     (import ./custom/init-user-experience/default.nix { inherit pkgs; })
     (import ./custom/update-nixos/default.nix { inherit pkgs; })
     (import ./custom/bash/default.nix { inherit pkgs; })
+    (import ./custom/chromium/default.nix { inherit pkgs; })
     pkgs.pass
     pkgs.git
     pkgs.emacs
     pkgs.networkmanager
     pkgs.gnome3.gnome-terminal
-    pkgs.chromium
   ];
   system.stateVersion = "18.03";
 }
