@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 stdenv.mkDerivation rec {
-  name = "firefox";
+  name = "personal";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
