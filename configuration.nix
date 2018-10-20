@@ -8,6 +8,7 @@
         initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
       in
       {
+      autoStart = true;
       config = { config, pkgs, ...}:
       {
         programs.bash.shellInit = ''
