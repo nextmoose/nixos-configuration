@@ -3,6 +3,50 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    chromium =
+    {
+      additionalCapabilities = [
+##        "cap_audit_read"
+##        "cap_block_suspend"
+##        "cap_ipc_lock"
+##        "cap_mac_admin"
+##        "cap_mac_override"
+##        "cap_net_admin"
+##        "cap_syslog"
+##        "cap_sys_module"
+##        "cap_sys_pacct"
+##        "cap_sys_rawio"
+##        "cap_sys_time"
+        "cap_wake_alarm"
+      ];
+      autoStart = true;
+      bindMounts = {
+        "/run/user/1000" = {
+	  hostPath = "/run/user/1000";
+	  isReadOnly = true;
+	};
+        "/etc/machine-id" = {
+	  hostPath = "/etc/machine-id";
+	  isReadOnly = true;
+	};
+#        "/var/run/dbus/system_bus_socket" = {
+#	  hostPath = "/var/run/dbus/system_bus_socket";
+#	  isReadOnly = true;
+#	};
+      };
+      config = { config, pkgs, ...}:
+      {
+        environment.variables.DISPLAY=":0";
+	services.mingetty.autologinUser = "user";
+	users.extraUsers.user = {
+	  isNormalUser = true;
+	  packages = [
+	    pkgs.git
+	    pkgs.chromium
+	  ];
+	};
+      };
+    };
     configuration =
     let
       init-development-environment = (import ./custom/init-development-environment/default.nix { inherit pkgs; });
@@ -31,6 +75,50 @@
 	    --report-port 22 \
 	    --report-organization rebelplutonium \
 	    --report-repository nixos-configuration \
+	    --committer-name "Emory Merryman" \
+	    --committer-email emory.merryman@gmail.com \
+	    &&
+	    true
+	'';
+	services.mingetty.autologinUser = "user";
+	users.extraUsers.user = {
+	  isNormalUser = true;
+	  packages = [
+	    pkgs.git
+	    pkgs.emacs
+	  ];
+	};
+      };
+      tmpfs = [ "/home" ];
+    };
+    installation =
+    let
+      init-development-environment = (import ./custom/init-development-environment/default.nix { inherit pkgs; });
+    in
+    {
+      autoStart = true;
+      config = { config, pkgs, ...}:
+      {
+        environment.variables.DISPLAY=":0";
+        programs.bash.shellInit = ''
+	  ${init-development-environment}/bin/init-development-environment \
+	    --upstream-host github.com \
+	    --upstream-user git \
+	    --upstream-port 22 \
+	    --upstream-organization rebelplutonium \
+	    --upstream-repository nixos-installer \
+	    --upstream-branch master \
+	    --origin-host github.com \
+	    --origin-user git \
+	    --origin-port 22 \
+	    --origin-organization nextmoose \
+	    --origin-repository nixos-installer \
+	    --origin-branch level-2 \
+	    --report-host github.com \
+	    --report-user git \
+	    --report-port 22 \
+	    --report-organization rebelplutonium \
+	    --report-repository nixos-installer \
 	    --committer-name "Emory Merryman" \
 	    --committer-email emory.merryman@gmail.com \
 	    &&
@@ -159,6 +247,7 @@
       (import ./custom/bash/default.nix { inherit pkgs; })
       (import ./custom/firefox/default.nix { inherit pkgs; })
       (import ./custom/personal/default.nix { inherit pkgs; })
+      (import ./custom/restart-containers/default.nix { inherit pkgs; })
       pkgs.pass
       pkgs.git
       pkgs.emacs
