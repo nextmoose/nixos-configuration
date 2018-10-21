@@ -151,9 +151,9 @@ EOF
 	mkdir --parents ${HOME}/.ssh &&
 	chmod 0700 ${HOME}/.ssh &&
 	(cat > ${HOME}/.ssh/config <<EOF
-Include ${HOME}/.ssh/config.d/upstream.config
-Include ${HOME}/.ssh/config.d/origin.config
-Include ${HOME}/.ssh/config.d/report.config
+Include ${HOME}/.ssh/upstream.config
+Include ${HOME}/.ssh/origin.config
+Include ${HOME}/.ssh/report.config
 EOF
 	) &&
 	pass show upstream.id_rsa > ${HOME}/.ssh/upstream.id_rsa &&
@@ -219,8 +219,6 @@ EOF
 	git -C ${HOME}/project remote set-url --push upstream no_push &&
 	git -C ${HOME}/project remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
 	git -C ${HOME}/project remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
-	git -C ${HOME}/project fetch upstream "${UPSTREAM_BRANCH}" &&
-	git -C ${HOME}/project checkout "${ORIGIN_BRANCH}" &&
 	if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
 	then
 	    git -C ${HOME}/project fetch upstream "${UPSTREAM_BRANCH}" &&
