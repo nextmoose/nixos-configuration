@@ -44,6 +44,7 @@
 	  ];
 	};
       };
+      tmpfs = [ "/home" ]
     };
     old-secrets =
     let
