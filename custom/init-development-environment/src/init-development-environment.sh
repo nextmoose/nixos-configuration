@@ -238,6 +238,6 @@ EOF
 	    fi &&
 	    ln --symbolic ${STORE_DIR}/bin/post-commit ${HOME}/project/.git/hooks &&
 	    ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/project/.git/hooks &&
-	    true &&
+	    true
     fi &&
     true
