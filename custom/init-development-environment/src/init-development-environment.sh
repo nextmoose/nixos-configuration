@@ -192,7 +192,7 @@ EOF
 	fi &&
 	if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_PORT}" ]
 	then
-	    (cat > ${HOME}/.ssh/upstream.config <<EOF
+	    (cat > ${HOME}/.ssh/report.config <<EOF
 Host report
 HostName ${REPORT_HOST}
 User ${REPORT_USER}
