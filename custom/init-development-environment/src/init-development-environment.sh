@@ -216,7 +216,7 @@ EOF
 	git -C ${HOME}/project config user.name "${COMMITTER_NAME}" &&
 	git -C ${HOME}/project config user.email "${COMMITTER_EMAIL}" &&
 	git -C ${HOME}/project remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
-	git -C ${HOME}/project set-url --push upstream no_push &&
+	git -C ${HOME}/project remote set-url --push upstream no_push &&
 	git -C ${HOME}/project remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
 	git -C ${HOME}/project remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
 	git -C ${HOME}/project fetch upstream "${UPSTREAM_BRANCH}" &&
