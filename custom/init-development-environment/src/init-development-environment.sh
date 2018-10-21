@@ -129,7 +129,11 @@ do
     esac &&
 	true
 done &&
-    echo COMMITTER_NAME COMMITTER_EMAIL | while read VAR
+    (cat <<EOF
+COMMITTER_NAME
+COMMITTER_EMAIL
+EOF
+    ) | while read VAR
     do
 	eval VAL=\${${VAR}} &&
 	    if [ -z "${VAR}" ]
