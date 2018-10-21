@@ -31,7 +31,7 @@
 	    --report-organization rebelplutonium \
 	    --report-repository nixos-configuration \
 	    --committer-name "Emory Merryman" \
-	    --committer-email emory.merryman@gmail.com
+	    --committer-email emory.merryman@gmail.com \
 	    &&
 	    true
 	'';
