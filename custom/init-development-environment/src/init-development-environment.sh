@@ -234,6 +234,6 @@ EOF
 	    ) ||
 		true
 	fi &&
-	ln ${STORE_DIR}/bin/post-commit ${HOME}/project/.git/hooks &&
-	ln ${STORE_DIR}/bin/pre-push ${HOME}/project/.git/hooks &&
+	ln --symbolic ${STORE_DIR}/bin/post-commit ${HOME}/project/.git/hooks &&
+	ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/project/.git/hooks &&
 	true
