@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     mkdir $out &&
       mkdir $out/scripts &&
       cp init-development-environment.sh post-commit.sh pre-push.sh $out/scripts &&
-      chmod 0500 $out/scripts/init-development-environment.sh $out/bin/post-commit.sh $out/pre-push.sh &&
+      chmod 0500 $out/scripts/init-development-environment.sh $out/scripts/post-commit.sh $out/scripts/pre-push.sh &&
       mkdir $out/bin &&
       makeWrapper $out/scripts/init-development-environment.sh $out/bin/init-development-environment --set PATH ${lib.makeBinPath [ init-read-only-pass pass git coreutils ]} &&
       makeWrapper $out/scripts/post-commit.sh $out/bin/post-commit --set PATH ${lib.makeBinPath [ git coreutils ]} &&
