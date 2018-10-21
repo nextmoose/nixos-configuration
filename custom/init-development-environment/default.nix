@@ -9,6 +9,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir $out &&
+      mkdir $out/scripts &&
       cp init-development-environment.sh post-commit.sh pre-push.sh $out/scripts &&
       chmod 0500 $out/scripts/init-development-environment.sh $out/scripts/post-commit.sh $out/pre-push.sh &&
       mkdir $out/bin &&
