@@ -5,44 +5,27 @@
   containers = {
     chromium =
     {
-      additionalCapabilities = [
-##        "cap_audit_read"
-##        "cap_block_suspend"
-##        "cap_ipc_lock"
-##        "cap_mac_admin"
-##        "cap_mac_override"
-##        "cap_net_admin"
-##        "cap_syslog"
-##        "cap_sys_module"
-##        "cap_sys_pacct"
-##        "cap_sys_rawio"
-##        "cap_sys_time"
-        "cap_wake_alarm"
-      ];
       autoStart = true;
       bindMounts = {
         "/run/user/1000" = {
 	  hostPath = "/run/user/1000";
 	  isReadOnly = true;
 	};
-        "/etc/machine-id" = {
-	  hostPath = "/etc/machine-id";
+        "/home/user/.config/pulse" = {
+	  hostPath = "/home/user/.config/pulse";
 	  isReadOnly = true;
 	};
-#        "/var/run/dbus/system_bus_socket" = {
-#	  hostPath = "/var/run/dbus/system_bus_socket";
-#	  isReadOnly = true;
-#	};
       };
       config = { config, pkgs, ...}:
       {
         environment.variables.DISPLAY=":0";
+        hardware.pulseaudio.enable = true;
 	services.mingetty.autologinUser = "user";
+        sound.enable = true;
 	users.extraUsers.user = {
 	  isNormalUser = true;
 	  packages = [
-	    pkgs.git
-	    pkgs.chromium
+	    (import ./custom/chromium/default.nix { inherit pkgs; })
 	  ];
 	};
       };

@@ -7,12 +7,11 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir $out &&
       mkdir $out/etc &&
-      cp chromium.nix $out/etc &&
       mkdir $out/scripts &&
       cp chromium.sh $out/scripts &&
       chmod 0500 $out/scripts/chromium.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ docker mktemp coreutils ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ chromium coreutils gnugrep ]} &&
       true
   '';
 }
