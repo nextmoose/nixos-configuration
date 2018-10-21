@@ -4,6 +4,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
     chromium =
+    let
+      init-read-only-pass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
+    in
     {
       autoStart = true;
       bindMounts = {
@@ -20,11 +23,24 @@
       {
         environment.variables.DISPLAY=":0";
         hardware.pulseaudio.enable = true;
+	programs = {
+	  bash.shellInit = ''
+	    ${init-read-only-pass}/bin/init-read-only-pass --upstream-url https://github.com/nextmoose/credentials.git --upstream-branch master &&
+	      true
+	  '';
+	  browserpass.enable = true;
+	  chromium = {
+	    enable = true;
+	    extensions = [ "naepdomgkenhinolocfifgehidddafch" ];
+	  };
+	};
 	services.mingetty.autologinUser = "user";
         sound.enable = true;
 	users.extraUsers.user = {
 	  isNormalUser = true;
 	  packages = [
+	    pkgs.browserpass
+	    pkgs.pass
 	    (import ./custom/chromium/default.nix { inherit pkgs; })
 	  ];
 	};
