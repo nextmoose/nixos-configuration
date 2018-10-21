@@ -11,6 +11,7 @@
       autoStart = true;
       config = { config, pkgs, ...}:
       {
+        environment.variables.DISPLAY=":0";
         programs.bash.shellInit = ''
 	  ${init-development-environment}/bin/init-development-environment \
 	    --upstream-host github.com \
