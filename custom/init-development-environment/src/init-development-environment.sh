@@ -148,7 +148,7 @@ EOF
 	--upstream-url https://github.com/nextmoose/secrets.git \
 	--upstream-branch master \
 	&&
-	mkdir --parents ${HOME}/.ssh &&
+	mkdir ${HOME}/.ssh &&
 	chmod 0700 ${HOME}/.ssh &&
 	(cat > ${HOME}/.ssh/config <<EOF
 Include ${HOME}/.ssh/upstream.config
