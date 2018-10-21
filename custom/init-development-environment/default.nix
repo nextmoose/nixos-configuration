@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper $out/scripts/init-development-environment.sh $out/bin/init-development-environment --set PATH ${lib.makeBinPath [ init-read-only-pass pass git coreutils ]} &&
       makeWrapper $out/scripts/post-commit.sh $out/bin/post-commit --set PATH ${lib.makeBinPath [ git coreutils ]} &&
-      makeWrapper $out/scripts/post-commit.sh $out/bin/pre-push --set PATH ${lib.makeBinPath [ coreutils ]} &&
+      makeWrapper $out/scripts/pre-push.sh $out/bin/pre-push --set PATH ${lib.makeBinPath [ coreutils ]} &&
       true
   ''; 
 }
