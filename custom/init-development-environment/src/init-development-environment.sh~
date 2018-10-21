@@ -1,0 +1,12 @@
+#!/bin/sh
+
+init-read-only-pass --upstream-url https://github.com/nextmoose/secrets.git --upstream-branch master &&
+    mkdir --parents ~/.ssh &&
+    chmod 0700 ~/.ssh &&
+    pass show upstream.id_rsa > ~/.ssh/upstream.id_rsa &&
+    pass show upstream.known_hosts > ~/.ssh/upstream.known_hosts &&
+    pass show origin.id_rsa > ~/.ssh/origin.id_rsa &&
+    pass show origin.known_hosts > ~/.ssh/origin.known_hosts &&
+    pass show report.id_rsa > ~/.ssh/report.id_rsa &&
+    pass show report.known_hosts > ~/.ssh/report.known_hosts &&
+    true

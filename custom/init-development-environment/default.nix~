@@ -1,0 +1,35 @@
+{ pkgs ? import <nixpkgs> {} }:
+with import <nixpkgs> {};
+let
+  init-read-only-pass = (import ../../installed/init-read-only-pass/default.nix { inherit pkgs; });
+  post-commit = pkgs.writeScript "post-commit" ''
+    while ! ${pkgs.git}/bin/git push origin $(${pkgs.git} rev-parse --abbrev-ref HEAD --)
+    do
+      ${coreutils}/bin/sleep 1s &&
+	true
+    done &&
+    true
+  '';
+  pre-push = pkgs.writeScript "pre-push" ''
+    if [ "${1}" == "upstream" ]
+    then
+      echo Pushing UPSTREAM is not allowd &&
+	exit 64 &&
+	true
+    fi &&
+    true
+  '';
+in
+stdenv.mkDerivation rec {
+  name = "init-development-environment";
+  src = ./src;
+  buildInputs = [ makeWrapper ];
+  installPhase = ''
+    mkdir $out &&
+      cp init-development-environment.sh $out/scripts &&
+      chmod 0500 $out/scripts/init-development-environment.sh &&
+      mkdir $out/bin &&
+      makeWrapper $out/scripts/init-development-environment.sh $out/bin/init-development-environment --set PATH ${lib.makeBinPath [ init-read-only-pass pass git coreutils post-commit pre-push]} &&
+      true
+  ''; 
+}
