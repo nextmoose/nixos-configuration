@@ -26,7 +26,6 @@
   };
   programs.bash.shellInit = ''
     ${pkgs.xorg.xhost}/bin/xhost +local:
-    nixos-container start experiment
   '';
   security.sudo.wheelNeedsPassword = false;
   services = {
@@ -62,6 +61,8 @@
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
+      pkgs.chromium
+      pkgs.firefox
     ];
   };
   system.stateVersion = "18.03";

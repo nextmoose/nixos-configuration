@@ -17,7 +17,7 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    environment.variables.DISPLAY=":0";
+    environment.variables.DISPLAY=":0.0";
     hardware.pulseaudio.enable = true;
     programs = {
       bash.shellInit = ''

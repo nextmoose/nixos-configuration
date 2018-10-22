@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo shell-init > /tmp/log.txt &&
+echo shell-init >> /tmp/log.txt &&
     true
