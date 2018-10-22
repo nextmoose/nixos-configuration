@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper $out/scripts/shell-init.sh $out/bin/shell-init --set PATH ${lib.makeBinPath [ coreutils pass init-read-only-pass ]} --set STORE_DIR $out &&
       makeWrapper $out/scripts/install-secret.sh $out/bin/install-secret --set PATH ${lib.makeBinPath [ mktemp gnutar coreutils gzip ]} --set INSTALL_DIR ${init-read-only-pass} &&
-      makeWrapper $out/scripts/pass-secret.sh $out/bin/pass-secret --set PATH ${lib.makeBinPath [ $out mktemp pass ]} --set INSTALL_DIR ${init-read-only-pass} &&
+      makeWrapper $out/scripts/pass-secret.sh $out/bin/pass-secret --set PATH ${lib.makeBinPath [ coreutils mktemp pass ]} &&
       true
   '';
 }
