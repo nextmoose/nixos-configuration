@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs ? import <nixpkgs> {} }:
+with import <nixpkgs> {};
 {
-  docker = {
+  enable = true;
+  autoPrune = {
     enable = true;
-    autoPrune = {
-      enable = true;
-      flags = [ "--all" ];
-      dates = "daily";
-    };
+    flags = [ "--all" ];
+    dates = "daily";
   };
 }

@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs ? import <nixpkgs> {} }:
+with import <nixpkgs> {};
 {
-  virtualbox.host.enable = true;
+  host.enable = true;
 }
