@@ -80,21 +80,23 @@ EOF
 	    fi &&
 	    true
     done &&
-    init-read-only-pass \
-	--upstream-url https://github.com/nextmoose/secrets.git \
-	--upstream-branch master \
-	&&
-	mkdir ${HOME}/.ssh &&
-	chmod 0700 ${HOME}/.ssh &&
-	(cat > ${HOME}/.ssh/config <<EOF
+    if [ ! -d ${HOME}/.gnupg ]
+    then
+	init-read-only-pass \
+	    --upstream-url https://github.com/nextmoose/secrets.git \
+	    --upstream-branch master \
+	    &&
+	    mkdir ${HOME}/.ssh &&
+	    chmod 0700 ${HOME}/.ssh &&
+	    (cat > ${HOME}/.ssh/config <<EOF
 Include ${HOME}/.ssh/origin.config
 EOF
-	) &&
-	pass show origin.id_rsa > ${HOME}/.ssh/origin.id_rsa &&
-	pass show origin.known_hosts > ${HOME}/.ssh/origin.known_hosts &&
-	if [ ! -z "${ORIGIN_HOST}" ] && [ ! -z "${ORIGIN_USER}" ] && [ ! -z "${ORIGIN_PORT}" ]
-	then
-	    (cat > ${HOME}/.ssh/origin.config <<EOF
+	    ) &&
+	    pass show origin.id_rsa > ${HOME}/.ssh/origin.id_rsa &&
+	    pass show origin.known_hosts > ${HOME}/.ssh/origin.known_hosts &&
+	    if [ ! -z "${ORIGIN_HOST}" ] && [ ! -z "${ORIGIN_USER}" ] && [ ! -z "${ORIGIN_PORT}" ]
+	    then
+		(cat > ${HOME}/.ssh/origin.config <<EOF
 Host origin
 HostName ${ORIGIN_HOST}
 User ${ORIGIN_USER}
@@ -102,19 +104,21 @@ Port ${ORIGIN_PORT}
 IdentityFile ${HOME}/.ssh/origin.id_rsa
 UserKnownHostsFile ${HOME}/.ssh/origin.known_hosts
 EOF
-	    ) &&
-		chmod 0600 ${HOME}/.ssh/origin.config &&
-		true
-	fi &&
-	chmod 0600 ${HOME}/.ssh/config &&
-	chmod 0600 ${HOME}/.ssh/origin.id_rsa &&
-	chmod 0600 ${HOME}/.ssh/origin.known_hosts &&
-	pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
-	pass git fetch origin "${ORIGIN_BRANCH}" &&
-	pass git checkout "origin/${ORIGIN_BRANCH}" &&
-	pass git checkout -b "${ORIGIN_BRANCH}" &&
-	ln --symbolic ${STORE_DIR}/bin/post-commit ${HOME}/.password-store/.git/hooks &&
-	rm --force ${HOME}/.password-store/.git/hooks/pre-commit &&
-	rm --force ${HOME}/.password-store/.git/hooks/pre-push &&
-	ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/.password-store/.git/hooks &&
-	true
+		) &&
+		    chmod 0600 ${HOME}/.ssh/origin.config &&
+		    true
+	    fi &&
+	    chmod 0600 ${HOME}/.ssh/config &&
+	    chmod 0600 ${HOME}/.ssh/origin.id_rsa &&
+	    chmod 0600 ${HOME}/.ssh/origin.known_hosts &&
+	    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+	    pass git fetch origin "${ORIGIN_BRANCH}" &&
+	    pass git checkout "origin/${ORIGIN_BRANCH}" &&
+	    pass git checkout -b "${ORIGIN_BRANCH}" &&
+	    ln --symbolic ${STORE_DIR}/bin/post-commit ${HOME}/.password-store/.git/hooks &&
+	    rm --force ${HOME}/.password-store/.git/hooks/pre-commit &&
+	    rm --force ${HOME}/.password-store/.git/hooks/pre-push &&
+	    ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/.password-store/.git/hooks &&
+	    true &&
+    fi &&
+    true

@@ -10,6 +10,7 @@
     {
       config = { config, pkgs, ...}:
       {
+        environment.variables.DISPLAY=":0";
         programs.bash.shellInit = ''
 	  ${init-read-write-pass}/bin/init-read-write-pass \
 	    --origin-host github.com \
