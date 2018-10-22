@@ -55,7 +55,6 @@
       (import ./installed/init-wifi/default.nix { inherit pkgs; })
       (import ./custom/init-user-experience/default.nix { inherit pkgs; })
       (import ./custom/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/firefox/default.nix { inherit pkgs; })
       (import ./custom/personal/default.nix { inherit pkgs; })
       (import ./custom/restart-containers/default.nix { inherit pkgs; })
       pkgs.pass
