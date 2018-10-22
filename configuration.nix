@@ -30,7 +30,7 @@
 	    pkgs.browserpass
 	    pkgs.pass
 	    (import ./custom/chromium/default.nix { inherit pkgs; })
-	    init-read-write-pass
+	    pkgs.coreutils
 	  ];
 	};
       };
