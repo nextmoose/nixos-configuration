@@ -2,7 +2,7 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  containers = (import ./custom/containers.nix { inherit pkgs; });
+#  containers = (import ./custom/containers.nix { inherit pkgs; });
   hardware.pulseaudio.enable = true;
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -44,7 +44,7 @@
   };
   sound.enable = true;
   time.timeZone = "US/Eastern";
-  virtualisation = (import ./custom/virtualisation.nix { inherit pkgs; });
+# virtualisation = (import ./custom/virtualisation.nix { inherit pkgs; });
   users = {
     mutableUsers = false;
     extraUsers.user.isNormalUser = true;
