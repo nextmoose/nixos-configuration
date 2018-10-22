@@ -20,7 +20,6 @@
 	    --origin-branch master \
 	    --committer-name "Emory Merryman" \
 	    --committer-email emory.merryman@gmail.com \
-	    --garbage safdsaf \
 	    &&
 	    true
 	'';

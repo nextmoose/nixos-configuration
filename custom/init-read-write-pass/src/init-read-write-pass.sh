@@ -80,6 +80,8 @@ EOF
 	    fi &&
 	    true
     done &&
+    echo GARBAGE &&
+    ls -alh ${HOME} &&
     if [ ! -d ${HOME}/.gnupg ]
     then
 	init-read-only-pass \
