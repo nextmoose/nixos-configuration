@@ -4,6 +4,7 @@ let
   personal = (import ../expressions/builder/default.nix { inherit pkgs; });
 in
 {
+  additionalCapabilities = [ "CAP_SYS_RAWIO" ];
   bindMounts = {
     "/home/user/projects" = {
       hostPath = "/home/user/projects";
@@ -16,6 +17,10 @@ in
     "/nix/var/nix/profiles/per-user/root/channels" = {
       hostPath = "/nix/var/nix/profiles/per-user/root/channels";
       isReadOnly = true;
+    };
+    "/dev/mapper" = {
+      hostPath = "/dev/mapper";
+      isReadOnly = false;
     };
   };
   config = { config, pkgs, ...}:
@@ -30,6 +35,7 @@ in
         personal
 	virtualbox
 	lvm2
+	devicemapper
 	pass
       ];
     };

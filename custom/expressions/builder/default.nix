@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
       cp * $out/scripts &&
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/create-installation-image.sh $out/bin/create-installation-image --set PATH ${lib.makeBinPath [ gnutar gzip coreutils virtualbox lvm2 pass init-read-only-pass "/run/wrappers" gnupg nix ]} &&
+      makeWrapper $out/scripts/create-installation-image.sh $out/bin/create-installation-image --set PATH ${lib.makeBinPath [ gnutar gzip coreutils virtualbox lvm2 pass init-read-only-pass "/run/wrappers" gnupg nix devicemapper ]} &&
       true
   '';
 }

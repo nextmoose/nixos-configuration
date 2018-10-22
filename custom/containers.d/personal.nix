@@ -4,6 +4,16 @@ let
   personal = (import ../expressions/personal/default.nix { inherit pkgs; });
 in
 {
+  bindMounts = {
+    "/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs" = {
+      hostPath = "/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs";
+      isReadOnly = true;
+    };
+    "/nix/var/nix/profiles/per-user/root/channels" = {
+      hostPath = "/nix/var/nix/profiles/per-user/root/channels";
+      isReadOnly = true;
+    };
+  };
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0.0";
