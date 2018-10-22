@@ -7,8 +7,8 @@ in
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0";
-    programs.bash.shellInit = ''
-      ${secrets}/bin/init-read-write-pass \
+    programs.bash.loginShellInit = ''
+      ${secrets}/bin/shell-init \
 	--origin-host github.com \
 	--origin-port 22 \
 	--origin-user git \
