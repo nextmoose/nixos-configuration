@@ -1,8 +1,37 @@
-{ config, pkgs, ... }:
+ config, pkgs, ... }:
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    archaic-secrets =
+    {
+      config = { config, pkgs, ...}:
+      {
+        programs = {
+	  bash.shellInit = ''
+	    ${init-read-write-pass}/bin/init-read-write-pass \
+	      --origin-host github.com \
+	      --origin-port 22 \
+	      --origin-user git \
+	      --origin-organization desertedscorpion \
+	      --origin-repository passwordstore \
+	      --origin-branch master \
+	      --committer-name "Emory Merryman" \
+	      --committer-email emory.merryman@gmail.com \
+	      &&
+	      true
+	  '';
+	};
+        users.extraUsers.user = {
+	  isNormalUser = true;
+	  packages = [
+	    pkgs.browserpass
+	    pkgs.pass
+	    (import ./custom/chromium/default.nix { inherit pkgs; })
+	  ];
+	};
+      }
+    };
     chromium =
     let
       init-read-only-pass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
