@@ -6,7 +6,7 @@ TEMP_DIR=$(mktemp -d) &&
 	    true
     } &&
     trap cleanup EXIT &&
-    gunzip --to-stdout ${INIT_READ_ONLY_PASS}/etc/secrets.tar.gz > ${TEMP_DIR}/secrets.tar &&
+    gunzip --to-stdout ${INSTALL_DIR}/etc/secrets.tar.gz > ${TEMP_DIR}/secrets.tar &&
     mkdir ${TEMP_DIR}/secrets &&
     tar --extract --file ${TEMP_DIR}/secrets.tar --directory ${TEMP_DIR}/secrets &&
     cat ${TEMP_DIR}/secrets/${@} &&

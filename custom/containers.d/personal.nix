@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   personal = (import ../expressions/personal/default.nix { inherit pkgs; });
+  secrets = (import ../expressions/secrets/default.nix { inherit pkgs; });
 in
 {
   bindMounts = {
