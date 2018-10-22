@@ -1,26 +1,6 @@
 #!/bin/sh
 
-RESTART_CONTAINERS="false" &&
-    while [ "${#}" -gt 0 ]
-    do
-	case "${1}" in
-	    --restart-containers)
-		RESTART_CONTAINERS="true" &&
-		    shift &&
-		    true
-		;;
-	    *)
-		echo Unsupported Option &&
-		    echo ${1} &&
-		    echo ${0} &&
-		    echo ${@} &&
-		    exit 66 &&
-		    true
-		;;
-	esac &&
-	    true
-    done &&
-    TEMP_DIR=$(mktemp -d) &&
+TEMP_DIR=$(mktemp -d) &&
     cleanup() {
 	rm --recursive --force ${TEMP_DIR} &&
 	    true
@@ -51,22 +31,7 @@ RESTART_CONTAINERS="false" &&
 		--delete \
 		${TEMP_DIR} \
 		/etc/nixos &&
-	    if [ -d ${HOME}/projects/configuration/custom/virtualisation.d ]
-	    then
-		(ca
-		 true
-		fi &&
-		     true
-		fi &&
-		     /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch &&
-		     if [ "${RESTART_CONTAINERS}" == "true" ]
-		     then
-			 /run/wrappers/bin/sudo nixos-container list | while read CONTAINER
-			 do
-			     (/run/wrappers/bin/sudo nixos-container stop ${CONTAINER} || true) &&
-				 /run/wrappers/bin/sudo nixos-container start ${CONTAINER} &&
-				 true
-			 done &&
-			     true
-		     fi &&
-		     true
+	    true
+    fi &&
+    /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch &&
+    true
