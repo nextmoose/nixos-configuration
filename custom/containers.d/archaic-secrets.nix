@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
-  init-read-write-pass = (import ./custom/init-read-write-pass/default.nix { inherit pkgs; });
+  init-read-write-pass = (import ../init-read-write-pass/default.nix { inherit pkgs; });
 in
 {
   config = { config, pkgs, ...}:
@@ -26,7 +26,7 @@ in
       packages = [
         pkgs.browserpass
 	pkgs.pass
-	(import ./custom/chromium/default.nix { inherit pkgs; })
+	(import ../chromium/default.nix { inherit pkgs; })
 	  pkgs.coreutils
       ];
     };
