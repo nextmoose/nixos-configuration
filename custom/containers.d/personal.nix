@@ -41,6 +41,7 @@ in
 	firefox
 	emacs
 	chromium
+	secrets
 #	(import ../expressions/chromium/default.nix { inherit pkgs; })	
       ];
     };
