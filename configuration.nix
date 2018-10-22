@@ -63,7 +63,6 @@
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
-      pkgs.chromium
     ];
   };
   system.stateVersion = "18.03";

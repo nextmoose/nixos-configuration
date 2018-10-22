@@ -26,7 +26,7 @@ in
       packages = [
         pkgs.browserpass
 	pkgs.pass
-	(import ../chromium/default.nix { inherit pkgs; })
+	(import ../expressions/chromium/default.nix { inherit pkgs; })
 	  pkgs.coreutils
       ];
     };
