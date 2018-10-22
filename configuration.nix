@@ -42,7 +42,7 @@
       init-read-only-pass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
     in
     {
-      autoStart = true;
+      autoStart = false;
       bindMounts = {
         "/run/user/1000" = {
 	  hostPath = "/run/user/1000";
@@ -85,7 +85,7 @@
       init-development-environment = (import ./custom/init-development-environment/default.nix { inherit pkgs; });
     in
     {
-      autoStart = true;
+      autoStart = false;
       config = { config, pkgs, ...}:
       {
         environment.variables.DISPLAY=":0";
@@ -129,7 +129,7 @@
       init-development-environment = (import ./custom/init-development-environment/default.nix { inherit pkgs; });
     in
     {
-      autoStart = true;
+      autoStart = false;
       config = { config, pkgs, ...}:
       {
         environment.variables.DISPLAY=":0";
@@ -173,7 +173,7 @@
       initpass = (import ./installed/init-read-only-pass/default.nix { inherit pkgs; });
     in
     {
-      autoStart = true;
+      autoStart = false;
       config = { config, pkgs, ...}:
       {
         programs.bash.shellInit = ''
