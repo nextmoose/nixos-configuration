@@ -119,6 +119,6 @@ EOF
 	    rm --force ${HOME}/.password-store/.git/hooks/pre-commit &&
 	    rm --force ${HOME}/.password-store/.git/hooks/pre-push &&
 	    ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/.password-store/.git/hooks &&
-	    true &&
+	    true
     fi &&
     true
