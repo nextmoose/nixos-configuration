@@ -21,7 +21,7 @@ in
     hardware.pulseaudio.enable = true;
     programs = {
       bash.shellInit = ''
-        ${init-read-only-pass}/bin/init-read-only-pass --upstream-url https://github.com/nextmoose/credentials.git --upstream-branch master &&
+        ${init-read-only-pass}/bin/init-read-only-pass --upstream-url https://github.com/nextmoose/browser-secrets.git --upstream-branch master &&
 	  true
       '';
       browserpass.enable = true;

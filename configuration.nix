@@ -63,6 +63,7 @@
       pkgs.gnome3.gnome-terminal
       pkgs.chromium
       pkgs.firefox
+      (import ./custom/expressions/builder/default.nix { inherit pkgs; })
     ];
   };
   system.stateVersion = "18.03";
