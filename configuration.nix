@@ -256,10 +256,7 @@
   };
   sound.enable = true;
   time.timeZone = "US/Eastern";
-  virtualisation = {
-    docker = (import ./custom/virtualisation.d/docker.nix { inherit pkgs; });
-    virtualbox = (import ./custom/virtualisation.d/virtualbox.nix { inherit pkgs; })   
-  };
+  virtualisation = (import ./custom/virtualisation.nix { inherit pkgs; });
   users = {
     mutableUsers = false;
     extraUsers.user.isNormalUser = true;
