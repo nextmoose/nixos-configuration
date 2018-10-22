@@ -111,8 +111,10 @@ EOF
 	chmod 0600 ${HOME}/.ssh/origin.known_hosts &&
 	pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
 	pass git fetch origin "${ORIGIN_BRANCH}" &&
-	pass git checkout "${ORIGIN_BRANCH}" &&
+	pass git checkout "origin/${ORIGIN_BRANCH}" &&
+	pass git checkout -b "${ORIGIN_BRANCH}" &&
 	ln --symbolic ${STORE_DIR}/bin/post-commit ${HOME}/.password-store/.git/hooks &&
+	rm --force ${HOME}/.password-store/.git/hooks/pre-commit &&
 	rm --force ${HOME}/.password-store/.git/hooks/pre-push &&
 	ln --symbolic ${STORE_DIR}/bin/pre-push ${HOME}/.password-store/.git/hooks &&
 	true
