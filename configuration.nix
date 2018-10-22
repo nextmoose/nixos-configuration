@@ -30,7 +30,7 @@
 	    (import ./custom/chromium/default.nix { inherit pkgs; })
 	  ];
 	};
-      }
+      };
     };
     chromium =
     let
