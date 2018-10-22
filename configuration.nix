@@ -23,6 +23,7 @@
 	    &&
 	    true
 	'';
+	services.mingetty.autologinUser = "user";
         users.extraUsers.user = {
 	  isNormalUser = true;
 	  packages = [
@@ -32,6 +33,7 @@
 	  ];
 	};
       };
+      tmpfs = [ "/home" ];
     };
     chromium =
     let
