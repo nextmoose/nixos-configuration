@@ -30,7 +30,7 @@ TEMP_DIR=$(mktemp -d) &&
 		--archive \
 		--delete \
 		${TEMP_DIR}/. \
-		/etc/nixos/customization &&
+		/etc/nixos/custom &&
 	    true
     fi &&
     /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch &&

@@ -2,7 +2,7 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-#  containers = (import ./custom/containers.nix { inherit pkgs; });
+  containers = (import ./custom/containers.nix { inherit pkgs; });
   hardware.pulseaudio.enable = true;
   i18n = {
     consoleFont = "Lat2-Terminus16";
