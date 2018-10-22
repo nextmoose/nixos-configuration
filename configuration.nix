@@ -257,15 +257,8 @@
   sound.enable = true;
   time.timeZone = "US/Eastern";
   virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune = {
-        enable = true;
-	flags = [ "--all" ];
-	dates = "daily";
-      };
-    };
-    virtualbox.host.enable = true;
+    (import ./custom/virtualisation.d/docker.nix { inherit pkgs; })   
+    (import ./custom/virtualisation.d/virtualbox.nix { inherit pkgs; })   
   };
   users = {
     mutableUsers = false;
