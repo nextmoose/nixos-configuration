@@ -4,10 +4,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
     archaic-secrets =
+    let
+      init-read-write-pass = (import ./custom/init-read-write-pass/default.nix { inherit pkgs; });
+    in
     {
-let
-      init-read-write-pass = (import ./installed/init-read-write-pass/default.nix { inherit pkgs; });
-      in
       config = { config, pkgs, ...}:
       {
         programs.bash.shellInit = ''
