@@ -29,6 +29,7 @@ secrets \
 	--upstream-repository passwordstore \
       	--origin-organization desertedscorpion \
 	--origin-repository passwordstore \
+	--origin-branch master \
 	--report-organization desertedscorpion \
 	--report-repository passwordstore \
 	--committer-name "Emory Merryman" \

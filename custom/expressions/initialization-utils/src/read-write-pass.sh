@@ -16,6 +16,7 @@ do
 	--upstream-branch)
 	    UPSTREAM_BRANCH="${2}" &&
 		shift 2 &&
+		true
 	    ;;
 	--origin-organization)
 	    ORIGIN_ORGANIZATION="${2}" &&
@@ -30,6 +31,7 @@ do
 	--origin-branch)
 	    ORIGIN_BRANCH="${2}" &&
 		shift 2 &&
+		true
 	    ;;
 	--report-organization)
 	    REPORT_ORGANIZATION="${2}" &&
