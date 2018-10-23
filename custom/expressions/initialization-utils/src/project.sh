@@ -3,32 +3,32 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--UPSTREAM_ORGANIZATION)
+	--upstream-organization)
 	    UPSTREAM_ORGANIZATION="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--UPSTREAM_REPOSITORY)
+	--upstream-repository)
 	    UPSTREAM_REPOSITORY="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--ORIGIN_ORGANIZATION)
+	--origin-organization)
 	    ORIGIN_ORGANIZATION="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--ORIGIN_REPOSITORY)
+	--origin-repository)
 	    ORIGIN_REPOSITORY="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--REPORT_ORGANIZATION)
+	--report-organization)
 	    REPORT_ORGANIZATION="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--REPORT_REPOSITORY)
+	--report-repository)
 	    REPORT_REPOSITORY="${2}" &&
 		shift 2 &&
 		true
@@ -68,10 +68,10 @@ EOF
     then
 	mkdir ${HOME}/project &&
 	    git -C ${HOME}/project init &&
-	    git -C ${HOME}/project remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_HOST}.git" &&
+	    git -C ${HOME}/project remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
 	    git -C ${HOME}/project remote set-url --push upstream no-push &&
-	    git -C ${HOME}/project remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_HOST}.git" &&
-	    git -C ${HOME}/project remote add report "report:${REPORT_ORGANIZATION}/${REPORT_HOST}.git" &&
+	    git -C ${HOME}/project remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+	    git -C ${HOME}/project remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
 	    ln \
 		--symbolic \
 		${STORE_DIR}/scripts/post-commit \
