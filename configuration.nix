@@ -63,6 +63,7 @@
       pkgs.gnome3.gnome-terminal
       pkgs.chromium
       pkgs.firefox
+      pkgs.gnupg
       (import ./custom/expressions/builder/default.nix { inherit pkgs; })
       (import ./custom/expressions/backup-utils/default.nix { inherit pkgs; })
     ];

@@ -42,7 +42,7 @@ done &&
     (cat <<EOF
 SOURCE_VOLUME
 GPG_PASSPHRASE
-RECEIPIENT
+RECIPIENT
 EOF
     ) | while read VAR do
     do
@@ -66,13 +66,13 @@ EOF
     trap cleanup EXIT &&
     TSTAMP=$(date +%s) &&
     mkdir ${TEMP_DIR}/source &&
-    sudo mount "${SOURCE_VOLUME}" ${TEMP_DIR}/source &&
+    sudo mount "/dev/volumes/${SOURCE_VOLUME}" ${TEMP_DIR}/source &&
     tar --create --file ${TEMP_DIR}/archive.${TSTAMP}.tar --directory "${TEMP_DIR}/source/${SOURCE_DIRECTORY}" . &&
     gzip --to-stdout -9 ${TEMP_DIR}/archive.${TSTAMP}.tar > ${TEMP_DIR}/archive.${TSTAMP}.tar.gz &&
     echo "${GPG_PASSPHRASE}" | gpg --passphrase-fd 0 --output ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg --encrypt --recipient "${RECIPIENT}" ${TEMP_DIR}/archive.${TSTAMP}.tar.gz &&
     mkisof -o ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso -r ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg &&
     dvdisaster --image ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso -mRS01 --redundancy high --create &&
     mkdir ${TEMP_DIR}/target &&
-    sudo mount /dev/volumes/${TARGET_VOLUME} ${TEMP_DIR}/target &&
+    sudo mount "/dev/volumes/${TARGET_VOLUME}" ${TEMP_DIR}/target &&
     sudo cp ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso ${TEMP_DIR}/target &&
     true
