@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper $out/scripts/secrets.sh $out/bin/secrets --set PATH ${lib.makeBinPath [ mktemp coreutils install gzip gnutar gnupg pass ]} --set INSTALL_DIR ${install} &&
       makeWrapper $out/scripts/ssh-remote.sh $out/bin/ssh-remote --set PATH ${lib.makeBinPath [ coreutils ]} &&
-      makeWrapper $out/scripts/project.sh $out/bin/project --set PATH ${lib.makeBinPath [ coreutils git ]} --prefix STORE_DIR=$out &&
+      makeWrapper $out/scripts/project.sh $out/bin/project --set PATH ${lib.makeBinPath [ coreutils git ]} --set STORE_DIR=$out &&
       makeWrapper $out/scripts/post-commit.sh $out/scripts/post-commit --set PATH ${lib.makeBinPath [ git coreutils ]} &&
       makeWrapper $out/scripts/pre-push.sh $out/scripts/pre-push --set PATH ${lib.makeBinPath [ coreutils ]} &&
       true
