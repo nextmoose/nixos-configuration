@@ -27,5 +27,6 @@ secrets \
     read-only-pass \
 	--upstream-organization nextmoose \
 	--upstream-repository browser-secrets \
+	--upstream-branch master \
 	&&
     true

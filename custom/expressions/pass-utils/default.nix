@@ -11,6 +11,7 @@ stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper $out/scripts/turnover.sh $out/bin/turnover --set PATH ${lib.makeBinPath [ mktemp coreutils gnupg pass findutils gnugrep ]} &&
+      makeWrapper $out/scripts/email-id.sh $out/bin/email-id --set PATH ${lib.makeBinPath [ pass utillinux ]} &&
       true
   '';
 }
