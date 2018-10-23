@@ -31,5 +31,6 @@ secrets \
 	--origin-repository browser-secrets \
 	--report-organization rebelplutonium \
 	--report-repository browser-secrets \
+	--writability readwrite \
 	&&
     true

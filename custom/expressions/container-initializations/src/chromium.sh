@@ -25,12 +25,12 @@ secrets \
 	--port 22 \
 	&&
     pass \
-	--upstream-organization desertedscorpion \
-	--upstream-repository passwordstore \
-      	--origin-organization desertedscorpion \
-	--origin-repository passwordstore \
-	--report-organization desertedscorpion \
-	--report-repository passwordstore \
-	--writeability readwrite \
+	--upstream-organization nextmoose \
+	--upstream-repository browser-secrets \
+      	--origin-organization nextmoose \
+	--origin-repository browser-secrets \
+	--report-organization nextmoose \
+	--report-repository browser-secrets \
+	--writability readonly \
 	&&
     true

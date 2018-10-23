@@ -19,6 +19,7 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/pass.sh $out/bin/pass --set PATH ${lib.makeBinPath [ coreutils pass gnupg ]} --set STORE_DIR $out &&
       makeWrapper $out/scripts/post-commit.sh $out/scripts/post-commit --set PATH ${lib.makeBinPath [ git coreutils ]} &&
       makeWrapper $out/scripts/pre-push.sh $out/scripts/pre-push --set PATH ${lib.makeBinPath [ coreutils ]} &&
+      makeWrapper $out/scripts/pre-commit.sh $out/scripts/pre-commit --set PATH ${lib.makeBinPath [ coreutils ]} &&
       true
   '';
 }
