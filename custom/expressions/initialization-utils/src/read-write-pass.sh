@@ -71,7 +71,7 @@ EOF
 	    pass git remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
 	    pass git remote set-url --push upstream no-push &&
 	    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
-	    pass git remote add origin "origin:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
+	    pass git remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
 	    ln \
 		--symbolic \
 		${STORE_DIR}/scripts/post-commit \

@@ -29,7 +29,7 @@ secrets \
 	--upstream-repository browser-secrets \
       	--origin-organization nextmoose \
 	--origin-repository browser-secrets \
-	--report-organization rebelplutonium \
+	--report-organization nextmoose \
 	--report-repository browser-secrets \
 	&&
     true
