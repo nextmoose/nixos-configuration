@@ -1,9 +1,0 @@
-#!/bin/sh
-
-sudo nixos-container list | while read CONTAINER
-do
-    sudo nixos-container stop "${CONTAINER}" &&
-	sudo nixos-container start "${CONTAINER}" &&
-	true
-done &&
-    true
