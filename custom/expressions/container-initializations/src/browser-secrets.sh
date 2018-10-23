@@ -29,6 +29,7 @@ secrets \
 	--upstream-repository browser-secrets \
       	--origin-organization nextmoose \
 	--origin-repository browser-secrets \
+	--origin-branch master \
 	--report-organization nextmoose \
 	--report-repository browser-secrets \
 	--committer-name "Emory Merryman" \
