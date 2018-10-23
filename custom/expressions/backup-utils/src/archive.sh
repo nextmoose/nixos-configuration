@@ -8,6 +8,11 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--source-directory)
+	    SOURCE_DIRECTORY="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--gpg-passphrase)
 	    GPG_PASSPHRASE="${2}" &&
 		shift 2 &&
