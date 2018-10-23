@@ -13,6 +13,10 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--upstream-branch)
+	    UPSTREAM_BRANCH="${2}" &&
+		shift 2 &&
+		true
 	*)
 	    echo Unknown Option &&
 		echo ${1} &&
@@ -49,8 +53,13 @@ EOF
 	    ln \
 		--symbolic \
 		${STORE_DIR}/scripts/pre-commit \
-		${HOME}/.password-store/.git/hooks \
-		&&
+		${HOME}/.password-store/.git/hooks &&
+	    if [ ! -z "${UPSTREAM_BRANCH}" ]
+	    then
+		pass git fetch upstream "${UPSTREAM_BRANCH}" &&
+		    pass git checkout "upstream/${UPSTREAM_BRANCH}" &&
+		    true
+	    fi &&
 	    true
     fi &&
     true

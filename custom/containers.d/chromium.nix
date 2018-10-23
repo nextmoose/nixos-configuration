@@ -23,10 +23,22 @@ in
       browserpass.enable = true;
       chromium = {
         enable = true;
-	extensions = [ "naepdomgkenhinolocfifgehidddafch" ];
+	extensions = [
+	  "naepdomgkenhinolocfifgehidddafch" # browserpass
+	  "bkdgflcldnnnapblkhphbgpggdiikppg" # duck duck go
+	];
       };
     };
-    services.mingetty.autologinUser = "user";
+    services = {
+      cron = {
+        enable = true;
+	systemCronJobs = [
+	  "* * * * *   user	git -C /home/user/.password-store fetch upstream master"
+	  "* * * * *   user 	git -C /home/user/.password-store checkout upstream/master"
+	];
+      };
+      mingetty.autologinUser = "user";
+    };
     sound.enable = true;
     users.extraUsers.user = {
       isNormalUser = true;
