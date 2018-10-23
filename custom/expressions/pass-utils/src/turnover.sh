@@ -15,9 +15,9 @@ TEMP_DIR=$(mktemp -d) &&
 	    LAST_COMMIT_DATE=$(pass git log -1 --format=%ct ${FILE}) &&
 	    AGE=$(($(date +%s)-${LAST_COMMIT_DATE})) &&
 	    SIZEAGE=$(echo ${AGE} | wc --bytes) &&
-	    echo ${FILE%.*} ${SIZESIZE} ${SIZEAGE} ${SIZE} ${AGE} >> ${TEMP_DIR}/results.txt &&
+	    echo ${FILE%.*} ${SIZESIZE} ${SIZEAGE} ${SIZE} ${AGE} >> ${TEMP_DIR}/results.txt $(date --date ${LAST_COMMIT_DATE} + %F) &&
 	    rm --force ${TEMP_DIR}/output/$(basename ${FILE%.*}) &&
 	    true
     done > ${TEMP_DIR}/log2.txt 2>&1 &&
-	  cat ${TEMP_DIR}/results.txt | sort --key 1 | sort --numeric-sort --key 5 | sort --numeric-sort --key 4 | sort --numeric-sort --key 3 | sort --numeric-sort --key 2 &&
+	  cat ${TEMP_DIR}/results.txt | sort --key 1 | sort --numeric-sort --key 5 | sort --numeric-sort --key 4 --reverse | sort --numeric-sort --key 3 | sort --numeric-sort --key 2 --reverse | while read LINE&&
     true
