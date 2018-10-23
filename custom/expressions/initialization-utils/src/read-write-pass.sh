@@ -13,6 +13,10 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--upstream-branch)
+	    UPSTREAM_BRANCH="${2}" &&
+		shift 2 &&
+	    ;;
 	--origin-organization)
 	    ORIGIN_ORGANIZATION="${2}" &&
 		shift 2 &&
@@ -22,6 +26,10 @@ do
 	    ORIGIN_REPOSITORY="${2}" &&
 		shift 2 &&
 		true
+	    ;;
+	--origin-branch)
+	    ORIGIN_BRANCH="${2}" &&
+		shift 2 &&
 	    ;;
 	--report-organization)
 	    REPORT_ORGANIZATION="${2}" &&
@@ -90,9 +98,24 @@ EOF
 		--symbolic \
 		${STORE_DIR}/scripts/post-commit \
 		${STORE_DIR}/scripts/pre-push \
-		${HOME}/.password-store/.git/hooks \
-		&&
+		${HOME}/.password-store/.git/hooks &&
+	    if [ ! -z "${UPSTREAM_BRANCH}" ]
+	    then
+		pass git fetch upstream "${UPSTREAM_BRANCH}" &&
+		    pass git checkout "upstream/${UPSTREAM_BRANCH}"
+		    true
+	    fi &&
+	    if [ ! -z "${ORIGIN_BRANCH}" ]
+	    then
+		if pass git fetch origin "${ORIGIN_BRANCH}"
+		then
+		    pass git checkout "origin/${ORIGIN_BRANCH}" &&
+			true
+		fi &&
+		    pass git checkout -b "${ORIGIN_BRANCH}" &&
+		    true
+	    fi &&
 	    true
     fi &&
     true
-    
+
