@@ -62,6 +62,4 @@ UserKnownHostsFile ${HOME}/.ssh/${REMOTE}.known_hosts
 EOF
     ) &&
     chmod 0400 ${HOME}/.ssh/config.d/${REMOTE} &&
-then
     true
-
