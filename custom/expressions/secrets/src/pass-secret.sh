@@ -46,19 +46,19 @@ done &&
     } &&
     mkdir ${TEMP_DIR}/secrets &&
     install-secret gpg.secret.key > ${TEMP_DIR}/secrets/gpg.secret.key &&
-    install-secret gpg.ownertrust > ${TEMP_DIR}/secrets/gpg.owner.trust &&
+    install-secret gpg.owner.trust > ${TEMP_DIR}/secrets/gpg.owner.trust &&
     install-secret gpg2.secret.key > ${TEMP_DIR}/secrets/gpg2.secret.key &&
-    install-secret gpg2.ownertrust > ${TEMP_DIR}/secrets/gpg2.owner.trust &&
+    install-secret gpg2.owner.trust > ${TEMP_DIR}/secrets/gpg2.owner.trust &&
     mkdir ${TEMP_DIR}/home &&
     export HOME=${TEMP_DIR}/home &&
-    gpg --import ${TEMP_DIR}/secrets/gpg.secret.key &&
-    gpg --import-ownertrust ${TEMP_DIR}/secrets/gpg.owner.trust &&
-    gpg2 --import ${TEMP_DIR}/secrets/gpg2.secret.key &&
-    gpg2 --import-ownertrust ${TEMP_DIR}/secrets/gpg2.owner.trust &&
-    pass init $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
-    pass git init &&
-    pass git remote add canonical "https://${CANONICAL_HOST}/${CANONICAL_ORGANIZATION}/${CANONICAL_REPOSITORY}.git" &&
-    pass git fetch canonical "${CANONICAL_BRANCH}" &&
-    pass git checkout "canonical/${CANONICAL_BRANCH}" &&
+    gpg --import ${TEMP_DIR}/secrets/gpg.secret.key > ${TEMP_DIR}/out.log 2>&1 &&
+    gpg --import-ownertrust ${TEMP_DIR}/secrets/gpg.owner.trust >> ${TEMP_DIR}/out.log 2>&1 &&
+    gpg2 --import ${TEMP_DIR}/secrets/gpg2.secret.key >> ${TEMP_DIR}/out.log 2>&1 &&
+    gpg2 --import-ownertrust ${TEMP_DIR}/secrets/gpg2.owner.trust >> ${TEMP_DIR}/out.log 2>&1 &&
+    pass init $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") >> ${TEMP_DIR}/out.log 2>&1 &&
+    pass git init >> ${TEMP_DIR}/out.log 2>&1 &&
+    pass git remote add canonical "https://${CANONICAL_HOST}/${CANONICAL_ORGANIZATION}/${CANONICAL_REPOSITORY}.git" >> ${TEMP_DIR}/out.log 2>&1 &&
+    pass git fetch canonical "${CANONICAL_BRANCH}" >> ${TEMP_DIR}/out.log 2>&1 &&
+    pass git checkout "canonical/${CANONICAL_BRANCH}" >> ${TEMP_DIR}/out.log 2>&1 &&
     pass show "${KEY}" &&
     true
