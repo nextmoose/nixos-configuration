@@ -133,12 +133,12 @@ EOF
     gpg --import-ownertrust ${TEMP_DIR}/beta/gpg.owner.trust &&
     gpg2 --import ${TEMP_DIR}/beta/gpg2.secret.key &&
     gpg2 --import-ownertrust ${TEMP_DIR}/beta/gpg2.owner.trust &&
-    mkdir ${HOME}/.ssh &&
+    mkdir --parents ${HOME}/.ssh &&
     (cat > ${HOME}/.ssh/config <<EOF
 Include ${HOME}/.ssh/config.d/*
 EOF
     ) &&
-    mkdir ${HOME}/.ssh/config.d &&
+    mkdir --parents ${HOME}/.ssh/config.d &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_USER}" ]
     then
 	(cat > ${HOME}/.ssh/config.d/upstream <<EOF
@@ -147,10 +147,10 @@ HostName ${UPSTREAM_HOST}
 Port ${UPSTREAM_PORT}
 User ${UPSTREAM_USER}
 IdentityFile ${HOME}/.ssh/upstream.id_rsa
-UserKnownHostsFile ${HOME}/ssh/upstream.known_hosts
+UserKnownHostsFile ${HOME}/.ssh/upstream.known_hosts
 EOF
 	) &&
-	    chmod 0400 ${HOME}/.ssh/config.d/upstream &&
+	    chmod 0600 ${HOME}/.ssh/config.d/upstream &&
 	    true
     fi &&
     if [ ! -z "${ORIGIN_HOST}" ] && [ ! -z "${ORIGIN_PORT}" ] && [ ! -z "${ORIGIN_USER}" ]
@@ -161,10 +161,10 @@ HostName ${ORIGIN_HOST}
 Port ${ORIGIN_PORT}
 User ${ORIGIN_USER}
 IdentityFile ${HOME}/.ssh/origin.id_rsa
-UserKnownHostsFile ${HOME}/ssh/origin.known_hosts
+UserKnownHostsFile ${HOME}/.ssh/origin.known_hosts
 EOF
 	) &&
-	    chmod 0400 ${HOME}/.ssh/config.d/origin &&
+	    chmod 0600 ${HOME}/.ssh/config.d/origin &&
 	    true
     fi &&
     if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_USER}" ]
@@ -175,10 +175,10 @@ HostName ${REPORT_HOST}
 Port ${REPORT_PORT}
 User ${REPORT_USER}
 IdentityFile ${HOME}/.ssh/report.id_rsa
-UserKnownHostsFile ${HOME}/ssh/report.known_hosts
+UserKnownHostsFile ${HOME}/.ssh/report.known_hosts
 EOF
 	) &&
-	    chmod 0400 ${HOME}/.ssh/config.d/report &&
+	    chmod 0600 ${HOME}/.ssh/config.d/report &&
 	    true
     fi &&
     cp ${TEMP_DIR}/beta/upstream.id_rsa ${HOME}/.ssh/upstream.id_rsa &&
@@ -188,5 +188,5 @@ EOF
     cp ${TEMP_DIR}/beta/origin.known_hosts ${HOME}/.ssh/origin.known_hosts &&
     cp ${TEMP_DIR}/beta/report.known_hosts ${HOME}/.ssh/report.known_hosts &&
     chmod 0700 ${HOME}/.ssh ${HOME}/.ssh/config.d &&
-    chmod 0400 ${HOME}/.ssh/config ${HOME}/.ssh/upstream.id_rsa ${HOME}/.ssh/origin.id_rsa ${HOME}/.ssh/report.id_rsa ${HOME}/.ssh/upstream.known_hosts && ${HOME}/.ssh/origin.known_hosts ${HOME}/.ssh/report.known_hosts &&
+    chmod 0600 ${HOME}/.ssh/config ${HOME}/.ssh/upstream.id_rsa ${HOME}/.ssh/origin.id_rsa ${HOME}/.ssh/report.id_rsa ${HOME}/.ssh/upstream.known_hosts ${HOME}/.ssh/origin.known_hosts ${HOME}/.ssh/report.known_hosts &&
     true
