@@ -7,7 +7,7 @@ in
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0";
-    programs.bash.shellInit = "${container-initializations}/bin/browser-secrets";
+    programs.bash.shellInit = "${container-initializations}/bin/old-secrets";
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;

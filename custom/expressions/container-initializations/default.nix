@@ -14,6 +14,7 @@ stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper $out/scripts/browser-secrets.sh $out/bin/browser-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
+      makeWrapper $out/scripts/old-secrets.sh $out/bin/old-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/configuration.sh $out/bin/configuration --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       true
   '';
