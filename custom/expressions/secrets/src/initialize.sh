@@ -43,16 +43,6 @@ TEMP_DIR=$(mktemp -d) &&
 		    shift 2 &&
 		    true
 		;;
-	    --upstream-repository)
-		UPSTREAM_REPOSITORY="${2}" &&
-		    shift 2 &&
-		    true
-		;;
-	    --upstream-branch)
-		UPSTREAM_BRANCH="${2}" &&
-		    shift 2 &&
-		    true
-		;;
 	    --origin-host)
 		ORIGIN_HOST="${2}" &&
 		    shift 2 &&
@@ -68,16 +58,6 @@ TEMP_DIR=$(mktemp -d) &&
 		    shift 2 &&
 		    true
 		;;
-	    --origin-repository)
-		ORIGIN_REPOSITORY="${2}" &&
-		    shift 2 &&
-		    true
-		;;
-	    --origin-branch)
-		ORIGIN_BRANCH="${2}" &&
-		    shift 2 &&
-		    true
-		;;
 	    --report-host)
 		REPORT_HOST="${2}" &&
 		    shift 2 &&
@@ -90,16 +70,6 @@ TEMP_DIR=$(mktemp -d) &&
 		;;
 	    --report-user)
 		REPORT_USER="${2}" &&
-		    shift 2 &&
-		    true
-		;;
-	    --report-repository)
-		REPORT_REPOSITORY="${2}" &&
-		    shift 2 &&
-		    true
-		;;
-	    --report-branch)
-		REPORT_BRANCH="${2}" &&
 		    shift 2 &&
 		    true
 		;;
@@ -119,16 +89,10 @@ CANONICAL_HOST
 CANONICAL_ORGANIZATION
 CANONICAL_REPOSITORY
 CANONICAL_BRANCH
-ORIGIN_HOST
-ORIGIN_PORT
-ORIGIN_USER
-ORIGIN_ORGANIZATION
-ORIGIN_REPOSITORY
-ORIGIN_BRANCH
 EOF
     ) | while read VAR do
     do
-	eval VAL=${${VAR}} &&
+	eval VAL=\${${VAR}} &&
 	    if [ -z "${VAL}" ]
 	    then
 		echo Undefined ${VAR} &&
@@ -217,12 +181,12 @@ EOF
 	    chmod 0400 ${HOME}/.ssh/config.d/report &&
 	    true
     fi &&
-    cp ${TEMP_DIR}/beta/upstream.id_rsa > ${HOME}/.ssh/upstream.id_rsa &&
-    cp ${TEMP_DIR}/beta/origin.id_rsa > ${HOME}/.ssh/origin.id_rsa &&
-    cp ${TEMP_DIR}/beta/report.id_rsa > ${HOME}/.ssh/report.id_rsa &&
-    cp ${TEMP_DIR}/beta/upstream.known_hosts > ${HOME}/.ssh/upstream.known_hosts &&
-    cp ${TEMP_DIR}/beta/origin.known_hosts > ${HOME}/.ssh/origin.known_hosts &&
-    cp ${TEMP_DIR}/beta/report.known_hosts > ${HOME}/.ssh/report.known_hosts &&
+    cp ${TEMP_DIR}/beta/upstream.id_rsa ${HOME}/.ssh/upstream.id_rsa &&
+    cp ${TEMP_DIR}/beta/origin.id_rsa ${HOME}/.ssh/origin.id_rsa &&
+    cp ${TEMP_DIR}/beta/report.id_rsa ${HOME}/.ssh/report.id_rsa &&
+    cp ${TEMP_DIR}/beta/upstream.known_hosts ${HOME}/.ssh/upstream.known_hosts &&
+    cp ${TEMP_DIR}/beta/origin.known_hosts ${HOME}/.ssh/origin.known_hosts &&
+    cp ${TEMP_DIR}/beta/report.known_hosts ${HOME}/.ssh/report.known_hosts &&
     chmod 0700 ${HOME}/.ssh ${HOME}/.ssh/config.d &&
     chmod 0400 ${HOME}/.ssh/config ${HOME}/.ssh/upstream.id_rsa ${HOME}/.ssh/origin.id_rsa ${HOME}/.ssh/report.id_rsa ${HOME}/.ssh/upstream.known_hosts && ${HOME}/.ssh/origin.known_hosts ${HOME}/.ssh/report.known_hosts &&
     true
