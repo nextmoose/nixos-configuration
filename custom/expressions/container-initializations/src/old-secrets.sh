@@ -31,6 +31,5 @@ secrets \
 	--origin-repository passwordstore \
 	--report-organization desertedscorpion \
 	--report-repository passwordstore \
-	--writeability readwrite \
 	&&
     true
