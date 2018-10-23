@@ -15,6 +15,7 @@ in
 	pkgs.git
 	pkgs.emacs
 	pkgs.pass
+	(import ../expressions/pass-utils/default.nix { inherit pkgs; })
       ];
     };
   };
