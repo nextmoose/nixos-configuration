@@ -33,11 +33,6 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--writability)
-	    WRITABILITY="${2}" &&
-		shift 2 &&
-		true
-	    ;;
 	*)
 	    echo Unknown Option &&
 		echo ${1} &&
@@ -56,7 +51,6 @@ ORIGIN_ORGANIZATION
 ORIGIN_REPOSITORY
 REPORT_ORGANIZATION
 REPORT_REPOSITORY
-WRITABILITY
 EOF
     ) | while read VAR do
     do
@@ -78,21 +72,13 @@ EOF
 	    pass git remote set-url --push upstream no-push &&
 	    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
 	    pass git remote add origin "origin:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
-	    if [ "${WRITABILITY}" == readwrite ]
-	    then
-		ln \
-		    --symbolic \
-		    ${STORE_DIR}/scripts/post-commit \
-		    ${STORE_DIR}/scripts/pre-push \
-		    ${HOME}/.password-store/.git/hooks &&
-		    true
-	    else
-		ln \
-		    --symbolic \
-		    ${STORE_DIR}/scripts/pre-commit \
-		    ${HOME}/.password-store/.git/hooks &&
-		    true
-	    fi
+	    ln \
+		--symbolic \
+		${STORE_DIR}/scripts/post-commit \
+		${STORE_DIR}/scripts/pre-push \
+		${HOME}/.password-store/.git/hooks \
+		&&
+	    true
     fi &&
     true
     

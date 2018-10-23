@@ -24,7 +24,7 @@ secrets \
 	--user git \
 	--port 22 \
 	&&
-    pass \
+    read-write-pass \
 	--upstream-organization desertedscorpion \
 	--upstream-repository passwordstore \
       	--origin-organization desertedscorpion \

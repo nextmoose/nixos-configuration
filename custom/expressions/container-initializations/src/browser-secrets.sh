@@ -24,7 +24,7 @@ secrets \
 	--user git \
 	--port 22 \
 	&&
-    pass \
+    read-write-pass \
 	--upstream-organization nextmoose \
 	--upstream-repository browser-secrets \
       	--origin-organization nextmoose \
