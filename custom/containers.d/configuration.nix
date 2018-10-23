@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
-  container-intializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
+  container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
 in
 {
   config = { config, pkgs, ...}:
