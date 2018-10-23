@@ -31,5 +31,7 @@ secrets \
 	--origin-repository browser-secrets \
 	--report-organization nextmoose \
 	--report-repository browser-secrets \
+	--committer-name "Emory Merryman" \
+	--committer-email emory.merryman@gmail.com \
 	&&
     true

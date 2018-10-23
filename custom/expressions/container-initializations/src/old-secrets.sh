@@ -31,5 +31,7 @@ secrets \
 	--origin-repository passwordstore \
 	--report-organization desertedscorpion \
 	--report-repository passwordstore \
+	--committer-name "Emory Merryman" \
+	--committer-email emory.merryman@gmail.com \
 	&&
     true
