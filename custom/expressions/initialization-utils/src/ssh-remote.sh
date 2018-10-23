@@ -52,7 +52,9 @@ EOF
 	    fi &&
 	    true
     done &&
-    (cat > "${HOME}/.ssh/config.d/${REMOTE}" <<EOF
+    if [ ! -f "${HOME}/.ssh/config.d/${REMOTE}" ]
+    then
+	(cat > "${HOME}/.ssh/config.d/${REMOTE}" <<EOF
 Host ${REMOTE}
 HostName ${HOST}
 User ${USER}
@@ -60,6 +62,8 @@ Port ${PORT}
 IdentityFile ${HOME}/.ssh/${REMOTE}.id_rsa
 UserKnownHostsFile ${HOME}/.ssh/${REMOTE}.known_hosts
 EOF
-    ) &&
-    chmod 0400 ${HOME}/.ssh/config.d/${REMOTE} &&
+	) &&
+	    chmod 0400 ${HOME}/.ssh/config.d/${REMOTE} &&
+	    true
+    fi &&
     true
