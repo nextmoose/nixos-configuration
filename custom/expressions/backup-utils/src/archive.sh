@@ -74,7 +74,7 @@ EOF
     dvdisaster --image ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso -mRS01 --redundancy high --create &&
     mkdir ${TEMP_DIR}/target &&
     sudo mount "/dev/volumes/${TARGET_VOLUME}" ${TEMP_DIR}/target &&
-    while ! sudo cp ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso ${TEMP_DIR}/target |
+    while ! sudo cp ${TEMP_DIR}/archive.${TSTAMP}.tar.gz.gpg.iso ${TEMP_DIR}/target
     do
 	rm ${TEMP_DIR}/target/archive.*.tar.gz/gpg.iso &&
 	    true
