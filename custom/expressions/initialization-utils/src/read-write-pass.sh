@@ -33,6 +33,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--committer-name)
+	    COMMITTER_NAME="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--committer-email)
+	    COMMITTER_EMAIL="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	*)
 	    echo Unknown Option &&
 		echo ${1} &&
@@ -51,6 +61,8 @@ ORIGIN_ORGANIZATION
 ORIGIN_REPOSITORY
 REPORT_ORGANIZATION
 REPORT_REPOSITORY
+COMMITTER_NAME
+COMMITTER_EMAIL
 EOF
     ) | while read VAR do
     do
@@ -72,6 +84,8 @@ EOF
 	    pass git remote set-url --push upstream no-push &&
 	    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
 	    pass git remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
+	    pass git config user.name "${COMMITTER_NAME}" &&
+	    pass git config user.email "${COMMITTER_EMAIL}" &&
 	    ln \
 		--symbolic \
 		${STORE_DIR}/scripts/post-commit \
