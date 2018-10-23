@@ -1,10 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
-  init-read-only-pass = (import ../../installed/init-read-only-pass/default.nix { inherit pkgs; });
+  container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
 in
 {
-  autoStart = false;
   bindMounts = {
     "/run/user/1000" = {
       hostPath = "/run/user/1000";
@@ -20,10 +19,7 @@ in
     environment.variables.DISPLAY=":0.0";
     hardware.pulseaudio.enable = true;
     programs = {
-      bash.shellInit = ''
-        ${init-read-only-pass}/bin/init-read-only-pass --upstream-url https://github.com/nextmoose/browser-secrets.git --upstream-branch master &&
-	  true
-      '';
+      bash.shellInit = "${container-initializations}/bin/chromium";
       browserpass.enable = true;
       chromium = {
         enable = true;
