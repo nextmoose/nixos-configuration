@@ -4,7 +4,7 @@ let
   init-read-only-pass = (import ../../../installed/init-read-only-pass/default.nix { inherit pkgs; });
 in
 stdenv.mkDerivation rec {
-  name = "secrets";
+  name = "initialization-utils";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
