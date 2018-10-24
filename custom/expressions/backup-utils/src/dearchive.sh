@@ -13,23 +13,13 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--source-directory)
-	    SOURCE_DIRECTORY="${2}" &&
-		shift 2 &&
-		true
-	    ;;
-	--recipient)
-	    RECIPIENT="${2}" &&
+	--tstamp)
+	    TSTAMP="${2}" &&
 		shift 2 &&
 		true
 	    ;;
 	--target-volume)
 	    TARGET_VOLUME="${2}" &&
-		shift 2 &&
-		true
-	    ;;
-	--local-user)
-	    LOCAL_USER="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -46,9 +36,8 @@ do
 done &&
     (cat <<EOF
 SOURCE_VOLUME
-RECIPIENT
+TSTAMP
 TARGET_VOLUME
-LOCAL_USER
 EOF
     ) | while read VAR do
     do
@@ -70,17 +59,12 @@ EOF
 	    true
     } &&
     trap cleanup EXIT &&
-    TSTAMP=$(date +%s) &&
     mkdir ${TEMP_DIR}/source &&
     sudo mount "/dev/volumes/${SOURCE_VOLUME}" ${TEMP_DIR}/source &&
-    tar --create --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory "${TEMP_DIR}/source/${SOURCE_DIRECTORY}" . &&
-    gzip --to-stdout -9 ${TEMP_DIR}/${NAME}.${TSTAMP}.tar > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
-    gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg --local-user "${LOCAL_USER}" --encrypt --sign --recipient "${RECIPIENT}" ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
+    echo "${GPG_PASSPHRASE}" | gpg --passphrase-fd 0 --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz --decrypt ${TEMP_DIR}/source/${NAME}.${TSTAMP}.tar.gz.gpg &&
+    gunzip --to-stdout ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar &&
     mkdir ${TEMP_DIR}/target &&
     sudo mount "/dev/volumes/${TARGET_VOLUME}" ${TEMP_DIR}/target &&
-    while ! sudo cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg ${TEMP_DIR}/target
-    do
-	rm --recursive --force ${TEMP_DIR}/target/${NAME}.*.tar.gz.gpg &&
-	    true
-    done &&
+    mkdir ${TEMP_DIR}/${NAME}.${TSTAMP} &&
+    sudo tar --extract --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory ${TEMP_DIR}/target &&
     true
