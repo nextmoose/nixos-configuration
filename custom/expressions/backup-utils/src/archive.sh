@@ -83,4 +83,7 @@ EOF
 	rm --recursive --force ${TEMP_DIR}/target/${NAME}.*.tar.gz.gpg &&
 	    true
     done &&
+    BUCKET=f3436629-7ec5-4b40-a3bb-1ff9e590e508 &&
+    source /run/secrets/aws.env &&
+    aws s3 cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg s3://${BUCKET}/${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
     true
