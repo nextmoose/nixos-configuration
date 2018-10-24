@@ -34,7 +34,7 @@ TEMP_DIR=$(mktemp -d) &&
     sudo mkfs.ext4 /dev/volumes/test-2 &&
     mkdir ${TEMP_DIR}/test-2 &&
     sudo mount /dev/volumes/test-2 ${TEMP_DIR}/test-2 &&
-    archive --name backup --source-volume test-1 --source-directory snapshots  --local-user "Archive Sender" --recipient $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") --target-volume test-2 &&
+    cat /run/secrets/gpg.passphrase.txt | archive --name backup --source-volume test-1 --source-directory snapshots  --local-user "Archive Sender" --recipient $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") --target-volume test-2 &&
     sudo lvcreate --yes --name test-3 --size 1G volumes &&
     sudo mkfs.ext4 /dev/volumes/test-3 &&
     mkdir ${TEMP_DIR}/test-3 &&

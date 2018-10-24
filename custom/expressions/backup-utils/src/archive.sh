@@ -75,7 +75,7 @@ EOF
     sudo mount "/dev/volumes/${SOURCE_VOLUME}" ${TEMP_DIR}/source &&
     tar --create --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory "${TEMP_DIR}/source/${SOURCE_DIRECTORY}" . &&
     gzip --to-stdout -9 ${TEMP_DIR}/${NAME}.${TSTAMP}.tar > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
-    gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg --local-user "${LOCAL_USER}" --encrypt --sign --recipient "${RECIPIENT}" ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
+    tee | gpg --passphrase-fd 0 --batch --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg --local-user "${LOCAL_USER}" --encrypt --sign --recipient "${RECIPIENT}" ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
     mkdir ${TEMP_DIR}/target &&
     sudo mount "/dev/volumes/${TARGET_VOLUME}" ${TEMP_DIR}/target &&
     while ! sudo cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg ${TEMP_DIR}/target
@@ -85,5 +85,7 @@ EOF
     done &&
     BUCKET=f3436629-7ec5-4b40-a3bb-1ff9e590e508 &&
     source /run/secrets/aws.env &&
-    aws s3 cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg s3://${BUCKET}/${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
+    echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} &&
+    echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} &&
+    aws s3 cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg s3://${BUCKET}/${NAME}.${TSTAMP}.tar.gz.gpg &&
     true
