@@ -13,6 +13,10 @@
     ./hardware-configuration.nix
     ./installed/password.nix
   ];
+  fileSystems."/srv/gnucash" = {
+    device = "/dev/volumes/gnucash";
+    fsType = "ext4";
+  };
   networking = {
     networkmanager = {
       enable = true;
@@ -32,7 +36,7 @@
     cron = {
       enable = true;
       systemCronJobs = [
-        "*/10 * * * * user nix-collect-garbage"
+        "*/10 *  * * * user nix-collect-garbage"
       ];
     };
     xserver = {
