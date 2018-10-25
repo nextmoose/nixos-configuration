@@ -5,20 +5,24 @@ do
     case "${1}" in
 	list)
 	    sudo nixos-container list &&
+		shift "${#}" &&
 		true
 	    ;;
 	start)
 	    sudo nixos-container "${@}" &&
+		shift "${#}" &&
 		true
 	    ;;
 	stop)
 	    sudo nixos-container "${@}" &&
+		shift "${#}" &&
 		true
 	    ;;
 	restart)
 	    shift &&
 		sudo nixos-container stop "${@}" &&
 		sudo nixos-container start "${@}" &&
+		shift "${#}" &&
 		true
 	    ;;
 	login)
@@ -29,10 +33,12 @@ do
 			true
 		fi &&
 		sudo nixos-container login "${@}" &&
+		shift "${#}" &&
 		true
 	    ;;
 	*)
 	    nixos-container --help &&
+		shift "${#}" &&
 		true
 	;;
     esac
