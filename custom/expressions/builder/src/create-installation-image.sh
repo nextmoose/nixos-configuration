@@ -1,22 +1,12 @@
 #!/bin/sh
 
-STATUS=64 &&
-    DESTDIR=build &&
-    TEMP_DIR=$(mktemp -d) &&
+TEMP_DIR=$(mktemp -d) &&
     cd /home/user/projects/installation &&
-    pwd &&
-    ls -alh &&
     cleanup() {
 	rm --recursive --force ${TEMP_DIR} &&
-	    ((sudo VBoxManage controlvm nixos poweroff soft && sleep 10s) || true) && 
-	    (sudo VBoxManage unregistervm --delete nixos || true) &&
-	    (sudo rm ${DESTDIR}/nixos.vmdk || true) &&
-	    (rm --recursive --force ${DESTDIR} || true) &&
-	    exit ${STATUS} &&
 	    true
     } &&
     trap cleanup EXIT &&
-    rm --force nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso &&
     read -s -p "SYMMETRIC PASSPHRASE? " SYMMETRIC_PASSPHRASE &&
     if [ -z "${SYMMETRIC_PASSPHRASE}" ]
     then
@@ -67,10 +57,11 @@ STATUS=64 &&
     echo &&
     echo VERIFIED &&
     echo &&
-    mkdir ${DESTDIR} &&
-    mkdir ${DESTDIR}/installation &&
-    cp --recursive src/. ${DESTDIR}/installation &&
+    mkdir ${TEMP_DIR}/installation &&
+    cp --recursive src/. ${TEMP_DIR}/installation &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
+    mkdir ${TEMP_DIR}/home &&
+    export HOME=${TEMP_DIR}/home &&x
     init-read-only-pass --upstream-url https://github.com/nextmoose/secrets --upstream-branch master &&
     pass show gpg.secret.key > ${TEMP_DIR}/init-read-only-pass/gpg.secret.key &&
     pass show gpg.owner.trust > ${TEMP_DIR}/init-read-only-pass/gpg.owner.trust &&
@@ -96,24 +87,11 @@ EOF
     cp ${TEMP_DIR}/init-wifi.tar.gz ${TEMP_DIR}/secrets &&
     tar --create --file ${TEMP_DIR}/secrets.tar --directory ${TEMP_DIR}/secrets/ . &&
     gzip -9 --to-stdout ${TEMP_DIR}/secrets.tar > ${TEMP_DIR}/secrets.tar.gz &&
-    echo "${SYMMETRIC_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --output ${DESTDIR}/installation/installer/src/secrets.tar.gz.gpg --symmetric ${TEMP_DIR}/secrets.tar.gz &&
+    echo "${SYMMETRIC_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --output ${TEMP_DIR}/installation/installer/src/secrets.tar.gz.gpg --symmetric ${TEMP_DIR}/secrets.tar.gz &&
     (
-	cd ${DESTDIR}/installation &&
-	    nix-${DESTDIR} '<nixpkgs/nixos>' -A config.system.${DESTDIR}.isoImage -I nixos-config=iso.nix &&
+	cd ${TEMP_DIR}/installation &&
+	    nix-build '<nixpkgs/nixos>' -A config.system.${TEMP_DIR}.isoImage -I nixos-config=iso.nix &&
 	    true
     ) &&
-    sudo ln --symbolic nixos.vmdk ${DESTDIR} &&
-    sudo VBoxManage createvm --name nixos --register &&
-    sudo VBoxManage storagectl nixos --name "SATA Controller" --add SATA &&
-    sudo VBoxManage storageattach nixos --storagectl "SATA Controller" --port 0 --device 0 --type dvddrive --medium build/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso &&
-    sudo VBoxManage storagectl nixos --name "IDE" --add IDE &&
-    sudo VBoxManage storageattach nixos --storagectl "IDE" --port 0 --device 0 --type hdd --medium ${DESTDIR}/nixos.vmdk &&
-    sudo VBoxManage modifyvm nixos --memory 2000 &&
-    sudo VBoxManage modifyvm nixos --nic1 nat &&
-    sudo VBoxManage modifyvm nixos --firmware efi &&
-    sudo VBoxManage startvm nixos &&
-    read -p "IS IT OK? y/n " ISITOK &&
-    [ "${ISITOK}" == "y" ] &&
-    STATUS=0 &&
-    cp build/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso . &&
+    cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso . &&
     true
