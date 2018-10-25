@@ -61,7 +61,7 @@ TEMP_DIR=$(mktemp -d) &&
     cp --recursive src/. ${TEMP_DIR}/installation &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
     mkdir ${TEMP_DIR}/home &&
-    export HOME=${TEMP_DIR}/home &&x
+    export HOME=${TEMP_DIR}/home &&
     init-read-only-pass --upstream-url https://github.com/nextmoose/secrets --upstream-branch master &&
     pass show gpg.secret.key > ${TEMP_DIR}/init-read-only-pass/gpg.secret.key &&
     pass show gpg.owner.trust > ${TEMP_DIR}/init-read-only-pass/gpg.owner.trust &&
