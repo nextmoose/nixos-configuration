@@ -94,5 +94,6 @@ EOF
 	    nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix &&
 	    true
     ) &&
-    sudo cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sdbx &&
+    sudo ls -alh ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sd* &&
+    sudo cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sdb &&
     true
