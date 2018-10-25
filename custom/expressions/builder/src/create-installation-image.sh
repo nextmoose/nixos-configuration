@@ -89,11 +89,10 @@ EOF
     gzip -9 --to-stdout ${TEMP_DIR}/secrets.tar > ${TEMP_DIR}/secrets.tar.gz &&
     echo "${SYMMETRIC_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --output ${TEMP_DIR}/installation/installer/src/secrets.tar.gz.gpg --symmetric ${TEMP_DIR}/secrets.tar.gz &&
     export TEMP_DIR &&
-    bash &&
     (
 	cd ${TEMP_DIR}/installation &&
 	    nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix &&
 	    true
     ) &&
-    cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso . &&
+    sudo cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sdbx &&
     true
