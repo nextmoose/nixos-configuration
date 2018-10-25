@@ -88,6 +88,7 @@ EOF
     tar --create --file ${TEMP_DIR}/secrets.tar --directory ${TEMP_DIR}/secrets/ . &&
     gzip -9 --to-stdout ${TEMP_DIR}/secrets.tar > ${TEMP_DIR}/secrets.tar.gz &&
     echo "${SYMMETRIC_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --output ${TEMP_DIR}/installation/installer/src/secrets.tar.gz.gpg --symmetric ${TEMP_DIR}/secrets.tar.gz &&
+    bash &&
     (
 	cd ${TEMP_DIR}/installation &&
 	    nix-build '<nixpkgs/nixos>' -A config.system.${TEMP_DIR}.isoImage -I nixos-config=iso.nix &&
