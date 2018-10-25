@@ -8,6 +8,12 @@ pvcreate /dev/sda4 &&
     mount /dev/volumes/gnucash ${DIR} &&
     mkdir ${DIR}/user &&
     chown 1000:100 ${DIR}/user &&
-    touch /mnt/etc/nixos/containers.nix &&
-    touch /mnt/etc/nixos/virtualisation.nix &&
+    (cat > /mnt/etc/nixos/custom/containers.nix <<EOF
+{ pkgs ? import <nixpkgs> {} }:
+with import <nixpkgs> {};
+{
+}
+EOF
+    ) &&
+    cp /mnt/etc/nixos/custom/containers.nix /mnt/etc/nixos/custom/virtualisation.nix &&
     true
