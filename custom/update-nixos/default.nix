@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper $out/scripts/create-nixos-object.sh $out/bin/create-nixos-objects --set PATH ${lib.makeBinPath [ coreutils findutils ]} --set STORE_DIR $out &&
-      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ "$out" "/run/wrappers" nixos-rebuild coreutils rsync nixos-container gnugrep systemd mktemp ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ "$out" "/run/current-system/sw" "/run/wrappers" nixos-rebuild coreutils rsync nixos-container gnugrep systemd mktemp ]} --set STORE_DIR $out &&
       true
   '';
 }
