@@ -6,7 +6,7 @@ secrets \
     --canonical-repository secrets \
     --canonical-branch master &&
     ssh-remote \
-	--name upstream \
+	--remote upstream \
 	--host github.com \
 	--user git \
 	--port 22 &&
