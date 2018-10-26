@@ -13,6 +13,7 @@ stdenv.mkDerivation rec {
       cp *.sh $out/scripts &&
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
+      makeWrapper $out/scripts/aws-secrets.sh $out/bin/aws-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/browser-secrets.sh $out/bin/browser-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/old-secrets.sh $out/bin/old-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
