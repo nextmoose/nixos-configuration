@@ -67,6 +67,7 @@ EOF
     } &&
     trap cleanup EXIT &&
     TSTAMP=$(date +%s) &&
+    read-only-pass --upstream-organization nextmoose --upstream repository secrets --upstream-branch master &&
     mkdir ${TEMP_DIR}/source &&
     tar --create --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory "${SOURCE_DIRECTORY}" . &&
     gzip --to-stdout -9 ${TEMP_DIR}/${NAME}.${TSTAMP}.tar > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
