@@ -1,5 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
+let
+  backup-utils = (import ../expressions/backup-utils/default.nix { inherit pkgs; })
+in
 {
   bindMounts = {
     "/home" = {
