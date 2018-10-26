@@ -12,7 +12,7 @@ TEMP_DIR=$(mktemp -d) &&
     if [ -d ${HOME}/projects/configuration/custom ]
     then
 	cp --recursive ${HOME}/projects/configuration/custom/. ${TEMP_DIR} &&
-	    create-nixos-object --root ${TEMP_DIR} &&
+	    create-nixos-objects --root ${TEMP_DIR} &&
 	    sudo \
 		rsync \
 		--verbose \
