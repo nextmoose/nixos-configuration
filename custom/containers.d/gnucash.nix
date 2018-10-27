@@ -13,7 +13,10 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    environment.variables.DISPLAY=":0";
+    environment.variables = {
+      BUCKET="e613b6bb-3d0b-4d02-8af9-6b05a3c89d3e";
+      DISPLAY=":0";
+    };
     services.mingetty.autologinUser = "user";
     programs.bash.shellInit = "${container-initializations}/bin/gnucash";
     users.extraUsers.user = {
