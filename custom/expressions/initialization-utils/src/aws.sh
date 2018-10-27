@@ -46,7 +46,7 @@ EOF
 	    fi &&
 	    true
     done &&
-    SECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
+    AWS_SECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
     (cat <<EOF
 ${AWS_ACCESS_KEY_ID}
 ${AWS_SECRET_ACCESS_KEY}
