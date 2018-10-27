@@ -14,4 +14,8 @@ secrets \
 	--upstream-organization nextmoose \
 	--upstream-repository aws-secrets \
 	--upstream-branch master &&
+    aws \
+	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
+	--default-region-name us-east-1 \
+	--default-output-format json &&
     true
