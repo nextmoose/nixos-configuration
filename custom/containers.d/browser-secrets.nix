@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
+  pass-utils = (import ../expressions/pass-utils/default.nix { inherit pkgs; });
 in
 {
   config = { config, pkgs, ...}:
@@ -15,6 +16,7 @@ in
 	pkgs.git
 	pkgs.emacs
 	pkgs.pass
+	pass-utils
       ];
     };
   };
