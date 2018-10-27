@@ -46,12 +46,16 @@ EOF
 	    fi &&
 	    true
     done &&
-    AWS_SECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
-    (cat <<EOF
+    if [ ! -d "${HOME}/.aws" ]
+    then
+	AWS_lsSECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
+	    (cat <<EOF
 ${AWS_ACCESS_KEY_ID}
 ${AWS_SECRET_ACCESS_KEY}
 ${DEFAULT_REGION_NAME}
 ${DEFAULT_OUTPUT_FORMAT}
 EOF
-    ) | aws configure &&
+	    ) | aws configure &&
+	    true
+    fi &&
     true
