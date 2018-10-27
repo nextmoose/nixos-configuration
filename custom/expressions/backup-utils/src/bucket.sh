@@ -65,10 +65,10 @@ EOF
     } &&
     trap cleanup EXIT &&
     TSTAMP=$(date +%s) &&
-    read-only-pass --upstream-organization nextmoose --upstream repository secrets --upstream-branch master &&
+    read-only-pass --upstream-organization nextmoose --upstream-repository secrets --upstream-branch master &&
     mkdir ${TEMP_DIR}/source &&
     tar --create --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory "${SOURCE_DIRECTORY}" . &&
     gzip --to-stdout -9 ${TEMP_DIR}/${NAME}.${TSTAMP}.tar > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
-    tee | gpg --passphrase-fd 0 --batch --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg --local-user "${LOCAL_USER}" --encrypt --sign --recipient "${RECIPIENT}" ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
+    gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg --local-user "${LOCAL_USER}" --encrypt --sign --recipient "${RECIPIENT}" ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz &&
     aws s3 cp ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg s3://${BUCKET}/${NAME}.${TSTAMP}.tar.gz.gpg &&
     true
