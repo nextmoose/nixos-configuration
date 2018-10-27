@@ -27,7 +27,9 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
+    # debucket --name gnucash --timestamp 1540656743 --destination-directory gnucash --bucket ${BUCKET}
     # gnucash &&
     # sleep 1m &&
     # gnucash &&
+    # Cancel and load file
     true
