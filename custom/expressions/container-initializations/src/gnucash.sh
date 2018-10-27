@@ -27,4 +27,7 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
+    gnucash &&
+    sleep 1m &&
+    gnucash &&
     true
