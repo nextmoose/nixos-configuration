@@ -60,9 +60,7 @@ EOF
     done &&
     TEMP_DIR=$(mktemp -d) &&
     cleanup() {
-	(sudo umount ${TEMP_DIR}/source || true) &&
-	    (sudo umount ${TEMP_DIR}/target || true) &&
-	    rm --recursive --force ${TEMP_DIR} &&
+	rm --recursive --force ${TEMP_DIR} &&
 	    true
     } &&
     trap cleanup EXIT &&
