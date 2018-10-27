@@ -48,7 +48,7 @@ EOF
     done &&
     if [ ! -d "${HOME}/.aws" ]
     then
-	AWS_lsSECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
+	AWS_SECRET_ACCESS_KEY="$(pass show ${AWS_ACCESS_KEY_ID})" &&
 	    (cat <<EOF
 ${AWS_ACCESS_KEY_ID}
 ${AWS_SECRET_ACCESS_KEY}
