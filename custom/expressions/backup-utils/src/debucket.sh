@@ -59,7 +59,7 @@ EOF
     trap cleanup EXIT &&
     aws s3 cp s3://${BUCKET}/${NAME}.${TSTAMP}.tar.gz.gpg ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
     gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz --decrypt ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
-    gunzip --to-stdout ${TEMP_DIR}/${NAME}.tar.gz > ${TEMP_DIR}/${NAME}.tar &&
+    gunzip --to-stdout ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar &&
     mkdir ${DESTINATION_DIRECTORY} &&
-    tar --extract --file ${TEMP_DIR}/${NAME}.tar --directory ${DESTINATION_DIRECTORY} &&
+    tar --extract --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory ${DESTINATION_DIRECTORY} &&
     true
