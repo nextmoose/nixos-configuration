@@ -33,8 +33,7 @@ in
       cron = {
         enable = true;
 	systemCronJobs = [
-	  "* * * * *   user	pass git fetch upstream master"
-	  "* * * * *   user 	pass git checkout upstream/master"
+	  "* * * * *   user	${pass}/bin/pass git fetch upstream master && ${pass}/bin/pass git checkout upstream/master"
 	];
       };
       mingetty.autologinUser = "user";
