@@ -9,9 +9,6 @@ dockerTools.buildImage {
     cd c9sdk &&
     sh ./scripts/install-sdk.sh
   '';
-
-  contents = [ redis ];
-
   config = {
     Cmd = [ ];
     Entrypoint = [ pkgs.bash ];

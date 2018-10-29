@@ -72,6 +72,7 @@
       (import ./custom/expressions/builder/default.nix { inherit pkgs; })
       (import ./custom/expressions/backup-utils/default.nix { inherit pkgs; })
       (import ./custom/expressions/container-utils/default.nix { inherit pkgs; })
+      (import ./custom/expressions/docker/default.nix { inherit pkgs; })
     ];
   };
   system.stateVersion = "18.03";
