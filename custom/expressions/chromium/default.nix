@@ -3,10 +3,17 @@ with import <nixpkgs> {};
 stdenv.mkDerivation rec {
   name = "chromium";
   src = ./src;
-  buildInputs = [ makeWrapper ];
+  buildInputs = [ makeWrapper gzip gnutar ];
+  buildPhase = ''
+    gunzip flash_player_ppapi_linux.x86_64.tar.gz &&
+      mkdir adobe-flashplugin &&
+      tar --extract --file flash_player_ppapi_linux.x86_64.tar adobe-flash-plugin &&
+      true
+  '';
   installPhase = ''
     mkdir $out &&
-      mkdir $out/etc &&
+      mkdir $out/lib &&
+      cp --recursive adobe-flash-plugin $out/lib &&
       mkdir $out/scripts &&
       cp chromium.sh $out/scripts &&
       chmod 0500 $out/scripts/chromium.sh &&

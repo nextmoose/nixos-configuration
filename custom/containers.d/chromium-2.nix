@@ -38,6 +38,7 @@ in
     };
     sound.enable = true;
     users.extraUsers.user = {
+      extraGroups = [ "wheel" ];
       isNormalUser = true;
       packages = [
         pkgs.browserpass
