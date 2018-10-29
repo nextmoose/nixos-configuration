@@ -6,7 +6,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ makeWrapper gzip gnutar ];
   buildPhase = ''
     gunzip flash_player_ppapi_linux.x86_64.tar.gz &&
-      mkdir adobe-flashplugin &&
+      mkdir adobe-flash-plugin &&
       tar --extract --file flash_player_ppapi_linux.x86_64.tar adobe-flash-plugin &&
       true
   '';
@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
       cp chromium.sh $out/scripts &&
       chmod 0500 $out/scripts/chromium.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ chromium coreutils gnugrep ]} &&
+      makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ chromium coreutils gnugrep ]} --set STORE_DIR "$out" &&
       true
   '';
 }
