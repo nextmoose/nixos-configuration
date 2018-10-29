@@ -19,6 +19,7 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/configuration.sh $out/bin/configuration --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
+      makeWrapper $out/scripts/paperwork.sh $out/bin/paperwork --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       true
   '';
 }
