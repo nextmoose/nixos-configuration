@@ -85,3 +85,4 @@
   };
   system.stateVersion = "18.03";
 }
+# lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere
