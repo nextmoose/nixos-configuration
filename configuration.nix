@@ -33,12 +33,21 @@
   '';
   security.sudo.wheelNeedsPassword = false;
   services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+	userServices = true;
+      };
+    };
     cron = {
       enable = true;
       systemCronJobs = [
         "*/10 *  * * * user nix-collect-garbage"
       ];
     };
+    printing.enable = true;
     xserver = {
       enable = true;
       windowManager.i3.enable = true;
