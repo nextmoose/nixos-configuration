@@ -11,9 +11,11 @@ dockerTools.buildImage {
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
+    adduser user
   '';
   config = {
     Cmd = [ ];
     Entrypoint = [ entrypoint ];
+    User = "user";
   };
 }
