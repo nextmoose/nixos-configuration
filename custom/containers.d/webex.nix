@@ -16,7 +16,12 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    environment.variables.DISPLAY=":0.0";
+    environment.variables = {
+      DISPLAY=":0.0";
+      URL="http://emails.readingprograms.org/lesson/800578044/1234/Victor%20Merryman/?literature";
+      MEETING_NUMBER="800578044";
+      PASSWORD="1234";
+    };
     hardware.pulseaudio.enable = true;
     programs = {
       bash.shellInit = "${container-initializations}/bin/chromium";
