@@ -3,7 +3,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = (import ./custom/containers.nix { inherit pkgs; });
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    pulseaudio.enable = true;
+    sane = {
+      enable = true;
+      netConf = "10.1.10.113";
+    };
+  };
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
@@ -78,6 +84,16 @@
       pkgs.firefox
       pkgs.gnupg
       pkgs.awscli
+      pkgs.sane-backends
+      pkgs.saneBackends
+      pkgs.sane-backends-git
+      pkgs.saneBackendsGit
+      pkgs.saneFrontends
+      pkgs.sane-frontends
+      pkgs.swingsane
+      pkgs.unpaper
+      pkgs.xsane
+      pkgs.filezilla
       (import ./custom/expressions/builder/default.nix { inherit pkgs; })
       (import ./custom/expressions/backup-utils/default.nix { inherit pkgs; })
       (import ./custom/expressions/docker/default.nix { inherit pkgs; })

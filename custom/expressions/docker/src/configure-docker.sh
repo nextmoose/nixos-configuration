@@ -9,12 +9,15 @@ TEMP_DIR=$(mktemp -d) &&
     docker system prune --force --all --volumes &&
     ls -1 "${STORE_DIR}/lib" | while read IMAGE
     do
-	mkdir "${TEMP_DIR}/${IMAGE%.*}" &&
-	    cd "${TEMP_DIR}/${IMAGE%.*}" &&
-	    nix-build "${STORE_DIR}/lib/${IMAGE}" &&
-	    cat result | docker image load &&
-	    cd "${TEMP_DIR}" &&
-	    rm --recursive --force "${TEMP_DIR}/${IMAGE%.*}" &&
+	if [ -d "${STORE_DIR}/lib/${IMAGE}" ]
+	then
+	    WORK_DIR=$(mktemp -d "${TEMP_DIR}/XXXXXXXX") &&
+		cd "${WORK_DIR}" &&
+		cp --recursive "${TEMP_DIR}/${IMAGE}" "${WORK_DIR}" &&
+		nix-build "${WORK_DIR}/${IMAGE}/default.nix" &&
+		cat result | docker image load &&
+		true
+	fi &&
 	    true
     done &&
     true
