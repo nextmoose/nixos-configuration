@@ -12,7 +12,6 @@ dockerTools.buildImage {
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
     ${pkgs.shadow}/bin/useradd user
-    adfadsfdas
   '';
   config = {
     Cmd = [ ];
