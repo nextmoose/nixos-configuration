@@ -8,7 +8,7 @@ in
 with pkgs;
 dockerTools.buildImage {
   name = "gnucash";
-  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils pkgs.gtk2-x11 pkgs.dbus pkgs.dbus_libs pkgs.dbus_tools pkgs.dbus_daemon pkgs.dbus-broker gnome2.GConf pkgconfig ];
+  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils pkgs.gtk2-x11 pkgs.dbus pkgs.dbus_libs pkgs.dbus_tools pkgs.dbus_daemon pkgs.dbus-broker gnome2.GConf pkgconfig gtk2-x11 xorg.libX11 perl ];
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
