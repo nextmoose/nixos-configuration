@@ -8,11 +8,12 @@ in
 with pkgs;
 dockerTools.buildImage {
   name = "gnucash";
-  contents = [ pkgs.bash pkgs.gnucash ];
+  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils ];
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
-    mkdir /home &&
+    chmod a+rwx /tmp &&
+      mkdir /home &&
       ${pkgs.shadow}/bin/useradd --create-home user
   '';
   config = {
