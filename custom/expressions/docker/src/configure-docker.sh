@@ -5,6 +5,7 @@ TEMP_DIR=$(mktemp -d) &&
 	if [ -z "$(ls -1 ${TEMP_DIR})" ]
 	then
 	    rm --recursive --force "${TEMP_DIR}" &&
+		docker image ls &&
 		true
 	else
 	    echo There were build errors. &&
