@@ -8,18 +8,19 @@ in
 with pkgs;
 dockerTools.buildImage {
   name = "gnucash";
-  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils ];
+  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils pkgs.gtk2-x11 ];
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
-    chmod a+rwx /tmp &&
-      mkdir /home &&
-      ${pkgs.shadow}/bin/useradd --create-home user
+      mkdir /home /tmp &&
+      ${pkgs.shadow}/bin/useradd --create-home user &&
+      chmod a+rwx /tmp &&
+      true
   '';
   config = {
     Cmd = [ ];
     Entrypoint = [ entrypoint ];
     User = "user";
-    WorkDir = "/home/user";
+    WorkingDir = "/home/user";
   };
 }
