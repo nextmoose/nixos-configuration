@@ -16,6 +16,7 @@ TEMP_DIR=$(mktemp -d) &&
 		cp --recursive "${STORE_DIR}/lib/${IMAGE}" "${WORK_DIR}" &&
 		nix-build "${WORK_DIR}/${IMAGE}/default.nix" &&
 		cat result | docker image load &&
+		chown --recursive user:users "${WORK_DIR}" &&
 		true
 	fi &&
 	    true
