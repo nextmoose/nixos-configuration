@@ -2,13 +2,13 @@
 let
   entrypoint = pkgs.writeScript "entrypoint.sh" ''
      #!${pkgs.stdenv.shell}
-     ${pkgs.gnucash}/bin/gnucash
+     ${pkgs.firefox}/bin/firefox
   '';
 in
 with pkgs;
 dockerTools.buildImage {
-  name = "gnucash";
-  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils pkgs.gtk2-x11 pkgs.dbus pkgs.dbus_libs pkgs.dbus_tools pkgs.dbus_daemon pkgs.dbus-broker gnome2.GConf pkgconfig ];
+  name = "firefox";
+  contents = [ pkgs.bash pkgs.firefox ];
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
