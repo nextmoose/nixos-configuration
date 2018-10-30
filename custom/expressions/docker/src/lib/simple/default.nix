@@ -7,7 +7,7 @@ let
 in
 with pkgs;
 dockerTools.buildImage {
-  name = "simple";
+  name = "simple2";
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}

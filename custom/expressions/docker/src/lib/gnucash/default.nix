@@ -11,7 +11,8 @@ dockerTools.buildImage {
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
-    adduser user
+    ${pkgs.shadow}/bin/useradd user
+    adfadsfdas
   '';
   config = {
     Cmd = [ ];
