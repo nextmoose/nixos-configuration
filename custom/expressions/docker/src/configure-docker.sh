@@ -13,7 +13,7 @@ TEMP_DIR=$(mktemp -d) &&
 	then
 	    WORK_DIR=$(mktemp -d "${TEMP_DIR}/XXXXXXXX") &&
 		cd "${WORK_DIR}" &&
-		cp --recursive "${TEMP_DIR}/${IMAGE}" "${WORK_DIR}" &&
+		cp --recursive "${STORE_DIR}/lib/${IMAGE}" "${WORK_DIR}" &&
 		nix-build "${WORK_DIR}/${IMAGE}/default.nix" &&
 		cat result | docker image load &&
 		true
