@@ -12,7 +12,8 @@ dockerTools.buildImage {
   runAsRoot = ''
     #!${stdenv.shell}
     ${dockerTools.shadowSetup}
-    ${pkgs.shadow}/bin/useradd --create-home user
+    mkdir /home &&
+      ${pkgs.shadow}/bin/useradd --create-home user
   '';
   config = {
     Cmd = [ ];

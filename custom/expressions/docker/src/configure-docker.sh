@@ -23,7 +23,6 @@ TEMP_DIR=$(mktemp -d) &&
 	    WORK_DIR=$(mktemp -d "${TEMP_DIR}/XXXXXXXX") &&
 		cd "${WORK_DIR}" &&
 		cp --recursive "${STORE_DIR}/lib/${IMAGE}" "${WORK_DIR}" &&
-		date > date.log.txt 2>&1 &&
 		nix-build "${WORK_DIR}/${IMAGE}/default.nix" > nix-build.log.txt 2>&1 &&
 		cat result | docker image load > docker-image-load.log.txt 2>&1 &&
 		chown --recursive user:users "${WORK_DIR}" &&
