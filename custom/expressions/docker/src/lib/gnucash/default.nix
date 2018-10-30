@@ -2,7 +2,7 @@
 let
   entrypoint = pkgs.writeScript "entrypoint.sh" ''
      #!${pkgs.stdenv.shell}
-     ${pkgs.coreutils}/bin/echo hello
+     ${pkgs.gnucash}/bin/gnucash
   '';
 in
 with pkgs;
