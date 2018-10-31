@@ -26,6 +26,8 @@ in
 	extensions = [
 	  "naepdomgkenhinolocfifgehidddafch" # browserpass
 	  "bkdgflcldnnnapblkhphbgpggdiikppg" # duck duck go
+	  "lifbcibllhkdhoafpjfnlhfpfgnpldfl" # skype
+	  "jlhmfgmfgeifomenelglieieghnjghma" # webex
 	];
       };
     };
