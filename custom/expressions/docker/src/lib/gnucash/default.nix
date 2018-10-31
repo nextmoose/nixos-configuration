@@ -2,7 +2,8 @@
 let
   fedora = pkgs.dockerTools.pullImage {
     imageName = "fedora";
-    sha256 = "5891b5b522d5df086d0ff0b110fbd9d21bb4fc7163af34d08286a2e846f6be03";
+    imageTag = "29";
+    sha256 = "16nc7sl0kr3z5gz094h2a26mn0wd7s7vsql95zvljc1zrw7aai96";
   };
   entrypoint = pkgs.writeScript "entrypoint.sh" ''
      #!${pkgs.stdenv.shell}
@@ -13,6 +14,8 @@ with pkgs;
 dockerTools.buildImage {
   name = "gnucash";
   fromImage = fedora;
+  fromImageName = "fedora";
+  fromImageTag = "29";
   runAsRoot = ''
     dnf install --assumeyes gnucash &&
       adduser user &&
