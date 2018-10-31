@@ -1,5 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 let
+  fedora = pkgs.dockerTools.pullImage {
+    imageName = "fedora";
+    sha256 = "5891b5b522d5df086d0ff0b110fbd9d21bb4fc7163af34d08286a2e846f6be03";
+  };
   entrypoint = pkgs.writeScript "entrypoint.sh" ''
      #!${pkgs.stdenv.shell}
      ${pkgs.gnucash}/bin/gnucash
@@ -8,34 +12,10 @@ in
 with pkgs;
 dockerTools.buildImage {
   name = "gnucash";
-  contents = [ pkgs.bash pkgs.gnucash pkgs.coreutils pkgs.gtk2-x11 pkgs.dbus pkgs.dbus_libs pkgs.dbus_tools pkgs.dbus_daemon pkgs.dbus-broker gnome2.GConf pkgconfig gtk2-x11 xorg.libX11 perl gdbm glib
-    aqbanking
-    atk
-    boost
-    cairo
-    gnome3.dconf
-    gnome3.dconf-editor
-    fribidi
-    gdk_pixbuf
-    glib
-    guile
-    gwenhywfar
-    libdbi
-    libofx
-    gnome2.libsoup
-    gnome3.libsoup
-    libxml2
-    libxslt
-    gnome2.pango
-#    haskellPackages.webkit2gtk3-javascriptcore
-    zlib
-  ];
+  fromImage = fedora;
   runAsRoot = ''
-    #!${stdenv.shell}
-    ${dockerTools.shadowSetup}
-      mkdir /home /tmp &&
-      ${pkgs.shadow}/bin/useradd --create-home user &&
-      chmod a+rwx /tmp &&
+    dnf install --assumeyes gnucash &&
+      adduser user &&
       true
   '';
   config = {
