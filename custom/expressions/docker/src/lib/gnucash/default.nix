@@ -17,6 +17,7 @@ dockerTools.buildImage {
   fromImageName = "fedora";
   fromImageTag = "29";
   runAsRoot = ''
+    echo hello world
   '';
   config = {
     Cmd = [ ];
