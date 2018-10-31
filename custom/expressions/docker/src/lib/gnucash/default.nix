@@ -17,9 +17,6 @@ dockerTools.buildImage {
   fromImageName = "fedora";
   fromImageTag = "29";
   runAsRoot = ''
-    dnf install --assumeyes gnucash &&
-      adduser user &&
-      true
   '';
   config = {
     Cmd = [ ];
