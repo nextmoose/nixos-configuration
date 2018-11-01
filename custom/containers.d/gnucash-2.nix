@@ -25,7 +25,7 @@ in
 	gnucash
 	awscli
 	backup-utils
-	container-initilizations
+	container-initialization
       ];
     };
   };
