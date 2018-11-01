@@ -27,6 +27,8 @@ EOF
     echo &&
     echo BUCKET=${BUCKET} &&
     echo aws s3 ls s3://${BUCKET} &&
+    which aws &&
+    ls -alh $(which aws) &&
     aws s3 ls s3://${BUCKET} &&
     TSTAMP=$(aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     echo TSTAMP="${TSTAMP}" &&
