@@ -23,7 +23,7 @@ xml:readwrite:\$(HOME)/.gconf
 xml:readonly:/nix/store/p3wdpwf9aaqvr7qxhwmk3cn8lfdk089v-gnucash-2.4.15/etc/gconf/gconf.xml.defaults
 EOF
     ) &&
-    sleep 10s &&
+    sleep 1m &&
     echo &&
     echo BUCKET=${BUCKET} &&
     echo ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
