@@ -23,14 +23,14 @@ xml:readwrite:\$(HOME)/.gconf
 xml:readonly:/nix/store/p3wdpwf9aaqvr7qxhwmk3cn8lfdk089v-gnucash-2.4.15/etc/gconf/gconf.xml.defaults
 EOF
     ) &&
-    sleep 1m &&
+    sleep 30s &&
     echo &&
     echo BUCKET=${BUCKET} &&
     echo aws s3 ls s3://${BUCKET} &&
     which aws &&
     ls -alh $(which aws) &&
     aws s3 ls s3://${BUCKET} &&
-    TSTAMP=$(aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
+    TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     echo TSTAMP="${TSTAMP}" &&
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
     gnucash &&
