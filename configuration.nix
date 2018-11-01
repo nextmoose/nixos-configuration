@@ -78,6 +78,7 @@
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
       pkgs.recordmydesktop
+      pkgs.git
     ];
   };
   system.stateVersion = "18.03";

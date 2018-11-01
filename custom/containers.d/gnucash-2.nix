@@ -18,14 +18,14 @@ in
       DISPLAY=":0";
     };
     services.mingetty.autologinUser = "user";
-#    programs.bash.shellInit = "${container-initializations}/bin/gnucash-2";
+#    programs.bash.shellInit = "${container-initializations}/bin/gnucash";
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
 	gnucash
 	awscli
 	backup-utils
-	container-initializations
+	container-initilizations
       ];
     };
   };
