@@ -34,9 +34,11 @@
       externalInterface = "wl01";
     };
   };
-  programs.bash.shellInit = ''
-    ${pkgs.xorg.xhost}/bin/xhost +local:
-  '';
+  programs = {
+    bash.shellInit = ''
+      ${pkgs.xorg.xhost}/bin/xhost +local:
+    '';
+  };
   security.sudo.wheelNeedsPassword = false;
   services = {
     avahi = {
@@ -50,7 +52,7 @@
     cron = {
       enable = true;
       systemCronJobs = [
-        "*/10 *  * * * user nix-collect-garbage"
+        "31 *  * * * user nix-collect-garbage"
       ];
     };
     printing.enable = true;
@@ -62,7 +64,6 @@
   };
   sound.enable = true;
   time.timeZone = "US/Eastern";
-  virtualisation = (import ./custom/virtualisation.nix { inherit pkgs; });
   users = {
     mutableUsers = false;
     extraUsers.user.isNormalUser = true;
@@ -73,30 +74,10 @@
       (import ./installed/init-wifi/default.nix { inherit pkgs; })
       (import ./custom/init-user-experience/default.nix { inherit pkgs; })
       (import ./custom/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/personal/default.nix { inherit pkgs; })
-      (import ./custom/restart-containers/default.nix { inherit pkgs; })
-      pkgs.pass
-      pkgs.git
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
-      pkgs.chromium
-      pkgs.firefox
-      pkgs.gnupg
-      pkgs.awscli
-      pkgs.sane-backends
-      pkgs.saneBackends
-      pkgs.sane-backends-git
-      pkgs.saneBackendsGit
-      pkgs.saneFrontends
-      pkgs.sane-frontends
-      pkgs.swingsane
-      pkgs.unpaper
-      pkgs.xsane
-      pkgs.filezilla
-      (import ./custom/expressions/builder/default.nix { inherit pkgs; })
-      (import ./custom/expressions/backup-utils/default.nix { inherit pkgs; })
-      (import ./custom/expressions/docker/default.nix { inherit pkgs; })
+      pkgs.recordmydesktop
     ];
   };
   system.stateVersion = "18.03";
