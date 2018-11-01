@@ -33,5 +33,5 @@ EOF
     TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     echo TSTAMP="${TSTAMP}" &&
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
-    gnucash &&
+    gnucash gnucash/gnucash.gnucash &&
     true
