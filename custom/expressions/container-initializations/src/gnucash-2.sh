@@ -26,10 +26,10 @@ EOF
     sleep 30s &&
     echo &&
     echo BUCKET=${BUCKET} &&
-    echo aws s3 ls s3://${BUCKET} &&
+    echo ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
     which aws &&
     ls -alh $(which aws) &&
-    aws s3 ls s3://${BUCKET} &&
+    ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
     TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     echo TSTAMP="${TSTAMP}" &&
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
