@@ -1,5 +1,7 @@
 #!/bin/sh
 
+TEMP_DIR=$(mktemp -d) &&
+    cp -r ${HOME} ${TEMP_DIR}/t.00 &&
 secrets \
     --canonical-host github.com \
     --canonical-organization nextmoose \
@@ -47,7 +49,6 @@ EOF
     mkdir ${HOME}/.gconfd &&
     touch ${HOME}/.gconfd/saved_state &&
     (cat > ${HOME}/.gconf.path <<EOF
-xml:readwrite:\$(HOME)/.gconf
 xml:readonly:/nix/store/p3wdpwf9aaqvr7qxhwmk3cn8lfdk089v-gnucash-2.4.15/etc/gconf/gconf.xml.defaults
 EOF
     ) &&
@@ -63,6 +64,7 @@ EOF
 ; (gtk_accel_path "<Actions>/gnc-plugin-qif-import-actions/QIFImportAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/44f81bee049b4b3ea908f8dac9a9474eAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/HelpAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ActionsAutoClearAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/e6e34fa3b6e748debde3cb3bc76d3e53Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorNewBillOpenAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/FileSaveAction" "<Primary>s")
@@ -80,11 +82,13 @@ EOF
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/ActionsScheduledTransactionsAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/ActionsMortgageLoanAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/FileSaveAsAction" "<Primary><Shift>s")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ActionsTransferAction" "<Primary>t")
 ; (gtk_accel_path "<Actions>/MenuAdditions/ad80271c890b11dfa79f2dcedfd72085Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-aqbanking-actions/ABIssueIntTransAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/9cf76bed17f14401b8e3e22d0079cb98Action" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/Window9Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-aqbanking-actions/OnlineActionsAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/FileAddAccountHierarchyDruidAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/Window2Action" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/1d241609fd4644caad765c95be20ff4cAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/EmployeeFindEmployeeOpenAction" "")
@@ -103,6 +107,7 @@ EOF
 ; (gtk_accel_path "<Actions>/gnc-plugin-log-replay-actions/LogReplayAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorFindVendorOpenAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-ofx-actions/OfxImportAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/FileNewAccountAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorFindBillOpenAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ActionsAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ActionsForgetWarningsAction" "")
@@ -112,9 +117,11 @@ EOF
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/BusinessTestAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/EditCutAction" "<Primary>x")
 ; (gtk_accel_path "<Actions>/gnc-plugin-account-tree-actions/ViewAccountTreeAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/EditDeleteAccountAction" "Delete")
 ; (gtk_accel_path "<Actions>/MenuAdditions/3ce293441e894423a2425d7a22dd1ac6Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/CustomerFindInvoiceOpenAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ScrubMenuAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/EditRenumberSubaccountsAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/EditCopyAction" "<Primary>c")
 ; (gtk_accel_path "<Actions>/MainWindowActions/HelpContentsAction" "F1")
 ; (gtk_accel_path "<Actions>/MenuAdditions/898d78ec92854402bf76e20a36d24adeAction" "")
@@ -125,6 +132,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/2e3751edeb7544e8a20fd19e9d08bb65Action" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/EditPasteAction" "<Primary>v")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorNewJobOpenAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/FileOpenAccountAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-stylesheets-actions/EditStyleSheetsAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/EditPreferencesAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/ActionsScheduledTransactionEditorAction" "")
@@ -153,14 +161,17 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/5123a759ceb9483abf2182d01c140e8dAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/__BusinessAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/CustomerFindJobOpenAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ScrubAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/EmployeeMenuAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/8758ba23984c40dea5527f5f0ca2779eAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/c4173ac99b2b448289bf4d11c731af13Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ActionsLotsAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/ActionsBudgetAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/FilePropertiesAction" "<Alt>Return")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/EditFindTransactionsAction" "<Primary>f")
 ; (gtk_accel_path "<Actions>/gnc-plugin-file-history-actions/RecentFile5Action" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/e57770f2dbca46619d6dac4ac5469b50Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ScrubSubAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ViewSortByAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/BusinessTestInitDataAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-aqbanking-actions/Mt940ImportAction" "")
@@ -171,6 +182,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MainWindowActions/ReportsAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/ToolsCommodityEditorAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-file-history-actions/RecentFile7Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ActionsReconcileAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-file-history-actions/RecentFile0Action" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/9bf1892805cb4336be6320fe48ce5446Action" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/c146317be32e4948a561ec7fc89d15c1Action" "")
@@ -193,6 +205,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MainWindowActions/ActionsRenamePageAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/CustomerMenuAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/CustomerProcessPaymentAction" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/FileOpenSubaccountsAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/c2a996c8970f43448654ca84f17dda24Action" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/f8748b813fab4220ba26e743aedf38daAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/21d7cfc59fc74f22887596ebde7e462dAction" "")
@@ -208,6 +221,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/d8ba4a2e89e8479ca9f6eccdeb164588Action" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ViewAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/415cd38d39054d9e9c4040455290c2b1Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/EditEditAccountAction" "<Primary>e")
 ; (gtk_accel_path "<Actions>/MainWindowActions/ViewRefreshAction" "<Primary>r")
 ; (gtk_accel_path "<Actions>/MenuAdditions/e9cf815f79db44bcb637d0295093ae3dAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-file-history-actions/RecentFile6Action" "")
@@ -215,6 +229,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/4a6b82e8678c4f3d9e85d9f09634ca89Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/EmployeeNewEmployeeOpenAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/08ae9c2e884b4f9787144f47eacd7f44Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ViewFilterByAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/faf410e8f8da481fbc09e4763da40bccAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/__Income_ _&_ ExpenseAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorFindJobOpenAction" "")
@@ -231,6 +246,7 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/ecc35ea9dbfa4e20ba389fc85d59cb69Action" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-aqbanking-actions/DtausImportAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/216cd0cf6931453ebcce85415aba7082Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ScrubAllAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/__Sample_ _&_ CustomAction" "")
 ; (gtk_accel_path "<Actions>/MenuAdditions/B__udgetAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-basic-commands-actions/FileExportAccountsAction" "")
@@ -238,10 +254,10 @@ EOF
 ; (gtk_accel_path "<Actions>/MenuAdditions/0b81a3bdfd504aff849ec2e8630524bcAction" "")
 ; (gtk_accel_path "<Actions>/MainWindowActions/TransactionAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-file-history-actions/RecentFile3Action" "")
+; (gtk_accel_path "<Actions>/GncPluginPageAccountTreeActions/ActionsStockSplitAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/TaxTablesOpenAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/CustomerNewJobOpenAction" "")
 ; (gtk_accel_path "<Actions>/gnc-plugin-business-actions/VendorNewVendorOpenAction" "")
-
 EOF
     ) &&
     mkdir ${HOME}/.gnucash/books &&
@@ -321,10 +337,10 @@ EOF
 ; Section: Fonts
 
  (gnc:restore-html-style-sheet "Easy" "Easy" options))))
-
 EOF
     ) &&
     mkdir ${HOME}/.gnucash/translog &&
+    cp -r ${HOME} ${TEMP_DIR}/t.01 &&
     sleep 10s &&
     echo &&
     echo BUCKET=${BUCKET} &&
@@ -337,4 +353,5 @@ EOF
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
     sleep 10s &&
     gnucash gnucash/gnucash.gnucash &&
+    cp -r ${HOME} ${TEMP_DIR}/t.02 &&
     true
