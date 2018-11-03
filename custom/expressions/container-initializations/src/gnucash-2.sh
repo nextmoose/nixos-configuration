@@ -26,18 +26,26 @@ xml:readonly:/nix/store/p3wdpwf9aaqvr7qxhwmk3cn8lfdk089v-gnucash-2.4.15/etc/gcon
 EOF
     ) &&
     gconftool-2 --shutdown &&
-    cp -r ${HOME} ${TEMP_DIR}/t.01 &&
-    sleep 10s &&
-    echo &&
-    echo BUCKET=${BUCKET} &&
-    echo ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
-    which aws &&
-    ls -alh $(which aws) &&
-    ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
-    TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
-    echo TSTAMP="${TSTAMP}" &&
-    debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
-    sleep 10s &&
-    gnucash gnucash/gnucash.gnucash &&
-    cp -r ${HOME} ${TEMP_DIR}/t.02 &&
+    update-gnucash-gconf &&
+    sleep 1m &&
+    (timeout 10s gnucash || true) &&
+    sleep 1m &&
+    gnucash &&
+    fun() {
+	cp -r ${HOME} ${TEMP_DIR}/t.01 &&
+	    sleep 10s &&
+	    echo &&
+	    echo BUCKET=${BUCKET} &&
+	    echo ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
+	    which aws &&
+	    ls -alh $(which aws) &&
+	    ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
+	    TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
+	    echo TSTAMP="${TSTAMP}" &&
+	    debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
+	    sleep 10s &&
+	    gnucash gnucash/gnucash.gnucash &&
+	    cp -r ${HOME} ${TEMP_DIR}/t.02 &&
+	    true
+    } &&
     true

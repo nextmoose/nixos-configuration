@@ -6,8 +6,8 @@ let
 in
 {
   bindMounts = {
-    "/home" = {
-      hostPath = "/srv/gnucash";
+    "/srv/tmp" = {
+      hostPath = "/tmp/tmp.rGMbQyBSfO";
       isReadOnly = false;
     };
   };
