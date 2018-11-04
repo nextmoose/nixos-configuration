@@ -19,7 +19,7 @@ in
       DISPLAY=":0";
     };
     services.mingetty.autologinUser = "user";
-#    programs.bash.shellInit = "${container-initializations}/bin/gnucash";
+    programs.bash.shellInit = "${container-initializations}/bin/gnucash";
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
