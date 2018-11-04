@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
     mkdir $out &&
       mkdir $out/lib &&
       cp gconf.path $out/lib &&
-      chmod 0400 $out/lib &&
+      chmod 0400 $out/lib/gconf.path &&
       mkdir $out/scripts &&
       cp *.sh $out/scripts &&
       chmod 0500 $out/scripts/*.sh &&
