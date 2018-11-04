@@ -20,37 +20,11 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
-    echo &&
-    echo ALPHA 00100 &&
-    cat ${STORE_DIR}/lib/t.02/.gconf.path &&
-    echo ALPHA 00200 &&
     cp ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
-    echo ALPHA 00300 &&
-    cat ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
-    echo ALPHA 00400 &&
-    ls -alh $(which gconftool-2) &&
-    echo ALPHA 00410 &&
     gconftool-2 --shutdown &&
-    echo ALPHA 00500 &&
-    sleep 1m &&
-    echo ALPHA 00600 &&
-    # gnucash &&
-    echo ALPHA 00700 &&
-    fun() {
-	cp -r ${HOME} ${TEMP_DIR}/t.01 &&
-	    sleep 10s &&
-	    echo &&
-	    echo BUCKET=${BUCKET} &&
-	    echo ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
-	    which aws &&
-	    ls -alh $(which aws) &&
-	    ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
-	    TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
-	    echo TSTAMP="${TSTAMP}" &&
-	    debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
-	    sleep 10s &&
-	    gnucash gnucash/gnucash.gnucash &&
-	    cp -r ${HOME} ${TEMP_DIR}/t.02 &&
-	    true
-    } &&
+    cp -r ${HOME} ${TEMP_DIR}/t.01 &&
+    ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
+    TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
+    debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
+    # gnucash gnucash/gnucash.gnucash &&
     true
