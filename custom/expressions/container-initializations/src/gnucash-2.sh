@@ -28,6 +28,8 @@ secrets \
     echo ALPHA 00300 &&
     cat ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
     echo ALPHA 00400 &&
+    ls -alh $(which gconftool-2) &&
+    echo ALPHA 00410 &&
     gconftool-2 --shutdown &&
     echo ALPHA 00500 &&
     sleep 1m &&
