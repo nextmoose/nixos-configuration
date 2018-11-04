@@ -3,7 +3,7 @@ with import <nixpkgs> {};
 let
   backup-utils = (import ../expressions/backup-utils/default.nix { inherit pkgs; });
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
-  my-gnucash = (import ../gnucash/default.nix { inherit pkgs; });
+  my-gnucash = (import ../expressions/gnucash/default.nix { inherit pkgs; });
 in
 {
   bindMounts = {
