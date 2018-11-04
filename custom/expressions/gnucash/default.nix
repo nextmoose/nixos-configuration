@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
       cp *.sh $out/scripts &&
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/gnucash $out/bin/gnucash --set PATH ${lib.makeBinPath [ gnucash mktemp ]} --set STORE_DIR "$out" &&
+      makeWrapper $out/scripts/gnucash.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ gnucash mktemp ]} --set STORE_DIR "$out" &&
       true
   '';
 }
