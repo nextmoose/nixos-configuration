@@ -6,8 +6,8 @@ let
 in
 {
   bindMounts = {
-    "/srv/tmp" = {
-      hostPath = "/tmp/tmp.rGMbQyBSfO";
+    "/srv/lib" = {
+      hostPath = "/home/user/projects/configuration/custom/expressions/container-initializations/src/lib/";
       isReadOnly = false;
     };
   };

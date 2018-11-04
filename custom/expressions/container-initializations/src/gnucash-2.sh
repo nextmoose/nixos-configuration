@@ -20,15 +20,7 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
-    (cat > ${HOME}/.gconf.path <<EOF
-xml:readwrite:\$(HOME)/.gconf
-xml:readonly:/nix/store/p3wdpwf9aaqvr7qxhwmk3cn8lfdk089v-gnucash-2.4.15/etc/gconf/gconf.xml.defaults
-EOF
-    ) &&
-    gconftool-2 --shutdown &&
-    update-gnucash-gconf &&
-    sleep 1m &&
-    (timeout 10s gnucash || true) &&
+    cp ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
     sleep 1m &&
     gnucash &&
     fun() {
