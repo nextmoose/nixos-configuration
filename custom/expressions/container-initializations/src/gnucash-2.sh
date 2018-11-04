@@ -20,8 +20,17 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
+    echo ALPHA 00100 &&
+    cat ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
+    echo ALPHA 00200 &&
     cp ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
+    echo ALPHA 00300 &&
+    cat ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
+    echo ALPHA 00400 &&
+    gconftool-2 --shutdown &&
+    echo ALPHA 00500 &&
     sleep 1m &&
+    echo ALPHA 00600 &&
     gnucash &&
     fun() {
 	cp -r ${HOME} ${TEMP_DIR}/t.01 &&
