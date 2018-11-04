@@ -34,7 +34,7 @@ secrets \
     echo ALPHA 00500 &&
     sleep 1m &&
     echo ALPHA 00600 &&
-    gnucash &&
+    # gnucash &&
     echo ALPHA 00700 &&
     fun() {
 	cp -r ${HOME} ${TEMP_DIR}/t.01 &&
