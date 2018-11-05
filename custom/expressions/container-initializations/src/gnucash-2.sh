@@ -1,12 +1,10 @@
 #!/bin/sh
 
-TEMP_DIR=$(mktemp -d) &&
-    cp -r ${HOME} ${TEMP_DIR}/t.00 &&
-    secrets \
-	--canonical-host github.com \
-	--canonical-organization nextmoose \
-	--canonical-repository secrets \
-	--canonical-branch master &&
+secrets \
+    --canonical-host github.com \
+    --canonical-organization nextmoose \
+    --canonical-repository secrets \
+    --canonical-branch master &&
     ssh-remote \
 	--remote upstream \
 	--host github.com \
@@ -20,9 +18,8 @@ TEMP_DIR=$(mktemp -d) &&
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
-    gnucash &&
     ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
     TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
-    # gnucash gnucash/gnucash.gnucash &&
+    gnucash --gnucash gnucash/gnucash.gnucash &&
     true
