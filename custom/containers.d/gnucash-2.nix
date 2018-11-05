@@ -23,7 +23,7 @@ in
       if [ ! -f /home/user/.gconf.path ]
       then
         ${container-initializations}/bin/gnucash-2 &&
-          true
+          gnucash
       fi &&
         true
     '';
