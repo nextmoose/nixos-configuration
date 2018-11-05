@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   backup-utils = (import ../expressions/backup-utils/default.nix { inherit pkgs; });
+  initialization-utils = (import ../expressions/initialization-utils/default.nix { inherit pkgs; });
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
   my-gnucash = (import ../expressions/gnucash/default.nix { inherit pkgs; });
 in
@@ -40,6 +41,7 @@ in
 	backup-utils
 	container-initializations
 	gnupg
+	initialization-utils
       ];
     };
   };
