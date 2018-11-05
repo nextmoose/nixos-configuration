@@ -25,7 +25,7 @@ in
         ${container-initializations}/bin/gnucash-2 &&
 	  ${backup-utils}/bin/debucket --timestamp 1540656743 --bucket e613b6bb-3d0b-4d02-8af9-6b05a3c89d3e --destination-directory gnucash &&
 	  echo AAA > log.txt &&
-          gnucash gnucash/gnucash.gnucash &&
+          # gnucash gnucash/gnucash.gnucash &&
 	  echo BBB >> log.txt &&
 	  true
       fi &&
