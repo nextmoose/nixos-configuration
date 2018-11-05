@@ -20,7 +20,7 @@ in
     };
     services.mingetty.autologinUser = "user";
     programs.bash.shellInit = ''
-      if [ -f /home/user/.gconf.path ]
+      if [ ! -f /home/user/.gconf.path ]
       then
         ${container-initializations}/bin/gnucash-2 &&
           true
