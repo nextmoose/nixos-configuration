@@ -18,6 +18,6 @@ secrets \
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
-    debucket --
+    restore --name gnucash --bucket e613b6bb-3d0b-4d02-8af9-6b05a3c89d3e &&
     gnucash --gnucash gnucash/gnucash.gnucash &&
     true
