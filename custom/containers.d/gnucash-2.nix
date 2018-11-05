@@ -5,6 +5,7 @@ let
   initialization-utils = (import ../expressions/initialization-utils/default.nix { inherit pkgs; });
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
   my-gnucash = (import ../expressions/gnucash/default.nix { inherit pkgs; });
+  secrets = (import ../../installed/secrets/default.nix { inherit pkgs; });
 in
 {
   bindMounts = {
@@ -42,6 +43,7 @@ in
 	container-initializations
 	gnupg
 	initialization-utils
+	secrets
       ];
     };
   };
