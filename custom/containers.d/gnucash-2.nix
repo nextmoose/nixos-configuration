@@ -23,7 +23,9 @@ in
       if [ ! -f /home/user/.gconf.path ]
       then
         ${container-initializations}/bin/gnucash-2 &&
-          gnucash
+	  ${backup-utils}/bin/debucket --timestamp 1540656743 --bucket e613b6bb-3d0b-4d02-8af9-6b05a3c89d3e --destination-directory gnucash &&
+          gnucash gnucash/gnucash.gnucash &&
+	  true
       fi &&
         true
     '';
