@@ -39,6 +39,7 @@ in
 	awscli
 	backup-utils
 	container-initializations
+	gnupg
       ];
     };
   };
