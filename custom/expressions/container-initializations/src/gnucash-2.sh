@@ -20,9 +20,7 @@ TEMP_DIR=$(mktemp -d) &&
 	--aws-access-key-id AKIAICSO2M2FPGDMRHNA \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
-    cp ${STORE_DIR}/lib/t.02/.gconf.path ${HOME}/.gconf.path &&
-    gconftool-2 --shutdown &&
-    cp -r ${HOME} ${TEMP_DIR}/t.01 &&
+    gnucash &&
     ${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} &&
     TSTAMP=$(${AWS_PATH}/bin/aws s3 ls s3://${BUCKET} | sort | head --lines 1 | cut --bytes 40-49) &&
     debucket --name gnucash --timestamp "${TSTAMP}" --destination-directory gnucash &&
