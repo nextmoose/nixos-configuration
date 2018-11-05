@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      cp lib $out/lib &&
+      cp --recursive lib $out/lib &&
       mkdir $out/scripts &&
       cp *.sh $out/scripts &&
       chmod 0500 $out/scripts/*.sh &&
