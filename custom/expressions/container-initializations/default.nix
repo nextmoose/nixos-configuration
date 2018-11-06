@@ -20,6 +20,7 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/old-secrets.sh $out/bin/old-secrets --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/configuration.sh $out/bin/configuration --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
+      makeWrapper $out/scripts/sadscissors.sh $out/bin/sadscissors --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash-2.sh $out/bin/gnucash-2 --set PATH ${lib.makeBinPath [ initialization-utils coreutils pkgs.awscli pkgs.which mktemp gnome2.GConf which backup-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
       makeWrapper $out/scripts/gnucash-3.sh $out/bin/gnucash-3 --set PATH ${lib.makeBinPath [ initialization-utils backup-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
