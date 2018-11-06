@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/configuration.sh $out/bin/configuration --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash-2.sh $out/bin/gnucash-2 --set PATH ${lib.makeBinPath [ initialization-utils coreutils pkgs.awscli pkgs.which mktemp gnome2.GConf which backup-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
-      makeWrapper $out/scripts/gnucash-3.sh $out/bin/gnucash-3 --set PATH ${lib.makeBinPath [ initialization-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
+      makeWrapper $out/scripts/gnucash-3.sh $out/bin/gnucash-3 --set PATH ${lib.makeBinPath [ initialization-utils backup-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
       makeWrapper $out/scripts/paperwork.sh $out/bin/paperwork --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       true
   '';
