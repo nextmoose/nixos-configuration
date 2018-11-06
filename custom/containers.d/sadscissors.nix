@@ -16,6 +16,9 @@ in
 	pkgs.emacs
 	pkgs.gradle
 	pkgs.netbeans
+	pkgs.geany
+	pkgs.jedit
+	pkgs.jdk10
       ];
     };
   };
