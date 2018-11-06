@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper $out/scripts/secrets.sh $out/bin/secrets --set PATH ${lib.makeBinPath [ mktemp coreutils install gzip gnutar gnupg pass ]} --set INSTALL_DIR ${install} &&
-      makeWrapper $out/scripts/gnucash-2.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ coreutils gnome2.GConf gnucash ]} --set STORE_DIR "$out" &&
+      makeWrapper $out/scripts/gnucash-2.sh $out/bin/gnucash-2 --set PATH ${lib.makeBinPath [ coreutils gnome2.GConf gnucash ]} --set STORE_DIR "$out" &&
       makeWrapper $out/scripts/ssh-remote.sh $out/bin/ssh-remote --set PATH ${lib.makeBinPath [ coreutils ]} &&
       makeWrapper $out/scripts/project.sh $out/bin/project --set PATH ${lib.makeBinPath [ coreutils git ]} --set STORE_DIR $out &&
       makeWrapper $out/scripts/read-only-pass.sh $out/bin/read-only-pass --set PATH ${lib.makeBinPath [ coreutils pass gnupg ]} --set STORE_DIR $out &&
