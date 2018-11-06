@@ -14,10 +14,10 @@ in
     programs.bash.shellInit = "${container-initializations}/bin/gnucash-3";
     users.extraUsers.user = {
       isNormalUser = true;
+      packages = [
+        gnucash
+      ];
     };
-    packages = [
-      gnucash
-    ];
   };
   tmpfs = [ "/home" ];
 }
