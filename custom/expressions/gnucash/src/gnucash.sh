@@ -6,4 +6,5 @@ TEMP_DIR=$(mktemp -d) &&
 	    true
     } &&
     gnucash &&
+    echo done &&
     true

@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
+  gnucash-utils = (import ../expressions/gnucash/default.nix { inherit pkgs; });
 in
 {
   config = { config, pkgs, ...}:
@@ -15,7 +16,7 @@ in
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
-        gnucash
+        gnucash-utils
       ];
     };
   };
