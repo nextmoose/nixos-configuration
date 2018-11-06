@@ -33,6 +33,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--committer-name)
+	    COMMITTER_NAME="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--committer-email)
+	    COMMITTER_EMAIL="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	*)
 	    echo Unknown Option &&
 		echo ${1} &&
@@ -51,6 +61,8 @@ ORIGIN_ORGANIZATION
 ORIGIN_REPOSITORY
 REPORT_ORGANIZATION
 REPORT_REPOSITORY
+COMMITTER_NAME
+COMMITER_EMAIL
 EOF
     ) | while read VAR do
     do
@@ -77,6 +89,8 @@ EOF
 		${STORE_DIR}/scripts/post-commit \
 		${STORE_DIR}/scripts/pre-push \
 		${HOME}/project/.git/hooks &&
+	    git -C ${HOME}/project config user.name "${COMMITER_NAME}" &&
+	    git -C ${HOME}/project confg user.email "${COMMITER_EMAIL}" &&
 	    true
     fi &&
     true

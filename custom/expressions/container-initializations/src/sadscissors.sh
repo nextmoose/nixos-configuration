@@ -31,5 +31,7 @@ secrets \
 	--origin-repository sadscissors \
 	--report-organization goldroadrunner \
 	--report-repository sadscissors \
+	--committer-name "Emory Merryman" \
+	--committer-email "emory.merryman@gmail.com" \
 	&&
     true
