@@ -15,6 +15,9 @@ in
     users.extraUsers.user = {
       isNormalUser = true;
     };
+    packages = [
+      gnucash
+    ];
   };
   tmpfs = [ "/home" ];
 }
