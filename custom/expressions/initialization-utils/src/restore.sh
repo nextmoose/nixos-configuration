@@ -51,13 +51,17 @@ EOF
 	    true
     } &&
     trap cleanup EXIT &&
-    NAME_LENGTH=$(($(echo "${NAME}" | wc --bytes)-1)) &&
-    START=$((33+${NAME_LENGTH})) &&
-    FINISH=$((${START}+9)) &&
-    TSTAMP=$(aws s3 ls s3://${BUCKET} | sort --reverse | head --lines 1 | cut --bytes "${START}"-"${FINISH}") &&
-    aws s3 cp s3://${BUCKET}/${NAME}.${TSTAMP}.tar.gz.gpg ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
-    gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz --decrypt ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
-    gunzip --to-stdout ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar &&
-    mkdir ${DESTINATION_DIRECTORY} &&
-    tar --extract --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory ${DESTINATION_DIRECTORY} &&
+    if [ ! -d ${DESTINATION_DIRECTORY} ]
+    then
+	NAME_LENGTH=$(($(echo "${NAME}" | wc --bytes)-1)) &&
+	    START=$((33+${NAME_LENGTH})) &&
+	    FINISH=$((${START}+9)) &&
+	    TSTAMP=$(aws s3 ls s3://${BUCKET} | sort --reverse | head --lines 1 | cut --bytes "${START}"-"${FINISH}") &&
+	    aws s3 cp s3://${BUCKET}/${NAME}.${TSTAMP}.tar.gz.gpg ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
+	    gpg --output ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz --decrypt ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz.gpg &&
+	    gunzip --to-stdout ${TEMP_DIR}/${NAME}.${TSTAMP}.tar.gz > ${TEMP_DIR}/${NAME}.${TSTAMP}.tar &&
+	    mkdir ${DESTINATION_DIRECTORY} &&
+	    tar --extract --file ${TEMP_DIR}/${NAME}.${TSTAMP}.tar --directory ${DESTINATION_DIRECTORY} &&
+	    true
+    fi &&
     true
