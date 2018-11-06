@@ -19,5 +19,5 @@ secrets \
 	--default-region-name us-east-1 \
 	--default-output-format json &&
     restore --name gnucash --bucket e613b6bb-3d0b-4d02-8af9-6b05a3c89d3e --destination-directory gnucash &&
-    gnucash-2 --gnucash gnucash/gnucash.gnucash &&
+    gnucash-2 &&
     true
