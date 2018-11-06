@@ -90,7 +90,7 @@ EOF
 		${STORE_DIR}/scripts/pre-push \
 		${HOME}/project/.git/hooks &&
 	    git -C ${HOME}/project config user.name "${COMMITER_NAME}" &&
-	    git -C ${HOME}/project confg user.email "${COMMITER_EMAIL}" &&
+	    git -C ${HOME}/project config user.email "${COMMITER_EMAIL}" &&
 	    true
     fi &&
     true
