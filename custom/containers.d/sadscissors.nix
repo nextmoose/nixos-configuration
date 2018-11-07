@@ -22,6 +22,7 @@ in
 	pkgs.checkstyle
 	pkgs.chromium
 	pkgs.firefox
+	pkgs.lynx
       ];
     };
   };
