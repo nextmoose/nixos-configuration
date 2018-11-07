@@ -21,6 +21,7 @@ in
 	pkgs.jdk10
 	pkgs.checkstyle
 	pkgs.chromium
+	pkgs.firefox
       ];
     };
   };
