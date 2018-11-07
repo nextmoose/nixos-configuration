@@ -20,6 +20,7 @@ in
 	pkgs.jedit
 	pkgs.jdk10
 	pkgs.checkstyle
+	pkgs.chromium
       ];
     };
   };
