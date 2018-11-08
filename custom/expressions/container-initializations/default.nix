@@ -21,6 +21,8 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/chromium.sh $out/bin/chromium --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/configuration.sh $out/bin/configuration --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/sadscissors.sh $out/bin/sadscissors --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
+      makeWrapper $out/scripts/ghastlywrench-client.sh $out/bin/ghastlywrench-client --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
+      makeWrapper $out/scripts/ghastlywrench-server.sh $out/bin/ghastlywrench-server --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/stormysteel.sh $out/bin/stormysteel --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash.sh $out/bin/gnucash --set PATH ${lib.makeBinPath [ initialization-utils ]} &&
       makeWrapper $out/scripts/gnucash-2.sh $out/bin/gnucash-2 --set PATH ${lib.makeBinPath [ initialization-utils coreutils pkgs.awscli pkgs.which mktemp gnome2.GConf which backup-utils ]} --set STORE_DIR "$out" --set AWS_PATH "${pkgs.awscli}" &&
