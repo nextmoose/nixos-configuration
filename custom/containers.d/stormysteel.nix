@@ -30,7 +30,7 @@ in
 	pkgs.chromium
 	pkgs.firefox
 	pkgs.lynx
-	pkgs.androidStudioPackages.dev
+	pkgs.android-studio
       ];
     };
   };
