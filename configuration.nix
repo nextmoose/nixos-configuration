@@ -75,6 +75,7 @@
       (import ./installed/init-wifi/default.nix { inherit pkgs; })
       (import ./custom/init-user-experience/default.nix { inherit pkgs; })
       (import ./custom/update-nixos/default.nix { inherit pkgs; })
+      (import ./custom/expressions/docker/default.nix { inherit pkgs; })
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
