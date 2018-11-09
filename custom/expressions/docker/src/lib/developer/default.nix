@@ -1,8 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
+let
+  xxx = (import ./xxx/default.nix { inherit pkgs; });
+in
 dockerTools.buildImage {
   name = "developer";
-  contents = [ shadow bash ];
+  contents = [ shadow bash coreutils ];
   runAsRoot = ''
      #!${stdenv.shell}
      ${dockerTools.shadowSetup}
@@ -13,7 +16,7 @@ dockerTools.buildImage {
   '';
   config = {
     Cmd = [ ] ;
-    Entrypoint = [ "${bash}/bin/bash" ] ;
+    Entrypoint = [ "${xxx}/bin/entrypoint" ] ;
     User = "user" ;
     WorkingDir = "/home/user" ;
   };
