@@ -63,6 +63,7 @@
     };
   };
   sound.enable = true;
+  system.stateVersion = "18.03";
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
@@ -81,6 +82,6 @@
       pkgs.git
     ];
   };
-  system.stateVersion = "18.03";
+  virtualization = (import ./custom/virtualisation.nix { inherit pkgs; })
 }
 # lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere
