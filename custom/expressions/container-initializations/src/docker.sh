@@ -30,4 +30,3 @@ secrets \
 	--upstream-branch master \
 	&&
     true
-k

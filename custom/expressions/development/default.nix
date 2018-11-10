@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
       cp --recursive scripts $out/scripts &&
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/development.sh $out/bin/development --set PATH ${lib.makeBinPath [ docker coreutils sudo ]} --set IMAGE "${image}" &&
+      makeWrapper $out/scripts/development.sh $out/bin/development --set PATH ${lib.makeBinPath [ docker coreutils "/run/wrappers" ]} --set IMAGE "${image}" &&
       true
   '';
 }

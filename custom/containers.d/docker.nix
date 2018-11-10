@@ -13,13 +13,13 @@ in
   };
   config = { config, pkgs, ...}:
   {
-#    programs.bash.shellInit = "${container-initializations}/bin/docker";
+    programs.bash.shellInit = "${container-initializations}/bin/docker";
     environment.variables.DISPLAY=":0.0";
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
-      extraGroups = [ "docker" "wheel" ];
+      extraGroups = [ "wheel" ];
       packages = [
         bash
 	coreutils
