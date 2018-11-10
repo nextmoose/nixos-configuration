@@ -6,10 +6,13 @@ in
 dockerTools.buildImage {
   name = "development";
   contents = [ shadow bash coreutils ];
-  runAsRoot = "${docker-run-as-root}/bin/runAsRoot";
+  runAsRoot = ''
+    ${dockerTools.shadowSetup}
+    ${docker-run-as-root}/bin/runAsRoot
+  '';
   config = {
     Cmd = [ ];
-    Entrypoint = [ bash ];
+    Entrypoint = [ "${bash}/bin/bash" ];
     User = "user";
     WorkingDir = "/home/user";
   };
