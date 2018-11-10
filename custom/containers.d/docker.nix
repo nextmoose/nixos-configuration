@@ -18,6 +18,9 @@ in
     users.extraUsers.user = {
       isNormalUser = true;
     };
+    packages = [
+      docker
+    ]
   };
   tmpfs = [ "/home" ];
 }
