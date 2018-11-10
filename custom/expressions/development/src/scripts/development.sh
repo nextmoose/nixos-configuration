@@ -104,6 +104,10 @@ done &&
 	--rm \
 	--env COMMITTER_NAME="${COMMITTER_NAME}" \
 	--env COMMITER_EMAIL="${COMMITTER_EMAIL}" \
+	--env GPG_SECRET_KEY="$(pass show gpg.secret.key)" \
+	--env GPG_OWNER_TRUST="$(pass show gpg.owner.trust)" \
+	--env GPG2_SECRET_KEY="$(pass show gpg2.secret.key)" \
+	--env GPG2_OWNER_TRUST="$(pass show gpg2.owner.trust)" \
 	--env UPSTREAM_HOST="${UPSTREAM_HOST}" \
 	--env UPSTREAM_USER="${UPSTREAM_USER}" \
 	--env UPSTREAM_PORT="${UPSTREAM_PORT}" \
