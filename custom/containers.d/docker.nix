@@ -15,10 +15,11 @@ in
   {
 #    programs.bash.shellInit = "${container-initializations}/bin/docker";
     environment.variables.DISPLAY=":0.0";
+    security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
-      extraGroups = [ "docker" ];
+      extraGroups = [ "docker" "wheel" ];
       packages = [
         bash
 	coreutils
@@ -27,6 +28,14 @@ in
         development
 	container-initializations
       ];
+    };
+    virtualisation.docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+        flags = [ "--all" ];
+        dates = "daily";
+      };
     };
   };
   tmpfs = [ "/home" ];
