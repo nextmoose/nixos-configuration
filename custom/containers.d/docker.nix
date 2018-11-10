@@ -2,6 +2,7 @@
 with import <nixpkgs> {};
 let
   container-initializations = (import ../expressions/container-initializations/default.nix { inherit pkgs; });
+  development = (import ../expressions/development/default.nix { inherit pkgs; });
 in
 {
   bindMounts = {
@@ -12,15 +13,21 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    programs.bash.shellInit = "${container-initialization}/bin/docker";
+#    programs.bash.shellInit = "${container-initializations}/bin/docker";
     environment.variables.DISPLAY=":0.0";
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
+      extraGroups = [ "docker" ];
+      packages = [
+        bash
+	coreutils
+        docker
+        pass
+        development
+	container-initializations
+      ];
     };
-    packages = [
-      docker
-    ]
   };
   tmpfs = [ "/home" ];
 }
