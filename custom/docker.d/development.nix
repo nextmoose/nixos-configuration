@@ -6,7 +6,7 @@ in
 dockerTools.buildImage {
   name = "development";
   contents = [ shadow bash coreutils ];
-  runAsRoot = 
+  runAsRoot = "${docker-run-as-root}/bin/runAsRoot";
   config = {
     Cmd = [ ];
     Entrypoint = [ bash ];

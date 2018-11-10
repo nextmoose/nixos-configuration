@@ -1,14 +1,18 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
+let
+  image = (import ../../docker.d/development.nix { inherit pkgs; });
+in
 stdenv.mkDerivation rec {
-  name = "docker-root";
+  name = "development";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir $out &&
       cp --recursive scripts $out/scripts &&
       chmod 0500 $out/scripts/* &&
-      makeWrapper $out/scripts/runAsRoot.sh $out/bin/runAsRoot --set PATH ${lib.makeBinPath [ coreutils shadow ]} --set SHADOW_SETUP "${dockerTools.shadowSetup}" &&
+      mkdir $out/bin &&
+      makeWrapper $out/scripts/development.sh $out/bin/development --set PATH ${lib.makeBinPath [ docker coreutils ]} --set IMAGE "${image}" &&
       true
   '';
 }
