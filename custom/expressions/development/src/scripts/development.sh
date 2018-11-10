@@ -95,7 +95,6 @@ do
 	true
 done &&
     cat ${IMAGE} | sudo docker image load &&
-    echo YES && exit 0 &&
     sudo \
 	docker \
 	container \
