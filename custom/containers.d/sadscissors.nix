@@ -35,6 +35,9 @@ in
         emacs
 	gradle
 	git
+	chromium
+	firefox
+	lynx
       ];
     };
   };
