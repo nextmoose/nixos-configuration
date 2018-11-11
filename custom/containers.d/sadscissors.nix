@@ -13,7 +13,7 @@ in
       hostPath = "/home/user/.config/pulse";
       isReadOnly = true;
     };
-    "/tmp/.X11-unix": = {
+    "/tmp/.X11-unix" = {
       hostPath = "/tmp/.X11-unix";
       isReadOnly = true;
     };
