@@ -19,7 +19,7 @@ in
     environment.variables.DISPLAY=":0.0";
     hardware.pulseaudio.enable = true;
     programs = {
-      bash.shellInit = "${container-initializations}/bin/sadscissors.nix";
+      bash.shellInit = "${container-initializations}/bin/sadscissors";
       chromium = {
         enable = true;
 	extensions = [
