@@ -13,7 +13,7 @@ dockerTools.buildImage {
   '';
   config = {
     Cmd = [ ];
-    Entrypoint = [ "${bash}/bin/bash" ];
+    Entrypoint = [ "${development}/bin/development" ];
     User = "user";
     WorkingDir = "/home/user";
   };
