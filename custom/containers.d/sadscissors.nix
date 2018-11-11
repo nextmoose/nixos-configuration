@@ -7,10 +7,14 @@ in
   bindMounts = {
     "/run/user/1000" = {
       hostPath = "/run/user/1000";
-      isReadOnly = false;
+      isReadOnly = true;
     };
     "/home/user/.config/pulse" = {
       hostPath = "/home/user/.config/pulse";
+      isReadOnly = true;
+    };
+    "/tmp/.X11-unix": = {
+      hostPath = "/tmp/.X11-unix",
       isReadOnly = true;
     };
   };
