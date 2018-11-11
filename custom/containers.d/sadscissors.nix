@@ -14,7 +14,7 @@ in
       isReadOnly = true;
     };
     "/tmp/.X11-unix": = {
-      hostPath = "/tmp/.X11-unix",
+      hostPath = "/tmp/.X11-unix";
       isReadOnly = true;
     };
   };
