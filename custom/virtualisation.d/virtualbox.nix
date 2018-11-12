@@ -1,5 +1,12 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 {
-  enable = true;
+  guest = {
+    enable = true;
+    X11 = true;
+  };
+  host = {
+    enable = true;
+    enableHardening = true;
+  };
 }
