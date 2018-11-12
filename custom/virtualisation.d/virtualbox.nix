@@ -3,7 +3,7 @@ with import <nixpkgs> {};
 {
   guest = {
     enable = true;
-    X11 = true;
+    x11 = true;
   };
   host = {
     enable = true;
