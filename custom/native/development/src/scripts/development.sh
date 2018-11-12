@@ -6,6 +6,10 @@ mkdir "${HOME}/.ssh" &&
     chmod 0400 "${HOME}/.ssh/config" &&
     mkdir "${HOME}/.ssh/config.d" "${HOME}/.ssh/keys" "${HOME}/.ssh/known_hosts" &&
     chmod 0700 "${HOME}/.ssh/config.d" "${HOME}/.ssh/keys" "${HOME}/.ssh/known_hosts" &&
+    git init &&
+    git config user.name "${COMMITTER_NAME}" &&
+    git config user.email "${COMMITTER_EMAIL}" &&
+    git config --global user.signingkey $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_ID_RSA}" ] && [ ! -z "${UPSTREAM_KNOWN_HOSTS}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ]
     then
 	(cat > "${HOME}/.ssh/config.d/upstream.config" <<EOF
@@ -58,11 +62,6 @@ EOF
 	    git remote add report report://"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
 	    true
     fi &&
-    git init &&
-    git config user.name "${COMMITTER_NAME}" &&
-    git config user.email "${COMMITTER_EMAIL}" &&
-    git config --global user.signingkey $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
-    git remote add origin origin://"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
-    git remote add report report://"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
+    ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${HOME}/.git/hooks" &&
     bash &&
     true

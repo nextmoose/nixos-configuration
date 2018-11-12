@@ -6,7 +6,7 @@ let
 in
 dockerTools.buildImage {
   name = "development";
-  contents = [ shadow bash coreutils git emacs ];
+  contents = [ shadow bash coreutils git emacs development ];
   runAsRoot = ''
     ${dockerTools.shadowSetup}
     ${docker-run-as-root}/bin/runAsRoot
