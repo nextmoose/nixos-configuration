@@ -80,6 +80,7 @@
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
       pkgs.recordmydesktop
+      pkgs.chromium
       pkgs.git
     ];
   };
