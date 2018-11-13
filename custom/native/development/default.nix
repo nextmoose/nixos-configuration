@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
       cp --recursive scripts $out/scripts &&
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/development.sh $out/bin/development --set PATH ${lib.makeBinPath [ coreutils pass gnupg git bash ]} --set STORE_DIR "$out" &&
+      makeWrapper $out/scripts/development.sh $out/bin/development --set PATH ${lib.makeBinPath [ coreutils pass gnupg git bash bash-completion openssh ]} --set STORE_DIR "$out" &&
       makeWrapper $out/scripts/post-commit.sh $out/scripts/post-commit --set PATH ${lib.makeBinPath [ coreutils git ]} &&
       true
   '';

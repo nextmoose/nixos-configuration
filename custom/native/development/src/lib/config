@@ -1,1 +1,1 @@
-Include ${HOME}/.ssh/config.d
+Include ${HOME}/.ssh/config.d/*
