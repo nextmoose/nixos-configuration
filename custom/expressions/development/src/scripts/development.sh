@@ -102,6 +102,7 @@ done &&
 	--interactive \
 	--tty \
 	--rm \
+	--env DISPLAY=":0.0" \
 	--env COMMITTER_NAME="${COMMITTER_NAME}" \
 	--env COMMITER_EMAIL="${COMMITTER_EMAIL}" \
 	--env GPG_SECRET_KEY="$(pass show gpg.secret.key)" \
