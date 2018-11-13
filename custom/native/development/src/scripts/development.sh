@@ -24,7 +24,7 @@ EOF
 	    echo "${UPSTREAM_ID_RSA}" > "${HOME}/.ssh/keys/upstream.id_rsa" &&
 	    echo "${UPSTREAM_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/upstream.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/upstream.config" "${HOME}/.ssh/keys/upstream.id_rsa" "${HOME}/.ssh/known_hosts/upstream.known_hosts" &&
-	    git remote add upstream upstream://"${UPSTREAM_ORGANIZATION}"/"${UPSTREAM_REPOSITORY}".git &&
+	    git remote add upstream upstream:"${UPSTREAM_ORGANIZATION}"/"${UPSTREAM_REPOSITORY}".git &&
 	    git remote set-url --push upstream no_push &&
 	    true
     fi &&
@@ -42,7 +42,7 @@ EOF
 	    echo "${ORIGIN_ID_RSA}" > "${HOME}/.ssh/keys/origin.id_rsa" &&
 	    echo "${ORIGIN_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/origin.config" "${HOME}/.ssh/keys/origin.id_rsa" "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
-	    git remote add origin origin://"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
+	    git remote add origin origin:"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
 	    true
     fi &&
     if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_ID_RSA}" ] && [ ! -z "${REPORT_KNOWN_HOSTS}" ] && [ ! -z "${REPORT_ORGANIZATION}" ] && [ ! -z "${REPORT_REPOSITORY}" ]
@@ -59,7 +59,7 @@ EOF
 	    echo "${REPORT_ID_RSA}" > "${HOME}/.ssh/keys/report.id_rsa" &&
 	    echo "${REPORT_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/report.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/report.config" "${HOME}/.ssh/keys/report.id_rsa" "${HOME}/.ssh/known_hosts/report.known_hosts" &&
-	    git remote add report report://"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
+	    git remote add report report:"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
 	    true
     fi &&
     ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${HOME}/.git/hooks" &&
