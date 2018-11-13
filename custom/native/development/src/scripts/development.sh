@@ -1,15 +1,25 @@
 #!/bin/sh
 
-mkdir "${HOME}/.ssh" &&
+cleanup() {
+    if [ -d "${HOME}/project" ]
+    then
+	git -C "${HOME}/project" cur &&
+	    true
+    fi &&
+	true
+} &&
+    trap cleanup EXIT &&
+    mkdir "${HOME}/.ssh" &&
     chmod 0700 "${HOME}/.ssh" &&
     cat "${STORE_DIR}/lib/config" > "${HOME}/.ssh/config" &&
     chmod 0400 "${HOME}/.ssh/config" &&
     mkdir "${HOME}/.ssh/config.d" "${HOME}/.ssh/keys" "${HOME}/.ssh/known_hosts" &&
     chmod 0700 "${HOME}/.ssh/config.d" "${HOME}/.ssh/keys" "${HOME}/.ssh/known_hosts" &&
-    git init &&
-    git config user.name "${COMMITTER_NAME}" &&
-    git config user.email "${COMMITTER_EMAIL}" &&
-    git config --global user.signingkey $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
+    mkdir "${HOME}/project" &&
+    git -C "${HOME}/project" init &&
+    git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
+    git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
+    git -C "${HOME}/project" config --global user.signingkey $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_ID_RSA}" ] && [ ! -z "${UPSTREAM_KNOWN_HOSTS}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ]
     then
 	(cat > "${HOME}/.ssh/config.d/upstream.config" <<EOF
@@ -24,12 +34,12 @@ EOF
 	    echo "${UPSTREAM_ID_RSA}" > "${HOME}/.ssh/keys/upstream.id_rsa" &&
 	    echo "${UPSTREAM_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/upstream.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/upstream.config" "${HOME}/.ssh/keys/upstream.id_rsa" "${HOME}/.ssh/known_hosts/upstream.known_hosts" &&
-	    git remote add upstream upstream:"${UPSTREAM_ORGANIZATION}"/"${UPSTREAM_REPOSITORY}".git &&
-	    git remote set-url --push upstream no_push &&
+	    git -C "${HOME}/project" remote add upstream upstream:"${UPSTREAM_ORGANIZATION}"/"${UPSTREAM_REPOSITORY}".git &&
+	    git -C "${HOME}/project" remote set-url --push upstream no_push &&
 	    if [ ! -z "${UPSTREAM_BRANCH}" ]
 	    then
-		git fetch upstream "${UPSTREAM_BRANCH}" &&
-		    git checkout "upstream/${UPSTREAM_BRANCH}" &&
+		git -C "${HOME}/project" fetch upstream "${UPSTREAM_BRANCH}" &&
+		    git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
 		    true
 	    fi &&
 	    true
@@ -48,15 +58,15 @@ EOF
 	    echo "${ORIGIN_ID_RSA}" > "${HOME}/.ssh/keys/origin.id_rsa" &&
 	    echo "${ORIGIN_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/origin.config" "${HOME}/.ssh/keys/origin.id_rsa" "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
-	    git remote add origin origin:"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
+	    git -C "${HOME}/project" remote add origin origin:"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
 	    if [ -z "${ORIGIN_BRANCH}" ]
 	    then
-		git checkout -b scratch/$(uuidgen) &&
+		git -C "${HOME}/project" checkout -b scratch/$(uuidgen) &&
 		    true
 	    else
 		(
-		    (git fetch origin "${ORIGIN_BRANCH}" && git checkout "${ORIGIN_BRANCH}" && true) ||
-			(git checkout -b "${ORIGIN_BRANCH}" && true)
+		    (git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" && git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" && true) ||
+			(git -C "${HOME}/project" checkout -b "${ORIGIN_BRANCH}" && true)
 		) &&
 		    true
 	    fi &&
@@ -76,9 +86,9 @@ EOF
 	    echo "${REPORT_ID_RSA}" > "${HOME}/.ssh/keys/report.id_rsa" &&
 	    echo "${REPORT_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/report.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/report.config" "${HOME}/.ssh/keys/report.id_rsa" "${HOME}/.ssh/known_hosts/report.known_hosts" &&
-	    git remote add report report:"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
+	    git -C "${HOME}/project" remote add report report:"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
 	    true
     fi &&
-    ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${HOME}/.git/hooks" &&
+    ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${HOME}/project/.git/hooks" &&
     bash &&
     true
