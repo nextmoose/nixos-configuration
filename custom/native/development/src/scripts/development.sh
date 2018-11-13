@@ -49,8 +49,11 @@ EOF
 	    echo "${ORIGIN_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/origin.config" "${HOME}/.ssh/keys/origin.id_rsa" "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    git remote add origin origin:"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
-	    if [ ! -z "${ORIGIN_BRANCH}" ]
+	    if [ -z "${ORIGIN_BRANCH}" ]
 	    then
+		git checkout -b scratch/$(uuidgen) &&
+		    true
+	    else
 		(
 		    (git fetch origin "${ORIGIN_BRANCH}" && git checkout "${ORIGIN_BRANCH}" && true) ||
 			(git checkout -b "${ORIGIN_BRANCH}" && true)
