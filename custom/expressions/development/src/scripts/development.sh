@@ -102,6 +102,7 @@ done &&
 	--interactive \
 	--tty \
 	--rm \
+	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--env DISPLAY=":0.0" \
 	--env COMMITTER_NAME="${COMMITTER_NAME}" \
 	--env COMMITER_EMAIL="${COMMITTER_EMAIL}" \
