@@ -1,4 +1,4 @@
 #!/bin/sh
 
-git commit -a --allow-empty-message --allow-empty &&
+git commit -am "" --allow-empty-message --allow-empty &&
     true
