@@ -26,6 +26,12 @@ EOF
 	    chmod 0400 "${HOME}/.ssh/config.d/upstream.config" "${HOME}/.ssh/keys/upstream.id_rsa" "${HOME}/.ssh/known_hosts/upstream.known_hosts" &&
 	    git remote add upstream upstream:"${UPSTREAM_ORGANIZATION}"/"${UPSTREAM_REPOSITORY}".git &&
 	    git remote set-url --push upstream no_push &&
+	    if [ ! -z "${UPSTREAM_BRANCH}" ]
+	    then
+		git fetch upstream "${UPSTREAM_BRANCH}" &&
+		    git checkout "upstream/${UPSTREAM_BRANCH}" &&
+		    true
+	    fi &&
 	    true
     fi &&
     if [ ! -z "${ORIGIN_HOST}" ] && [ ! -z "${ORIGIN_PORT}" ] && [ ! -z "${ORIGIN_USER}" ] && [ ! -z "${ORIGIN_ID_RSA}" ] && [ ! -z "${ORIGIN_KNOWN_HOSTS}" ] && [ ! -z "${ORIGIN_ORGANIZATION}" ] && [ ! -z "${ORIGIN_REPOSITORY}" ]
@@ -43,6 +49,14 @@ EOF
 	    echo "${ORIGIN_KNOWN_HOSTS}" > "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    chmod 0400 "${HOME}/.ssh/config.d/origin.config" "${HOME}/.ssh/keys/origin.id_rsa" "${HOME}/.ssh/known_hosts/origin.known_hosts" &&
 	    git remote add origin origin:"${ORIGIN_ORGANIZATION}"/"${ORIGIN_REPOSITORY}".git &&
+	    if [ ! -z "${ORIGIN_BRANCH}" ]
+	    then
+		(
+		    (git fetch origin "${ORIGIN_BRANCH}" && git checkout "${ORIGIN_BRANCH}" && true) ||
+			(git checkout -b "${ORIGIN_BRANCH}" && true)
+		) &&
+		    true
+	    fi &&
 	    true
     fi &&
     if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_ID_RSA}" ] && [ ! -z "${REPORT_KNOWN_HOSTS}" ] && [ ! -z "${REPORT_ORGANIZATION}" ] && [ ! -z "${REPORT_REPOSITORY}" ]
