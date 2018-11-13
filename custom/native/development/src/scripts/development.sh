@@ -3,7 +3,7 @@
 cleanup() {
     if [ -d "${HOME}/project" ]
     then
-	git -C "${HOME}/project" cur &&
+	git -C "${HOME}/project" curt &&
 	    true
     fi &&
 	true
@@ -89,6 +89,6 @@ EOF
 	    git -C "${HOME}/project" remote add report report:"${REPORT_ORGANIZATION}"/"${REPORT_REPOSITORY}".git &&
 	    true
     fi &&
-    ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${HOME}/project/.git/hooks" &&
+    ln --symbolic --force "${STORE_DIR}/scripts/post-commit" "${STORE_DIR}/scripts/pre-push" "${HOME}/project/.git/hooks" &&
     bash &&
     true

@@ -17,6 +17,7 @@ stdenv.mkDerivation rec {
       makeWrapper $out/scripts/git-refresh.sh $out/bin/git-refresh --set PATH ${lib.makeBinPath [ git "$out" utillinux ]} &&
       makeWrapper $out/scripts/git-prepare.sh $out/bin/git-prepare --set PATH ${lib.makeBinPath [ git "$out" utillinux ]} &&
       makeWrapper $out/scripts/post-commit.sh $out/scripts/post-commit --set PATH ${lib.makeBinPath [ coreutils git ]} &&
+      makeWrapper $out/scripts/pre-push.sh $out/scripts/pre-push --set PATH ${lib.makeBinPath [ coreutils git ]} &&
       true
   '';
 }
