@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<gconf>
-	<entry name="date_backmonths" mtime="1541343350" type="float" value="6"/>
-	<entry name="date_completion" mtime="1541343350" type="string">
-		<stringvalue>thisyear</stringvalue>
-	</entry>
-</gconf>

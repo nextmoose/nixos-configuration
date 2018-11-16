@@ -5,10 +5,6 @@
   containers = (import ./custom/containers.nix { inherit pkgs; });
   hardware = {
     pulseaudio.enable = true;
-    sane = {
-      enable = true;
-      netConf = "10.1.10.113";
-    };
   };
   i18n = {
     consoleFont = "Lat2-Terminus16";
@@ -19,10 +15,6 @@
     ./hardware-configuration.nix
     ./installed/password.nix
   ];
-  fileSystems."/srv/gnucash" = {
-    device = "/dev/volumes/gnucash";
-    fsType = "ext4";
-  };
   networking = {
     networkmanager = {
       enable = true;
@@ -71,19 +63,22 @@
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
-      (import ./installed/init-read-only-pass/default.nix { inherit pkgs; })
-      (import ./installed/init-wifi/default.nix { inherit pkgs; })
-      (import ./custom/init-user-experience/default.nix { inherit pkgs; })
-      (import ./custom/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/expressions/development/default.nix { inherit pkgs; })
-      pkgs.emacs
-      pkgs.networkmanager
-      pkgs.gnome3.gnome-terminal
-      pkgs.recordmydesktop
-      pkgs.chromium
-      pkgs.git
+      (import ./installed/default.nix { inherit pkgs; })
+      emacs
+      networkmanager
+      gnome3.gnome-terminal
+      recordmydesktop
+      chromium
+      git
     ];
   };
-  virtualisation = (import ./custom/virtualisation.nix { inherit pkgs; });
+  virtualisation.docker = {
+    enable = true;
+    autoPrune = {
+      enable = true;
+      flags = [ "--all" ];
+      dates = "daily";
+    };
+  };
 }
 # lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere
