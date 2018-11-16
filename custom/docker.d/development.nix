@@ -16,5 +16,8 @@ dockerTools.buildImage {
     Entrypoint = [ "${development}/bin/development" ];
     User = "user";
     WorkingDir = "/home/user";
+    ExposedPorts = {
+      "8080/tcp" = {};
+    };
   };
 }
