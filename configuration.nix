@@ -64,12 +64,12 @@
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
-      emacs
-      networkmanager
-      gnome3.gnome-terminal
-      recordmydesktop
-      chromium
-      git
+      pkgs.emacs
+      pkgs.networkmanager
+      pkgs.gnome3.gnome-terminal
+      pkgs.recordmydesktop
+      pkgs.chromium
+      pkgs.git
     ];
   };
   virtualisation.docker = {
