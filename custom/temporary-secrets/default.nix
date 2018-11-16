@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir $out &&
       mkdir $out/lib &&
-      tar ${old-secrets}/etc xvzf file.tar.gz --director $out/lib &&
+      tar xvzf ${old-secrets}/etc/secrets.tar.gz --director $out/lib &&
       true
   '';
 }
