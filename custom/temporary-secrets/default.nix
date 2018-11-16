@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
 let
-  old-secrets = (import ../../installed/init-read-only-pass.nix { inherit pkgs; });
+  old-secrets = (import ../../installed/init-read-only-pass/default.nix { inherit pkgs; });
 in
 stdenv.mkDerivation rec {
   name = "setup";
