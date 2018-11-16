@@ -2,7 +2,6 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  containers = (import ./custom/containers.nix { inherit pkgs; });
   hardware = {
     pulseaudio.enable = true;
   };
