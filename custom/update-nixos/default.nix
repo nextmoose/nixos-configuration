@@ -6,14 +6,10 @@ stdenv.mkDerivation rec {
   buildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      mkdir $out/etc &&
-      cp head.txt tail.txt $out/etc &&
-      mkdir $out/scripts &&
-      cp *.sh $out/scripts &&
-      chmod 0500 $out/scripts/*.sh &&
+      cp scripts $out/scripts &&
+      chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/create-nixos-object.sh $out/bin/create-nixos-objects --set PATH ${lib.makeBinPath [ coreutils findutils ]} --set STORE_DIR $out &&
-      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ "$out" "/run/wrappers" "/run/current-system/sw" coreutils rsync nixos-container gnugrep systemd mktemp ]} --set STORE_DIR $out &&
+      makeWrapper $out/scripts/update-nixos.sh $out/bin/update-nixos --set PATH ${lib.makeBinPath [ "/run/wrappers" coreutils rsync mktemp ]} --set STORE_DIR $out &&
       true
   '';
 }
