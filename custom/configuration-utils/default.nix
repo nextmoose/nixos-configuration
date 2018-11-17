@@ -1,10 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 with import <nixpkgs> {};
-let
-  secrets = (import ../temporary-secrets/default.nix { inherit pkgs; });
-in
 stdenv.mkDerivation rec {
-  name = "create-install-media";
+  name = "configuration-utils";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
@@ -12,7 +9,8 @@ stdenv.mkDerivation rec {
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/create-install-media.sh $out/bin/create-install-media --set PATH ${lib.makeBinPath [ bash coreutils ]} --set SECRETS "${secrets}" &&
+      makeWrapper $out/scripts/build-phase.sh $out/bin/build-phase --set PATH ${lib.makeBinPath [ bash coreutils ]} &&
+      makeWrapper $out/scripts/install-phase.sh $out/bin/install-phase --set PATH ${lib.makeBinPath [ bash coreutils ]} &&
       true
   '';
 }

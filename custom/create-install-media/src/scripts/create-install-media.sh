@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ls -alh ${SECRETS} &&
+ls -alh ${SECRETS}/lib &&
     true
