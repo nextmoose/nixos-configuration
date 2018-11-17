@@ -1,6 +1,9 @@
 { stdenv, makeWrapper }:
 rec {
   custom-derivation = {
+    name,
+    src ? ./src,
+    lib ? ./lib,
     build-dir ? "build",
     ...
   }:
@@ -8,13 +11,23 @@ rec {
     foo = "bar";
   in
     stdenv.mkDerivation {
-      name = "${foo}";
-      src = ./src;
+      name = "${name}";
+      src = "${src}";
       buildInputs = [ makeWrapper ];
       buildPhase = ''
         mkdir ${build-dir} &&
-          cp --recursive scripts ${build-dir} &&
-	  chmod --recursive 0500 ${build-dir}/scripts &&
+	  if [ -d ${build-dir} ]
+          then
+	    cp --recursive scripts ${build-dir} &&
+	      chmod --recursive 0500 ${build-dir}/scripts &&
+	      true
+	  fi &&
+	  if [ -d ${lib-dir} ]
+	  then
+	    cp --recursive lib ${build-dir} &&
+	      chmod --recursive 0400 ${build-dir}/lib &&
+	      true
+	  fi &&
 	  true
       '';
       installPhase = ''
