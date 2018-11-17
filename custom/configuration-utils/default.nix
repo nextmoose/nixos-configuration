@@ -9,7 +9,8 @@ stdenv.mkDerivation rec {
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
-      makeWrapper $out/scripts/build-phase.sh $out/bin/build-phase --set PATH ${lib.makeBinPath [ bash coreutils ]} &&
+      which makeWrapper &&
+      makeWrapper $out/scripts/build-phase.sh $out/bin/build-phase --set PATH ${lib.makeBinPath [ coreutils which ]} &&
       makeWrapper $out/scripts/install-phase.sh $out/bin/install-phase --set PATH ${lib.makeBinPath [ bash coreutils ]} &&
       true
   '';

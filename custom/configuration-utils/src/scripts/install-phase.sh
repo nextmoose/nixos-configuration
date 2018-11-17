@@ -3,8 +3,13 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--target-dir)
-	    TARGET_DIR="${2}" &&
+	--build-dir)
+	    BUILD_DIR="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--install-dir)
+	    INSTALL_DIR="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -20,12 +25,13 @@ do
 	true
 done &&
     (cat <<EOF
-TARGET_DIR
+BUILD_DIR
+INSTALL_DIR
 EOF
     ) | while read VAR
     do
 	eval VAL=\${${VAR}} &&
-	    if [ -z "${VAR}" ]
+	    if [ -z "${VAL}" ]
 	    then
 		echo Unspecified ${VAR} &&
 		    exit 66 &&
@@ -33,21 +39,16 @@ EOF
 	    fi &&
 	    true
     done &&
-    mkdir "${TARGET_DIR}" &&
+    mkdir "${INSTALL_DIR}" &&
     if [ -d "${BUILD_DIR}/scripts" ]
     then
-	cp --recursive "${BUILD_DIR}/scripts" "${TARGET_DIR}" &&
+	cp --recursive "${BUILD_DIR}/scripts" "${INSTALL_DIR}" &&
 	    true
     fi &&
     if [ -d lib ]
     then
-	cp --recursive "${BUILD_DIR}/lib" "${TARGET_DIR}" &&
-	    true
-    fi &&
-    if [ -f "${BUILD_DIR}/wrappers" ]
-    then
-	"${BUILD_DIR}/wrappers" --target-dir "${TARGET_DIR}" &&
+	cp --recursive "${BUILD_DIR}/lib" "${INSTALL_DIR}" &&
 	    true
     fi &&
     true
-    
+
