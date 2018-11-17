@@ -32,7 +32,7 @@ rec {
       '';
       installPhase = ''
         mkdir $out &&
-	  cp --recursive ${build-dir} $out &&
+	  cp --recursive ${build-dir}/. $out &&
 	  true
       '';
     };
