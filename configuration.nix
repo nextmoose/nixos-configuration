@@ -64,7 +64,7 @@
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/create-install-media/default.nix { inherit pkgs; })
+#      (import ./custom/create-install-media/default.nix { inherit pkgs; })
       (import ./custom/hello/default.nix { inherit pkgs; })
       pkgs.emacs
       pkgs.networkmanager

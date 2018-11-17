@@ -4,9 +4,9 @@ let
   configuration-utils = (import ../configuration-utils/default.nix { inherit pkgs; });
 in
 stdenv.mkDerivation rec {
-  name = "create-install-media";
+  name = "hello";
   src = ./src;
-  buildInputs = [ makeWrapper ];
-  buildPhase = "${configuration-utils}/bin/build-phase"
-  installPhase = "${configuration-utils}/bin/install-phase"
+  buildInputs = [ configuration-utils ];
+  buildPhase = "build-phase";
+  installPhase = "install-phase";
 }

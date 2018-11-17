@@ -13,10 +13,5 @@ mkdir build &&
 	    chmod --recursive 0400 build/lib/. &&
 	    true
     fi &&
-    if [ -f wrappers.sh ]
-    then
-	makeWrapper wrappers.sh build/wrappers.sh &&
-	    true
-    fi &&
     true
     

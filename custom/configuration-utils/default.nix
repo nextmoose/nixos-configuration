@@ -3,7 +3,7 @@ with import <nixpkgs> {};
 stdenv.mkDerivation rec {
   name = "configuration-utils";
   src = ./src;
-  buildInputs = [ makeWrapper ];
+  buildInputs = [ makeWrapper which ];
   installPhase = ''
     mkdir $out &&
       cp --recursive scripts $out &&

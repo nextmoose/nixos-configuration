@@ -34,18 +34,20 @@ EOF
 	    true
     done &&
     mkdir "${TARGET_DIR}" &&
-    if [ -d scripts ]
+    if [ -d "${BUILD_DIR}/scripts" ]
     then
-	cp --recursive scripts "${TARGET_DIR}" &&
+	cp --recursive "${BUILD_DIR}/scripts" "${TARGET_DIR}" &&
 	    true
     fi &&
     if [ -d lib ]
     then
-	cp --recursive lib "${TARGET_DIR}" &&
+	cp --recursive "${BUILD_DIR}/lib" "${TARGET_DIR}" &&
 	    true
     fi &&
-    if [ -f wrappers.sh ]
+    if [ -f "${BUILD_DIR}/wrappers" ]
     then
+	"${BUILD_DIR}/wrappers" --target-dir "${TARGET_DIR}" &&
+	    true
     fi &&
     true
     
