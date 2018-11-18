@@ -5,9 +5,11 @@ rec {
     src ? ./src,
     build-dir ? "build",
     scripts-dir ? "scripts",
-    lib-dir ? "lib",
-    ...
-  }:
+    lib-dir ? "lib"
+  } @ attrs :
+  let
+    foo = "bar";
+  in
     stdenv.mkDerivation {
       name = "${name}";
       src = "${src}";
