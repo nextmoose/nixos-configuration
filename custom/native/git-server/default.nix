@@ -1,11 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
-let
-  secrets = (import ../../temporary/secrets/default.nix {});
-  git-curt = (import ../git-curt/default.nix {});
-  post-commit = (import ../post-commit/default.nix {});
-in
 pkgs.stdenv.mkDerivation rec {
-  name = "emacs";
+  name = "git-server";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
