@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${emacs} ${react-space} $out/lib/emacs.tar.gz &&
+      ln --symbolic ${emacs} ${react-space} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
