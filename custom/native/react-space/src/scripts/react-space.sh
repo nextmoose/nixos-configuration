@@ -1,3 +1,4 @@
 #!/bin/sh
 
-bash
+node -v &&
+    bash

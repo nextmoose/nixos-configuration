@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/react-space.sh \
 	$out/bin/react-space \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.bash node ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.bash pkgs.coreutils node ]} \
 	&&
       true
   '';
