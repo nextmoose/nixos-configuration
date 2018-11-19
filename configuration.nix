@@ -25,11 +25,7 @@
       externalInterface = "wl01";
     };
   };
-  programs = {
-    bash.shellInit = ''
-      ${pkgs.xorg.xhost}/bin/xhost +local:
-    '';
-  };
+  programs.bash.shellInit = "(import ./custom/system/initialize/default.nix {})/bin/initialize";
   security.sudo.wheelNeedsPassword = false;
   services = {
     avahi = {
