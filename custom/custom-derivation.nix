@@ -45,6 +45,7 @@ pkgs.stdenv.mkDerivation {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
+      "${wrappers}" &&
       true
   '';
 }
