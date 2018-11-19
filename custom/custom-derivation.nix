@@ -36,6 +36,7 @@ pkgs.stdenv.mkDerivation {
       then
         cp "${wrappers-file}" "${build-dir}" &&
 	  chmod 0500 "${build-dir}"/"${wrappers-file}" &&
+	  makeWrapper "${build-dir}"/"${wrappers-file}" "${build-dir}"/"${wrapped-wrappers-file}" --set PATH ${pkgs.lib.makeBinPath [ pkgs.makeWrapper ]} &&
 	  true
       fi &&
       true
