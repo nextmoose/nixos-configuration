@@ -5,10 +5,15 @@ cleanup() {
 	true
 } &&
     trap cleanup EXIT &&
+    echo AAA 00100 &&
     gpg --import "${SECRETS_DIR}/lib/gpg.secret.key" &&
+    echo AAA 00200 &&
     gpg2 --import "${SECRETS_DIR}/lib/gpg2.secret.key" &&
+    echo AAA 00300 &&
     gpg --import-ownertrust "${SECRETS_DIR}/lib/gpg.owner.trust" &&
+    echo AAA 00400 &&
     gpg2 --import-ownertrust "${SECRETS_DIR}/lib/gpg2.owner.trust" &&
+    echo AAA 00500 &&
     echo ALPHA &&
     pass init $(gpg --list-keys --with-colon | head --lines 5 | tail --lines 1 | cut --fields 5 --delimiter ":") &&
     pass git init &&
@@ -26,7 +31,9 @@ IdentityFile ${HOME}/.ssh/origin.id_rsa
 UserKnownHostsFile ${HOME}/.ssh/origin.known_hosts
 EOF
     ) &&
+    echo AAA 00600 &&
     pass show origin.id_rsa > "${HOME}/.ssh/origin.id_rsa" &&
+    echo AAA 00700 &&
     pass show origin.known_hosts > "${HOME}/.ssh/origin.known_hosts" &&
     chmod 0400 "${HOME}/.ssh/config" "${HOME}/.ssh/origin.id_rsa" "${HOME}/.ssh/origin.known_hosts" &&
     mkdir "${HOME}/project" &&
