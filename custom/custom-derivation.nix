@@ -5,7 +5,8 @@
   build-dir ? "build",
   scripts-dir ? "scripts",
   lib-dir ? "lib",
-  wrappers-file ? "wrappers.sh"
+  wrappers-file ? "wrappers.sh",
+  wrapped-wrappers-file ? "wrappers"
 } :
 pkgs.stdenv.mkDerivation {
   name = "${name}";
@@ -51,9 +52,9 @@ pkgs.stdenv.mkDerivation {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
-      if [ -f "${build-dir}"/"${wrappers-file}" ]
+      if [ -f "${build-dir}"/"${wrapped-wrappers-file}" ]
       then
-         "${build-dir}"/"${wrappers-file}" &&
+         "${build-dir}"/"${wrapped-wrappers-file}" &&
            true
       fi &&
       true
