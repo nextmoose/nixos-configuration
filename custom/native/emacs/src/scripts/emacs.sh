@@ -6,7 +6,7 @@ cleanup() {
 } &&
     trap cleanup EXIT &&
     echo AAA 00100 &&
-    gpg --import "${SECRETS_DIR}/lib/gpg.secret.key" &&
+    gpg --batch --import "${SECRETS_DIR}/lib/gpg.secret.key" &&
     echo AAA 00200 &&
     gpg2 --import "${SECRETS_DIR}/lib/gpg2.secret.key" &&
     echo AAA 00300 &&
@@ -41,5 +41,7 @@ EOF
     git -C "${HOME}/project" config user.name "${COMMIITTER_NAME}" &&
     git -C "${HOME}/project" config user.email "${COMMIITTER_EMAIL}" &&
     git -C "${HOME}/project" remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+    git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
+    git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     emacs "${HOME}/project" &&
     true

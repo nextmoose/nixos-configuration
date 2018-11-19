@@ -26,7 +26,8 @@ pkgs.stdenv.mkDerivation rec {
 	--set ORIGIN_USER git \
 	--set ORIGIN_PORT 22 \
 	--set ORIGIN_ORGANIZATION nextmoose \
-	--set ORIGIN_REPOSITORY nixos-configuration &&
+	--set ORIGIN_REPOSITORY nixos-configuration \
+	--set ORIGIN_BRANCH level-5 &&
       true
   '';
 }
