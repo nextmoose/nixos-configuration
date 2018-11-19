@@ -14,5 +14,8 @@ pkgs.dockerTools.buildImage {
   config = {
     entrypoint = [ "${emacs}/bin/emacs" ];
     User = "user";
+    ExposedPorts = {
+      "8080/tcp" = {};
+    };
   };
 }
