@@ -65,7 +65,7 @@
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/update-nixos/default.nix { inherit pkgs; })
 #      (import ./custom/create-install-media/default.nix { inherit pkgs; })
-      (import ./custom/hello/default.nix {})
+      (import ./custom/example/hello/default.nix {})
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal

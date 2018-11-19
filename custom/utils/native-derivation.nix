@@ -1,16 +1,22 @@
 {
   pkgs ? import <nixpkgs>{},
   name,
-  src ? ./src,
+  src,
   build-dir ? "build",
   scripts-dir ? "scripts",
+  bin-dir ? "bin",
   lib-dir ? "lib",
   wrappers
 } :
-pkgs.stdenv.mkDerivation {
-  name = "${name}";
-  src = "${src}";
+let
+  xname = "${name}";
+  xsrc = "${src}";
+in
+pkgs.stdenv.mkDerivation rec {
+  name = "${xname}";
+  src = "${xsrc}";
   buildInputs = [ pkgs.makeWrapper ];
+  xxx = "HELLO WORLD SEE ME";
   buildPhase = ''
     if [ -d "${build-dir}" ]
     then
@@ -23,6 +29,12 @@ pkgs.stdenv.mkDerivation {
       then
 	cp --recursive "${scripts-dir}" "${build-dir}" &&
 	  chmod --recursive 0500 "${build-dir}"/"${scripts-dir}"/. &&
+	  true
+      fi &&
+      if [ -d "${bin-dir}" ]
+      then
+	cp --recursive "${bin-dir}" "${build-dir}" &&
+	  chmod --recursive 0500 "${build-dir}"/"${bin-dir}"/. &&
 	  true
       fi &&
       if [ -d "${lib-dir}" ]
@@ -45,6 +57,7 @@ pkgs.stdenv.mkDerivation {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
-      ${wrappers {makeWrapper = pkgs.makeWrapper; out="$out";}}
+      echo "${xxx}" &&
+      true
   '';
 }
