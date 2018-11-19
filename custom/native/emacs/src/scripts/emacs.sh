@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cleanup() {
-    bash &&
+    git -C "${HOME}/project" curt &&
 	true
 } &&
     trap cleanup EXIT &&
@@ -30,10 +30,11 @@ EOF
     chmod 0400 "${HOME}/.ssh/config" "${HOME}/.ssh/origin.id_rsa" "${HOME}/.ssh/origin.known_hosts" &&
     mkdir "${HOME}/project" &&
     git -C "${HOME}/project" init &&
-    git -C "${HOME}/project" config user.name "${COMMIITTER_NAME}" &&
-    git -C "${HOME}/project" config user.email "${COMMIITTER_EMAIL}" &&
+    git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
+    git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
     git -C "${HOME}/project" remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
     git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
+    ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
     emacs "${HOME}/project" &&
     true
