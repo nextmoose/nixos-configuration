@@ -63,9 +63,8 @@
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
-      (import ./custom/update-nixos/default.nix { inherit pkgs; })
-#      (import ./custom/create-install-media/default.nix { inherit pkgs; })
-      (import ./custom/example/hello/default.nix {})
+      (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
+      (import ./custom/user/standard/default.nix {})
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
