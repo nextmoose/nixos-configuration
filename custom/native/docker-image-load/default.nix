@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   emacs = (import ../../docker/emacs.nix {});
+  react-space = (import ../../docker/react-space.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "docker-image-load";
@@ -12,7 +13,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${emacs} $out/lib/emacs.tar.gz &&
+      ln --symbolic ${emacs} ${react-space} $out/lib/emacs.tar.gz &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
