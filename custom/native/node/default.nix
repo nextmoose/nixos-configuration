@@ -2,11 +2,8 @@
 pkgs.stdenv.mkDerivation rec {
   name = "node";
   src = pkgs.fetchurl {
-    url = "https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz";
-    sha512 = "32av727sv4bjnncha4aqwip2yyd6bmr3dxsq97zns877wba8bhg44f6br4mlx6mv50bj47w0i48hwkxiv0g2yg95800dmrcali3x08l";
+    url = "https://nodejs.org/dist/v11.2.0/node-v11.2.0.tar.gz";
+    sha512 = "1vajl0dm5rjgmw46i6iz6jbkdya9c7vag9w82fmhl7wnw52d3zm1g1f8yawdn4na111j2rjnjls47w1ilqhpv2kibz8xvfbwp2zf57m";
   };
-  installPhase = ''
-    cp --recursive . $out &&
-      true
-  '';
+  buildInputs = [ pkgs.which pkgs.python ];
 }
