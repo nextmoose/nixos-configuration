@@ -14,5 +14,6 @@ pkgs.dockerTools.buildImage {
   config = {
     entrypoint = [ "${react-space}/bin/react-space" ];
     User = "user";
+    WorkingDir = "/home/user";
   };
 }

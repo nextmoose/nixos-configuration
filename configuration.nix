@@ -63,7 +63,6 @@ in
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/native/node/default.nix {})
       (import ./custom/user/emacs/default.nix {})
       (import ./custom/user/react-space/default.nix {})
       initialization
