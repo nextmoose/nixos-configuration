@@ -4,7 +4,8 @@
   src ? ./src,
   build-dir ? "build",
   scripts-dir ? "scripts",
-  lib-dir ? "lib"
+  lib-dir ? "lib",
+  wrappers-file ? "wrappers.sh"
 } :
 pkgs.stdenv.mkDerivation {
   name = "${name}";
@@ -30,6 +31,12 @@ pkgs.stdenv.mkDerivation {
 	  chmod --recursive 0500 "${build-dir}"/"${lib-dir}"/. &&
 	  true
       fi &&
+      if [ -f "${wrappers-file}" ]
+      then
+        cp "${wrappers-file}" "${build-dir}" &&
+	  chmod 0500 "${build-dir}"/"${wrappers-file}" &&
+	  true
+      fi &&
       true
   '';
   installPhase = ''
@@ -44,7 +51,11 @@ pkgs.stdenv.mkDerivation {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
-      makeWrapper $out/scripts/hello.sh $out/bin/hello --set PATH ${pkgs.stdenv.lib.makeBinPath [ pkgs.coreutils ]} &&
+      if [ -f "${build-dir}"/"${wrappers-file}" ]
+      then
+         "${build-dir}"/"${wrappers-file}" &&
+           true
+      fi &&
       true
   '';
 }

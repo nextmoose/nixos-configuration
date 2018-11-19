@@ -1,4 +1,5 @@
 #!/bin/sh
 
-makeWrapper "${TARGET_DIR}/scripts/hello.sh" "${TARGET_DIR}/bin/hello" &&
+echo AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA &&
+# makeWrapper "${TARGET_DIR}/scripts/hello.sh" "${TARGET_DIR}/bin/hello" &&
     true
