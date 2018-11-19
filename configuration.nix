@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  initialization = (import ./custom/system/initialization/default.nix {});
+in
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,7 +28,7 @@
       externalInterface = "wl01";
     };
   };
-  programs.bash.shellInit = "(import ./custom/system/initialize/default.nix {})/bin/initialize";
+  programs.bash.shellInit = "${initialization}/bin/initialization";
   security.sudo.wheelNeedsPassword = false;
   services = {
     avahi = {
@@ -60,8 +63,8 @@
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
-      (import ./custom/user/standard/default.nix {})
       (import ./custom/user/emacs/default.nix {})
+      initialization
       pkgs.emacs
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal

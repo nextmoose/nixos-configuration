@@ -1,8 +1,12 @@
 #!/bin/sh
 
-if [ -z "$(docker image ls --filter reference=${@})" ]
+if [ -z "$(docker image ls --filter reference=${@} --quiet)" ]
 then
-    cat "${STORE_DIR}/${@}.tar.gz" | docker image load &&
+    echo YES &&
+	cat "${STORE_DIR}/lib/${@}.tar.gz" | docker image load &&
+	true
+else
+    echo NO &&
 	true
 fi &&
     true
