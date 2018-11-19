@@ -6,7 +6,7 @@
   scripts-dir ? "scripts",
   bin-dir ? "bin",
   lib-dir ? "lib",
-  wrappers
+  wrappersScript
 } :
 let
   xname = "${name}";
@@ -16,7 +16,6 @@ pkgs.stdenv.mkDerivation rec {
   name = "${xname}";
   src = "${xsrc}";
   buildInputs = [ pkgs.makeWrapper ];
-  xxx = "HELLO WORLD SEE ME";
   buildPhase = ''
     if [ -d "${build-dir}" ]
     then
@@ -45,6 +44,10 @@ pkgs.stdenv.mkDerivation rec {
       fi &&
       true
   '';
+  wrappers = wrappersScript {
+    out = $out;
+    pkgs = ${pkgs};
+  };
   installPhase = ''
     mkdir $out &&
       if [ -d "${build-dir}"/"${scripts-dir}" ]
@@ -57,7 +60,7 @@ pkgs.stdenv.mkDerivation rec {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
-      echo "${xxx}" &&
+      "${wrappers}" &&
       true
   '';
 }

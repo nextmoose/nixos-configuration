@@ -5,10 +5,5 @@ in
 native-derivation {
   name = "hello";
   src = ./src;
-  wrappers = [
-    {
-      script = "hello.sh";
-      bin = "hello";
-    }
-  ];
+  wrappers = {out, pkgs}: "pkgs.makeWrapper $out/scripts/hello.sh $out/scripts.hello";
 }
