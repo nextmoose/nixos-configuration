@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   secrets = (import ../../temporary/secrets/default.nix {});
+  git-curt = (import ../git-curt/default.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "emacs";
@@ -14,7 +15,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/emacs.sh \
 	$out/bin/emacs \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.emacs pkgs.coreutils pkgs.bash ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.emacs pkgs.coreutils pkgs.bash git-curt ]} \
 	--set SECRETS_DIR "${secrets}" \
 	--set CANONICAL_HOST github.com \
 	--set CANONICAL_ORGANIZATION nextmoose \
