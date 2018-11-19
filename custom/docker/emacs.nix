@@ -4,7 +4,15 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = "emacs";
+  contents = [ pkgs.shadow ];
+  runAsRoot = ''
+    ${pkgs.dockerTools.shadowSetup}
+      mkdir /home /tmp &&
+      chmod a+rwx /tmp &&
+      useradd --create-home user
+  '';
   config = {
-    entrypoint = [ emacs ];
+    entrypoint = [ "${emacs}/bin/emacs" ];
+    User = "user";
   };
 }

@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  docker-image-load = (input ../docker-image-load/default.nix {});
+  docker-image-load = (import ../docker-image-load/default.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "initialization";

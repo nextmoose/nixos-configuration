@@ -1,11 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
-with import <nixpkgs> {};
 let
-  old-secrets = (import ../../installed/init-read-only-pass/default.nix { inherit pkgs; });
+  old-secrets = (import ../../../installed/init-read-only-pass/default.nix {});
 in
-stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation rec {
   name = "setup";
   src = ./src;
+  buildInputs = [ pkgs.gnutar ];
   installPhase = ''
     mkdir $out &&
       mkdir $out/lib &&
