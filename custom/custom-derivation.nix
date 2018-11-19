@@ -1,14 +1,15 @@
 {
-  stdenv,
+  pkgs ? import <nixpkgs>{},
   name,
   src ? ./src,
   build-dir ? "build",
   scripts-dir ? "scripts",
   lib-dir ? "lib"
 } :
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   name = "${name}";
   src = "${src}";
+  buildInputs = [ pkgs.makeWrapper ];
   buildPhase = ''
     if [ -d "${build-dir}" ]
     then
@@ -43,6 +44,7 @@ stdenv.mkDerivation {
 	cp --recursive "${build-dir}"/"${lib-dir}" $out &&
 	  true
       fi &&
+      makeWrapper $out/scripts/hello.sh $out/bin/hello --set PATH ${pkgs.stdenv.lib.makeBinPath [ pkgs.coreutils ]} &&
       true
   '';
 }
