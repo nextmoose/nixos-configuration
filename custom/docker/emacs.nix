@@ -9,13 +9,18 @@ pkgs.dockerTools.buildImage {
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp &&
       chmod a+rwx /tmp &&
-      useradd --create-home user
+      useradd --create-home user &&
+      mkdir /usr &&
+      mkdir /usr/bin &&
+      ln --symbolic ${pkgs.coreutils}/bin/env /usr/bin &&
+      true
   '';
   config = {
     entrypoint = [ "${emacs}/bin/emacs" ];
-    User = "user";
     ExposedPorts = {
       "8080/tcp" = {};
     };
+    User = "user";
+    WorkingDir = "/home/user";
   };
 }

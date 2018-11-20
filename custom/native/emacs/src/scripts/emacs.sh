@@ -36,4 +36,8 @@ EOF
     git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
+    cd "${HOME}/project" &&
+    npm install &&
+    export PATH="${HOME}/project/node_modules/.bin:${PATH}" &&
+    bash &&
     true

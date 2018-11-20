@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation rec {
 	&&
       makeWrapper \
         $out/scripts/emacs.sh \
-	$out/bin/emacs-ghastlywrenchserver \
+	$out/bin/emacs-ghastlywrench-server \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
 	--set CANONICAL_HOST github.com \
 	--set CANONICAL_ORGANIZATION nextmoose \
@@ -39,12 +39,12 @@ pkgs.stdenv.mkDerivation rec {
 	--set ORIGIN_USER git \
 	--set ORIGIN_PORT 22 \
 	--set ORIGIN_ORGANIZATION nextmoose \
-	--set ORIGIN_REPOSITORY ghastlywrenchserver \
-	--set ORIGIN_BRANCH scratch/a3a0c237-5a84-4890-8a22-d7e224bea070 \
+	--set ORIGIN_REPOSITORY ghastlywrench-server \
+	--set ORIGIN_BRANCH scratch/059a6f78-0ff4-4ad4-af7e-9f3417bb6a27 \
 	&&
       makeWrapper \
         $out/scripts/emacs.sh \
-	$out/bin/emacs-ghastlywrenchclient \
+	$out/bin/emacs-ghastlywrench-client \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
 	--set CANONICAL_HOST github.com \
 	--set CANONICAL_ORGANIZATION nextmoose \
@@ -55,8 +55,8 @@ pkgs.stdenv.mkDerivation rec {
 	--set ORIGIN_HOST github.com \
 	--set ORIGIN_USER git \
 	--set ORIGIN_PORT 22 \
-	--set ORIGIN_ORGANIZATION nextmoose \
-	--set ORIGIN_REPOSITORY ghastlywrenchclient \
+	--set ORIGIN_ORGANIZATION goldroadrunner \
+	--set ORIGIN_REPOSITORY ghastlywrench-client \
 	--set ORIGIN_BRANCH scratch/a3a0c237-5a84-4890-8a22-d7e224bea070 \
 	&&
       true
