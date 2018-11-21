@@ -64,7 +64,6 @@ in
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
-      (import ./custom/user/react-space/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
@@ -72,6 +71,7 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
+      (import ./custom/native/node/default.nix {})
     ];
   };
   virtualisation.docker = {

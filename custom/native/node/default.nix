@@ -1,9 +1,16 @@
 { pkgs ? import <nixpkgs> {} }:
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "node";
   src = pkgs.fetchurl {
-    url = "https://nodejs.org/dist/latest-v8.x/node-v8.12.0-linux-x64.tar.gz";
-    sha512 = "1pchax0s70ckwcq35pj2c89iv3pdkk9a7j9q429qnnn4g5dri772bjvy3mv2fcr4qkm1x3p8xn4s6icszxg3hsa1k6mpz73p4icq7z3";
+    url = "https://nodejs.org/dist/v10.13.0/node-v10.13.0.tar.gz";
+    sha512 = "308rnwala6jb9k928qb7n1y828kd79m6aqmcv9p53isd5yg1mgxgm25hvwkgjxwv2br382wnfgdf18nin8yppk0n14b77vs8rkcjc7c";
   };
-  installPhase = "cp --recursive . $out";
+  buildInputs = [ pkgs.python ];
+  buildPhase = ''
+    ./configure &&
+      make -j4
+  '';
+  installPhase = "
+    make install PREFIX=$out
+  ";
 }
