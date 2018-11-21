@@ -11,13 +11,13 @@ pkgs.stdenv.mkDerivation rec {
   installPhase = ''
     mkdir $out &&
       cp --recursive scripts lib $out &&
-      chmod 0500 $out/scripts/* &&
-      chmod 0400 $out/lib/* &&
+      chmod --recursive 0500 $out/scripts/. &&
+#      chmod --recursive 0400 $out/lib/. &&
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/atom.sh \
 	$out/bin/atom \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.atom pkgs.coreutils pkgs.bash git-curt pkgs.which post-commit ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.atom pkgs.coreutils pkgs.bash git-curt pkgs.which post-commit pkgs.gnugrep ]} \
 	--set SECRETS_DIR "${secrets}" \
 	--set STORE_DIR "$out" \
 	&&
