@@ -3,7 +3,7 @@ let
   atom = (import ../native/atom/default.nix {});
 in
 pkgs.dockerTools.buildImage {
-  name = "emacs";
+  name = "atom";
   contents = [ pkgs.shadow ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
