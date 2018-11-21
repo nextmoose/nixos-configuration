@@ -3,7 +3,7 @@ let
   node = (import ../node/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
-  name = "node-push-runner";
+  name = "node-runner";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -11,8 +11,8 @@ pkgs.stdenv.mkDerivation {
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
       makeWrapper \
-        $out/scripts/node-push-runner.sh \
-        $out/bin/node-push-runner \
+        $out/scripts/node-runner.sh \
+        $out/bin/node-runner \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.openssh node ]} \
         &&
       true

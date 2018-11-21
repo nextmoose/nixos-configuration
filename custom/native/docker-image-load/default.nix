@@ -2,6 +2,7 @@
 let
   atom = (import ../../docker/atom.nix {});
   emacs = (import ../../docker/emacs.nix {});
+  node-runner = (import ../../docker/node-runner.nix {});
   node-push-runner = (import ../../docker/node-push-runner.nix {});
   react-space = (import ../../docker/react-space.nix {});
 in
@@ -15,7 +16,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${emacs} ${node-push-runner} ${react-space} $out/lib &&
+      ln --symbolic ${atom} ${emacs} ${node-runner} ${node-push-runner} ${react-space} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
