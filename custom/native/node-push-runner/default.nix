@@ -5,7 +5,7 @@ in
 pkgs.stdenv.mkDerivation {
   name = "node-push-runner";
   src = ./src;
-  installPhase = "
+  installPhase = ''
     mkdir $out &&
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
@@ -15,5 +15,5 @@ pkgs.stdenv.mkDerivation {
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.openssh node-push-runner ]} \
         &&
       true
-  ";
+  '';
 }
