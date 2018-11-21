@@ -38,6 +38,7 @@ EOF
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
     mkdir "${HOME}/.atom" &&
     cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" &&
+    cp "${STORE_DIR}/lib/save-commands.js" "${HOME}" &&
     apm install save-commands-plus &&
     atom --foreground "${HOME}" &&
     true
