@@ -10,23 +10,6 @@ pkgs.stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/atom.sh \
-	$out/bin/atom2 \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
-	--set CANONICAL_HOST github.com \
-	--set CANONICAL_ORGANIZATION nextmoose \
-	--set CANONICAL_REPOSITORY secrets \
-	--set CANONICAL_BRANCH master \
-	--set COMMITTER_NAME "Emory Merryman" \
-	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
-	--set ORIGIN_HOST github.com \
-	--set ORIGIN_USER git \
-	--set ORIGIN_PORT 22 \
-	--set ORIGIN_ORGANIZATION nextmoose \
-	--set ORIGIN_REPOSITORY nixos-configuration \
-	--set ORIGIN_BRANCH level-5 \
-	&&
-      makeWrapper \
-        $out/scripts/atom.sh \
 	$out/bin/atom-ghastlywrench-server \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
 	--set CANONICAL_HOST github.com \
