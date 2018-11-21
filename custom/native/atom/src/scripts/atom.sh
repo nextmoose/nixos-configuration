@@ -36,5 +36,7 @@ EOF
     git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
+    mkdir "${HOME}/.atom" &&
+    cp "${STORE_DIR}/lib/init.js" "${HOME}/.atom" &&
     atom --foreground "${HOME}/project" &&
     true
