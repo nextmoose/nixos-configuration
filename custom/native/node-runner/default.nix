@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/node-runner.sh \
         $out/bin/node-runner \
-        --set PATH ${pkgs.lib.makeBinPath [ pkgs.openssh node ]} \
+        --set PATH ${pkgs.lib.makeBinPath [ node ]} \
         &&
       true
   '';

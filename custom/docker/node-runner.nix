@@ -7,6 +7,7 @@ pkgs.dockerTools.buildImage {
   contents = [ pkgs.shadow ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
+      mkdir /home &&
       useradd --create-home user &&
       mkdir /usr &&
       mkdir /usr/bin &&

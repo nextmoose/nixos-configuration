@@ -19,6 +19,7 @@ pkgs.stdenv.mkDerivation rec {
 	$out/bin/atom \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.atom pkgs.coreutils pkgs.bash git-curt pkgs.which post-commit ]} \
 	--set SECRETS_DIR "${secrets}" \
+	--set STORE_DIR "$out" \
 	&&
       true
   '';
