@@ -37,7 +37,7 @@ EOF
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
     mkdir "${HOME}/.atom" &&
-    cp "${STORE_DIR}/lib/." "${HOME}/.atom" &&
+    cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" &&
     apm install save-commands-plus &&
-    atom --foreground "${HOME}/project" &&
+    atom --foreground "${HOME}" &&
     true

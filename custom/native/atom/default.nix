@@ -10,10 +10,8 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      cp --recursive scripts $out &&
+      cp --recursive scripts lib $out &&
       chmod --recursive 0500 $out/scripts/. &&
-      cp --recursive lib $out &&
-      chmod --recursive 0400 $out/lib/. &&
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/atom.sh \
