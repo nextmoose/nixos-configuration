@@ -36,5 +36,5 @@ EOF
     git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
-    atom "${HOME}/project" &&
+    atom --foreground "${HOME}/project" &&
     true
