@@ -3,9 +3,7 @@
 docker \
     container \
     run \
-    --interactive \
-    --tty \
-    --rm \
+    --detached \
     --env DISPLAY \
     --env CANONICAL_HOST \
     --env CANONICAL_ORGANIZATION \
