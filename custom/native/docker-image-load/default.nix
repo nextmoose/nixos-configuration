@@ -1,5 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
+  atom = (import ../../docker/atom.nix {});
   emacs = (import ../../docker/emacs.nix {});
   react-space = (import ../../docker/react-space.nix {});
 in
@@ -13,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${emacs} ${react-space} $out/lib &&
+      ln --symbolic ${atom} ${emacs} ${react-space} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
