@@ -1,6 +1,5 @@
-{ cfg , pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> {} }:
 let
-  config = config.programs.atom;
   secrets = (import ../../temporary/secrets/default.nix {});
   git-curt = (import ../git-curt/default.nix {});
   post-commit = (import ../post-commit/default.nix {});
