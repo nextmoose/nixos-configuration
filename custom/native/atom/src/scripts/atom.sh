@@ -40,5 +40,5 @@ EOF
     cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" &&
     cp "${STORE_DIR}/lib/save-commands.js" "${HOME}" &&
     apm install save-commands-plus &&
-    atom --foreground "${HOME}" &&
+    atom --foreground "${HOME}/project" &&
     true
