@@ -1,3 +1,4 @@
 #!/bin/sh
 
-npm --version
+node --version &&
+    npm --version

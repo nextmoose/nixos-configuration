@@ -71,7 +71,7 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-      (import ./custom/user/node-push-runner/default.nix {})
+      (import ./custom/user/node-runner/default.nix {})
     ];
   };
   virtualisation.docker = {
