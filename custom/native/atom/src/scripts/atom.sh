@@ -39,6 +39,6 @@ EOF
     mkdir "${HOME}/.atom" &&
     cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" &&
     cp "${STORE_DIR}/lib/save-commands.json" "${HOME}" &&
-    apm install save-commands-plus &&
+    apm install save-commands-plus autosave git-plus &&
     atom --foreground "${HOME}/project" &&
     true
