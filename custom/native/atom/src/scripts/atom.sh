@@ -37,8 +37,8 @@ EOF
     git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
     ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
     mkdir "${HOME}/.atom" &&
-    cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" &&
+    cp "${STORE_DIR}/lib/atom/init.js" "${HOME}/.atom" &&
     cp "${STORE_DIR}/lib/save-commands.json" "${HOME}" &&
-    apm install save-commands-plus autosave git-plus &&
+    apm install save-commands-plus git-plus atom-terminal-panel &&
     atom --foreground "${HOME}/project" &&
     true
