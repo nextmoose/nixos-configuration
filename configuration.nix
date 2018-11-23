@@ -64,6 +64,8 @@ in
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
+      (import ./custom/user/kafka/default.nix {})
+      (import ./custom/user/zookeeper/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager

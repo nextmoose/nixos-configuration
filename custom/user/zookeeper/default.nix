@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.stdenv.mkDerivation rec {
-  name = "kafka";
+  name = "zookeeper";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -9,8 +9,8 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/kafka.sh \
-	$out/bin/kafka \
+        $out/scripts/zookeeper.sh \
+	$out/bin/zookeeper \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
 	&&
       true
