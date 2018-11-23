@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   atom = (import ../../docker/atom.nix {});
+  kafka = (import ../../docker/kafka.nix {});
   node-runner = (import ../../docker/node-runner.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
@@ -13,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${node-runner} $out/lib &&
+      ln --symbolic ${atom} ${kafka} ${node-runner} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \

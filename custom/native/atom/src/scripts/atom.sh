@@ -39,6 +39,6 @@ EOF
     mkdir "${HOME}/.atom" &&
     cp "${STORE_DIR}/lib/atom/init.js" "${HOME}/.atom" &&
     cp "${STORE_DIR}/lib/save-commands.json" "${HOME}" &&
-    apm install save-commands-plus git-plus atom-terminal-panel &&
+    apm install save-commands-plus git-plus term3 &&
     atom --foreground "${HOME}/project" &&
     true
