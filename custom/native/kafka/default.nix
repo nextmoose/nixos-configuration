@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/kafka.sh \
 	$out/bin/atom \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.kafka ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.apacheKafka ]} \
 	&&
       true
   '';
