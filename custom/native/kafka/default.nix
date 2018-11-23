@@ -5,7 +5,7 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      cp --recursive scripts lib $out &&
+      cp --recursive scripts $out &&
       chmod --recursive 0500 $out/scripts/. &&
       mkdir $out/bin &&
       makeWrapper \
