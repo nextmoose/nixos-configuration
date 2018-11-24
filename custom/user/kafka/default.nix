@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/kafka.sh \
 	$out/bin/kafka \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.util-linux pkgs.coreutils ]} \
 	&&
       true
   '';

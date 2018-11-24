@@ -3,7 +3,5 @@
 docker \
     container \
     run \
-    --interactive \
-    --tty \
-    --rm \
+    --detach \
     zookeeper
