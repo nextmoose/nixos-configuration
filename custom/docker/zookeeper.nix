@@ -1,4 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
+let
+  zookeeper = (import ../native/zookeeper/default.nix {});
+in
 pkgs.dockerTools.buildImage {
   name = "zookeeper";
   contents = [ pkgs.shadow ];
@@ -9,7 +12,8 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${pkgs.zookeeper}/bin/zkServer.sh" ];
+    cmd = [ "start-foreground" "zoo_sample.cfg" ];
+    entrypoint = [ "${zookeeper}/bin/zookeeper" ];
     User = "user";
   };
 }
