@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/zookeeper.sh \
 	$out/bin/zookeeper \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.zookeeper pkgs.coreutils pkgs.gnugrep pkgs.gnused pkgs.which pkgs.bash pkgs.tree ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.zookeeper pkgs.coreutils pkgs.gnugrep pkgs.gnused pkgs.jdk10 ]} \
 	--set STORE_DIR "$out" \
 	&&
       true
