@@ -11,7 +11,6 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	container \
 	create \
 	--cidfile "${ZOOKEEPER_CID_FILE}" \
-	--detach \
 	--restart always \
 	zookeeper &&
     docker \
@@ -19,9 +18,7 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	create \
 	--cidfile "${KAFKA_CID_FILE}" \
 	--interactive \
-	--tty \
 	--rm \
-	--restart always \
 	kafka &&
     docker \
 	network \
@@ -35,6 +32,6 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	--alias kafka \
 	"${NETWORK}" \
 	"$(cat ${KAFKA_CID_FILE})" &&
-    docker container start zookeeper &&
-    docker container start --interactive --tty --rm kafka &&
+    docker container start "$(cat ${ZOOKEEPER_CID_FILE})" &&
+    docker container start --interactive "$(cat ${KAFKA_CID_FILE})" &&
     true

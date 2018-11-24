@@ -12,6 +12,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
+    cmd = [ ];
     entrypoint = [ "${kafka}/bin/kafka" ];
     User = "user";
   };
