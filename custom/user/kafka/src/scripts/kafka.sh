@@ -1,8 +1,17 @@
 #!/bin/sh
 
 ZOOKEEPER_CID_FILE="$(mktemp)" &&
-    KAFKA_CID_FILE="$(mktemp)" &&
-    rm --force "${ZOOKEEPER_CID_FILE}" "${KAFKA_CID_FILE}" &&
+    KAFKA1_CID_FILE="$(mktemp)" &&
+    KAFKA2_CID_FILE="$(mktemp)" &&
+    KAFKA3_CID_FILE="$(mktemp)" &&
+    KAFKA4_CID_FILE="$(mktemp)" &&
+    rm \
+	--force \
+	"${ZOOKEEPER_CID_FILE}" \
+	"${KAFKA1_CID_FILE}" \
+	"${KAFKA2_CID_FILE}" \
+	"${KAFKA3_CID_FILE}" \
+	"${KAFKA4_CID_FILE}" &&
     NETWORK=$(docker \
 		  network \
 		  create \
@@ -16,10 +25,27 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
     docker \
 	container \
 	create \
-	--cidfile "${KAFKA_CID_FILE}" \
-	--interactive \
-	--rm \
-	kafka &&
+	--cidfile "${KAFKA1_CID_FILE}" \
+	kafka \
+	1 &&
+    docker \
+	container \
+	create \
+	--cidfile "${KAFKA2_CID_FILE}" \
+	kafka \
+	2 &&
+    docker \
+	container \
+	create \
+	--cidfile "${KAFKA3_CID_FILE}" \
+	kafka \
+	3 &&
+    docker \
+	container \
+	create \
+	--cidfile "${KAFKA4_CID_FILE}" \
+	kafka \
+	4 &&
     docker \
 	network \
 	connect \
@@ -33,5 +59,8 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	"${NETWORK}" \
 	"$(cat ${KAFKA_CID_FILE})" &&
     docker container start "$(cat ${ZOOKEEPER_CID_FILE})" &&
-    docker container start --interactive "$(cat ${KAFKA_CID_FILE})" &&
+    docker container start "$(cat ${KAFKA1_CID_FILE})" &&
+    docker container start "$(cat ${KAFKA2_CID_FILE})" &&
+    docker container start "$(cat ${KAFKA3_CID_FILE})" &&
+    docker container start "$(cat ${KAFKA4_CID_FILE})" &&
     true
