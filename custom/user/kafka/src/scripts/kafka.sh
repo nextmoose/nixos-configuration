@@ -27,12 +27,14 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	create \
 	--cidfile "${KAFKA1_CID_FILE}" \
 	kafka \
+	--add-topic alpha \
 	--broker-id 1 &&
     docker \
 	container \
 	create \
 	--cidfile "${KAFKA2_CID_FILE}" \
 	kafka \
+	--add-topic beta \
 	--broker-id 2 &&
     docker \
 	container \
@@ -45,6 +47,7 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	create \
 	--cidfile "${KAFKA4_CID_FILE}" \
 	kafka \
+	--list-topics \
 	--broker-id 4 &&
     docker \
 	network \
