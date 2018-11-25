@@ -31,6 +31,11 @@ in
   programs.bash.shellInit = "${initialization}/bin/initialization";
   security.sudo.wheelNeedsPassword = false;
   services = {
+    apache-kafka = {
+      brokerId = 15272;
+      enable = true;
+      
+    };
     avahi = {
       enable = true;
       nssmdns = true;
@@ -66,7 +71,6 @@ in
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
       (import ./custom/user/kafka/default.nix {})
-      (import ./custom/user/zookeeper/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
