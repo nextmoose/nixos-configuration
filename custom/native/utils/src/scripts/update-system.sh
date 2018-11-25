@@ -67,4 +67,9 @@ GARBAGE="no" &&
 	    true
     fi &&
     sudo nixos-rebuild switch &&
+    if [ "${DOCKER}" == "yes" ]
+    then
+	docker-image-pull &&
+	    true
+    fi &&
     true

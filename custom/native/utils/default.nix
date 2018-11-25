@@ -1,5 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
-pkgs.stdenv.mkDerivation rec {
+let
+  docker-image-pull = (import ../docker-image-load/default.nix {});
+in
+pkgs.stdenv.mkDerivation {
   name = "utils";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
@@ -16,8 +19,8 @@ pkgs.stdenv.mkDerivation rec {
       true &&
       makeWrapper \
         $out/scripts/update-system.sh \
-	$out/bin/docker-system-prune \
-	--set PATH ${pkgs.lib.makeBinPath [ "/run/wrappers" "/run/current-system/sw" pkgs.coreutils pkgs.rsync pkgs.mktemp pkgs.nix pkgs.docker ]} \
+	$out/bin/update-system \
+	--set PATH ${pkgs.lib.makeBinPath [ "/run/wrappers" "/run/current-system/sw" pkgs.coreutils pkgs.rsync pkgs.mktemp pkgs.nix pkgs.docker docker-image-pull ]} \
 	--set STORE_DIR "$out" &&
       true
   '';
