@@ -27,25 +27,25 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	create \
 	--cidfile "${KAFKA1_CID_FILE}" \
 	kafka \
-	1 &&
+	--broker-id 1 &&
     docker \
 	container \
 	create \
 	--cidfile "${KAFKA2_CID_FILE}" \
 	kafka \
-	2 &&
+	--broker-id 2 &&
     docker \
 	container \
 	create \
 	--cidfile "${KAFKA3_CID_FILE}" \
 	kafka \
-	3 &&
+	--broker-id 3 &&
     docker \
 	container \
 	create \
 	--cidfile "${KAFKA4_CID_FILE}" \
 	kafka \
-	4 &&
+	--broker-id 4 &&
     docker \
 	network \
 	connect \
@@ -55,9 +55,23 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
     docker \
 	network \
 	connect \
-	--alias kafka \
 	"${NETWORK}" \
-	"$(cat ${KAFKA_CID_FILE})" &&
+	"$(cat ${KAFKA1_CID_FILE})" &&
+    docker \
+	network \
+	connect \
+	"${NETWORK}" \
+	"$(cat ${KAFKA2_CID_FILE})" &&
+    docker \
+	network \
+	connect \
+	"${NETWORK}" \
+	"$(cat ${KAFKA3_CID_FILE})" &&
+    docker \
+	network \
+	connect \
+	"${NETWORK}" \
+	"$(cat ${KAFKA4_CID_FILE})" &&
     docker container start "$(cat ${ZOOKEEPER_CID_FILE})" &&
     docker container start "$(cat ${KAFKA1_CID_FILE})" &&
     docker container start "$(cat ${KAFKA2_CID_FILE})" &&

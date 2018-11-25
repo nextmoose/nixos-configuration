@@ -22,5 +22,11 @@ pkgs.stdenv.mkDerivation rec {
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.coreutils ]} \
 	--set STORE_DIR "$out" &&
       true
+      makeWrapper \
+        $out/scripts/docker-system-prune.sh \
+	$out/bin/docker-system-prune \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.coreutils ]} \
+	--set STORE_DIR "$out" &&
+      true
   '';
 }

@@ -21,6 +21,6 @@ do
 done &&
     sed \
 	-e "s#broker.id=0#broker.id=${BROKER_ID}#" \
-	-e "wserver.conf" ${STORE_DIR}/lib/server.conf && 
-    kafka-server-start.sh "server.conf" &&
+	-e "w${HOME}/server.conf" ${STORE_DIR}/lib/server.conf && 
+    kafka-server-start.sh "${HOME}/server.conf" &&
     true

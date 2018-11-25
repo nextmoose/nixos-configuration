@@ -62,6 +62,7 @@ in
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
+      (import ./custom/native/utils {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
       (import ./custom/user/kafka/default.nix {})
