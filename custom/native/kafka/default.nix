@@ -15,6 +15,12 @@ pkgs.stdenv.mkDerivation rec {
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.apacheKafka pkgs.coreutils pkgs.gnused pkgs.gnugrep ]} \
 	--set STORE_DIR "$out" \
 	&&
+      makeWrapper \
+        $out/scripts/listing.sh \
+	$out/bin/listing \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.tree ]} \
+	--set APACHE_KAFKA_DIR "${pkgs.apacheKafka}" \
+	&&
       true
   '';
 }
