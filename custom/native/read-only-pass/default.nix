@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  secrets = (import ../../temporary/secrets/read-only-pass/default.nix {} );
   gnupg-key-id = (import ../gnupgp-key-id/default.nix {});
   gnupg-import = (import ../gnupgp-import/default.nix {});
   sleep-forever = (import ../sleep-forever/default.nix {});
@@ -17,7 +16,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/init-read-only-pass.sh \
 	$out/bin/init-read-only-pass \
-	--set PATH ${pkgs.lib.makeBinPath [ secrets pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever ]} &&
       true
   '';
 }
