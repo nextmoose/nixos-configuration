@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  gnupg-key-id = (import ../gnupgp-key-id/default.nix {});
-  gnupg-import = (import ../gnupgp-import/default.nix {});
+  gnupg-key-id = (import ../gnupg-key-id/default.nix {});
+  gnupg-import = (import ../gnupg-import/default.nix {});
   sleep-forever = (import ../sleep-forever/default.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
