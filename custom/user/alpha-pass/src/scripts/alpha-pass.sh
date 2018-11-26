@@ -30,5 +30,5 @@ VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
 	--env DISPLAY \
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
-	alpha-pass &&
+	pass &&
     true
