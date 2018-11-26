@@ -5,13 +5,13 @@ in
 pkgs.stdenv.mkDerivation rec {
   name = "setup";
   src = ./src;
-  buildInputs = [ pkgs.gnutar ];
+  buildInputs = [ pkgs.gnutar pkgs.makeWrapper ];
   installPhase = ''
     mkdir $out &&
       mkdir $out/lib &&
       tar xvzf ${old-secrets}/etc/secrets.tar.gz --director $out/lib &&
       cp --recursive scripts $out &&
-      chmod 0500 out/$scripts &&
+      chmod 0500 $out/$scripts/. &&
       makeWrapper \
         $out/scripts/import-gnupg-keys.sh \
 	$out/bin/import-gnupg-keys \
