@@ -20,7 +20,7 @@ INIT_CID_FILE=$(mktemp) &&
 		--env CANONICAL_REPOSITORY \
 		--env CANONICAL_BRANCH \
 		--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
-		--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
+		--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
 		--label=uuid=${UUID} \
 		init-read-only-pass &&
 	    docker container start --interactive $(cat ${INIT_CID_FILE}) &&
