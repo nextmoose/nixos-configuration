@@ -13,8 +13,8 @@ pkgs.stdenv.mkDerivation {
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/* &&
       makeWrapper \
-        $out/scripts/export-env-vars.sh \
-	$out/bin/export-env-vars \
+        $out/scripts/pass.sh \
+	$out/bin/pass \
 	--set STORE_DIR $out \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
       true

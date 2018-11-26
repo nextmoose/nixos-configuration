@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
 	--set CANONICAL_REPOSITORY "secrets" \
 	--set CANONICAL_BRANCH "master" \
 	--set UUID "d41dccd2-24bb-41ed-bb5e-1c0ff669e26d" \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.mktemp pkgs.coreutils secrets ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.mktemp pkgs.coreutils secrets pkgs.which ]} &&
       true
   '';
 }

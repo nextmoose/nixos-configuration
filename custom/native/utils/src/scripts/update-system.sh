@@ -36,11 +36,6 @@ GARBAGE="no" &&
 	    true
     } &&
     cd "${SOURCE_DIRECTORY}" &&
-    if [ "${GARBAGE}" == "yes" ]
-    then
-	nix-collect-garbage &&
-	    true
-    fi &&
     if [ "${DOCKER}" == "yes" ]
     then
 	docker container ls --quiet --all | while read CID
@@ -50,6 +45,11 @@ GARBAGE="no" &&
 		true
 	done &&
 	    docker system prune --force --all --volumes &&
+	    true
+    fi &&
+    if [ "${GARBAGE}" == "yes" ]
+    then
+	nix-collect-garbage &&
 	    true
     fi &&
     if [ -f configuration.nix ]
