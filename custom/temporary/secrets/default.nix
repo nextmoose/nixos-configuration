@@ -2,7 +2,7 @@
 let
   old-secrets = (import ../../../installed/init-read-only-pass/default.nix {});
 in
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "setup";
   src = ./src;
   buildInputs = [ pkgs.gnutar pkgs.makeWrapper ];
@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation rec {
         $out/scripts/export-env-vars.sh \
 	$out/bin/export-env-vars \
 	--set STORE_DIR $out \
-	--set PATH ${pkgs.lib.makeBinPath [ ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
       true
   '';
 }
