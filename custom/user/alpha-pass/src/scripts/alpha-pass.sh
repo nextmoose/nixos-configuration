@@ -1,12 +1,16 @@
 #!/bin/sh
 
-VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
+INIT_CID_FILE=$(mktemp) &&
+    PASS_CID_FILE=$(mktemp) &&
+    rm --force "${INIT_CID_FILE}" "${PASS_CID_FILE}" &&
+    VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
     if [ -z "${VOLUME}" ]
     then
 	VOLUME=$(docker volume create --label=uuid=${UUID}) &&
 	    docker \
 		container \
 		create \
+		--cidfile "${INIT_CID_FILE}" \
 		--interactive \
 		--tty \
 		--rm \
@@ -19,11 +23,14 @@ VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
 		--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
 		--label=uuid=${UUID} \
 		init-read-only-pass &&
+	    docker container start --interactive $(cat ${INIT_CID_FILE}) &&
+	    rm --force "${INIT_CID_FILE}" &&
 	    true
     fi &&								       
     docker \
 	container \
 	create \
+	--cidfile "${PASS_CID_FILE}" \
 	--interactive \
 	--tty \
 	--rm \
@@ -31,4 +38,6 @@ VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
 	pass &&
+    docker container start --interactive "$(cat ${PASS_CID_FILE})" &&
+    rm --force "${PASS_CID_FILE}" &&
     true
