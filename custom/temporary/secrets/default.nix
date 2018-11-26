@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation rec {
         $out/scripts/import-gnupg-keys.sh \
 	$out/bin/import-gnupg-keys \
 	--set STORE_DIR $out \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.coreutils ]} &&
       true
   '';
 }
