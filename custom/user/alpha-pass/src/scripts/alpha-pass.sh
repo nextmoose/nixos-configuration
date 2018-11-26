@@ -2,14 +2,11 @@
 
 INIT_CID_FILE=$(mktemp) &&
     PASS_CID_FILE=$(mktemp) &&
-    PASS_VID_FILE=$(mktemp) &&
     rm --force "${INIT_CID_FILE}" "${PASS_CID_FILE}" &&
     VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
     if [ -z "${VOLUME}" ]
     then
-	docker volume create --label=uuid=${UUID} > ${PASS_VID_FILE} &&
-	    VOLUME="$(cat ${PASS_VID_FILE})" &&
-	    rm --force "${PASS_VID_FILE}" &&
+	VOLUME=$(docker volume create --label=uuid=${UUID}) &&
 	    docker \
 		container \
 		create \
