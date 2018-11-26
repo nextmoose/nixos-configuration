@@ -1,45 +1,26 @@
 #!/bin/sh
 
-INIT_CID_FILE=$(mktemp) &&
-    PASS_CID_FILE=$(mktemp) &&
-    LOG_FILE=$(mktemp) &&
-    rm --force "${INIT_CID_FILE}" "${PASS_CID_FILE}" &&
-    VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
-    if [ -z "${VOLUME}" ]
+CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
+    if [ -z "${CONTAINER}" ]
     then
-	VOLUME=$(docker volume create --label=uuid=${UUID}) &&
-	    docker \
-		container \
-		create \
-		--cidfile "${INIT_CID_FILE}" \
-		--interactive \
-		--tty \
-		--rm \
-		--env DISPLAY \
-		--env CANONICAL_HOST \
-		--env CANONICAL_ORGANIZATION \
-		--env CANONICAL_REPOSITORY \
-		--env CANONICAL_BRANCH \
-		--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
-		--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
-		--label=uuid=${UUID} \
-		init-read-only-pass > ${LOG_FILE} 2>&1 &&
-	    docker container start --interactive $(cat ${INIT_CID_FILE}) >> ${LOG_FILE} 2>&1 &&
-	    rm --force "${INIT_CID_FILE}" &&
+	CONTAINER=$(docker \
+	    container \
+	    create \
+	    --interactive \
+	    --tty \
+	    --rm \
+	    --interactive \
+	    --tty \
+	    --rm \
+	    --env DISPLAY \
+	    --env CANONICAL_HOST \
+	    --env CANONICAL_ORGANIZATION \
+	    --env CANONICAL_REPOSITORY \
+	    --env CANONICAL_BRANCH \
+	    --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
+	    --label=uuid=${UUID} \
+	    read-only-pass) &&
 	    true
-    fi &&					       
-    docker \
-	container \
-	create \
-	--cidfile "${PASS_CID_FILE}" \
-	--interactive \
-	--tty \
-	--rm \
-	--env DISPLAY \
-	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
-	--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
-	pass \
-	"${@}" >> ${LOG_FILE} 2>&1 &&dae
-    docker container start --interactive "$(cat ${PASS_CID_FILE})" &&
-    rm --force "${PASS_CID_FILE}" &&
+    fi &&
+    docker container exec --interactive --tty "${CONTAINER}" "${@}" &&
     true
