@@ -7,12 +7,6 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 	    CONTAINER=$(docker \
 			    container \
 			    create \
-			    --interactive \
-			    --tty \
-			    --rm \
-			    --interactive \
-			    --tty \
-			    --rm \
 			    --env GPG_SECRET_KEY \
 			    --env GPG_OWNER_TRUST \
 			    --env GPG2_SECRET_KEY \
@@ -25,6 +19,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 			    --label=uuid=${UUID} \
 			    read-only-pass) &&
+	    docker container start "${CONTAINER}" &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" "${@}" &&
