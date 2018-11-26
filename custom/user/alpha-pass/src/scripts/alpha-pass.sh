@@ -37,7 +37,8 @@ INIT_CID_FILE=$(mktemp) &&
 	--env DISPLAY \
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
-	pass &&
+	pass \
+	"${@}" &&
     docker container start --interactive "$(cat ${PASS_CID_FILE})" &&
     rm --force "${PASS_CID_FILE}" &&
     true
