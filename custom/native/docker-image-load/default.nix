@@ -1,9 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   atom = (import ../../docker/atom.nix {});
-  kafka = (import ../../docker/kafka.nix {});
-  node-runner = (import ../../docker/node-runner.nix {});
-  zookeeper = (import ../../docker/zookeeper.nix {});
+  init-read-only-pass = (import ../../docker/init-read-only-pass.nix {});
+  pass = (import ../../docker/pass.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "docker-image-load";
@@ -15,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${kafka} ${node-runner} ${zookeeper} $out/lib &&
+      ln --symbolic ${atom} ${init-read-only-pass} ${pass} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \

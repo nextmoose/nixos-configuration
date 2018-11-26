@@ -70,7 +70,6 @@ in
       (import ./custom/native/utils {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
-      (import ./custom/user/kafka/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
@@ -78,7 +77,6 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-      (import ./custom/user/node-runner/default.nix {})
     ];
   };
   virtualisation.docker = {
