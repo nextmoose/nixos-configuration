@@ -15,9 +15,8 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/import-gnupg-keys.sh \
 	$out/bin/import-gnupg-keys \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg ]} \
-	--set STORE_DIR "$out" \
-	&&
+	--set STORE_DIR $out \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg ]} &&
       true
   '';
 }
