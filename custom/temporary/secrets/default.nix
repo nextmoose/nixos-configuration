@@ -13,10 +13,10 @@ pkgs.stdenv.mkDerivation rec {
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/* &&
       makeWrapper \
-        $out/scripts/import-gnupg-keys.sh \
-	$out/bin/import-gnupg-keys \
+        $out/scripts/export-env-vars.sh \
+	$out/bin/export-env-vars \
 	--set STORE_DIR $out \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.coreutils ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ ]} &&
       true
   '';
 }

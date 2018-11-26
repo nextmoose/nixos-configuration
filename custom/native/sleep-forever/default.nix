@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
-pkgs.stdenv.mkDerivation rec {
-  name = "gpg-import";
+pkgs.stdenv.mkDerivation {
+  name = "sleep-forever";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -9,9 +9,9 @@ pkgs.stdenv.mkDerivation rec {
       chmod --recursive 0500 $out/scripts/. &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/gpg-import.sh \
-	$out/bin/gpg-import \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.mktemp]} &&
+        $out/scripts/sleep-forever.sh \
+	$out/bin/sleep-forever \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
       true
   '';
 }
