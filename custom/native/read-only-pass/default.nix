@@ -14,8 +14,8 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/init-read-only-pass.sh \
-	$out/bin/init-read-only-pass \
+        $out/scripts/read-only-pass.sh \
+	$out/bin/read-only-pass \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever ]} &&
       true
   '';
