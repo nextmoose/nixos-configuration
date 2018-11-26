@@ -70,6 +70,7 @@ in
       (import ./custom/native/utils {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
+      (import ./custom/user/alpha-pass/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
