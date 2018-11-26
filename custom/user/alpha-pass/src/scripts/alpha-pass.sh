@@ -2,6 +2,7 @@
 
 INIT_CID_FILE=$(mktemp) &&
     PASS_CID_FILE=$(mktemp) &&
+    LOG_FILE=$(mktemp) &&
     rm --force "${INIT_CID_FILE}" "${PASS_CID_FILE}" &&
     VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
     if [ -z "${VOLUME}" ]
@@ -22,8 +23,8 @@ INIT_CID_FILE=$(mktemp) &&
 		--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 		--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
 		--label=uuid=${UUID} \
-		init-read-only-pass &&
-	    docker container start --interactive $(cat ${INIT_CID_FILE}) &&
+		init-read-only-pass > ${LOG_FILE} 2>&1 &&
+	    docker container start --interactive $(cat ${INIT_CID_FILE}) >> ${LOG_FILE} 2>&1 &&
 	    rm --force "${INIT_CID_FILE}" &&
 	    true
     fi &&								       
@@ -36,9 +37,9 @@ INIT_CID_FILE=$(mktemp) &&
 	--rm \
 	--env DISPLAY \
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
-	--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
+	--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
 	pass \
-	"${@}" &&
+	"${@}" >> ${LOG_FILE} 2>&1 &&
     docker container start --interactive "$(cat ${PASS_CID_FILE})" &&
     rm --force "${PASS_CID_FILE}" &&
     true
