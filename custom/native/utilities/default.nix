@@ -19,10 +19,6 @@ pkgs.stdenv.mkDerivation rec {
         $out/scripts/init-read-only-pass.sh \
 	$out/bin/init-read-only-pass \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass ]} \
-	--set CANONICAL_HOST "github.com" \
-	--set CANONICAL_ORGANIZATION "nextmoose" \
-	--set CANONICAL_REPOSITORY "secrets" \
-	--set CANONICAL_BRANCH "master" &&
       true
   '';
 }

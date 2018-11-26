@@ -1,7 +1,6 @@
 #!/bin/sh
 
-UUID=55ff648f-ed44-4807-8173-6544423702e2 &&
-    VOLUME=$(docker volume ls --quiet --filter label=uuid=alpha-pass-home) &&
+VOLUME=$(docker volume ls --quiet --filter label=uuid=${UUID}) &&
     if [ -z "${VOLUME}" ]
     then
 	VOLUME=$(docker volume create --label=uuid=${UUID}) &&
@@ -12,9 +11,14 @@ UUID=55ff648f-ed44-4807-8173-6544423702e2 &&
 		--tty \
 		--rm \
 		--env DISPLAY \
+		--env CANONICAL_HOST \
+		--env CANONICAL_ORGANIZATION \
+		--env CANONICAL_REPOSITORY \
+		--env CANONICAL_BRANCH \
 		--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 		--mount type=volume,source=${VOLUME},destination=/home,readonly=true \
-		init-alpha-pass &&
+		--label=uuid=${UUID} \
+		init-read-only-pass &&
 	    true
     fi &&								       
     docker \
