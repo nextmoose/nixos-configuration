@@ -12,14 +12,20 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/kafka.sh \
 	$out/bin/kafka \
+	--set PATH ${pkgs.lib.makeBinPath [ $out ]} \
+	--set STORE_DIR "$out" \
+	&&
+      makeWrapper \
+        $out/scripts/kafka-server-start.sh \
+	$out/bin/kafka-server-start \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.apacheKafka pkgs.coreutils pkgs.gnused pkgs.gnugrep pkgs.bash ]} \
 	--set STORE_DIR "$out" \
 	&&
       makeWrapper \
-        $out/scripts/listing.sh \
-	$out/bin/listing \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.tree ]} \
-	--set APACHE_KAFKA_DIR "${pkgs.apacheKafka}" \
+        $out/scripts/kafka-topics.sh \
+	$out/bin/kafka-topics \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.apacheKafka pkgs.coreutils pkgs.gnused pkgs.gnugrep pkgs.bash ]} \
+	--set STORE_DIR "$out" \
 	&&
       true
   '';

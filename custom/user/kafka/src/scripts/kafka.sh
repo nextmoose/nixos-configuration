@@ -1,17 +1,11 @@
 #!/bin/sh
 
 ZOOKEEPER_CID_FILE="$(mktemp)" &&
-    KAFKA1_CID_FILE="$(mktemp)" &&
-    KAFKA2_CID_FILE="$(mktemp)" &&
-    KAFKA3_CID_FILE="$(mktemp)" &&
-    KAFKA4_CID_FILE="$(mktemp)" &&
+    KAFKA_CID_FILE="$(mktemp)" &&
     rm \
 	--force \
 	"${ZOOKEEPER_CID_FILE}" \
-	"${KAFKA1_CID_FILE}" \
-	"${KAFKA2_CID_FILE}" \
-	"${KAFKA3_CID_FILE}" \
-	"${KAFKA4_CID_FILE}" &&
+	"${KAFKA_CID_FILE}" &&
     NETWORK=$(docker \
 		  network \
 		  create \
@@ -25,30 +19,15 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
     docker \
 	container \
 	create \
-	--cidfile "${KAFKA1_CID_FILE}" \
+	--cidfile "${KAFKA_CID_FILE}" \
 	kafka \
-	--add-topic alpha \
-	--broker-id 1 &&
+	kafka-server-start &&
     docker \
 	container \
 	create \
-	--cidfile "${KAFKA2_CID_FILE}" \
+	--cidfile "${CREATE_TOPIC_CID_FILE}" \
 	kafka \
-	--add-topic beta \
-	--broker-id 2 &&
-    docker \
-	container \
-	create \
-	--cidfile "${KAFKA3_CID_FILE}" \
-	kafka \
-	--broker-id 3 &&
-    docker \
-	container \
-	create \
-	--cidfile "${KAFKA4_CID_FILE}" \
-	kafka \
-	--list-topics \
-	--broker-id 4 &&
+	kafka-topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 &&
     docker \
 	network \
 	connect \
@@ -59,25 +38,7 @@ ZOOKEEPER_CID_FILE="$(mktemp)" &&
 	network \
 	connect \
 	"${NETWORK}" \
-	"$(cat ${KAFKA1_CID_FILE})" &&
-    docker \
-	network \
-	connect \
-	"${NETWORK}" \
-	"$(cat ${KAFKA2_CID_FILE})" &&
-    docker \
-	network \
-	connect \
-	"${NETWORK}" \
-	"$(cat ${KAFKA3_CID_FILE})" &&
-    docker \
-	network \
-	connect \
-	"${NETWORK}" \
-	"$(cat ${KAFKA4_CID_FILE})" &&
+	"$(cat ${KAFKA_CID_FILE})" &&
     docker container start "$(cat ${ZOOKEEPER_CID_FILE})" &&
-    docker container start "$(cat ${KAFKA1_CID_FILE})" &&
-    docker container start "$(cat ${KAFKA2_CID_FILE})" &&
-    docker container start "$(cat ${KAFKA3_CID_FILE})" &&
-    docker container start "$(cat ${KAFKA4_CID_FILE})" &&
+    docker container start "$(cat ${KAFKA_CID_FILE})" &&
     true

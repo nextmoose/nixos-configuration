@@ -1,4 +1,4 @@
-#!/bin/sh
+ #!/bin/sh
 
 GARBAGE="no" &&
     DOCKER="no" &&
