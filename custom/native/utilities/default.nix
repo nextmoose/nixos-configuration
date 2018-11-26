@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/init-read-only-pass.sh \
 	$out/bin/init-read-only-pass \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass ]} &&
       true
   '';
 }
