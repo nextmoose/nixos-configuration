@@ -1,9 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  utilities = (import ../native/utilities/default.nix {});
+  read-only-pass = (import ../native/read-only-pass/default.nix {});
 in
 pkgs.dockerTools.buildImage {
-  name = "init-read-only-pass";
+  name = "read-only-pass";
   contents = [ pkgs.shadow ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
@@ -12,7 +12,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${utilities}/bin/init-read-only-pass" ];
+    entrypoint = [ "${read-only-pass}/bin/read-only-pass" ];
     User = "user";
   };
 }

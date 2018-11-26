@@ -27,7 +27,7 @@ INIT_CID_FILE=$(mktemp) &&
 	    docker container start --interactive $(cat ${INIT_CID_FILE}) >> ${LOG_FILE} 2>&1 &&
 	    rm --force "${INIT_CID_FILE}" &&
 	    true
-    fi &&								       
+    fi &&					       
     docker \
 	container \
 	create \
@@ -39,7 +39,7 @@ INIT_CID_FILE=$(mktemp) &&
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--mount type=volume,source=${VOLUME},destination=/home,readonly=false \
 	pass \
-	"${@}" >> ${LOG_FILE} 2>&1 &&
+	"${@}" >> ${LOG_FILE} 2>&1 &&dae
     docker container start --interactive "$(cat ${PASS_CID_FILE})" &&
     rm --force "${PASS_CID_FILE}" &&
     true

@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  secrets = (import ../../temporary/secrets/default.nix {} );
+  secrets = (import ../../temporary/secrets/read-only-pass/default.nix {} );
+  gnupg-key-id = (import ../gnupgp-key-id/default.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "utilities";
@@ -12,13 +13,9 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/gnupg-key-id.sh \
-	$out/bin/gnupg-key-id \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.coreutils pkgs.gnugrep ]} &&
-      makeWrapper \
         $out/scripts/init-read-only-pass.sh \
 	$out/bin/init-read-only-pass \
-	--set PATH ${pkgs.lib.makeBinPath [ secrets pkgs.pass "$out" pkgs.cacert ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ secrets pkgs.pass gnupg-key-id pkgs.coreutils ]} &&
       true
   '';
 }
