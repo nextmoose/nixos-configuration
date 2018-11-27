@@ -5,7 +5,7 @@ let
   sleep-forever = (import ../sleep-forever/default.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
-  name = "utilities";
+  name = "read-only-pass";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''

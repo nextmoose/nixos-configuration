@@ -1,6 +1,9 @@
 #!/bin/sh
 
-TEMP_DIR="$(mktemp -d)" &&
+env &&
+    ls -alh /tmp &&
+    stat /tmp &&
+    TEMP_DIR="$(mktemp -d)" &&
     cleanup() {
 	rm --recursive --force "${TEMP_DIR}" &&
 	    true

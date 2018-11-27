@@ -21,5 +21,5 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 	    docker container start "${CONTAINER}" &&
 	    true
     fi &&
-    docker container exec --interactive --tty "${CONTAINER}" "${@}" &&
+    docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&
     true
