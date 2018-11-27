@@ -20,7 +20,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			--health-cmd health-check \
 			read-only-pass) &&
 	    docker container start "${CONTAINER}" &&
-#	    wait-for-healthy --container "${CONTAINER}" &&
+	    wait-for-healthy --container "${CONTAINER}" &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&
