@@ -26,7 +26,7 @@ SLEEP=1s &&
 	esac &&
 	    true
     done &&
-    while [ $(docker container inspect --format "{{ .State.Health.Status}}" "${CONTAINER}") != "running" ]
+    while [ $(docker container inspect --format "{{ .State.Health.Status}}" "${CONTAINER}") != "healthy" ]
     do
 	sleep "${SLEEP}" &&
 	    true

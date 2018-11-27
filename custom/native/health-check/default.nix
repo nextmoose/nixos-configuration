@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/health-check.sh \
 	$out/bin/health-check \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.bash ]} &&
       true
   '';
 }
