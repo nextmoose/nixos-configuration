@@ -1,4 +1,5 @@
 #!/bin/sh
 
-touch "${HOME}/health-check" &&
+echo SETTING HEALTH &&
+    touch "${HOME}/health-check" &&
     true
