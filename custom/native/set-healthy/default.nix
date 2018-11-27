@@ -1,9 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
-let
-  set-healthy = (import ../set-healthy/default.nix {});
-in
 pkgs.stdenv.mkDerivation {
-  name = "sleep-forever";
+  name = "set-healthy";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -12,9 +9,9 @@ pkgs.stdenv.mkDerivation {
       chmod --recursive 0500 $out/scripts/. &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/sleep-forever.sh \
-	$out/bin/sleep-forever \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils set-healthy ]} &&
+        $out/scripts/set-healthy.sh \
+	$out/bin/set-healthy \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
       true
   '';
 }

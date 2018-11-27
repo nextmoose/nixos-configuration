@@ -1,4 +1,5 @@
 #!/bin/sh
 
-tail --follow /dev/null &&
+set-healthy &&
+    tail --follow /dev/null &&
     true
