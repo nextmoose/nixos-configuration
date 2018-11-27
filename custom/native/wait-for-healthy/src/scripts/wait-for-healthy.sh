@@ -1,6 +1,8 @@
 #!/bin/sh
 
-while [ ]
+while [ $(docker container inspect --format "{{}}" "${CONTAINER}") != 0 ]
 do
-    sleep 1s &&
-done
+    sleep "${SLEEP}" &&
+	true
+done &&
+    true
