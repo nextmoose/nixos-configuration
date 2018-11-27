@@ -3,7 +3,6 @@
 CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
     if [ -z "${CONTAINER}" ]
     then
-	(pass show alpha || sleep 1s) &&
 	    CONTAINER=$(docker \
 			    container \
 			    create \
@@ -22,7 +21,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --label=uuid=${UUID} \
 			    read-write-pass) &&
 	    docker container start "${CONTAINER}" &&
-	    sleep 1 &&
+	    is-healthy --container "${CONTAINER}" &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&
