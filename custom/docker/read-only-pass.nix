@@ -4,7 +4,7 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = "read-only-pass";
-  contents = [ pkgs.shadow ];
+  contents = [ pkgs.shadow pkgs.pass ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp &&
