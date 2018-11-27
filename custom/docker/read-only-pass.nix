@@ -15,7 +15,7 @@ pkgs.dockerTools.buildImage {
   '';
   config = {
     entrypoint = [ "${read-only-pass}/bin/read-only-pass" ];
-    HealthCheck = {
+    healthCheck = {
       Test = [ "${health-check}/bin/health-check" ];
     };
     User = "user";
