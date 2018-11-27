@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   atom = (import ../../docker/atom.nix {});
-  init-read-only-pass = (import ../../docker/init-read-only-pass.nix {});
+  read-only-pass = (import ../../docker/read-only-pass.nix {});
   pass = (import ../../docker/pass.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${init-read-only-pass} ${pass} $out/lib &&
+      ln --symbolic ${atom} ${read-only-pass} ${pass} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
