@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/alpha-pass.sh \
-	$out/bin/alpha-pass \
+	$out/bin/pass \
 	--set CANONICAL_HOST "github.com" \
 	--set CANONICAL_ORGANIZATION "nextmoose" \
 	--set CANONICAL_REPOSITORY "secrets" \
