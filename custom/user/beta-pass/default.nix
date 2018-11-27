@@ -15,6 +15,8 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/pass.sh \
 	$out/bin/pass \
+	--set COMMITTER_NAME "Emory Merryman" \
+	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 	--set ORIGIN_HOST "github.com" \
 	--set ORIGIN_ORGANIZATION "nextmoose" \
 	--set ORIGIN_REPOSITORY "secrets" \

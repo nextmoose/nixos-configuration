@@ -13,6 +13,8 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --env ORIGIN_ID_RSA="$(pass show origin.id_rsa)" \
 			    --env ORIGIN_KNOWN_HOSTS="$(pass show origin.known_hosts)" \
 			    --env DISPLAY \
+			    --env COMMITER_NAME \
+			    --env COMMITTER_EMAIL \
 			    --env ORIGIN_HOST \
 			    --env ORIGIN_ORGANIZATION \
 			    --env ORIGIN_REPOSITORY \

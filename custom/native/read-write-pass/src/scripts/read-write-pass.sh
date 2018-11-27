@@ -4,6 +4,8 @@ gnupg-import &&
     dot-ssh &&
     pass init "$(gnupg-key-id)" &&
     pass git init &&
+    pass git config user.name "${COMMITTER_NAME}" &&
+    pass git config user.email "${COMMITTER_EMAIL}" &&
     pass git remote add origin "${ORIGIN_HOST}:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
     GIT_SSL_NO_VERIFY=true pass git fetch origin "${ORIGIN_BRANCH}" &&
     pass git checkout "${ORIGIN_BRANCH}" &&
