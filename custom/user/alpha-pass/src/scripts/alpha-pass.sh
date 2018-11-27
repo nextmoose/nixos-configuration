@@ -6,7 +6,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 	CONTAINER=$(docker \
 			container \
 			create \
-			--env GPG_SECRET_KEY="$(pass show gpg.secret.key)" \
+			--env GPG_SECRET_KEY="$(pass showgpg.secret.key)" \
 			--env GPG_OWNER_TRUST="$(pass show gpg.owner.trust)" \
 			--env GPG2_SECRET_KEY="$(pass show gpg2.secret.key)" \
 			--env GPG2_OWNER_TRUST="$(pass show gpg2.owner.trust)" \
@@ -20,6 +20,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			--health-cmd health-check \
 			read-only-pass) &&
 	    docker container start "${CONTAINER}" &&
+#	    wait-for-healthy --container "${CONTAINER}" &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&

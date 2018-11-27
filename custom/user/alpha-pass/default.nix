@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   secrets = (import ../../temporary/secrets/default.nix {});
+  wait-for-health = (import ../../native/wait-for-healthy/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
   name = "alpha-pass";
@@ -19,7 +20,7 @@ pkgs.stdenv.mkDerivation {
 	--set CANONICAL_REPOSITORY "secrets" \
 	--set CANONICAL_BRANCH "master" \
 	--set UUID "d41dccd2-24bb-41ed-bb5e-1c0ff669e26d" \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.mktemp pkgs.coreutils secrets pkgs.which ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pkgs.mktemp pkgs.coreutils secrets pkgs.which wait-for-healthy ]} &&
       true
   '';
 }
