@@ -13,7 +13,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${read-write-pass}/bin/read-only-pass" ];
+    entrypoint = [ "${read-write-pass}/bin/read-write-pass" ];
     User = "user";
   };
 }
