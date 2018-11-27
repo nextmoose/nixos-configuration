@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/dot-ssh.sh \
 	$out/bin/dot-ssh \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.gnugrep ]} &&
       true
   '';
 }

@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/read-write-pass.sh \
 	$out/bin/read-write-pass \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever post-commit pkgs.which dot-ssh ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever post-commit pkgs.which dot-ssh pkgs.findutils pkgs.gnugrep ]} &&
       true
   '';
 }

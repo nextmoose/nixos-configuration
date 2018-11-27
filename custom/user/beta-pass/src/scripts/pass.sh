@@ -21,7 +21,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --label=uuid=${UUID} \
 			    read-write-pass) &&
 	    docker container start "${CONTAINER}" &&
-	    is-healthy --container "${CONTAINER}" &&
+	    wait-for-healthy --container "${CONTAINER}" &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&

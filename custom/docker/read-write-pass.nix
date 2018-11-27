@@ -17,9 +17,9 @@ pkgs.dockerTools.buildImage {
     entrypoint = [ "${read-write-pass}/bin/read-write-pass" ];
     healthCheck = {
       Test = [ "${health-check}/bin/health-check" ];
-      Interval = 30000000000;
-      Timeout = 10000000000;
-      Retries = 3;
+      Interval = 3000000000;
+      Timeout = 1000000000;
+      Retries = 30;
     };
     User = "user";
   };
