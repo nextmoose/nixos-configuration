@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
 	--set ORIGIN_REPOSITORY "secrets" \
 	--set ORIGIN_BRANCH "master" \
 	--set UUID "9cb093ed-91be-40f4-b478-6b4130e37aa0" \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass pkgs.coreutils ]} &&
       true
   '';
 }

@@ -3,8 +3,7 @@
 CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
     if [ -z "${CONTAINER}" ]
     then
-	pass show alpha &&
-	    sleep 1s &&
+	(pass show alpha || sleep 1s) &&
 	    CONTAINER=$(docker \
 			    container \
 			    create \
@@ -22,8 +21,8 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 			    --label=uuid=${UUID} \
 			    read-write-pass) &&
-	    sleep 1 &&
 	    docker container start "${CONTAINER}" &&
+	    sleep 1 &&
 	    true
     fi &&
     docker container exec --interactive --tty "${CONTAINER}" pass "${@}" &&
