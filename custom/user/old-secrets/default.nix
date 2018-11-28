@@ -21,7 +21,7 @@ pkgs.stdenv.mkDerivation {
 	--set ORIGIN_USER "git" \
 	--set ORIGIN_PORT "22" \
 	--set ORIGIN_ORGANIZATION "desertedscorpion" \
-	--set ORIGIN_REPOSITORY "password-store" \
+	--set ORIGIN_REPOSITORY "passwordstore" \
 	--set ORIGIN_BRANCH "master" \
 	--set UUID "fb3abe9d-b3c1-4bc5-a926-907fdce8c722" \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass pkgs.coreutils wait-for-healthy ]} &&
