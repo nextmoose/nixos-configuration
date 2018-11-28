@@ -19,7 +19,6 @@ echo BETA 00100 &&
     pass git remote add origin "${ORIGIN_HOST}:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
     echo BETA 00900 &&
     ls -alh ${HOME}/.ssh &&
-    ls -alh ${HOME}/.ssh/config.d &&
     GIT_SSL_NO_VERIFY=true pass git fetch origin "${ORIGIN_BRANCH}" &&
     echo BETA 01000 &&
     pass git checkout "${ORIGIN_BRANCH}" &&
