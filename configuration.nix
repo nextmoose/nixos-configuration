@@ -72,6 +72,7 @@ in
       (import ./custom/user/atom/default.nix {})
       (import ./custom/user/beta-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
+      (import ./custom/user/old-secrets/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
