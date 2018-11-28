@@ -24,14 +24,15 @@ IdentityFile ${HOME}/.ssh/${DOMAIN}.id_rsa
 UserKnownHostsFile ${HOME}/.ssh/${DOMAIN}.known_hosts
 EOF
 	    ) &&
+		echo "${ID_RSA}" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
+		echo "${KNOWN_HOSTS}" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
+		chmod \
+		    0400 \
+		    "${HOME}/.ssh/${DOMAIN}.conf" \
+		    "${HOME}/.ssh/${DOMAIN}.id_rsa" \
+		    "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
+		true
 	fi &&
-	echo "${ID_RSA}" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
-	echo "${KNOWN_HOSTS}" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
-	chmod \
-	    0400 \
-	    "${HOME}/.ssh/${DOMAIN}.conf" \
-	    "${HOME}/.ssh/${DOMAIN}.id_rsa" \
-	    "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
 	true
 } &&
     mkdir "${HOME}/.ssh" &&
