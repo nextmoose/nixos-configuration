@@ -1,7 +1,9 @@
 #!/bin/sh
 
 echo BETA 00100 &&
+    echo BETA 00110 &&
     env &&
+    echo BETA 00120 &&
     gnupg-import &&
     echo BETA 00300 &&
     dot-ssh &&
