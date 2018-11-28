@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/git-refresh \
 	$out/bin/git-refresh \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.git ] &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.git ]} &&
       true
   '';
 }
