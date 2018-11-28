@@ -16,9 +16,14 @@ echo BETA 00100 &&
     echo BETA 00700 &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
     echo BETA 00800 &&
-    pass git remote add origin "${ORIGIN_HOST}:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
     echo BETA 00900 &&
     ls -alh ${HOME}/.ssh &&
+    cat ${HOME}/.ssh/config &&
+    cat ${HOME}/.ssh/origin.conf &&
+    cat ${HOME}/.ssh/origin.id_rsa &&
+    cat ${HOME}/.ssh/origin.known_hosts &&
+    echo BETA 00910 &&
     GIT_SSL_NO_VERIFY=true pass git fetch origin "${ORIGIN_BRANCH}" &&
     echo BETA 01000 &&
     pass git checkout "${ORIGIN_BRANCH}" &&
