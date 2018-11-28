@@ -1,6 +1,6 @@
 #!/bin/sh
 
-add-ssh-host() {
+addsshhost() {
     DOMAIN="${1}" &&
 	HOST="${2}" &&
 	USER="${3}" &&
@@ -43,7 +43,7 @@ Include ${HOME}/.ssh/origin.conf
 Include ${HOME}/.ssh/report.conf
 EOF
     ) &&
-    add-ssh-host upstream "${UPSTREAM_HOST}" "${UPSTREAM_USER}" "${UPSTREAM_PORT}" "${UPSTREAM_ID_RSA}" "${UPSTREAM_KNOWN_HOSTS}" &&
-    add-ssh-host origin "${ORIGIN_HOST}" "${ORIGIN_USER}" "${ORIGIN_PORT}" "${ORIGIN_ID_RSA}" "${ORIGIN_KNOWN_HOSTS}" &&
-    add-ssh-host report "${REPORT_HOST}" "${REPORT_USER}" "${REPORT_PORT}" "${REPORT_ID_RSA}" "${REPORT_KNOWN_HOSTS}" &&
+    addsshhost upstream "${UPSTREAM_HOST}" "${UPSTREAM_USER}" "${UPSTREAM_PORT}" "${UPSTREAM_ID_RSA}" "${UPSTREAM_KNOWN_HOSTS}" &&
+    addsshhost origin "${ORIGIN_HOST}" "${ORIGIN_USER}" "${ORIGIN_PORT}" "${ORIGIN_ID_RSA}" "${ORIGIN_KNOWN_HOSTS}" &&
+    addsshhost report "${REPORT_HOST}" "${REPORT_USER}" "${REPORT_PORT}" "${REPORT_ID_RSA}" "${REPORT_KNOWN_HOSTS}" &&
     true
