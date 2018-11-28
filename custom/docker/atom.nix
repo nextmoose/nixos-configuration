@@ -1,10 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   atom = (import ../native/atom/default.nix {});
+  git-refresh = (import ../native/git-refresh/default.nix {});
 in
 pkgs.dockerTools.buildImage {
   name = "atom";
-  contents = [ pkgs.shadow pkgs.git ];
+  contents = [ pkgs.shadow pkgs.git git-refresh ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp /usr &&
