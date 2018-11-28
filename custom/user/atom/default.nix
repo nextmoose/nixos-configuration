@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "atom";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
@@ -10,37 +10,27 @@ pkgs.stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/atom.sh \
-	$out/bin/atom-ghastlywrench-server \
+	$out/bin/atom-yegor256-blog \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
-	--set CANONICAL_HOST github.com \
-	--set CANONICAL_ORGANIZATION nextmoose \
-	--set CANONICAL_REPOSITORY secrets \
-	--set CANONICAL_BRANCH master \
 	--set COMMITTER_NAME "Emory Merryman" \
 	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
+	--set UPSTREAM_HOST github.com \
+	--set UPSTREAM_USER git \
+	--set UPSTREAM_PORT 22 \
+	--set UPSTREAM_ORGANIZATION yegor256 \
+	--set UPSTREAM_REPOSITORY blog \
+	--set UPSTREAM_BRANCH master \
 	--set ORIGIN_HOST github.com \
 	--set ORIGIN_USER git \
 	--set ORIGIN_PORT 22 \
 	--set ORIGIN_ORGANIZATION nextmoose \
-	--set ORIGIN_REPOSITORY ghastlywrench-server \
-	--set ORIGIN_BRANCH scratch/059a6f78-0ff4-4ad4-af7e-9f3417bb6a27 \
-	&&
-      makeWrapper \
-        $out/scripts/atom.sh \
-	$out/bin/atom-ghastlywrench-client \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
-	--set CANONICAL_HOST github.com \
-	--set CANONICAL_ORGANIZATION nextmoose \
-	--set CANONICAL_REPOSITORY secrets \
-	--set CANONICAL_BRANCH master \
-	--set COMMITTER_NAME "Emory Merryman" \
-	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
-	--set ORIGIN_HOST github.com \
-	--set ORIGIN_USER git \
-	--set ORIGIN_PORT 22 \
-	--set ORIGIN_ORGANIZATION goldroadrunner \
-	--set ORIGIN_REPOSITORY ghastlywrench-client \
-	--set ORIGIN_BRANCH scratch/a3a0c237-5a84-4890-8a22-d7e224bea070 \
+	--set ORIGIN_REPOSITORY 786f1166-5566-4b84-a208-25000902956e \
+	--set REPORT_HOST github.com \
+	--set REPORT_USER git \
+	--set REPORT_PORT 22 \
+	--set REPORT_ORGANIZATION yegor256 \
+	--set REPORT_REPOSITORY blog \
+	--set REPORT_BRANCH master \
 	&&
       true
   '';
