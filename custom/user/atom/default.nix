@@ -1,4 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
+let
+  alpha-pass = (import ../alpha-pass/default.nix {});
+in
 pkgs.stdenv.mkDerivation {
   name = "atom";
   src = ./src;
@@ -11,7 +14,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/atom.sh \
 	$out/bin/atom-yegor256-blog \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} \
 	--set COMMITTER_NAME "Emory Merryman" \
 	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 	--set UPSTREAM_HOST github.com \
