@@ -52,6 +52,22 @@ GARBAGE="no" &&
 	nix-collect-garbage &&
 	    true
     fi &&
+    if [ "${DOCKER}" == "yes" ]
+    then
+	docker container ls --quiet --all | while read CID
+	do
+	    docker container stop "${CID}" &&
+		docker container rm "${CID}" &&
+		true
+	done &&
+	    docker system prune --force --all --volumes &&
+	    true
+    fi &&
+    if [ "${GARBAGE}" == "yes" ]
+    then
+	nix-collect-garbage &&
+	    true
+    fi &&
     if [ -f configuration.nix ]
     then
 	sudo cp configuration.nix /etc/nixos
@@ -67,9 +83,17 @@ GARBAGE="no" &&
 	    true
     fi &&
     sudo nixos-rebuild switch &&
+    sudo nixos-rebuild switch &&
     if [ "${DOCKER}" == "yes" ]
     then
-	docker-image-load &&
+	docker container ls --quiet --all | while read CID
+	do
+	    docker container stop "${CID}" &&
+		docker container rm "${CID}" &&
+		true
+	done &&
+	    docker system prune --force --all --volumes &&
+	    docker-image-load &&
 	    true
     fi &&
     true
