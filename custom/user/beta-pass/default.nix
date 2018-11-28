@@ -18,6 +18,8 @@ pkgs.stdenv.mkDerivation {
 	--set COMMITTER_NAME "Emory Merryman" \
 	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 	--set ORIGIN_HOST "github.com" \
+	--set ORIGIN_USER "git" \
+	--set ORIGIN_PORT "22" \
 	--set ORIGIN_ORGANIZATION "nextmoose" \
 	--set ORIGIN_REPOSITORY "secrets" \
 	--set ORIGIN_BRANCH "master" \

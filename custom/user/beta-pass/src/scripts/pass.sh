@@ -16,6 +16,8 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			    --env COMMITER_NAME \
 			    --env COMMITTER_EMAIL \
 			    --env ORIGIN_HOST \
+			    --env ORIGIN_USER \
+			    --env ORIGIN_PORT \
 			    --env ORIGIN_ORGANIZATION \
 			    --env ORIGIN_REPOSITORY \
 			    --env ORIGIN_BRANCH \

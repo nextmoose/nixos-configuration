@@ -5,7 +5,7 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = "read-write-pass";
-  contents = [ pkgs.shadow pkgs.pass ];
+  contents = [ pkgs.shadow pkgs.pass health-check pkgs.bash pkgs.coreutils pkgs.openssh ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp &&

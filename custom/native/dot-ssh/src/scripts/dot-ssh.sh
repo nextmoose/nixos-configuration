@@ -1,26 +1,48 @@
 #!/bin/sh
 
-mkdir "${HOME}/.ssh" &&
-    mkdir "${HOME}/.ssh/config.d" &&
-    chmod 0700 "${HOME}/.ssh" "${HOME}/.ssh/config.d" &&
+add-ssh-host() {
+    DOMAIN="${1}" &&
+	HOST="${2}" &&
+	USER="${3}" &&
+	PORT="${4}" &&
+	ID_RSA="${5}" &&
+	KNOWN_HOSTS="${6}" &&
+	if
+	    [ ! -z "${DOMAIN}" ] &&
+		[ ! -z "${HOST}" ] &&
+		[ ! -z "${USER}" ] &&
+		[ ! -z "${PORT}" ] &&
+		[ ! -z "${ID_RSA}" ] &&
+		[ ! -z "${KNOWN_HOSTS}" ]
+	then
+	    (cat > "${HOME}/.ssh/${DOMAIN}.conf" <<EOF
+Host ${DOMAIN}
+HostName ${HOST}
+User ${USER}
+Port "${PORT}
+IdentityFile ${HOME}/.ssh/${DOMAIN}.id_rsa
+UserKnownHostsFile ${HOME}/.ssh/${DOMAIN}.known_hosts
+EOF
+	    ) &&
+	fi &&
+	echo "${ID_RSA}" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
+	echo "${KNOWN_HOSTS}" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
+	chmod \
+	    0400 \
+	    "${HOME}/.ssh/${DOMAIN}.conf" \
+	    "${HOME}/.ssh/${DOMAIN}.id_rsa" \
+	    "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
+	true
+} &&
+    mkdir "${HOME}/.ssh" &&
+    chmod 0700 "${HOME}/.ssh" &&
     (cat > "${HOME}/.ssh/config" <<EOF
-Include ${HOME}/.ssh/config.d
+Include ${HOME}/.ssh/upstream.conf
+Include ${HOME}/.ssh/origin.conf
+Include ${HOME}/.ssh/report.conf
 EOF
     ) &&
-    if [ ! -z "${ORIGIN_HOST}" ] && [ ! -z "${ORIGIN_USER}" ] && [ ! -z "${ORIGIN_PORT}" ] && [ ! -z "${ORIGIN_ID_RSA}" ] && [ ! -z "${ORIGIN_KNOWN_HOSTS}" ]
-    then
-	(cat > "${HOME}/.ssh/config.d/origin.config" <<EOF
-Host origin
-HostName ${ORIGIN_HOST}
-User ${ORIGIN_USER}
-Port ${ORIGIN_PORT}
-IdentityFile ${HOME}/.ssh/origin.id_rsa
-UserKnownHostsFile ${HOME}/.ssh/origin.known_hosts
-EOF
-	) &&
-	    echo "${ORIGIN_ID_RSA}" > "${HOME}/.ssh/origin.id_rsa" &&
-	    echo "${ORIGIN_KNOWN_HOSTS}" > "${HOME}/.ssh/origin.known_hosts" &&
-	    chmod 0400 "${HOME}/.ssh/origin.id_rsa" "${HOME}/.ssh/origin.known_hosts" &&
-	    true
-    fi &&
+    add-ssh-host upstream "${UPSTREAM_HOST}" "${UPSTREAM_USER}" "${UPSTREAM_PORT}" "${UPSTREAM_ID_RSA}" "${UPSTREAM_KNOWN_HOSTS}" &&
+    add-ssh-host origin "${ORIGIN_HOST}" "${ORIGIN_USER}" "${ORIGIN_PORT}" "${ORIGIN_ID_RSA}" "${ORIGIN_KNOWN_HOSTS}" &&
+    add-ssh-host report "${REPORT_HOST}" "${REPORT_USER}" "${REPORT_PORT}" "${REPORT_ID_RSA}" "${REPORT_KNOWN_HOSTS}" &&
     true
