@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
       chmod --recursive 0500 $out/scripts/. &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/git-refresh \
+        $out/scripts/git-refresh.sh \
 	$out/bin/git-refresh \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.git ]} &&
       true

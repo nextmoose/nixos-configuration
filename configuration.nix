@@ -73,6 +73,8 @@ in
       (import ./custom/user/beta-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
+      (import ./custom/user/chromium/default.nix {})
+      (import ./custom/user/firefox/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
