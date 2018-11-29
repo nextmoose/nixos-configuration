@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  chromium = pkgs.chromium;
+  firefox = pkgs.firefox;
 in
 pkgs.dockerTools.buildImage {
   contents = [ pkgs.gnugrep pkgs.coreutils pkgs.bash ];
