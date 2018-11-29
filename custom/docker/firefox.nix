@@ -1,7 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
-let
-  firefox = pkgs.firefox;
-in
+{
+  pkgs ? import <nixpkgs/packages/top-level/impure.nix> {}
+}:
 pkgs.dockerTools.buildImage {
   contents = [ pkgs.gnugrep pkgs.coreutils pkgs.bash ];
   name = "firefox";
@@ -15,7 +14,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${firefox}/bin/firefox" "--disable-gpu" ];
+    entrypoint = [ "${pkgs.firefox}/bin/firefox" "--disable-gpu" ];
     User = "user";
   };
 }
