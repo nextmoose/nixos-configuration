@@ -5,11 +5,6 @@ GARBAGE="no" &&
     while [ "${#}" -gt 0 ]
     do
 	case "${1}" in
-	    --source-directory)
-		SOURCE_DIRECTORY="${2}" &&
-		    shift 2 &&
-		    true
-		;;
 	    --garbage)
 		GARBAGE="yes" &&
 		    shift 1 &&
@@ -35,7 +30,12 @@ GARBAGE="no" &&
 	rm --recursive --force ${TEMP_DIR} &&
 	    true
     } &&
+    SOURCE_DIRECTORY=$(mktemp -d) &&
     cd "${SOURCE_DIRECTORY}" &&
+    git init &&
+    git remote add canonical https://github.com/nextmoose/nixos-configuration.git &&
+    git fetch origin level-5 &&
+    git checkout origin/level-5 &&
     if [ "${DOCKER}" == "yes" ]
     then
 	docker container ls --quiet --all | while read CID

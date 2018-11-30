@@ -35,6 +35,31 @@ pkgs.stdenv.mkDerivation {
 	--set REPORT_REPOSITORY blog \
 	--set REPORT_BRANCH master \
 	&&
+      makeWrapper \
+        $out/scripts/atom.sh \
+	$out/bin/atom-configuration \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} \
+	--set COMMITTER_NAME "Emory Merryman" \
+	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
+	--set UPSTREAM_HOST github.com \
+	--set UPSTREAM_USER git \
+	--set UPSTREAM_PORT 22 \
+	--set UPSTREAM_ORGANIZATION rebelplutonium \
+	--set UPSTREAM_REPOSITORY nixos-configuration \
+	--set UPSTREAM_BRANCH master \
+	--set ORIGIN_HOST github.com \
+	--set ORIGIN_USER git \
+	--set ORIGIN_PORT 22 \
+	--set ORIGIN_ORGANIZATION nextmoose \
+	--set ORIGIN_REPOSITORY nixos-configuration \
+	--set ORIGIN_BRANCH level-5 \
+	--set REPORT_HOST github.com \
+	--set REPORT_USER git \
+	--set REPORT_PORT 22 \
+	--set REPORT_ORGANIZATION rebelplutonium \
+	--set REPORT_REPOSITORY nixos-configuration \
+	--set REPORT_BRANCH master \
+	&&
       true
   '';
 }
