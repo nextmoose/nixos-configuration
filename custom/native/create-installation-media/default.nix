@@ -5,7 +5,7 @@ let
   validate-not-blank = (import ../../user/alpha-pass/default.nix {});
 in
 stdenv.mkDerivation {
-  name = "create-installation-image";
+  name = "create-installation-media";
   src = ./src;
   buildInputs = [ makeWrapper ];
   installPhase = ''
@@ -15,8 +15,8 @@ stdenv.mkDerivation {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper \
-      $out/scripts/create-installation-image.sh \
-      $out/bin/create-installation-image \
+      $out/scripts/create-installation-media.sh \
+      $out/bin/create-installation-media \
       --set PATH ${lib.makeBinPath [ gnutar gzip coreutils virtualbox lvm2 pass init-read-only-pass "/run/wrappers" gnupg nix devicemapper bash validate-not-blank ]} &&
       true
   '';
