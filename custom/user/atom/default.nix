@@ -77,7 +77,6 @@ $out/bin/atom-installation \
 --set ORIGIN_PORT 22 \
 --set ORIGIN_ORGANIZATION nextmoose \
 --set ORIGIN_REPOSITORY nixos-installer \
---set ORIGIN_BRANCH level-5 \
 --set REPORT_HOST github.com \
 --set REPORT_USER git \
 --set REPORT_PORT 22 \
