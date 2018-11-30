@@ -90,7 +90,7 @@ done &&
     echo VERIFIED &&
     echo &&
     mkdir ${TEMP_DIR}/installation &&
-    cp --recursive src/. ${TEMP_DIR}/installation &&
+    cp --recursive iso.nix installer ${TEMP_DIR}/installation &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
     mkdir ${TEMP_DIR}/home &&
     export HOME=${TEMP_DIR}/home &&
