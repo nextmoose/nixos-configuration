@@ -68,7 +68,7 @@ in
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils {})
-      (import ./custom/native/create-install-media {})
+      (import ./custom/native/create-installation-media {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
       (import ./custom/user/beta-pass/default.nix {})
