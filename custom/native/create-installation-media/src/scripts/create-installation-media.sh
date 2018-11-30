@@ -22,6 +22,7 @@ do
 		true
 	    ;;
     esac &&
+	true
 done &&
     validate-not-blank SOURCE_DIRECTORY "${SOURCE_DIRECTORY}" &&
     validate-not-blank TARGET_DEVICE "${TARGET_DEVICE}" &&
