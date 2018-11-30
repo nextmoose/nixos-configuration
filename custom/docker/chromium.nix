@@ -15,7 +15,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    cmd = [ "--version" ];
+    cmd = [ "--disable-gpu" ];
     entrypoint = [ "${chromium}/bin/chromium" ];
     User = "user";
     WorkingDir = "/home/user";
