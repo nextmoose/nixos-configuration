@@ -34,8 +34,8 @@ GARBAGE="no" &&
     cd "${SOURCE_DIRECTORY}" &&
     git init &&
     git remote add canonical https://github.com/nextmoose/nixos-configuration.git &&
-    git fetch origin level-5 &&
-    git checkout origin/level-5 &&
+    git fetch canonical level-5 &&
+    git checkout canonical/level-5 &&
     if [ "${DOCKER}" == "yes" ]
     then
 	docker container ls --quiet --all | while read CID
