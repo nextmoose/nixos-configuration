@@ -94,7 +94,7 @@ done &&
     pass show gpg.owner.trust > ${TEMP_DIR}/pass/gpg.owner.trust &&
     pass show gpg2.secret.key > ${TEMP_DIR}/pass/gpg2.secret.key &&
     pass show gpg2.owner.trust > ${TEMP_DIR}/pass/gpg2.owner.trust &&
-    tar --create --file ${TEMP_DIR}/pass.tar --directory ${TEMP_DIR}/pass . &&
+    tar --create --file ${TEMP_DIR}/pass.tar --directory ${TEMP_DIR} pass &&
     gzip --to-stdout ${TEMP_DIR}/pass.tar > ${TEMP_DIR}/pass.tar.gz &&
     cp --recursive iso.nix installer ${TEMP_DIR}/installation &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
