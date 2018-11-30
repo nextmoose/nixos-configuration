@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  secrets = (import ../../temporary/secrets/default.nix {});
+  secrets = (import ../../../installed/pass/default.nix {});
   wait-for-healthy = (import ../../native/wait-for-healthy/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
