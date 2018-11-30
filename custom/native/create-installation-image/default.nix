@@ -2,7 +2,7 @@
 with import <nixpkgs> {};
 let
   validate-not-blank = (import ../validate-not-blank/default.nix {});
-  init-read-only-pass = (import ../../../installed/init-read-only-pass/default.nix { inherit pkgs; });
+  validate-not-blank = (import ../../user/alpha-pass/default.nix {});
 in
 stdenv.mkDerivation {
   name = "create-installation-image";

@@ -23,8 +23,10 @@ do
 	    ;;
     esac &&
 done &&
+    validate-not-blank SOURCE_DIRECTORY "${SOURCE_DIRECTORY}" &&
+    validate-not-blank TARGET_DEVICE "${TARGET_DEVICE}" &&
     TEMP_DIR=$(mktemp -d) &&
-    cd /home/user/projects/installation &&
+    cd "${SOURCE_DIRECTORY}" &&
     cleanup() {
 	rm --recursive --force ${TEMP_DIR} &&
 	    true
@@ -85,7 +87,6 @@ done &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
     mkdir ${TEMP_DIR}/home &&
     export HOME=${TEMP_DIR}/home &&
-    init-read-only-pass --upstream-url https://github.com/nextmoose/secrets --upstream-branch master &&
     pass show gpg.secret.key > ${TEMP_DIR}/init-read-only-pass/gpg.secret.key &&
     pass show gpg.owner.trust > ${TEMP_DIR}/init-read-only-pass/gpg.owner.trust &&
     pass show gpg2.secret.key > ${TEMP_DIR}/init-read-only-pass/gpg2.secret.key &&
@@ -118,5 +119,5 @@ EOF
 	    true
     ) &&
     sudo ls -alh ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sd* &&
-    sudo cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso /dev/sdb &&
+    sudo cp ${TEMP_DIR}/installation/result/iso/nixos-18.03.133245.d16a7abceb7-x86_64-linux.iso "${TARGET_DEVICE}" &&
     true
