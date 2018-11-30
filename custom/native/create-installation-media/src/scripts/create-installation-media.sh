@@ -3,11 +3,6 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--source-directory)
-	    SOURCE_DIRECTORY="${2}" &&
-		shift 2 &&
-		true
-	    ;;
 	--target-device)
 	    TARGET_DEVICE="${2}" &&
 		shift 2 &&
@@ -33,7 +28,11 @@ done &&
 	    true
     fi &&
     TEMP_DIR=$(mktemp -d) &&
+    SOURCE_DIRECTORY=$(mktemp -d) &&
     cd "${SOURCE_DIRECTORY}" &&
+    git init &&
+    git remote add upstream https://github.com/nextmoose/nixos-installer.git &&
+    git fetch upstream
     cleanup() {
 	rm --recursive --force ${TEMP_DIR} &&
 	    true
