@@ -25,6 +25,12 @@ do
 done &&
     validate-not-blank SOURCE_DIRECTORY "${SOURCE_DIRECTORY}" &&
     validate-not-blank TARGET_DEVICE "${TARGET_DEVICE}" &&
+    if [ ! -e "${TARGET_DEVICE}" ]
+    then
+	echo TARGET DEVICE "${TARGET_DEVICE}" does not exist. &&
+	    exit 68 &&
+	    true
+    fi &&
     TEMP_DIR=$(mktemp -d) &&
     cd "${SOURCE_DIRECTORY}" &&
     cleanup() {
