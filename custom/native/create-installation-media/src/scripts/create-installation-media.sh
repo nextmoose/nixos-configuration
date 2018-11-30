@@ -19,7 +19,6 @@ do
     esac &&
 	true
 done &&
-    validate-not-blank SOURCE_DIRECTORY "${SOURCE_DIRECTORY}" &&
     validate-not-blank TARGET_DEVICE "${TARGET_DEVICE}" &&
     if [ ! -e "${TARGET_DEVICE}" ]
     then
@@ -32,7 +31,8 @@ done &&
     cd "${SOURCE_DIRECTORY}" &&
     git init &&
     git remote add upstream https://github.com/nextmoose/nixos-installer.git &&
-    git fetch upstream
+    git fetch upstream scratch/a655c542-f64f-4b6b-b5fc-cf0cec741b7a &&
+    git checkout upstream/scratch/a655c542-f64f-4b6b-b5fc-cf0cec741b7a &&
     cleanup() {
 	rm --recursive --force ${TEMP_DIR} &&
 	    true
