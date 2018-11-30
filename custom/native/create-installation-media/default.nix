@@ -11,8 +11,8 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir $out &&
       mkdir $out/scripts &&
-      cp * $out/scripts &&
-      chmod 0500 $out/scripts/*.sh &&
+      cp --recursive scripts $out &&
+      chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
       $out/scripts/create-installation-media.sh \
