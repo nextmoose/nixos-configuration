@@ -15,7 +15,7 @@ GARBAGE="no" &&
 		    shift 1 &&
 		    true
 		;;
-	    *)
+    *)
 		echo Unknown Option &&
 		    echo "${1}" &&
 		    echo "${0}" &&
@@ -74,7 +74,7 @@ GARBAGE="no" &&
     fi &&
     if [ -d custom ]
     then
-	rsync \
+	sudo rsync \
 	    --verbose \
 	    --archive \
 	    --delete \
