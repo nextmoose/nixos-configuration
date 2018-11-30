@@ -6,8 +6,9 @@ then
 	exit 66 &&
 	true
 elif [ "${#}" != 2 ]
-     echo Error &&
-	 exit 67 &&
-	 true
+then
+    echo Error &&
+	exit 67 &&
+	true
 fi &&
     true
