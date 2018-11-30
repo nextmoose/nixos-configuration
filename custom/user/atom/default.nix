@@ -70,19 +70,18 @@ $out/bin/atom-installation \
 --set UPSTREAM_USER git \
 --set UPSTREAM_PORT 22 \
 --set UPSTREAM_ORGANIZATION rebelplutonium \
---set UPSTREAM_REPOSITORY nixos-install \
+--set UPSTREAM_REPOSITORY nixos-installer \
 --set UPSTREAM_BRANCH master \
 --set ORIGIN_HOST github.com \
 --set ORIGIN_USER git \
 --set ORIGIN_PORT 22 \
 --set ORIGIN_ORGANIZATION nextmoose \
---set ORIGIN_REPOSITORY nixos-install \
+--set ORIGIN_REPOSITORY nixos-installer \
 --set ORIGIN_BRANCH level-5 \
 --set REPORT_HOST github.com \
 --set REPORT_USER git \
 --set REPORT_PORT 22 \
 --set REPORT_ORGANIZATION rebelplutonium \
---set REPORT_REPOSITORY nixos-install \
 --set REPORT_BRANCH master \
 &&
       true
