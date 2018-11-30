@@ -1,6 +1,11 @@
 #!/bin/sh
 
-if [ "${#}" == 1 ]
+if [ "${#}" == 0 ]
+then
+    echo INCORRECT USAGE ... VARIABLE_NAME VARIABLE_VALUE &&
+	exit 65 &&
+	true
+elif [ "${#}" == 1 ]
 then
     echo Blank ${1} &&
 	exit 66 &&
