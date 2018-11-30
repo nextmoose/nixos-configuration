@@ -17,7 +17,7 @@ stdenv.mkDerivation {
       makeWrapper \
       $out/scripts/create-installation-media.sh \
       $out/bin/create-installation-media \
-      --set PATH ${lib.makeBinPath [ gnutar gzip coreutils virtualbox lvm2 pass "/run/wrappers" gnupg nix devicemapper bash validate-not-blank alpha-pass ]} &&
+      --set PATH ${lib.makeBinPath [ gnutar gzip coreutils virtualbox lvm2 "/run/wrappers" gnupg nix devicemapper bash validate-not-blank alpha-pass ]} &&
       true
   '';
 }
