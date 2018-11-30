@@ -3,7 +3,7 @@ let
   chromium = pkgs.chromium;
 in
 pkgs.dockerTools.buildImage {
-  contents = [ pkgs.gnugrep pkgs.coreutils pkgs.bash ];
+  contents = [ pkgs.gnugrep pkgs.coreutils pkgs.bash pkgs.chromium ];
   name = "chromium";
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
@@ -15,7 +15,9 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${chromium}/bin/chromium" "--disable-gpu" ];
+    cmd = [ "--version" ];
+    entrypoint = [ "${chromium}/bin/chromium" ];
     User = "user";
+    WorkingDir = "/home/user";
   };
 }

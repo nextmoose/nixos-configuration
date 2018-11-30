@@ -1,5 +1,5 @@
 {
-  pkgs ? import <nixpkgs/packages/top-level/impure.nix> {}
+  pkgs ? import <nixpkgs> {}
 }:
 pkgs.dockerTools.buildImage {
   contents = [ pkgs.gnugrep pkgs.coreutils pkgs.bash ];
