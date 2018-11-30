@@ -90,6 +90,13 @@ done &&
     echo VERIFIED &&
     echo &&
     mkdir ${TEMP_DIR}/installation &&
+    mkdir ${TEMP_DIR}/pass &&
+    pass show gpg.secret.key > ${TEMP_DIR}/pass/gpg.secret.key &&
+    pass show gpg.owner.trust > ${TEMP_DIR}/pass/gpg.owner.trust &&
+    pass show gpg2.secret.key > ${TEMP_DIR}/pass/gpg2.secret.key &&
+    pass show gpg2.owner.trust > ${TEMP_DIR}/pass/gpg2.owner.trust &&
+    tar --create --file ${TEMP_DIR}/pass.tar --directory ${TEMP_DIR}/pass . &&
+    gzip --to-stdout ${TEMP_DIR}/pass.tar > ${TEMP_DIR}/pass.tar.gz &&
     cp --recursive iso.nix installer ${TEMP_DIR}/installation &&
     mkdir ${TEMP_DIR}/init-read-only-pass &&
     mkdir ${TEMP_DIR}/home &&
@@ -109,6 +116,7 @@ EOF
     tar --create --file ${TEMP_DIR}/init-wifi.tar --directory ${TEMP_DIR}/init-wifi . &&
     gzip --to-stdout ${TEMP_DIR}/init-wifi.tar > ${TEMP_DIR}/init-wifi.tar.gz &&
     mkdir ${TEMP_DIR}/secrets &&
+    cp ${TEMP_DIR}/init-read-only-pass.tar.gz ${TEMP_DIR}/secrets &&
     (cat > ${TEMP_DIR}/secrets/installer.env <<EOF
 LUKS_PASSPHRASE="${LUKS_PASSPHRASE}"
 USER_PASSWORD="${USER_PASSWORD}"
