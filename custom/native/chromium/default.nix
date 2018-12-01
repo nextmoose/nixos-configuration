@@ -4,7 +4,7 @@
   version ? "44"
 }:
 let
-  fetch-chromium-source = derivation {
+  fetch-chromium-source = {}: derivation {
     name = "fetch-chromium-source";
     system = "mysystem";
     builder = ./fetch.sh;
