@@ -68,7 +68,6 @@ in
     extraUsers.user.packages = [
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
-      (import ./custom/native/chromium/default.nix {})
       (import ./custom/native/create-installation-media/default.nix {})
       (import ./custom/native/validate-not-blank/default.nix {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
