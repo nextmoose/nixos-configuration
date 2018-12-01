@@ -6,7 +6,7 @@
 let
   fetch-chromium-source = {}: derivation {
     name = "fetch-chromium-source";
-    system = "mysystem";
+    system = "x86_64-linux";
     builder = ./fetch.sh;
   };
 in
