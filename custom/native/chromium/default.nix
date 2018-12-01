@@ -8,9 +8,11 @@ pkgs.stdenv.mkDerivation {
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
-    makeWrapper \
-      ${pkgs.chromium}/bin/chromium \
-      ${name} &&
+    mkdir $out &&
+      mkdir $out/bin &&
+      makeWrapper \
+        ${pkgs.chromium}/bin/chromium \
+        $out/bin/${name} &&
       true
   '';
 }
