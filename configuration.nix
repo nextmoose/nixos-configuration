@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
-  xxx = (import <nixpkgdsafadss> {});
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -84,7 +83,7 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-      pkgs.firefox
+      pkgs.modules.programs.chromium
     ];
   };
   virtualisation.docker = {
