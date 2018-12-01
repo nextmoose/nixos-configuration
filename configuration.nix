@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
-  nixos = (import <nixos> {});
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -76,7 +75,7 @@ in
       (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
-#      (import ./custom/user/chromium/default.nix {})
+      (import ./custom/user/chromium/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
@@ -84,7 +83,6 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-      nixos.modules.programs.chromium
     ];
   };
   virtualisation.docker = {
