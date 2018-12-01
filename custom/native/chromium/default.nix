@@ -6,13 +6,11 @@
 pkgs.stdenv.mkDerivation {
   name = "${name}-${version}";
   src = ./src;
-  buildInputs = [ pkgs.makeWrapper ];
+  buildInputs = [ pkgs.makeWrapper pkgs.coreutils ];
   installPhase = ''
     mkdir $out &&
       mkdir $out/bin &&
-      makeWrapper \
-        ${pkgs.chromium}/bin/chromium \
-        $out/bin/${name} &&
+      ln --symbolic ${pkgs.chromium}/bin/chromium $out/bin/${name} &&
       true
   '';
 }
