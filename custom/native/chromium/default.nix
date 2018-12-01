@@ -1,11 +1,12 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   depot_tools = (import ../depot_tools/default.nix {});
-  fetch-chromium-source = (import ../fetch-chromium-source);
+  fetch-chromium-source = (import ../fetch-chromium-source {});
 in
 pkgs.stdenv.mkDerivation {
   name = "chromium";
-  src = fetch-chromium-source {};
+  inputSrcs = [ fetch-chromium-source ];
+  src = "fetch-chromium-source";
   buildInputs = [ pkgs.makeWrapper fetch-chromium-source ] ;
   buildPhase = ''
     cd src &&
