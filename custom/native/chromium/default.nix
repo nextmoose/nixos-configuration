@@ -11,6 +11,7 @@ pkgs.stdenv.mkDerivation {
     mkdir $out &&
       mkdir $out/bin &&
       ln --symbolic ${pkgs.chromium}/bin/chromium $out/bin/${name} &&
+      ln --symbolic ${pkgs.chromium}/bin/chromium $out/bin/xxx &&
       true
   '';
 }
