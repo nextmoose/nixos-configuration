@@ -83,7 +83,7 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-  #     (import <nixpkgs/master/pkgs/applications/networking/browsers/firefox-bin/default.nix> {})
+      (import <nixpkgs/master/pkgs/applications/networking/browsers/firefox-bin/default.nix> {})
     ];
   };
   virtualisation.docker = {
