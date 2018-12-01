@@ -94,6 +94,8 @@ done &&
     pass show gpg.owner.trust > ${TEMP_DIR}/pass/gpg.owner.trust &&
     pass show gpg2.secret.key > ${TEMP_DIR}/pass/gpg2.secret.key &&
     pass show gpg2.owner.trust > ${TEMP_DIR}/pass/gpg2.owner.trust &&
+    mkdir ${TEMP_DIR}/pass/wifi &&
+    echo guestwifi > "${TEMP_DIR}/pass/wifi/Richmond Sq Guest" &&
     tar --create --file ${TEMP_DIR}/pass.tar --directory ${TEMP_DIR} pass &&
     gzip --to-stdout ${TEMP_DIR}/pass.tar > ${TEMP_DIR}/pass.tar.gz &&
     cp --recursive iso.nix installer ${TEMP_DIR}/installation &&
@@ -121,6 +123,7 @@ LUKS_PASSPHRASE="${LUKS_PASSPHRASE}"
 USER_PASSWORD="${USER_PASSWORD}"
 EOF
     ) &&
+    cp ${TEMP_DIR}/pass.tar.gz ${TEMP_DIR}/secrets &&
     cp ${TEMP_DIR}/init-read-only-pass.tar.gz ${TEMP_DIR}/secrets &&
     cp ${TEMP_DIR}/init-wifi.tar.gz ${TEMP_DIR}/secrets &&
     tar --create --file ${TEMP_DIR}/secrets.tar --directory ${TEMP_DIR}/secrets/ . &&
