@@ -75,7 +75,7 @@ in
       (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
-      (import ./custom/user/chromium/default.nix {})
+#      (import ./custom/user/chromium/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
@@ -83,7 +83,8 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
-     (import <nixos/modules/programs/chromium.nix> {});
+      pkgs.firefox
+     (import <nixos/modules/programs/chromium.nix> {})
     ];
   };
   virtualisation.docker = {
