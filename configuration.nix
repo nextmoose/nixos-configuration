@@ -84,7 +84,6 @@ in
       pkgs.chromium
       pkgs.git
       pkgs.firefox
-     (import <nixos/modules/programs/chromium.nix> {})
     ];
   };
   virtualisation.docker = {
