@@ -2,7 +2,6 @@
 
 mkdir "${HOME}/project" &&
     dot-ssh &&
-    apm install terminal-3 &&
     git -C "${HOME}/project" init &&
     if
 	[ ! -z "${UPSTREAM_ORGANIZATION}" ] &&
