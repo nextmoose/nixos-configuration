@@ -3,11 +3,11 @@ let
   depot_tools = (import ../depot_tools/default.nix {});
   fetch-chromium-source = (import ../fetch-chromium-source/default.nix {});
 in
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   name = "chromium";
   src = fetch-chromium-source {
   };
-  buildInputs = [ makeWrapper fetch-chromium-source ] ;
+  buildInputs = [ pkgs.makeWrapper fetch-chromium-source ] ;
   buildPhase = ''
     cd src &&
       true
