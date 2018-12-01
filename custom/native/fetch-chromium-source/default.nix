@@ -2,7 +2,7 @@
 let
   depot_tools = (import ../depot_tools/default.nix {});
 in
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   name = "fetch-chromium-source";
   src = ./src;
   buildInputs = [ makeWrapper depot_tools ] ;
