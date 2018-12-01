@@ -9,8 +9,8 @@ mkdir "${HOME}/project" &&
 	    [ ! -z "${UPSTREAM_BRANCH}" ]
     then
 	git -C "${HOME}/project" remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
-	    git -C "${HOME}/project" fetch upstream "${UPSTREAM_BRANCH}" &&
-	    git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
+#	    git -C "${HOME}/project" fetch upstream "${UPSTREAM_BRANCH}" &&
+#	    git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
 	    true
     fi &&
     if
