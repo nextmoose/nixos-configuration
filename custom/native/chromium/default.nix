@@ -16,7 +16,7 @@ let
       cp --recursive . $out &&
         true
     '';
-  }
+  };
 in
 pkgs.stdenv.mkDerivation {
   name = "${name}-${version}";
