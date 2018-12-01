@@ -39,6 +39,8 @@ mkdir "${HOME}/project" &&
 	git -C "${HOME}/project" remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
 	    true
     fi &&
+    git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
+    git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
     ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
     atom --foreground "${HOME}/project" &&
     true
