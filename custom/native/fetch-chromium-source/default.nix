@@ -5,7 +5,7 @@ in
 pkgs.stdenv.mkDerivation {
   name = "fetch-chromium-source";
   src = ./src;
-  buildInputs = [ makeWrapper depot_tools ] ;
+  buildInputs = [ pkgs.makeWrapper depot_tools ] ;
   installPhase = ''
     mkdir $out &&
       cp --recursive scripts $out &&
