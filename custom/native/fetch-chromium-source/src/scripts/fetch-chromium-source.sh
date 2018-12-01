@@ -1,7 +1,6 @@
 #!/bin/#!/bin/sh
 
-mkdir src &&
-  cd src &&
+mkdir $(mktemp -d) &&
   fetch --nohooks --no-history chromium &&
   echo src &&
   true

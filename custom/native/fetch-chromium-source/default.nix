@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/fetch-chromium-source.sh \
         $out/bin/fetch-chromium-source \
-        --set PATH ${pkgs.lib.makeBinPath [ depot_tools ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [ depot_tools pkgs.mktemp ]} &&
       true
   '';
 }
