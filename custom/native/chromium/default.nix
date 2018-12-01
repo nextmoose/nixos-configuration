@@ -12,6 +12,7 @@ pkgs.stdenv.mkDerivation {
       mkdir $out/bin &&
       ln --symbolic ${pkgs.chromium}/bin/chromium $out/bin/${name} &&
       ln --symbolic ${pkgs.chromium}/bin/chromium $out/bin/aaaa &&
+      makeWrapper ${pkgs.chromium}/bin/chromium $out/bin/bbbb &&
       true
   '';
 }
