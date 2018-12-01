@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  depot_tools = (import ../depot_tools/default.nix {});
   fetch-chromium-source = (import ../fetch-chromium-source {});
 in
 pkgs.stdenv.mkDerivation {
