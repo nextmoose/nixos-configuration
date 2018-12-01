@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   depot_tools = (import ../depot_tools/default.nix {});
-  fetch-chromium-source = writeShellScriptBin "fetch-chromium-source" ''
+  fetch-chromium-source = pkgs.writeShellScriptBin "fetch-chromium-source" ''
     mkdir src &&
       fetch --nohooks --no-history chromium
       echo src &&
