@@ -81,10 +81,10 @@ in
       pkgs.networkmanager
       pkgs.gnome3.gnome-terminal
       pkgs.recordmydesktop
-      pkgs.chromium
       pkgs.git
       pkgs.zip
       pkgs.unzip
+      (import ./custom/native/chromium/default.nix {}})
     ];
   };
   virtualisation.docker = {
