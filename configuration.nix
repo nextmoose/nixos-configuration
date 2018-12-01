@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
-  xxx = (import <nixpkgs/default.nix> {});
+  xxx = (import <nixpkgdsafadss> {});
 in
 {
   boot.loader.systemd-boot.enable = true;
