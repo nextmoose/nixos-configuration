@@ -1,6 +1,12 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  fetch-chromium-source = (import ../fetch-chromium-source {});
+  depot_tools = (import ../depot_tools/default.nix {});
+  fetch-chromium-source = writeShellScriptBin "fetch-chromium-source" ''
+    mkdir src &&
+      fetch --nohooks --no-history chromium
+      echo src &&
+      true
+  '';
 in
 pkgs.stdenv.mkDerivation {
   name = "chromium";

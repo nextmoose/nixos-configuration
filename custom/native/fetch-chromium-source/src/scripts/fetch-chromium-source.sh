@@ -1,4 +1,7 @@
 #!/bin/#!/bin/sh
 
-fetch --nohooks --no-history chromium &&
+mkdir src &&
+  cd src &&
+  fetch --nohooks --no-history chromium &&
+  echo src &&
   true
