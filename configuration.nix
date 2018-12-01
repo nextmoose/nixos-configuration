@@ -84,6 +84,7 @@ in
       pkgs.chromium
       pkgs.git
       pkgs.zip
+      pkgs.unzip
     ];
   };
   virtualisation.docker = {
