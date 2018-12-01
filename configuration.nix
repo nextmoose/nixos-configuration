@@ -83,6 +83,7 @@ in
       pkgs.recordmydesktop
       pkgs.chromium
       pkgs.git
+      pkgs.zip
     ];
   };
   virtualisation.docker = {
