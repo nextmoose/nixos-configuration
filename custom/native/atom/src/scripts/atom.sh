@@ -47,6 +47,9 @@ mkdir "${HOME}/project" &&
     } &&
     ## UNDECIDED
       tryinstall terminal-fusion &&
+      tryinstall platformio-ide-terminal &&
+      tryinstall atom-development-server &&
+      tryinstall run-command &&
     ## BLACKLIST
     # tryinstall terminal-plus &&
     # tryinstall atom-terminal &&
