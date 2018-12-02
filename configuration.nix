@@ -75,7 +75,7 @@ in
       (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
-#      (import ./custom/user/chromium/default.nix {})
+      (import ./custom/user/chromium/default.nix {})
       initialization
       pkgs.emacs
       pkgs.networkmanager
