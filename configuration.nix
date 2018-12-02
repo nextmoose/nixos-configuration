@@ -85,7 +85,7 @@ in
       pkgs.zip
       pkgs.unzip
       pkgs.chromium
-      (import ./custom/native/chromium/default.nix {})
+#      (import ./custom/native/chromium/default.nix {})
     ];
   };
   virtualisation.docker = {
