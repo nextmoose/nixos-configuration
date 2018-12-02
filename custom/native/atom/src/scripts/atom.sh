@@ -2,7 +2,6 @@
 
 mkdir "${HOME}/project" &&
     dot-ssh &&
-    (cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" || true) &&
     git -C "${HOME}/project" init &&
     if
 	[ ! -z "${UPSTREAM_ORGANIZATION}" ] &&
