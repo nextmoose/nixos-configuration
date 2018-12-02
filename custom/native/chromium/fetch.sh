@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd $(mktemp -d) &&
-  (cat > hello.txt <<
+  (cat > hello.txt <<EOF
 Hello World!!!
 EOF
   ) &&
