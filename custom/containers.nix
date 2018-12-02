@@ -1,4 +1,5 @@
-{ pkgs }:
-[
-  chromium = (import ./containers/chromium.nix {})
-]
+{ config, pkgs, ... }:
+{
+  containers = [
+  ];
+}
