@@ -16,8 +16,8 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/atom.sh \
 	$out/bin/atom \
+  --set STORE_DIR "$out" \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.pass pkgs.git pkgs.atom pkgs.coreutils pkgs.bash git-curt pkgs.which post-commit pkgs.gnugrep dot-ssh pkgs.utillinux ]} &&
       true
   '';
 }
-
