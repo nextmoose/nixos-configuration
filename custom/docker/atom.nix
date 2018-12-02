@@ -5,7 +5,7 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = "atom";
-  contents = [ pkgs.shadow pkgs.git git-refresh ];
+  contents = [ pkgs.shadow pkgs.git git-refresh pkgs.bash pkgs.coreutils ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp /usr &&
