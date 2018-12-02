@@ -94,6 +94,12 @@ done &&
     pass show gpg.owner.trust > ${TEMP_DIR}/pass/gpg.owner.trust &&
     pass show gpg2.secret.key > ${TEMP_DIR}/pass/gpg2.secret.key &&
     pass show gpg2.owner.trust > ${TEMP_DIR}/pass/gpg2.owner.trust &&
+    pass show upstream.id_rsa > ${TEMP_DIR}/pass/upstream.id_rsa &&
+    pass show upstream.known_hosts > ${TEMP_DIR}/pass/upstream.known_hosts &&
+    pass show origin.id_rsa > ${TEMP_DIR}/pass/origin.id_rsa &&
+    pass show origin.known_hosts > ${TEMP_DIR}/pass/origin.known_hosts &&
+    pass show report.id_rsa > ${TEMP_DIR}/pass/report.id_rsa &&
+    pass show report.known_hosts > ${TEMP_DIR}/pass/report.known_hosts &&
     mkdir ${TEMP_DIR}/pass/wifi &&
     echo guestwifi > "${TEMP_DIR}/pass/wifi/Richmond Sq Guest" &&
     tar --create --file ${TEMP_DIR}/pass.tar --directory ${TEMP_DIR} pass &&
