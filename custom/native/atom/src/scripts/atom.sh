@@ -2,6 +2,7 @@
 
 mkdir "${HOME}/project" &&
     dot-ssh &&
+    (cp --recursive "${STORE_DIR}/lib/atom" "${HOME}/.atom" || true) &&
     git -C "${HOME}/project" init &&
     if
 	[ ! -z "${UPSTREAM_ORGANIZATION}" ] &&
@@ -45,14 +46,26 @@ mkdir "${HOME}/project" &&
     tryinstall(){
       apm install "${@}" > "${HOME}/${@}.out.log" 2> "${HOME}/${@}.err.log" || true
     } &&
-    ## UNDECIDED
-      tryinstall terminal-fusion &&
-      tryinstall platformio-ide-terminal &&
-      tryinstall atom-development-server &&
-      tryinstall run-command &&
+    ## ALPHA
+    tryinstall termrk &&
+    tryinstall tokamak-terminal &&
+    tryinstall quantum-shell &&
+    tryinstall run-commandtwo &&
+    tryinstall termination &&
+    tryinstall process-palette &&
+    tryinstall hydrogen-launcher &&
+    tryinstall command-executor &&
+    tryinstall output-panel &&
+    tryinstall termy &&
+    tryinstall atom-console &&
+    ## BETA
     ## BLACKLIST
     # tryinstall terminal-plus &&
     # tryinstall atom-terminal &&
+#      tryinstall terminal-fusion &&
+          #       tryinstall atom-development-server &&
+#          tryinstall platformio-ide-terminal &&
+#          tryinstall run-command &&
   ## WHITELIST
     tryinstall atom-terminal-panel &&
     atom --foreground "${HOME}/project" &&
