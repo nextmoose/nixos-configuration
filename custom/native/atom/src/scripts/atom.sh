@@ -45,9 +45,12 @@ mkdir "${HOME}/project" &&
     tryinstall(){
       apm install "${@}" > "${HOME}/${@}.out.log" 2> "${HOME}/${@}.err.log" || true
     } &&
-    tryinstall terminal-plus &&
-    tryinstall atom-terminal &&
+    ## UNDECIDED
+      tryinstall terminal-fusion &&
+    ## BLACKLIST
+    # tryinstall terminal-plus &&
+    # tryinstall atom-terminal &&
+  ## WHITELIST
     tryinstall atom-terminal-panel &&
-    tryinstall terminal-fusion &&
     atom --foreground "${HOME}/project" &&
     true
