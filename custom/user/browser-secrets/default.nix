@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  alpha-pass = (import ../alpha-pass/default.nix {});
+  pass = (import ../../installed/pass/default.nix {});
   wait-for-healthy = (import ../../native/wait-for-healthy/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
@@ -24,6 +24,8 @@ pkgs.stdenv.mkDerivation {
 	--set ORIGIN_REPOSITORY "browser-secrets" \
 	--set ORIGIN_BRANCH "master" \
 	--set UUID "f684a398-2bc3-416a-b1f5-e1c8d60fc1b2" \
+  --set ORIGIN_ID_RSA "$(${pass}/bin/pass show origin.id_rsa)" \
+  --set ORIGIN_KNOWN_HOSTS "$(${pass}/bin/pass show origin.id_rsa)" \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass pkgs.coreutils wait-for-healthy ]} &&
       true
   '';
