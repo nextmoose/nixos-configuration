@@ -26,7 +26,7 @@ pkgs.stdenv.mkDerivation {
 	--set UUID "9cb093ed-91be-40f4-b478-6b4130e37aa0" \
   --set ORIGIN_ID_RSA "$(${pass}/bin/pass show origin.id_rsa)" \
   --set ORIGIN_KNOWN_HOSTS "$(${pass}/bin/pass show origin.id_rsa)" \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass pkgs.coreutils wait-for-healthy ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass pkgs.coreutils wait-for-healthy ]} &&
       true
   '';
 }
