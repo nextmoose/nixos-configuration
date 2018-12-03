@@ -42,9 +42,6 @@ mkdir "${HOME}/project" &&
     git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
     git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
     ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
-    tryinstall(){
-      apm install "${@}" > "${HOME}/${@}.out.log" 2> "${HOME}/${@}.err.log" || true
-    } &&
-    apm install atom-console &&
+    apm install quantum-shell &&
     atom --foreground "${HOME}/project" &&
     true
