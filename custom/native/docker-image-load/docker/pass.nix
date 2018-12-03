@@ -1,11 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
 let
+  read-write-pass = (import ../../read-write-pass/default.nix {});
   health-check = (import ../../health-check/default.nix {});
-  read-only-pass = (import ../../read-only-pass/default.nix {});
 in
 pkgs.dockerTools.buildImage {
-  name = "read-only-pass";
-  contents = [ pkgs.shadow pkgs.pass health-check pkgs.bash pkgs.coreutils ];
+  name = "pass";
+  contents = [ pkgs.shadow pkgs.pass health-check pkgs.bash pkgs.coreutils pkgs.openssh ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp &&
@@ -14,7 +14,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${read-only-pass}/bin/read-only-pass" ];
+    entrypoint = [ "${read-write-pass}/bin/read-write-pass" ];
     healthCheck = {
       Test = [ "${health-check}/bin/health-check" ];
       Interval = 3000000000;
