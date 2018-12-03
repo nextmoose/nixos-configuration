@@ -16,7 +16,6 @@ in
   imports = [
     ./hardware-configuration.nix
     ./installed/password.nix
-    ./custom/containers.nix
   ];
   networking = {
     networkmanager = {
