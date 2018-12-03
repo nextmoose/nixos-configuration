@@ -29,7 +29,7 @@ in
       externalInterface = "wl01";
     };
   };
-  programs.bash.shellInit = "${initialization}/bin/initialization";
+  programs.bash.shellInit = "${pkgs.xorg.xhost}/bin/xhost +local:";
   security.sudo.wheelNeedsPassword = false;
   services = {
     apache-kafka = {
@@ -75,8 +75,7 @@ in
     enable = true;
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${foo}/bin/execstart";
-      ExecStop = "${foo}/bin/execstop";
+      ExecStart = "${initialization}/bin/initialization";
       Restart = "on-failure";
     };
     wantedBy = [ "default.target" ];
