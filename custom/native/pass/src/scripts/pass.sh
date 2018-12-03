@@ -1,15 +1,9 @@
 #!/bin/sh
 
-echo BETA 00100 &&
-    echo BETA 00110 &&
-    env &&
-    echo BETA 00120 &&
+
     gnupg-import &&
-    echo BETA 00300 &&
     dot-ssh &&
-    echo BETA 00400 &&
     pass init "$(gnupg-key-id)" &&
-    echo BETA 00500 &&
     pass git init &&
     echo BETA 00600 &&
     pass git config user.name "${COMMITTER_NAME}" &&

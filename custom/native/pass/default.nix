@@ -7,7 +7,7 @@ let
   dot-ssh = (import ../dot-ssh/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
-  name = "read-write-pass";
+  name = "pass";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -16,8 +16,8 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/read-write-pass.sh \
-	$out/bin/read-write-pass \
+        $out/scripts/pass.sh \
+	$out/bin/pass \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass gnupg-key-id pkgs.coreutils gnupg-import sleep-forever post-commit pkgs.which dot-ssh pkgs.findutils pkgs.gnugrep ]} &&
       true
   '';
