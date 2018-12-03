@@ -1,7 +1,4 @@
 { pkgs ? import <nixpkgs> {} }:
-let
-  pass = $(import ../../installed/pass/default.nix {});
-in
 pkgs.stdenv.mkDerivation {
   name = "dot-ssh";
   src = ./src;
@@ -14,7 +11,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/dot-ssh.sh \
 	$out/bin/dot-ssh \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.gnugrep pkgs.pass ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.gnugrep ]} &&
       true
   '';
 }
