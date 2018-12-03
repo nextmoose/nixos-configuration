@@ -23,7 +23,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			--env ORIGIN_BRANCH \
 			--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 			--label=uuid=${UUID} \
-			read-write-pass) &&
+			pass) &&
 	    docker container start "${CONTAINER}" &&
 	    # AWFUL KLUDGE
 	    sleep 10s &&

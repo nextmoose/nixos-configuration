@@ -18,7 +18,7 @@ CONTAINER="$(docker container ls --quiet --filter label=uuid=${UUID})" &&
 			--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 			--label=uuid=${UUID} \
 			--health-cmd health-check \
-			read-only-pass) &&
+			pass) &&
 	    docker container start "${CONTAINER}" > /dev/null 2>&1 &&
 	    wait-for-healthy --container "${CONTAINER}" &&
 	    true

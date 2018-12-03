@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  read-write-pass = (import ../../read-write-pass/default.nix {});
+  pass = (import ../../pass/default.nix {});
   health-check = (import ../../health-check/default.nix {});
 in
 pkgs.dockerTools.buildImage {
@@ -14,7 +14,7 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    entrypoint = [ "${read-write-pass}/bin/read-write-pass" ];
+    entrypoint = [ "${pass}/bin/pass" ];
     healthCheck = {
       Test = [ "${health-check}/bin/health-check" ];
       Interval = 3000000000;
