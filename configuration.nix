@@ -106,12 +106,6 @@ in
       (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
-      (import ./custom/utils/pass/default.nix{
-        pkgs = pkgs;
-        name = "xxx-secrets";
-        uuid = "96009181-5c04-48ec-99b5-d258869845c6";
-        origin-repository = "xxx-secrets";
-      })
       initialization
       pkgs.emacs
       pkgs.networkmanager
