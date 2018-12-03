@@ -1,7 +1,12 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> {},
+  name,
+  cmd ? [],
+  entrypoint = ? []
+}:
 pkgs.dockerTools.buildImage {
   contents = [ ];
-  name = "emacs";
+  name = "${name}";
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp /usr &&
@@ -12,8 +17,8 @@ pkgs.dockerTools.buildImage {
       true
   '';
   config = {
-    cmd = [];
-    entrypoint = [ "${pkgs.emacs}/bin/emacs" ];
+    cmd = ${cmd};
+    entrypoint = ${entrypoint};
     User = "user";
   };
 }

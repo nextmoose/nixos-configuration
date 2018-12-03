@@ -71,6 +71,15 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
+  systemd.services.pass = {
+    description = "PASS";
+    enable = true;
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "";
+    };
+    wantedBy = [ "default.target" ];
+  };
   systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;
