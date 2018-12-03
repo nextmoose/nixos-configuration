@@ -50,6 +50,16 @@ in
         "31 *  * * * user nix-collect-garbage"
       ];
     };
+    physlock = {
+      allowAnyUser = true;
+      disableSysRq = true;
+      enable = true;
+      lockOn = {
+        extraTargets = [];
+        hibernate = false;
+        suspend = false;
+      };
+    };
     printing.enable = true;
     xserver = {
       enable = true;
@@ -85,6 +95,7 @@ in
       pkgs.zip
       pkgs.unzip
       pkgs.chromium
+      pkgs.physlock
     ];
   };
   virtualisation.docker = {
