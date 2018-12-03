@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   alpha-pass = (import ../alpha-pass/default.nix {});
+  pass = (import ../../../installed/pass/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
   name = "atom";
@@ -14,7 +15,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/atom.sh \
 	$out/bin/atom-yegor256-blog \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]} \
 	--set COMMITTER_NAME "Emory Merryman" \
 	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 	--set UPSTREAM_HOST github.com \
@@ -38,7 +39,7 @@ pkgs.stdenv.mkDerivation {
   makeWrapper \
     $out/scripts/atom.sh \
 $out/bin/atom-configuration \
---set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} \
+--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]} \
 --set COMMITTER_NAME "Emory Merryman" \
 --set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 --set UPSTREAM_HOST github.com \
@@ -63,7 +64,7 @@ $out/bin/atom-configuration \
 makeWrapper \
   $out/scripts/atom.sh \
 $out/bin/atom-installation \
---set PATH ${pkgs.lib.makeBinPath [ pkgs.docker alpha-pass ]} \
+--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]} \
 --set COMMITTER_NAME "Emory Merryman" \
 --set COMMITTER_EMAIL "emory.merryman@gmail.com" \
 --set UPSTREAM_HOST github.com \
