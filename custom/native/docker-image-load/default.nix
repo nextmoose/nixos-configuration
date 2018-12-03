@@ -1,9 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  atom = (import ../../docker/atom.nix {});
-  firefox = (import ../../docker/firefox.nix {});
-  read-only-pass = (import ../../docker/read-only-pass.nix {});
-  read-write-pass = (import ../../docker/read-write-pass.nix {});
+  atom = (import ./docker/atom.nix {});
+  firefox = (import ./docker/firefox.nix {});
+  read-only-pass = (import ./docker/read-only-pass.nix {});
+  read-write-pass = (import ./docker/read-write-pass.nix {});
 in
 pkgs.stdenv.mkDerivation rec {
   name = "docker-image-load";

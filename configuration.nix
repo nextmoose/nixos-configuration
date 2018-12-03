@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
+  docker-image-load = (import ./custom/native/docker-image-load { pkgs=pkgs;});
   initialization = (import ./custom/native/initialization/default.nix {});
   foo = (import ./custom/native/foo/default.nix {});
-  docker-static = (import ./custom/native/docker-static/default.nix {} );
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -71,12 +71,12 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.pass = {
-    description = "PASS";
+  systemd.services.docker-image-load = {
+    description = "Docker Image Pull";
     enable = true;
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${docker-static}/bin/docker-static --name emacs";
+      ExecStart = "${docker-image-load}/bin/docker-image-load";
     };
     wantedBy = [ "default.target" ];
   };
