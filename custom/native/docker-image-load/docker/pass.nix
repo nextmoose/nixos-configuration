@@ -1,11 +1,10 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   pass = (import ../../pass/default.nix {});
-  health-check = (import ../../health-check/default.nix {});
 in
 pkgs.dockerTools.buildImage {
   name = "pass";
-  contents = [ pkgs.shadow pkgs.pass health-check pkgs.bash pkgs.coreutils pkgs.openssh ];
+  contents = [ pkgs.shadow pkgs.pass pkgs.bash pkgs.coreutils pkgs.openssh ];
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
       mkdir /home /tmp &&
@@ -15,12 +14,6 @@ pkgs.dockerTools.buildImage {
   '';
   config = {
     entrypoint = [ "${pass}/bin/pass" ];
-    healthCheck = {
-      Test = [ "${health-check}/bin/health-check" ];
-      Interval = 3000000000;
-      Timeout = 1000000000;
-      Retries = 30;
-    };
     User = "user";
   };
 }
