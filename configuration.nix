@@ -70,7 +70,7 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.root.services.foo = {
+  systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;
     serviceConfig = {
