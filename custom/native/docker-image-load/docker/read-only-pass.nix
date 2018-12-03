@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  health-check = (import ../native/health-check/default.nix {});
-  read-only-pass = (import ../native/read-only-pass/default.nix {});
+  health-check = (import ../../../health-check/default.nix {});
+  read-only-pass = (import ../../../read-only-pass/default.nix {});
 in
 pkgs.dockerTools.buildImage {
   name = "read-only-pass";
