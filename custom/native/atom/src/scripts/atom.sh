@@ -45,27 +45,6 @@ mkdir "${HOME}/project" &&
     tryinstall(){
       apm install "${@}" > "${HOME}/${@}.out.log" 2> "${HOME}/${@}.err.log" || true
     } &&
-    ## ALPHA
-    tryinstall termrk &&
-    tryinstall tokamak-terminal &&
-    tryinstall quantum-shell &&
-    tryinstall run-commandtwo &&
-    tryinstall termination &&
-    tryinstall process-palette &&
-    tryinstall hydrogen-launcher &&
-    tryinstall command-executor &&
-    tryinstall output-panel &&
-    tryinstall termy &&
-    tryinstall atom-console &&
-    ## BETA
-    ## BLACKLIST
-    # tryinstall terminal-plus &&
-    # tryinstall atom-terminal &&
-#      tryinstall terminal-fusion &&
-          #       tryinstall atom-development-server &&
-#          tryinstall platformio-ide-terminal &&
-#          tryinstall run-command &&
-  ## WHITELIST
-    tryinstall atom-terminal-panel &&
+    apm install atom-console &&
     atom --foreground "${HOME}/project" &&
     true

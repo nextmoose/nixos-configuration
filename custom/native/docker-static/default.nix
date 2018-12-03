@@ -10,7 +10,6 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir $out &&
-      cp ${emacs} $out/lib &&
       cp --recursive scripts $out/scripts &&
       chmod 0500 $out/scripts/* &&
       mkdir $out/lib &&
