@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  pass = $(import ../../installed/pass/default.nix {pkgs = pkgs;});
+  pass = $(import ../../installed/pass/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
   name = "dot-ssh";
