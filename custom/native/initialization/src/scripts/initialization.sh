@@ -7,12 +7,12 @@
     done &&
     nmcli device wifi list | grep "^\s" | cut --bytes 1-29 | sed -e "s#^\s*##" -e "s#\s*\$##" | while read SSID
     do
-      case ${SSID} in
+      case "${SSID}" in
         "Richmond Sq Guest":
           nmcli device wifi connect "${SSID}" password guestwifi &&
             true
         ;;
-        "56LY"
+        "56LY":
           nmcli device wifi connect "${SSID}" password "$(pass show wifi/${SSID})" &&
             true
         ;;
