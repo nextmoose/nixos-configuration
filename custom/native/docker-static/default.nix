@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       cp --recursive scripts $out/scripts &&
       chmod 0500 $out/scripts/* &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${firefox} ${read-only-pass} ${read-write-pass} $out/lib &&
+      ln --symbolic ${emacs} $out/lib &&
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
