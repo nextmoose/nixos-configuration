@@ -2,7 +2,7 @@
 let
   initialization = (import ./custom/native/initialization/default.nix {});
   foo = (import ./custom/native/foo/default.nix {});
-  systemd-service = import ./custom/utils/systemd-service.nix;
+  docker-static = (import ./custom/native/docker-static/default.nix {} );
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -76,7 +76,7 @@ in
     enable = true;
     serviceConfig = {
       Type = "forking";
-      ExecStart = "";
+      ExecStart = "${docker-static}/bin/docker-static --name emacs";
     };
     wantedBy = [ "default.target" ];
   };
