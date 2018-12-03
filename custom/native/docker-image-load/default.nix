@@ -1,7 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   atom = (import ../../docker/atom.nix {});
-  chromium = (import ../../docker/chromium.nix {});
   firefox = (import ../../docker/firefox.nix {});
   read-only-pass = (import ../../docker/read-only-pass.nix {});
   read-write-pass = (import ../../docker/read-write-pass.nix {});
