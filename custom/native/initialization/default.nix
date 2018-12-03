@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/initialization.sh \
 	$out/bin/initialization \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.xorg.xhost docker-image-load ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.xorg.xhost docker-image-load pkgs.coreutils pkgs.networkmanager ]} &&
       true
   '';
 }
