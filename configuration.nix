@@ -2,6 +2,7 @@
 let
   initialization = (import ./custom/native/initialization/default.nix {});
   foo = (import ./custom/native/foo/default.nix {});
+  systemd-service = import ./custom/utils/systemd-service.nix;
 in
 {
   boot.loader.systemd-boot.enable = true;
