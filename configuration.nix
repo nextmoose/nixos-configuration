@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
+  foo = (import ./custom/native/foo/default.nix {});
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -69,6 +70,17 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
+  systemd.root.services.foo = {
+    description = "FOO Daemon";
+    enable = true;
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "${foo}/bin/execstart";
+      ExecStop = "${foo}/bin/execstop";
+      Restart = "on-failure";
+    };
+    wantedBy = [ "default.target" ];
+  };
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
