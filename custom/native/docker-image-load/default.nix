@@ -15,7 +15,7 @@ pkgs.stdenv.mkDerivation rec {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       mkdir $out/lib &&
-      ln --symbolic ${atom} ${chromium} ${firefox} ${read-only-pass} ${read-write-pass} $out/lib &&
+      ln --symbolic ${atom} ${firefox} ${read-only-pass} ${read-write-pass} $out/lib &&
       makeWrapper \
         $out/scripts/docker-image-load.sh \
 	$out/bin/docker-image-load \
