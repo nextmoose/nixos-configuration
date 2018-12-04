@@ -1,7 +1,4 @@
 { pkgs ? import <nixpkgs> {} }:
-let
-  docker-image-pull = (import ../docker-image-load/default.nix {});
-in
 pkgs.stdenv.mkDerivation {
   name = "utils";
   src = ./src;
