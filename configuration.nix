@@ -106,7 +106,7 @@ in
       (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
-      (import ./custom/utils/pass/default.nix {
+      (import ./custom/utils/pass.old/default.nix {
         name = "foo";
         uuid = "uuid";
         origin-repository = "browser-secrets";
