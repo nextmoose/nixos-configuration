@@ -8,7 +8,7 @@
   enable = true;
   serviceConfig = {
     Type = "forking";
-    ExecStart = "${pkgs.docker}/bin/docker image ls";
+    ExecStart = "${pkgs.coreutils}/bin/cat ${image} | ${pkgs.docker}/bin/docker image ls";
   };
   wantedBy = [ "default.target"];
 }
