@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 let
+  docker-container-start = (import ./custom/native/docker-container-start { pkgs=pkgs;});
   docker-image-load = (import ./custom/native/docker-image-load { pkgs=pkgs;});
   initialization = (import ./custom/native/initialization/default.nix {});
   foo = (import ./custom/native/foo/default.nix {});
@@ -71,6 +72,14 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
+  systemd.services.docker-container-start-pass = {
+    description = "Docker Container Start pass";
+    enable = true;
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "${docker-container-start}/bin/docker-container-start --interactive --tty --rm --mount type=volume,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 --env DISPLAY --label uuid=5b22d9cd-3453-47aa-8e05-212de243da2a pass";
+    };
+  };
   systemd.services.docker-image-load = {
     description = "Docker Image Pull";
     enable = true;
