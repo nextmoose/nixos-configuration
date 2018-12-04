@@ -15,7 +15,7 @@ let
         true
     '';
     config = {
-      entrypoint = ${entrypoint};
+      entrypoint = $entrypoint;
       cmd = ${cmd};
       User = "user";
     };
