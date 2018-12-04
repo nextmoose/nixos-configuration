@@ -7,7 +7,7 @@
   enable = true;
   serviceConfig = {
     Type = "forking";
-    ExecStart = "echo hi";
+    ExecStart = "${coreutils}/bin/echo hi";
   };
   wantedBy = [ "default.target"];
 }
