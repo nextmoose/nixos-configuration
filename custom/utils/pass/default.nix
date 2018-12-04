@@ -12,7 +12,10 @@ pkgs.stdenv.mkDerivation {
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
+    echo HELLO WORLD &&
+    echo ALPHA 00100 &&
     mkdir $out &&
+      echo ALPHA 00200 &&
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
