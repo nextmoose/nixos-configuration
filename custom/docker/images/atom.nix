@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  atom = (import ../../atom/default.nix {});
-  git-refresh = (import ../../git-refresh/default.nix {});
+  atom = (import ../../../native/atom/default.nix {});
+  git-refresh = (import ../../../native/git-refresh/default.nix {});
 in
 pkgs.dockerTools.buildImage {
   name = "atom";

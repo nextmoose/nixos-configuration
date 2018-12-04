@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  pass = (import ../../pass/default.nix {});
+  pass = (import ../../../native/pass/default.nix {});
 in
 pkgs.dockerTools.buildImage {
   name = "pass";
