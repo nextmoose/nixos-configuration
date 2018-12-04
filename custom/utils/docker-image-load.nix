@@ -20,7 +20,7 @@ in
   serviceConfig = {
     Type = "forking";
     ExecStart = "${docker-image-load}/bin/docker-image-load ${image}";
-    ExecStop = "${coreutils}/bin/echo ${pkgs.docker}/bin/docker image rm ${name}";
+    ExecStop = "${pkgs.coreutils}/bin/echo ${pkgs.docker}/bin/docker image rm ${name}";
     wtf = "1";
   };
   wantedBy = [ "default.target"];
