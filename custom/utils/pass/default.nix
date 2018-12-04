@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/pass.sh \
-        $out/bin/pass \
+        $out/bin/${name} \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]}
   '';
 }
