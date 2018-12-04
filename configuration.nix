@@ -107,7 +107,7 @@ in
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
       (import ./custom/utils/pass/default.nix {
-        name = "crazy";
+        name = "foo";
         uuid = "uuid";
         origin-repository = "browser-secrets";
       })

@@ -8,12 +8,9 @@ let
   pass = (import ../../../installed/pass/default.nix {});
 in
 pkgs.stdenv.mkDerivation {
-  name = "${pass}";
+  name = "${name}";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
-    echo HELLO WORLD &&
-    echo ALPHA 00100 &&
-      true
   '';
 }
