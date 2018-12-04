@@ -1,7 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  name,
-  image
+  name
 }:
 {
   description = "Docker Image Pull -- ${name}";
