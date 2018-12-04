@@ -10,7 +10,7 @@ pkgs.stdenv.mkDerivation rec {
       mkdir $out/bin &&
       makeWrapper \
         $out/scripts/docker-container-start.sh \
-	         $out/bin/container-start \
+	         $out/bin/docker-container-start \
 	          --set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} &&
       true
   '';
