@@ -12,5 +12,13 @@ pkgs.stdenv.mkDerivation {
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
+    mkdir $out &&
+      cp --recursive scripts $out &&
+      chmod 0500 $out/scripts/*.sh &&
+      mkdir $out/bin &&
+      makeWrapper \
+        $out/scripts/pass.sh \
+        $out/bin/pass \
+        --set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]}
   '';
 }
