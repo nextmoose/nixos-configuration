@@ -19,5 +19,4 @@
       esac &&
         true
     done &&
-    docker-image-load emacs &&
     true

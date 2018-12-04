@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   docker-container-start = (import ./custom/native/docker-container-start { pkgs=pkgs;});
-  docker-image-load = (import ./custom/native/docker-image-load { pkgs=pkgs;});
   initialization = (import ./custom/native/initialization/default.nix {});
   foo = (import ./custom/native/foo/default.nix {});
 in
@@ -74,17 +73,8 @@ in
   system.stateVersion = "18.03";
   systemd.services.docker-image-load-foo = (import ./custom/utils/docker-image-load.nix{
     name = "foo";
-    image = (import ./custom/native/docker-image-load/docker/foo.nix {});
+    image = (import ./custom/docker/image/foo.nix {});
   });
-  systemd.services.docker-image-load = {
-    description = "Docker Image Pull";
-    enable = true;
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "${docker-image-load}/bin/docker-image-load";
-    };
-    wantedBy = [ "default.target" ];
-  };
   systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;

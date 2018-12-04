@@ -1,7 +1,4 @@
 { pkgs ? import <nixpkgs> {} }:
-let
-  docker-image-load = (import ../docker-image-load/default.nix {});
-in
 pkgs.stdenv.mkDerivation rec {
   name = "initialization";
   src = ./src;
@@ -14,7 +11,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/initialization.sh \
 	$out/bin/initialization \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.xorg.xhost docker-image-load pkgs.coreutils pkgs.networkmanager pkgs.gnugrep pkgs.gnused ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.xorg.xhost pkgs.coreutils pkgs.networkmanager pkgs.gnugrep pkgs.gnused ]} &&
       true
   '';
 }
