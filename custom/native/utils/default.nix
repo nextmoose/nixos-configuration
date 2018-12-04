@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/update-system.sh \
 	$out/bin/update-system \
-	--set PATH ${pkgs.lib.makeBinPath [ "/run/wrappers" "/run/current-system/sw" pkgs.coreutils pkgs.rsync pkgs.mktemp pkgs.nix pkgs.docker docker-image-pull pkgs.mktemp pkgs.git ]} \
+	--set PATH ${pkgs.lib.makeBinPath [ "/run/wrappers" "/run/current-system/sw" pkgs.coreutils pkgs.rsync pkgs.mktemp pkgs.nix pkgs.docker pkgs.mktemp pkgs.git ]} \
 	--set STORE_DIR "$out" &&
       true
   '';

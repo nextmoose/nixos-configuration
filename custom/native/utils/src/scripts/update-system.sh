@@ -93,7 +93,6 @@ GARBAGE="no" &&
 		true
 	done &&
 	    docker system prune --force --all --volumes &&
-	    docker-image-load &&
 	    true
     fi &&
     true
