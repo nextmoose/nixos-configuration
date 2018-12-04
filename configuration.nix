@@ -73,7 +73,7 @@ in
   system.stateVersion = "18.03";
   systemd.services.docker-image-load-foo = (import ./custom/utils/docker-image-load.nix{
     name = "foo";
-    image = (import ./custom/docker/image/foo.nix {});
+    image = (import ./custom/docker/images/foo.nix {});
   });
   systemd.services.foo = {
     description = "FOO Daemon";
