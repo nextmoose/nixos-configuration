@@ -72,9 +72,12 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.fooimage = (import ./custom/utils/docker-image-load.nix{
+  systemd.services.docker-image-foo = (import ./custom/utils/docker-image-load.nix{
+    pkgs = ${pkgs};
     name = "foo";
-    image = (import ./custom/native/docker-image-load/docker/foo.nix {});
+    image = (import ./custom/native/docker-image-load/docker/foo.nix {
+      pkgs = ${pkgs};
+    });
   });
   systemd.services.docker-image-load = {
     description = "Docker Image Pull";

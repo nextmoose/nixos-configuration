@@ -8,7 +8,7 @@
   enable = true;
   serviceConfig = {
     Type = "forking";
-    ExecStart = "cat ${image} | docker image load";
+    ExecStart = "echo hi";
   };
   wantedBy = [ "default.target"];
 }
