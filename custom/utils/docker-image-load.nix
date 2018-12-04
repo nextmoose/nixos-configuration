@@ -4,7 +4,7 @@
   image
 }:
 {
-  description = "X2 Docker Image Pull -- ${name}";
+  description = "X3 Docker Image Pull -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "forking";
