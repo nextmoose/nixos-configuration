@@ -72,14 +72,10 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.docker-container-start-pass = {
-    description = "Docker Container Start pass";
-    enable = true;
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "${docker-container-start}/bin/docker-container-start --interactive --tty --rm --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 --env DISPLAY --label uuid=5b22d9cd-3453-47aa-8e05-212de243da2a pass";
-    };
-  };
+  systemd.services.fooimage = (import ./custom/utils/docker-image-load.nix{
+    name = "foo";
+    image = (import ./custom/native/docker-image-load/docker/foo.nix {});
+  });
   systemd.services.docker-image-load = {
     description = "Docker Image Pull";
     enable = true;
