@@ -15,13 +15,12 @@ let
   };
 in
 {
-  description = "X3 Docker Image Pull -- ${name}";
+  description = "X4 Docker Image Pull -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "forking";
     ExecStart = "${docker-image-load}/bin/docker-image-load ${image}";
     ExecStop = "${pkgs.coreutils}/bin/echo ${pkgs.docker}/bin/docker image rm ${name}";
-    wtf = "1";
   };
   wantedBy = [ "default.target"];
 }
