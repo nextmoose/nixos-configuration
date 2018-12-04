@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 $out/scripts/*.sh &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/bin/scripts/docker-image-load.sh \
+        $out/scripts/docker-image-load.sh \
         $out/bin/docker-image-load \
          --set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker ]} &&
        true
