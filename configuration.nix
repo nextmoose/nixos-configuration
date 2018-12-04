@@ -121,6 +121,7 @@ in
       pkgs.unzip
       pkgs.chromium
       pkgs.physlock
+      pkgs.nixops
     ];
   };
   virtualisation.docker = {
