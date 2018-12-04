@@ -74,7 +74,7 @@ in
   system.stateVersion = "18.03";
   systemd.services.docker-image-load-foo = (import ./custom/utils/docker-image-load.nix{
     name = "foo";
-    image = (import ./custom/native/docker-image-load/docker/pass.git {});
+    image = (import ./custom/native/docker-image-load/docker/foo.git {});
   });
   systemd.services.docker-image-load = {
     description = "Docker Image Pull";
