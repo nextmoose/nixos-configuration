@@ -1,6 +1,8 @@
 {
   pkgs ? import <nixpkgs> {},
-  name
+  name,
+  entrypoint,
+  cmd ? []
 }:
 let
   docker-image-load = (import ../native/docker-image-load/default.nix {} );
@@ -12,6 +14,11 @@ let
         useradd --create-home user &&
         true
     '';
+    config = {
+      entrypoint = ${entrypoint};
+      cmd = ${cmd};
+      User = "user";
+    };
   };
 in
 {
