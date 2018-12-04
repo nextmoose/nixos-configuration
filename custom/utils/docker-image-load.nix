@@ -7,7 +7,7 @@
   enable = true;
   serviceConfig = {
     Type = "forking";
-    ExecStart = "${coreutils}/bin/echo hi";
+    ExecStart = "${pkgs.coreutils}/bin/echo hi";
   };
   wantedBy = [ "default.target"];
 }
