@@ -1,5 +1,5 @@
 #!/bin/sh
 
 CID=$(docker container create "${@}") &&
-  docker container --interactive start "${CID}" &&
+  docker container start --interactive "${CID}" &&
   true
