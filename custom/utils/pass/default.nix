@@ -13,25 +13,7 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     echo HELLO WORLD &&
-    echo ALPHA 00100 &&g
-    mkdir $out &&
-      echo ALPHA 00200 &&
-      cp --recursive scripts $out &&
-      chmod 0500 $out/scripts/* &&
-      mkdir $out/bin &&
-      makeWrapper \
-        $out/scripts/pass.sh \
-	$out/bin/${name} \
-	--set COMMITTER_NAME "Emory Merryman" \
-	--set COMMITTER_EMAIL "emory.merryman@gmail.com" \
-	--set ORIGIN_HOST "github.com" \
-	--set ORIGIN_USER "git" \
-	--set ORIGIN_PORT "22" \
-	--set ORIGIN_ORGANIZATION "nextmoose" \
-	--set ORIGIN_REPOSITORY "${origin-repository}" \
-	--set ORIGIN_BRANCH "master" \
-	--set UUID "${uuid}" \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.docker pass ]} &&
+    echo ALPHA 00100 &&
       true
   '';
 }
