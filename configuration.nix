@@ -86,7 +86,6 @@ in
     serviceConfig = {
       Type = "forking";
       ExecStart = "${docker-image-load}/bin/docker-image-load";
-      ExecStop = "docker image prune --force --all"
     };
     wantedBy = [ "default.target" ];
   };
