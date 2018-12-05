@@ -70,11 +70,11 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.docker-container-foo = (import ./custom/utils/docker-container-start.nix {
+  systemd.services.docker-container-foo = (import ./custom/utils/docker-container.nix {
     image = "foo";
     name = "foo";
   });
-  systemd.services.docker-image-foo = (import ./custom/utils/docker-image-load.nix{
+  systemd.services.docker-image-foo = (import ./custom/utils/docker-image.nix{
     name = "foo";
     entrypoint = [ "${pkgs.pass}/bin/pass" ];
   });
