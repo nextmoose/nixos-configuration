@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
-  foo = (import ./custom/native/foo/default.nix {
+  pass = (import ./custom/native/foo/default.nix {
     pkgs = pkgs;
   });
 in
@@ -71,16 +71,18 @@ in
     };
   };
   sound.enable = true;
+  systemd.services =
+    docker-container-foo = (import ./custom/utils/docker-container.nix {
+      image = "foo";
+      name = "foo";
+    });
+    docker-image-foo = (import ./custom/utils/docker-image.nix{
+      name = "foo";
+      entrypoint = [ "${foo}/bin/foo" ];
+      contents = [ pkgs.pass ];
+    });
+  });
   system.stateVersion = "18.03";
-  systemd.services.docker-container-foo = (import ./custom/utils/docker-container.nix {
-    image = "foo";
-    name = "foo";
-  });
-  systemd.services.docker-image-foo = (import ./custom/utils/docker-image.nix{
-    name = "foo";
-    entrypoint = [ "${foo}/bin/foo" ];
-    contents = [ pkgs.pass ];
-  });
   systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;
