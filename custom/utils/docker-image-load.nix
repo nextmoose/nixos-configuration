@@ -7,7 +7,7 @@
 let
   docker-image-load = (import ../native/docker-image-load/default.nix {} );
   image = pkgs.dockerTools.buildImage {
-    name = "${name}";
+    name = name;
     runAsRoot = ''
       ${pkgs.dockerTools.shadowSetup}
         mkdir /home &&
@@ -22,7 +22,7 @@ let
   };
 in
 {
-  description = "X5 Docker Image Load -- ${name}";
+  description = "X6 Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "forking";
