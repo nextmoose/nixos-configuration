@@ -2,7 +2,7 @@
 let
   sleep-forever = (import ../sleep-forever/default.nix {
     pkgs = pkgs;
-  });
+    });
 pkgs.stdenv.mkDerivation {
   name = "foo";
   src = ./src;
