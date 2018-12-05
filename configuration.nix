@@ -101,13 +101,13 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
+      (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
       (import ./custom/native/create-installation-media/default.nix {})
       (import ./custom/native/validate-not-blank/default.nix {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
-      (import ./custom/user/alpha-pass/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/user/old-secrets/default.nix {})
       (import ./custom/utils/pass.old/default.nix {
@@ -126,7 +126,6 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
-      pass
     ];
   };
   virtualisation.docker = {
