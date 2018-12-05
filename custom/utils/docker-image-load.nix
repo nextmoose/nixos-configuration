@@ -22,10 +22,10 @@ let
   };
 in
 {
-  description = "X8 Docker Image Load -- ${name}";
+  description = "XA Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
-    Type = "forking";
+    Type = "simple";
     ExecStart = "${docker-image-load}/bin/docker-image-load ${image}";
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
   };
