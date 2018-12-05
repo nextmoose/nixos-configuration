@@ -11,8 +11,9 @@ let
     contents = contents;
     runAsRoot = ''
       ${pkgs.dockerTools.shadowSetup}
-        mkdir /home &&
+        mkdir /home /tmp &&
         useradd --create-home user &&
+        chmod 1777 /tmp &&
         true
     '';
     config = {
