@@ -12,7 +12,7 @@
     ExecStop = "docker container stop ${name}";
     RemainAfterExit = "yes";
   };
-  after = "docker-image-${name}.service";
-  requires = "docker-image-${name}.service";
+  after = [ "docker-image-${name}.service" ] ;
+  requires = [ "docker-image-${name}.service" ] ;
   wantedBy = [ "default.target"];
 }

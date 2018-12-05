@@ -29,7 +29,7 @@ in
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
     RemainAfterExit = "yes";
   };
-  after = "docker.service";
-  requires = "docker.service";
+  after = [ "docker.service" ] ;
+  requires = [ "docker.service" ] ;
   wantedBy = [ "default.target"];
 }
