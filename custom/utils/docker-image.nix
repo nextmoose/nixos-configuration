@@ -2,11 +2,13 @@
   pkgs ? import <nixpkgs> {},
   name,
   entrypoint,
-  cmd ? []
+  cmd ? [],
+  contents ? []
 }:
 let
   image = pkgs.dockerTools.buildImage {
     name = name;
+    contents = contents;
     runAsRoot = ''
       ${pkgs.dockerTools.shadowSetup}
         mkdir /home &&
