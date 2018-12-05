@@ -22,12 +22,12 @@ let
   };
 in
 {
-  description = "XE Docker Image Service -- ${name}";
+  description = "XF Docker Image Service -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "simple";
     ExecStart = "${pkgs.docker}/bin/docker image load --quiet --input ${image}";
-    ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
+    ExecStop = "${pkgs.coreutils}/bin/echo ${pkgs.docker}/bin/docker image rm --force ${name}";
   };
   wantedBy = [ "default.target"];
 }
