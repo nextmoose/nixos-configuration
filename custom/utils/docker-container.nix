@@ -1,5 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
+  pass ? (import ../../installed/pass.nix{ inherit pkgs;} );
   image,
   name
 }:
@@ -8,7 +9,7 @@
   enable = true;
   serviceConfig = {
     Type = "simple";
-    ExecStart = "${pkgs.docker}/bin/docker container run --interactive --rm  --env DISPLAY --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 --name ${name} ${image}";
+    ExecStart = "${pkgs.docker}/bin/docker container run --interactive --rm --env DISPLAY --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 --name ${name} ${image}";
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
     RemainAfterExit = "yes";
   };
