@@ -71,7 +71,7 @@ in
     };
   };
   sound.enable = true;
-  systemd.services =
+  systemd.services = {
     docker-container-foo = (import ./custom/utils/docker-container.nix {
       image = "foo";
       name = "foo";
@@ -81,7 +81,7 @@ in
       entrypoint = [ "${foo}/bin/foo" ];
       contents = [ pkgs.pass ];
     });
-  });
+  };
   system.stateVersion = "18.03";
   systemd.services.foo = {
     description = "FOO Daemon";
