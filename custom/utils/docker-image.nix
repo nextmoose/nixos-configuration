@@ -13,7 +13,7 @@ let
       ${pkgs.dockerTools.shadowSetup}
         mkdir /home /tmp &&
         useradd --create-home user &&
-        chmod 1777 /tmp &&
+        chmod 0777 /tmp &&
         true
     '';
     config = {
