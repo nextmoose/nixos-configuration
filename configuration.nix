@@ -79,7 +79,7 @@ in
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
       cmd = [ "world" ];
-      entrypoint = [ "${pkgs.coreutils}/bin/echo" ];
+      entrypoint = [ "${pass}/bin/foo" ];
       contents = [ pkgs.pass pkgs.bash pkgs.coreutils ];
     });
   };
