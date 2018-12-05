@@ -126,6 +126,7 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
+      ${pass}
     ];
   };
   virtualisation.docker = {
