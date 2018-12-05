@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 let
   initialization = (import ./custom/native/initialization/default.nix {});
-  foo = (import ./custom/native/foo/default.nix {});
-  pass = (import ./custom/native/pass/default.nix{
+  foo = (import ./custom/native/foo/default.nix {
     pkgs = pkgs;
   });
 in
@@ -79,7 +78,7 @@ in
   });
   systemd.services.docker-image-foo = (import ./custom/utils/docker-image.nix{
     name = "foo";
-    entrypoint = [ "${pass}/bin/pass" ];
+    entrypoint = [ "${foo}/bin/foo" ];
     contents = [ pkgs.pass ];
   });
   systemd.services.foo = {

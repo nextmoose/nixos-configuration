@@ -1,4 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
+let
+  sleep-forever = (import ../sleep-forever/default.nix {
+    pkgs = pkgs;
+  });
 pkgs.stdenv.mkDerivation {
   name = "foo";
   src = ./src;
@@ -9,13 +13,9 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/execstart.sh \
-	      $out/bin/execstart \
-	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
-        makeWrapper \
-          $out/scripts/execstop.sh \
-  	      $out/bin/execstop \
-  	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
+        $out/scripts/foo.sh \
+	      $out/bin/foo \
+	      --set PATH ${pkgs.lib.makeBinPath [ sleep-forever ]} &&
       true
   '';
 }
