@@ -8,4 +8,5 @@ echo HELLO &&
       true
   done &&
   cat "${@}" | docker image load &&
+  echo "GOOD BYE" &&
   true

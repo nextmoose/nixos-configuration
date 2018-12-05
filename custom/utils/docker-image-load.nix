@@ -22,7 +22,7 @@ let
   };
 in
 {
-  description = "XA Docker Image Load -- ${name}";
+  description = "XB Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "simple";
