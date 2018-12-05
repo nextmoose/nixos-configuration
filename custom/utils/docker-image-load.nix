@@ -22,7 +22,7 @@ let
   };
 in
 {
-  description = "X4 Docker Image Pull -- ${name}";
+  description = "X5 Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "forking";
