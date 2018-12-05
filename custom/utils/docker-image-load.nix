@@ -5,7 +5,6 @@
   cmd ? []
 }:
 let
-  docker-image-load = (import ../native/docker-image-load/default.nix {} );
   image = pkgs.dockerTools.buildImage {
     name = name;
     runAsRoot = ''
@@ -22,7 +21,7 @@ let
   };
 in
 {
-  description = "X2 Docker Image Service -- ${name}";
+  description = "Docker Image Service -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "simple";
@@ -30,5 +29,7 @@ in
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
     RemainAfterExit = "yes";
   };
+  after = "docker.service";
+  requires = "docker.service";
   wantedBy = [ "default.target"];
 }
