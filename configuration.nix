@@ -73,7 +73,7 @@ in
   systemd.services.docker-container-foo = (import ./custom/utils/docker-container-start.nix {
     image = "foo";
     name = "foo";
-  })
+  });
   systemd.services.docker-image-foo = (import ./custom/utils/docker-image-load.nix{
     name = "foo";
     entrypoint = [ "${pkgs.pass}/bin/pass" ];
