@@ -1,4 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
+let
+  pass = (import ../../installed/pass/default.nix{
+    pkgs = pkgs;
+  });
+in
 pkgs.stdenv.mkDerivation rec {
   name = "gnupg-import";
   src = ./src;
@@ -11,8 +16,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/gnupg-import.sh \
 	$out/bin/gnupg-import \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.gnupg pkgs.mktemp pkgs.coreutils ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.gnupg pkgs.mktemp pkgs.coreutils ]} &&
       true
   '';
 }
-

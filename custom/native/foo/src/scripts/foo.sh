@@ -1,4 +1,6 @@
 #!/bin/sh
 
-sleep-forever &&
+gnupg-import &&
+  pass init $(gnupg-key-id) &&
+  sleep-forever &&
   true
