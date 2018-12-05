@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/gnupg-import.sh \
 	$out/bin/gnupg-import \
-	--set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.gnupg pkgs.mktemp pkgs.coreutils ]} &&
+	--set PATH ${pkgs.lib.makeBinPath [ pass pkgs.gnupg pkgs.mktemp pkgs.coreutils ]} &&
       true
   '';
 }
