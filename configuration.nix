@@ -79,7 +79,7 @@ in
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
       entrypoint = [ "${pass}/bin/foo" ];
-      contents = [ pkgs.pass ];
+      contents = [ pkgs.pass pkgs.bash pkgs.coreutils ];
     });
   };
   system.stateVersion = "18.03";
