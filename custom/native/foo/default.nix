@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/foo.sh \
 	      $out/bin/foo \
-	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils gnupg-import gnupg-key-id sleep-forever ]} &&
+	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.coreutils gnupg-import gnupg-key-id sleep-forever ]} &&
       true
   '';
 }
