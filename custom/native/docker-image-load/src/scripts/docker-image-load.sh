@@ -1,4 +1,5 @@
 #!/bin/sh
 
-cat "${@}" | docker image load &&
+echo "${@}" &&
+  cat "${@}" | docker image load &&
   true
