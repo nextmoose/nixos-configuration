@@ -1,6 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  sleep-forever = (import ../sleep-forever/default.nix {} );
+  sleep-forever = (import ../sleep-forever/default.nix {
+    pkgs = pkgs;
+  } );
+in
 pkgs.stdenv.mkDerivation {
   name = "foo";
   src = ./src;
