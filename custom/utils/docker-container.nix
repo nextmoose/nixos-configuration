@@ -1,6 +1,8 @@
 {
   pkgs ? import <nixpkgs> {},
-  pass ? (import ../../installed/pass.nix{ inherit pkgs;} );
+  pass ? (import ../../installed/pass.nix{
+    pkgs = pkgs;
+  });
   image,
   name
 }:
