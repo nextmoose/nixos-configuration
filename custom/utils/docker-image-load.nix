@@ -22,7 +22,7 @@ let
   };
 in
 {
-  description = "X7 Docker Image Load -- ${name}";
+  description = "X8 Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "forking";
