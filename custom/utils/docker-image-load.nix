@@ -22,11 +22,11 @@ let
   };
 in
 {
-  description = "XC Docker Image Load -- ${name}";
+  description = "XD Docker Image Load -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "simple";
-    ExecStart = "${pkgs.docker}/bin/docker image load --input ${image}";
+    ExecStart = "${pkgs.docker}/bin/docker image load --input --quiet ${image}";
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
   };
   wantedBy = [ "default.target"];
