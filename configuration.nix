@@ -78,7 +78,8 @@ in
     });
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
-      entrypoint = [ "${pass}/bin/foo" ];
+      cmd = [ "world" ];
+      entrypoint = [ "${pkgs.coreutils}/bin/echo" ];
       contents = [ pkgs.pass pkgs.bash pkgs.coreutils ];
     });
   };
