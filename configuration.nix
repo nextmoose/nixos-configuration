@@ -76,7 +76,7 @@ in
   });
   systemd.services.docker-image-foo = (import ./custom/utils/docker-image.nix{
     name = "foo";
-    entrypoint = [ "${pkgs.pass}/bin/pass" ];
+    entrypoint = [ "(import ../custom/native/pass/default.nix {})/bin/pass" ];
   });
   systemd.services.foo = {
     description = "FOO Daemon";
