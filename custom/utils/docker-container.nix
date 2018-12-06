@@ -3,11 +3,10 @@
   image,
   name,
   privileged ? false,
-  arguments ?  []
+  arguments ?  ""
 }:
 let
   privileged-flag = (if privileged then "--privileged" else "");
-  args = (elemAt arguments 1);
 in
 {
   description = "Docker Container Service -- ${name}";
@@ -25,7 +24,7 @@ in
         --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 \
         --name ${name} \
         ${image} \
-        ${args}
+        ${arguments}
       '';
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
     RemainAfterExit = "yes";
