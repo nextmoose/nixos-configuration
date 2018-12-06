@@ -33,14 +33,27 @@ do
       shift 2 &&
       true
   ;;
+  *)
+    echo Unknown Option &&
+      echo "${1}" &&
+      echo "${0}" &&
+      echo "${@}" &&
+      exit 66 &&
+      true
+  ;;
   esac &&
     true
 done &&
-  gnupg &&
-  dot-ssh --origin-host "${ORIGIN_HOST}" --origin-user "${ORIGIN_USER}" --origin-port "${ORIGIN_PORT}" &&
-  pass init $(gpg-key-id) &&
-  pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
-  pass git fetch origin "${ORIGIN_BRANCH}" &&
- pass git checkout "${ORIGIN_BRANCH}" &&
- ln --symbolic "$(which post-commit)" "${HOME}/.password-store/.git/hooks" &&
+  if [ ! -f "${HOME}/.finger" ]
+  then
+    gnupg &&
+      dot-ssh --origin-host "${ORIGIN_HOST}" --origin-user "${ORIGIN_USER}" --origin-port "${ORIGIN_PORT}" &&
+      pass init $(gpg-key-id) &&
+      pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+      pass git fetch origin "${ORIGIN_BRANCH}" &&
+      pass git checkout "${ORIGIN_BRANCH}" &&
+      ln --symbolic "$(which post-commit)" "${HOME}/.password-store/.git/hooks" &&
+      touch "${HOME}/.finger" &&
+      true
+  fi &&
 true
