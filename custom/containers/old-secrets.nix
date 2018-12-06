@@ -11,10 +11,10 @@ let
     pkgs = pkgs;
     pass = pass;
   });
-  gpg-key-id = (import ../../native/gpg-key-id/default.nix {
+  gpg-key-id = (import ../native/gpg-key-id/default.nix {
     pkgs = pkgs;
   });
-  post-commit = (import ../../native/post-commit/default.nix {
+  post-commit = (import ../native/post-commit/default.nix {
     pkgs = pkgs;
   });
 in
