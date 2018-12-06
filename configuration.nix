@@ -88,6 +88,10 @@ in
       name = "old-secrets";
       arguments = "github.com git 22 desertedscorpion passwordstore master";
     });
+    docker-image-pass = (import ./custom/utils/docker-image.nix {
+      name = "pass";
+      entrypoint = [ "${pkgs.pass}/bin/pass" ];
+    });
   };
   system.stateVersion = "18.03";
   systemd.services.foo = {
