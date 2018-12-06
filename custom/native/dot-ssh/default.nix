@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 let
-  pass = (import ../../../installed/pass.sh{
+  pass = (import ../../installed/pass.sh{
     pkgs = pkgs;
   });
 in
