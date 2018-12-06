@@ -11,6 +11,9 @@ let
     pkgs = pkgs;
     pass = pass;
   });
+  gpg-key-id = (import ../../native/gpg-key-id/default.nix {
+    pkgs = pkgs;
+  });
 in
 stdenv.mkDerivation {
   name = "pass";
@@ -24,6 +27,7 @@ stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/pass.sh \
         $out/bin/pass \
-
+        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gpg-key-id pkgs.pass ]} &&
+      true
   ''
 }
