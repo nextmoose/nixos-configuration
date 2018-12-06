@@ -86,6 +86,7 @@ in
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
       entrypoint = [ "${pass}/bin/pass" ];
+      contents = [ pkgs.pass ];
     });
   };
   system.stateVersion = "18.03";
