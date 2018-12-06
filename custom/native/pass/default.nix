@@ -12,7 +12,7 @@ let
   sleep-forever = (import ../sleep-forever/default.nix {} );
 in
 pkgs.stdenv.mkDerivation {
-  name = "foo";
+  name = "pass";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
@@ -21,8 +21,8 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 $out/scripts/* &&
       mkdir $out/bin &&
       makeWrapper \
-        $out/scripts/foo.sh \
-	      $out/bin/foo \
+        $out/scripts/pass.sh \
+	      $out/bin/pass \
 	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.coreutils gnupg-import gnupg-key-id dot-ssh sleep-forever ]} &&
       true
   '';
