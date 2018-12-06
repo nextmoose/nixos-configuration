@@ -25,7 +25,7 @@ in
         --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 \
         --name ${name} \
         ${image} \
-        ${arguments}
+        ${args}
       '';
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
     RemainAfterExit = "yes";
