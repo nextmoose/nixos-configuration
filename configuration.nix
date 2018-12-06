@@ -78,6 +78,11 @@ in
       privileged = true;
       arguments = "github.com git 22 nextmoose secrets master";
     });
+    docker-container-foo2 = (import ./custom/utils/docker-container.nix {
+      image = "foo";
+      name = "foo2";
+      arguments = "github.com git 22 nextmoose browser-secrets master";
+    });
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
       cmd = [ "world" ];
