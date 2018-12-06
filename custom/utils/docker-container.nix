@@ -29,7 +29,7 @@ in
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
     RemainAfterExit = "yes";
   };
-  after = [ "docker-image-${name}.service" ] ;
-  requires = [ "docker-image-${name}.service" ] ;
+  after = [ "docker-image-${image}.service" ] ;
+  requires = [ "docker-image-${image}.service" ] ;
   wantedBy = [ "default.target"];
 }
