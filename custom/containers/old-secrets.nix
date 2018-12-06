@@ -31,7 +31,7 @@ in
           pass git remote add origin origin:desertedscorpion/passwordstore.git &&
           pass git fetch origin master &&
           pass git checkout master &&
-          ${coreutils}/bin/ln -sf ${post-commit}/bin/post-commit /home/user/.password-store/.git/hooks &&
+          ${pkgs.coreutils}/bin/ln -sf ${post-commit}/bin/post-commit /home/user/.password-store/.git/hooks &&
           true
       '';
     };
