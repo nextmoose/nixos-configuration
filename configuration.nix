@@ -72,27 +72,21 @@ in
   };
   sound.enable = true;
   systemd.services = {
-    docker-container-foo = (import ./custom/utils/docker-container.nix {
-      image = "foo";
-      name = "foo";
+    docker-container-system-secrets = (import ./custom/utils/docker-container.nix {
+      image = "pass";
+      name = "system-secrets";
       privileged = true;
       arguments = "github.com git 22 nextmoose secrets master";
     });
     docker-container-browser-secrets = (import ./custom/utils/docker-container.nix {
-      image = "foo";
+      image = "pass";
       name = "browser-secrets";
       arguments = "github.com git 22 nextmoose browser-secrets master";
     });
     docker-container-old-secrets = (import ./custom/utils/docker-container.nix {
-      image = "foo";
+      image = "pass";
       name = "old-secrets";
       arguments = "github.com git 22 desertedscorpion passwordstore master";
-    });
-    docker-image-foo = (import ./custom/utils/docker-image.nix{
-      name = "foo";
-      cmd = [ "world" ];
-      entrypoint = [ "${pass}/bin/foo" ];
-      contents = [ pkgs.pass pkgs.bash pkgs.coreutils ];
     });
   };
   system.stateVersion = "18.03";
@@ -138,8 +132,8 @@ in
       pkgs.nixops
       (import ./custom/utils/pass/default.nix {
         pkgs = pkgs;
-        name = "old-secrets";
-        container-name = "old-secrets";
+        name = "system-secrets";
+        container-name = "system-secrets";
         script-name = "pass";
       })
       (import ./custom/utils/pass/default.nix {
