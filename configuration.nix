@@ -75,13 +75,13 @@ in
     docker-container-foo = (import ./custom/utils/docker-container.nix {
       image = "foo";
       name = "foo";
+      privileged = true;
     });
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
       cmd = [ "world" ];
       entrypoint = [ "${pass}/bin/foo" ];
       contents = [ pkgs.pass pkgs.bash pkgs.coreutils ];
-      privileged = true;
     });
   };
   system.stateVersion = "18.03";
