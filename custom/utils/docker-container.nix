@@ -12,7 +12,7 @@ in
   description = "Docker Container Service -- ${name}";
   enable = true;
   serviceConfig = {
-    Type = "oneshot";
+    Type = "simple";
     ExecStart = ''
       ${pkgs.docker}/bin/docker \
         container \
