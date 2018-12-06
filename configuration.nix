@@ -78,10 +78,15 @@ in
       privileged = true;
       arguments = "github.com git 22 nextmoose secrets master";
     });
-    docker-container-foo2 = (import ./custom/utils/docker-container.nix {
+    docker-container-browser-secrets = (import ./custom/utils/docker-container.nix {
       image = "foo";
-      name = "foo2";
+      name = "browser-secrets";
       arguments = "github.com git 22 nextmoose browser-secrets master";
+    });
+    docker-container-old-secrets = (import ./custom/utils/docker-container.nix {
+      image = "foo";
+      name = "old-secrets";
+      arguments = "github.com git 22 desertedscorpion passwordstore master";
     });
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";
