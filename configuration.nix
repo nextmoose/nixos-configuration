@@ -120,7 +120,6 @@ in
       (import ./custom/native/validate-not-blank/default.nix {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
-      (import ./custom/user/browser-secrets/default.nix {})
       (import ./custom/utils/pass.old/default.nix {
         name = "foo";
         uuid = "uuid";
@@ -141,6 +140,18 @@ in
         pkgs = pkgs;
         name = "old-secrets";
         container-name = "old-secrets";
+        script-name = "pass";
+      })
+      (import ./custom/utils/pass/default.nix {
+        pkgs = pkgs;
+        name = "old-secrets";
+        container-name = "old-secrets";
+        script-name = "pass";
+      })
+      (import ./custom/utils/pass/default.nix {
+        pkgs = pkgs;
+        name = "browser-secrets";
+        container-name = "browser-secrets";
         script-name = "pass";
       })
     ];
