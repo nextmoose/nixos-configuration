@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
   name = "pass";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
-  install = ''
+  installPhase = ''
     mkdir $out &&
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
