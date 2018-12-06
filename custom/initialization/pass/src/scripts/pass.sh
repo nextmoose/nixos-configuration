@@ -43,4 +43,4 @@ done &&
   pass git fetch origin "${ORIGIN_BRANCH}" &&
  pass git checkout "${ORIGIN_BRANCH}" &&
  ln --symbolic "$(which post-commit)" "${HOME}/.password-store/.git/hooks" &&
-#  true
+true
