@@ -28,7 +28,7 @@ in
   enable = true;
   serviceConfig = {
     Type = "simple";
-    ExecStart = "${pkgs.docker}/bin/docker image load --input ${image}";
+    ExecStart = "${pkgs.docker}/bin/docker image load --quiet --input ${image}";
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
     RemainAfterExit = "yes";
   };
