@@ -16,8 +16,8 @@ in
     ExecStart = ''
       ${pkgs.docker}/bin/docker \
         container \
-        ${privileged-flag} \
         run \
+        ${privileged-flag} \
         --interactive \
         --rm \
         --env DISPLAY \
