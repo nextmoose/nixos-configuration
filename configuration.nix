@@ -16,6 +16,14 @@ in
       pkgs = pkgs;
       pass = installed-pass;
     });
+    browser-secrets = (import ./custom/containers/browser-secrets.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
+    system-secrets = (import ./custom/containers/system-secrets.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
   };
   hardware = {
     pulseaudio.enable = true;
