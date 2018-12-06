@@ -76,6 +76,7 @@ in
       image = "foo";
       name = "foo";
       privileged = true;
+      arguments = [ "github.com", "git", "22", "nextmoose", "secrets"];
     });
     docker-image-foo = (import ./custom/utils/docker-image.nix{
       name = "foo";

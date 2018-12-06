@@ -2,7 +2,8 @@
   pkgs ? import <nixpkgs> {},
   image,
   name,
-  privileged ? false
+  privileged ? false,
+  arguments ?  []
 }:
 let
   privileged-flag = (if privileged then "--privileged" else "");
@@ -22,7 +23,8 @@ in
         --env DISPLAY \
         --mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0 \
         --name ${name} \
-        ${image}
+        ${image} \
+        ${arguments}
       '';
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
     RemainAfterExit = "yes";
