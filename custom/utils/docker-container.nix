@@ -7,6 +7,7 @@
 }:
 let
   privileged-flag = (if privileged then "--privileged" else "");
+  args = (elemAt arguments 1);
 in
 {
   description = "Docker Container Service -- ${name}";
