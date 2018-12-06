@@ -15,7 +15,7 @@ let
     pkgs = pkgs;
   });
 in
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   name = "pass";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
