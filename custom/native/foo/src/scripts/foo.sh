@@ -2,6 +2,6 @@
 
 gnupg-import &&
   pass init $(gnupg-key-id) &&
-  echo hello world &&
+  dot-ssh &&s
   sleep-forever &&
   true

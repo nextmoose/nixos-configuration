@@ -44,6 +44,12 @@ Include ${HOME}/.ssh/report.conf
 EOF
     ) &&
     chmod 0400 "${HOME}/.ssh/config" &&
+    UPSTREAM_ID_RSA="$(pass show upstream.id_rsa)" &&
+    UPSTREAM_KNOWN_HOSTS="$(pass show upstream.known_hosts)" &&
+    ORIGIN_ID_RSA="$(pass show origin.id_rsa)" &&
+    ORIGIN_KNOWN_HOSTS="$(pass show origin.known_hosts)" &&
+    REPORT_ID_RSA="$(pass show upstream.id_rsa)" &&
+    REPORT_KNOWN_HOSTS="$(pass show report.known_hosts)" &&
     addsshhost upstream "${UPSTREAM_HOST}" "${UPSTREAM_USER}" "${UPSTREAM_PORT}" "${UPSTREAM_ID_RSA}" "${UPSTREAM_KNOWN_HOSTS}" &&
     addsshhost origin "${ORIGIN_HOST}" "${ORIGIN_USER}" "${ORIGIN_PORT}" "${ORIGIN_ID_RSA}" "${ORIGIN_KNOWN_HOSTS}" &&
     addsshhost report "${REPORT_HOST}" "${REPORT_USER}" "${REPORT_PORT}" "${REPORT_ID_RSA}" "${REPORT_KNOWN_HOSTS}" &&

@@ -6,6 +6,9 @@ let
   gnupg-import = (import ../gnupg-import/default.nix{
     pkgs = pkgs;
   });
+  dot-ssh = (import ../dot-ssh/default.nix{
+    pkgs = pkgs;
+  });
   sleep-forever = (import ../sleep-forever/default.nix {} );
 in
 pkgs.stdenv.mkDerivation {
@@ -20,7 +23,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/foo.sh \
 	      $out/bin/foo \
-	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.coreutils gnupg-import gnupg-key-id sleep-forever ]} &&
+	      --set PATH ${pkgs.lib.makeBinPath [ pkgs.pass pkgs.coreutils gnupg-import gnupg-key-id dot-ssh sleep-forever ]} &&
       true
   '';
 }
