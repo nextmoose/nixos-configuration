@@ -138,7 +138,7 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
-      (import ./utils/pass/default.nix {
+      (import ./custom/utils/pass/default.nix {
         pkgs = pkgs;
         name = "old-secrets";
         container-name = "old-secrets";
