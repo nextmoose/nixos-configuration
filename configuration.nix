@@ -142,7 +142,7 @@ in
         pkgs = pkgs;
         name = "old-secrets";
         container-name = "old-secrets";
-        script-name = "pass"
+        script-name = "pass";
       })
     ];
   };
