@@ -1,9 +1,7 @@
 {
   pkgs ? import <nixpkgs> {},
   image,
-  name,
-  execStart,
-  execStop
+  name
 }:
 {
   description = "Docker Container Service -- ${name}";
