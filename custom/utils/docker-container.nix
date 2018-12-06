@@ -1,8 +1,12 @@
 {
   pkgs ? import <nixpkgs> {},
   image,
-  name
+  name,
+  privileged ? false
 }:
+let
+  privileged-flag = (if privileged then "--privileged" else "");
+in
 {
   description = "Docker Container Service -- ${name}";
   enable = true;
@@ -11,6 +15,7 @@
     ExecStart = ''
       ${pkgs.docker}/bin/docker \
         container \
+        ${privileged-flag} \
         run \
         --interactive \
         --rm \
