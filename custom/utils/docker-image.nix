@@ -27,8 +27,8 @@ in
   description = "Docker Image Service -- ${name}";
   enable = true;
   serviceConfig = {
-    Type = "simple";
-    ExecStart = "${pkgs.docker}/bin/docker image load --quiet --input ${image}";
+    Type = "oneshot";
+    ExecStart = "${pkgs.docker}/bin/docker image load  --input ${image}";
     ExecStop = "${pkgs.docker}/bin/docker image rm --force ${name}";
     RemainAfterExit = "yes";
   };
