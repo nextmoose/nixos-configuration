@@ -1,6 +1,8 @@
 {
   pkgs ? import <nixpkgs> {},
-  name
+  name,
+  container-name,
+  script-name
 }:
 pkgs.stdenv.mkDerivation {
   name = $name;
@@ -14,6 +16,8 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/exec.sh \
         $out/bin/${name} \
+        --set CONTAINER_NAME "${container-name}" \
+        --set SCRIPT_NAME "${script-name}" \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} &&
   '';
 }
