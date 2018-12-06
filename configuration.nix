@@ -15,7 +15,7 @@ in
     old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
       pass = installed-pass;
-    })
+    });
   };
   hardware = {
     pulseaudio.enable = true;
