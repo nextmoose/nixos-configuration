@@ -1,9 +1,46 @@
 #!/bin/sh
 
-gnupg &&
-  dot-ssh "${@}" &&
+while [ "${#}" -gt 0 ]
+do
+  case "${1}" in
+    --origin-host)
+      ORIGIN_HOST="${2}" &&
+        shift 2 &&
+        true
+     ;;
+     --origin-user)
+      ORIGIN_USER="${2}" &&
+        shift 2 &&
+        true
+    ;;
+    --origin-port)
+    ORIGIN_PORT="${2}" &&
+      shift 2 &&
+      true
+   ;;
+   --origin-origanization)
+   ORIGIN_ORGANIZATION="${2}" &&
+    shift 2 &&
+    true
+  ;;
+  --origin-repository)
+    ORIGIN_REPOSITORY="${2}" &&
+      shift 2 &&
+      true
+  ;;
+  --origin-branch)
+    ORIGIN_BRANCH="${2}" &&
+      shift 2 &&
+      true
+  ;;
+  esac &&
+    true
+done &&
+  gnupg &&
+  dot-ssh --origin-host "${ORIGIN_HOST}" --origin-user "${ORIGIN_USER}" --origin-port "${ORIGIN_PORT}" &&
   pass init $(gpg-key-id) &&
-#  pass git remote add origin origin &&
-#  pass git fetch origin
-#  pass git checkout
+  pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
+  pass git fetch origin "${ORIGIN_BRANCH}" &&
+ pass git checkout "${ORIGIN_BRANCH}" &&
+ ln --symbolic "$(which post-commit)" "${HOME}/.password-store/.git/hooks" &&
 #  true
