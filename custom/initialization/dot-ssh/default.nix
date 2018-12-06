@@ -17,4 +17,4 @@ pkgs.stdenv.mkDerivation {
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.coreutils ]} &&
       true
   '';
-};
+}
