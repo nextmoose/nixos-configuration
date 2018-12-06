@@ -18,7 +18,7 @@ do
       shift 2 &&
       true
    ;;
-   --origin-origanization)
+   --origin-organization)
    ORIGIN_ORGANIZATION="${2}" &&
     shift 2 &&
     true
