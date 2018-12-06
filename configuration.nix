@@ -90,7 +90,7 @@ in
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
-      entrypoint = [ "${pkgs.pass}/bin/pass" ];
+      entrypoint = [ "${pass}/bin/pass" ];
     });
   };
   system.stateVersion = "18.03";
