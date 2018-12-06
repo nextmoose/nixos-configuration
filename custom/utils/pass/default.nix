@@ -19,5 +19,6 @@ pkgs.stdenv.mkDerivation {
         --set CONTAINER_NAME "${container-name}" \
         --set SCRIPT_NAME "${script-name}" \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.docker ]} &&
+    true
   '';
 }
