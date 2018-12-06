@@ -34,11 +34,6 @@ in
   programs.bash.shellInit = "${pkgs.xorg.xhost}/bin/xhost +local:";
   security.sudo.wheelNeedsPassword = false;
   services = {
-    apache-kafka = {
-      brokerId = 15272;
-      enable = true;
-
-    };
     avahi = {
       enable = true;
       nssmdns = true;
