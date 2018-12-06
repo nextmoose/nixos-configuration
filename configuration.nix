@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 let
+  installed-pass = (import ./installed/pass/default.nix{
+    pkgs = pkgs;
+  });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
@@ -8,6 +11,12 @@ in
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  containers = {
+    old-secrets = (import ./custom/containers/old-secrets.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    })
+  };
   hardware = {
     pulseaudio.enable = true;
   };
