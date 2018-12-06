@@ -1,9 +1,7 @@
-{pkgs ? import <nixpkgs> {} }:
-let
-  pass = (import ../../../installed/pass.nix {
-    pkgs = pkgs;
-  });
-in
+{
+  pkgs ? import <nixpkgs> {},
+  pass
+}:
 pkgs.stdenv.mkDerivation {
   name = "gnupg";
   src = ./src;

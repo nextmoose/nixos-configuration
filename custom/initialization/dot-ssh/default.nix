@@ -1,4 +1,7 @@
-{pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> {},
+  pass
+}:
 pkgs.stdenv.mkDerivation {
   name = "dot-ssh";
   src = ./src;
