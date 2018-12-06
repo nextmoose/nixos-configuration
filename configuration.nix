@@ -121,7 +121,6 @@ in
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
       (import ./custom/user/browser-secrets/default.nix {})
-      (import ./custom/user/old-secrets/default.nix {})
       (import ./custom/utils/pass.old/default.nix {
         name = "foo";
         uuid = "uuid";
