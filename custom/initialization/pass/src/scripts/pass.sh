@@ -48,7 +48,7 @@ done &&
   then
     gnupg &&
       dot-ssh --origin-host "${ORIGIN_HOST}" --origin-user "${ORIGIN_USER}" --origin-port "${ORIGIN_PORT}" &&
-      pass init "$(gpg-key-id)" &&
+      pass init "$(gnupg-key-id)" &&
       pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
       pass git fetch origin "${ORIGIN_BRANCH}" &&
       pass git checkout "${ORIGIN_BRANCH}" &&
