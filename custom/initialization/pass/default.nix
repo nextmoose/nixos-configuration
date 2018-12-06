@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/pass.sh \
         $out/bin/pass \
-        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.pass pkgs.which pkgs.coreutils ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.pass pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.findutils ]} &&
       true
   '';
 }
