@@ -29,5 +29,5 @@ stdenv.mkDerivation {
         $out/bin/pass \
         --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gpg-key-id pkgs.pass pkgs.which pkgs.coreutils ]} &&
       true
-  ''
+  '';
 }
