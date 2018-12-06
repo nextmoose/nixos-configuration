@@ -5,7 +5,7 @@
   script-name
 }:
 pkgs.stdenv.mkDerivation {
-  name = $name;
+  name = name;
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ]
   installPhase = ''
