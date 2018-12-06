@@ -19,4 +19,4 @@ pkgs.stdenv.mkDerivation {
         --set PATH ${pkgs.lib.makeBinPath [ pass pkgs.gnupg pkgs.mktemp pkgs.coreutils ]} &&
       true
   '';
-};
+}
