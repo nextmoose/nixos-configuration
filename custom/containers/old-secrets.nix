@@ -11,6 +11,7 @@ in
 {
   config = { config, pkgs, ...}:
   {
+    autoStart = true;
     programs.bash = {
       enableCompletion = true;
       interactiveShellInit = ''
