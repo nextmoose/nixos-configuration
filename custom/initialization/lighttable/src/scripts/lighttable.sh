@@ -89,7 +89,7 @@ done &&
       git -C "${HOME}/project" config user.name "Emory Merryman" &&
       git -C "${HOME}/project" config user.email "emory.merryman@gmail.com" &&
       git -C "${HOME}/project" remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
-      git -C "${HOME}/project" remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
+      git -C "${HOME}/project" remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
       git -C "${HOME}/project" fetch upstream "${UPSTREAM_BRANCH}" &&
       git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
       ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
