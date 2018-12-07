@@ -19,7 +19,11 @@ in
     chromium = (import ./custom/containers/chromium.nix {
       pkgs = pkgs;
       pass = installed-pass;
-  });
+    });
+    gnucash = (import ./custom/containers/gnucash.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
   old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
       pass = installed-pass;
