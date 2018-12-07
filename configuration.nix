@@ -7,6 +7,10 @@ let
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
   });
+  lighttable = (import ./custom/initialization/lighttable/default.nix {
+    pkgs = pkgs;
+    pass = pass;
+  });
 in
 {
   boot.loader.systemd-boot.enable = true;
