@@ -17,6 +17,9 @@ let
   sleep-forever = (import ../../native/sleep-forever/default.nix {
     pkgs = pkgs;
   });
+  post-commit = (import ../../native/post-commit/default.nix {
+    pkgs = pkgs;
+  });
 in
 pkgs.stdenv.mkDerivation {
   name = "lighttable";
