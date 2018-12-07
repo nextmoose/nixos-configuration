@@ -12,7 +12,11 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
-    old-secrets = (import ./custom/containers/old-secrets.nix {
+    chromium = (import ./custom/containers/chromium.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+  });
+  old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
       pass = installed-pass;
     });
