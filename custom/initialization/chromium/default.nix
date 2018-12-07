@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/chromium.sh \
         $out/bin/chromium \
-        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.pass pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.findutils]} &&
+        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.pass pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.findutils ]} &&
       true
   '';
 }

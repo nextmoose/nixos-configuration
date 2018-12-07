@@ -94,7 +94,6 @@ in
   system.stateVersion = "18.03";
   systemd.services.docker-image-lighttable = (import ./custom/utils/docker-image.nix {
     name = "lighttable";
-    contents = [ pkgs.emacs ];
     entrypoint = [ "${lighttable}/bin/lighttable" ];
   });
   systemd.services.foo = {
