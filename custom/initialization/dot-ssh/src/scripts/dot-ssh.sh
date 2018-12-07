@@ -100,9 +100,7 @@ EOF
   fi &&
   true
 } &&
-echo BEFORE &&
 addhost upstream "${UPSTREAM_HOST}" "${UPSTREAM_USER}" "${UPSTREAM_PORT}" "$(pass show upstream.id_rsa)" "$(pass show upstream.known_hosts)" &&
-echo AFTER &&
 addhost origin "${ORIGIN_HOST}" "${ORIGIN_USER}" "${ORIGIN_PORT}" "$(pass show origin.id_rsa)" "$(pass show origin.known_hosts)" &&
 addhost report "${REPORT_HOST}" "${REPORT_USER}" "${REPORT_PORT}" "$(pass show report.id_rsa)" "$(pass show report.known_hosts)" &&
 true

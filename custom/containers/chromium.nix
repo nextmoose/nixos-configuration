@@ -25,7 +25,7 @@ in
     hardware.pulseaudio.enable = true;
     programs = {
       bash.shellInit = ''
-        ${pkgs.coreutils}/bin/echo ${initialization}/bin/chromium \
+        ${initialization}/bin/chromium \
           --upstream-host github.com \
           --upstream-user git \
           --upstream-port 22 \
