@@ -25,13 +25,13 @@ in
     hardware.pulseaudio.enable = true;
     programs = {
       bash.shellInit = ''
-        ${initialization}/bin/chromium \
+        ${pkgs.coreutils}/bin/echo ${initialization}/bin/chromium \
           --upstream-host github.com \
           --upstream-user git \
           --upstream-port 22 \
           --upstream-organization nextmoose \
           --upstream-repository browser-secrets \
-          --upstream-branch
+          --upstream-branch master
       '';
       browserpass.enable = true;
       chromium = {
