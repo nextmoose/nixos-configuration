@@ -16,6 +16,15 @@
     environment.variables.DISPLAY=":0.0";
     hardware.pulseaudio.enable = true;
     programs = {
+      bash.shellInit = ''
+        ${initialization}/bin/chromium \
+          --upstream-host github.com \
+          --upstream-user git \
+          --upstream-port 22 \
+          --upstream-organization nextmoose \
+          --upstream-repository browser-secrets \
+          --upstream-branch
+      '';
       browserpass.enable = true;
       chromium = {
         enable = true;
@@ -30,7 +39,7 @@
       cron = {
         enable = true;
 	systemCronJobs = [
-	  "* * * * *   user	${pkgs.pass}/bin/pass git fetch upstream master && ${pass}/bin/pass git checkout upstream/master"
+	  "* * * * *   user	${pkgs.pass}/bin/pass git fetch upstream master && ${pkgs.pass}/bin/pass git checkout upstream/master"
 	];
       };
       mingetty.autologinUser = "user";
