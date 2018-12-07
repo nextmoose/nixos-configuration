@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/chromium.sh \
         $out/bin/chromium \
-        --set PATH ${lib.makeBinPath [ pkgs.chromium ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [ pkgs.chromium ]} &&
       true
   '';
 }
