@@ -53,6 +53,7 @@ done &&
       pass git remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
       pass git fetch upstream "${UPSTREAM_BRANCH}" &&
       pass git checkout "upstream/${UPSTREAM_BRANCH}" &&
+      mkdir "${HOME}/data" &&
       touch "${HOME}/.finger" &&
       true
   fi &&
