@@ -128,24 +128,6 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
-      (import ./custom/utils/pass/default.nix {
-        pkgs = pkgs;
-        name = "system-secrets";
-        container-name = "system-secrets";
-        script-name = "pass";
-      })
-      (import ./custom/utils/pass/default.nix {
-        pkgs = pkgs;
-        name = "old-secrets";
-        container-name = "old-secrets";
-        script-name = "pass";
-      })
-      (import ./custom/utils/pass/default.nix {
-        pkgs = pkgs;
-        name = "browser-secrets";
-        container-name = "browser-secrets";
-        script-name = "pass";
-      })
     ];
   };
   virtualisation.docker = {
