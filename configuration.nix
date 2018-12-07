@@ -91,7 +91,7 @@ in
   systemd.services.docker-image-emacs = (import ./custom/utils/docker-image.nix {
     name = "emacs";
     contents = [ pkgs.emacs ];
-    entrypoint = [ "${pkgs.emacs}/bin/emacs" ];
+    entrypoint = [ "${lighttable}/bin/lighttable" ];
   });
   systemd.services.foo = {
     description = "FOO Daemon";
