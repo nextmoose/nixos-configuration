@@ -117,11 +117,6 @@ in
       (import ./custom/native/validate-not-blank/default.nix {})
       (import ./custom/system/update-nixos/default.nix { inherit pkgs; })
       (import ./custom/user/atom/default.nix {})
-      (import ./custom/utils/pass.old/default.nix {
-        name = "foo";
-        uuid = "uuid";
-        origin-repository = "browser-secrets";
-      })
       initialization
       pkgs.emacs
       pkgs.networkmanager
