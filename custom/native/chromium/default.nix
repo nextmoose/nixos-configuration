@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
     mkdir $out &&
       cp --recursive scripts $out &&
       chmod 0500 $out/scripts/*.sh &&
-      mkdir $out/scripts &&
+      mkdir $out/bin &&
       makeWrapper \
         $out/scripts/chromium.sh \
         $out/bin/chromium \
