@@ -94,7 +94,7 @@ done &&
       git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
       ln --symbolic "$(which post-commit)" "${HOME}/project/.git/hooks" &&
       touch "${HOME}/.finger" &&
-      sleep-forever &&
+      lighttable &&
       true
   fi &&
 true

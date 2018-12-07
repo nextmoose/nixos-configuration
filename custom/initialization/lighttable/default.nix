@@ -14,9 +14,6 @@ let
   gnupg-key-id = (import ../../native/gnupg-key-id/default.nix {
     pkgs = pkgs;
   });
-  sleep-forever = (import ../../native/sleep-forever/default.nix {
-    pkgs = pkgs;
-  });
   post-commit = (import ../../native/post-commit/default.nix {
     pkgs = pkgs;
   });
@@ -33,7 +30,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/lighttable.sh \
         $out/bin/lighttable \
-        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.findutils post-commit sleep-forever ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [ gnupg dot-ssh gnupg-key-id pkgs.which pkgs.coreutils pkgs.gnugrep pkgs.findutils post-commit pkgs.lighttable ]} &&
       true
   '';
 }
