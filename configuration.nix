@@ -87,30 +87,12 @@ in
     };
   };
   sound.enable = true;
-  systemd.services = {
-    docker-container-system-secrets = (import ./custom/utils/docker-container.nix {
-      image = "pass";
-      name = "system-secrets";
-      privileged = true;
-      arguments = "github.com git 22 nextmoose secrets master";
-    });
-    docker-container-browser-secrets = (import ./custom/utils/docker-container.nix {
-      image = "pass";
-      name = "browser-secrets";
-      arguments = "github.com git 22 nextmoose browser-secrets master";
-    });
-    docker-container-old-secrets = (import ./custom/utils/docker-container.nix {
-      image = "pass";
-      name = "old-secrets";
-      arguments = "github.com git 22 desertedscorpion passwordstore master";
-    });
-    docker-image-pass = (import ./custom/utils/docker-image.nix {
-      name = "pass";
-      entrypoint = [ "${pass}/bin/pass" ];
-      contents = [ pkgs.pass ];
-    });
-  };
   system.stateVersion = "18.03";
+  systemd.services.docker-image-emacs = (import ./custom/utils/docker-image.nix {
+    name = "emacs";
+    content = [ pkgs.emacs ];
+    entrypoint = [ "${pkgs.emacs}/bin/emacs" ]
+  });
   systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;
