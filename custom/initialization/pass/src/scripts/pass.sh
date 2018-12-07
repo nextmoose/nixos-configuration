@@ -53,6 +53,8 @@ done &&
       pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
       pass git fetch origin "${ORIGIN_BRANCH}" &&
       pass git checkout "${ORIGIN_BRANCH}" &&
+      pass git config user.name "Emory Merryman" &&
+      pass git config user.email "emory.merryman@gmail.com" &&
       ln --symbolic "$(which post-commit)" "${HOME}/.password-store/.git/hooks" &&
       touch "${HOME}/.finger" &&
       true
