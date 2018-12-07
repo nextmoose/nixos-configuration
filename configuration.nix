@@ -90,7 +90,7 @@ in
   system.stateVersion = "18.03";
   systemd.services.docker-image-emacs = (import ./custom/utils/docker-image.nix {
     name = "emacs";
-    content = [ pkgs.emacs ];
+    contents = [ pkgs.emacs ];
     entrypoint = [ "${pkgs.emacs}/bin/emacs" ];
   });
   systemd.services.foo = {
