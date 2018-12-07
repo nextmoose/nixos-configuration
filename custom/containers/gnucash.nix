@@ -23,7 +23,7 @@ in
   {
     environment.variables.DISPLAY=":0.0";
     programs.bash.shellInit = "${initialization}/bin/gnucash --bucket 77fe28f8-1704-4219-8220-f8bc3ec0d204";
-    service.mingetty.autologinUser = "user";
+    services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
