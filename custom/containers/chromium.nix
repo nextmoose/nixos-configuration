@@ -9,7 +9,6 @@ let
   });
 in
 {
-  autoStart = true;
   bindMounts = {
     "/run/user/1000" = {
       hostPath = "/run/user/1000";

@@ -9,7 +9,6 @@ let
   });
 in
 {
-  autoStart = true;
   config = { config, pkgs, ...}:
   {
     programs.bash = {
