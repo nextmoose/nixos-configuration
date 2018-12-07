@@ -135,6 +135,9 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
+      (import ./custom/native/node/default.nix {
+        pkgs = pkgs;
+      })
     ];
   };
   virtualisation.docker = {
