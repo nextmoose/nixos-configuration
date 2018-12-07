@@ -29,7 +29,7 @@
       cron = {
         enable = true;
 	systemCronJobs = [
-	  "* * * * *   user	${pass}/bin/pass git fetch upstream master && ${pass}/bin/pass git checkout upstream/master"
+	  "* * * * *   user	${pkgs.pass}/bin/pass git fetch upstream master && ${pass}/bin/pass git checkout upstream/master"
 	];
       };
       mingetty.autologinUser = "user";
@@ -39,8 +39,8 @@
       isNormalUser = true;
       packages = [
         pkgs.browserpass
-	pkgs.pass
-	(import ../expressions/chromium/default.nix { inherit pkgs; })
+	      pkgs.pass
+        pkgs.chromium
       ];
     };
   };
