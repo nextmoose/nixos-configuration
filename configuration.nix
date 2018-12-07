@@ -92,8 +92,8 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.docker-image-emacs = (import ./custom/utils/docker-image.nix {
-    name = "emacs";
+  systemd.services.docker-image-lighttable = (import ./custom/utils/docker-image.nix {
+    name = "lighttable";
     contents = [ pkgs.emacs ];
     entrypoint = [ "${lighttable}/bin/lighttable" ];
   });
