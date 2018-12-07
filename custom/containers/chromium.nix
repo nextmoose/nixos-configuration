@@ -1,4 +1,13 @@
-{ pkgs }:
+{
+  pkgs ? import <nixpkgs> {},
+  pass
+}:
+let
+  initialization = (import ../initialization/chromium/default.nix {
+    pkgs = pkgs;
+    pass = pass;
+  });
+in
 {
   autoStart = true;
   bindMounts = {
