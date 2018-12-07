@@ -7,6 +7,9 @@ let
     pkgs = pkgs;
     pass = pass;
   });
+  chromium = (import ../native/chromium/default.nix {
+    pkgs = pkgs;
+  });
 in
 {
   bindMounts = {
@@ -58,7 +61,7 @@ in
       packages = [
         pkgs.browserpass
 	      pkgs.pass
-        pkgs.chromium
+        chromium
       ];
     };
   };
