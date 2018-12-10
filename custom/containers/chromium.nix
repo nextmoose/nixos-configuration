@@ -21,6 +21,10 @@ in
       hostPath = "/home/user/.config/pulse";
       isReadOnly = true;
     };
+    "/srv/host" = {
+      hostPath ="/";
+      isReadOnly = true;
+    };
   };
   config = { config, pkgs, ...}:
   {
