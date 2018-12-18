@@ -3,6 +3,7 @@
   pass
 }:
 pkgs.stdenv.mkDerivation {
+  name = "emacs";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
