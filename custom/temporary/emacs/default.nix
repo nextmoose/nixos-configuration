@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> {},
   pass
 }:
-pkgs.stdenv.mkderivation {
+pkgs.stdenv.mkDerivation {
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
