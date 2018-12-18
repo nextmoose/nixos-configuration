@@ -5,6 +5,7 @@
 let
   initialization = (import ../temporary/emacs/default.nix {
     pkgs = pkgs;
+    pass = pass;
   });
 in
 {
