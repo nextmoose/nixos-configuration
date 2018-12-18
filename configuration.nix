@@ -16,6 +16,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    emacs = (import ./custom/containers/emacs.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
     chromium = (import ./custom/containers/chromium.nix {
       pkgs = pkgs;
       pass = installed-pass;
@@ -96,10 +100,12 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
-  systemd.services.docker-image-lighttable = (import ./custom/utils/docker-image.nix {
-    name = "lighttable";
-    entrypoint = [ "${lighttable}/bin/lighttable" ];
-  });
+  systemd.services = {
+    docker-image-lighttable = (import ./custom/utils/docker-image.nix {
+      name = "lighttable";
+      entrypoint = [ "${lighttable}/bin/lighttable" ];
+    });
+  };
   systemd.services.foo = {
     description = "FOO Daemon";
     enable = true;
