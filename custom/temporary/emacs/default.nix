@@ -1,7 +1,7 @@
 {
   pkgs ? import <nixpkgs> {},
   pass
-}
+}:
 pkgs.stdenv.mkderivation {
   src = ./src;
   buildInputs = [ pkgs.makeWrapper ];
