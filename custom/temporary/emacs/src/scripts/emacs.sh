@@ -35,6 +35,9 @@ EOF
     git -C ${HOME}/project init &&
     git -C ${HOME}/project config user.name "Emory Merryman" &&
     git -C ${HOME}/project config user.email "emory.merryman@gmail.com" &&
+    git -C ${HOME}/project remote add upstream upstream:rebelplutonium/nixos-configuration.git &&
+    git -C ${HOME}/project remote add origin origin:nextmoose/nixos-configuration.git &&
+    git -C ${HOME}/project remote add report report:rebelplutonium/nixos-configuration.git &&
     git -C ${HOME}/project fetch origin level-5 &&
     git -C ${HOME}/project checkout level-5 &&
     true
