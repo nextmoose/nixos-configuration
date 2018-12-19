@@ -5,8 +5,8 @@
    dependencies
 }:
 pkgs.stdenv.mkDerivation {
-   name = $name;
-   src = $src;
+   name = name;
+   src = src;
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
