@@ -10,6 +10,8 @@ pkgs.stdenv.mkDerivation {
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
+        echo HELLO &&
+        ls -alh . &&
         cp --recursive . $out &&
 	chmod 0500 $out/scripts/*.sh &&
 	makeWrapper \
