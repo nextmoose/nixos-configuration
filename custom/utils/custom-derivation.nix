@@ -5,8 +5,8 @@
    dependencies
 }:
 pkgs.stdenv.mkDerivation {
-   name = ${name};
-   src = ${src};
+   name = $name;
+   src = $src;
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
@@ -15,6 +15,6 @@ pkgs.stdenv.mkDerivation {
 	makeWrapper \
 	  $out/scripts/${name}.sh \
 	  $out/bin/${name} \
-	   --set PATH ${pkgs.lib.makeBinPath ${dependencies} }
+	   --set PATH ${pkgs.lib.makeBinPath $dependencies }
    '';
 }
