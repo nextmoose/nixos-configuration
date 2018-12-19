@@ -144,6 +144,11 @@ in
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
+      (import ./custom/utils/custom-derivation.nix {
+         name = "helloworld";
+	 src = ./custom/temporary/helloworld;
+	 dependencies = [ pkgs.coreutils ];
+      })
     ];
   };
   virtualisation.docker = {
