@@ -12,7 +12,7 @@ pkgs.stdenv.mkDerivation {
       mkdir $out &&
         echo HELLO &&
         ls -alh . &&
-        cp --recursive . $out &&
+        cp --recursive . $out/scripts &&
 	chmod 0500 $out/scripts/*.sh &&
 	makeWrapper \
 	  $out/scripts/${name}.sh \
