@@ -3,6 +3,11 @@ let
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
+  post-commit = (import ./utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "post-commit";
+    dependencies = [ pkgs.git pkgs.coreutils ];
+  });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
@@ -154,6 +159,7 @@ in
 	 src = ./custom/scripts/foobar;
 	 dependencies = [ pkgs.coreutils pkgs.findutils ];
       })
+      post-commit
     ];
   };
   virtualisation.docker = {
