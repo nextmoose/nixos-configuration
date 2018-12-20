@@ -149,6 +149,11 @@ in
 	 src = ./custom/temporary/helloworld;
 	 dependencies = [ pkgs.coreutils ];
       })
+      (import ./custom/utils/custom-script-derivation.nix {
+         name = "foobar";
+	 src = ./custom/scripts/foobar.sh;
+	 dependencies = [ pkgs.coreutils ];
+      })
     ];
   };
   virtualisation.docker = {
