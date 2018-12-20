@@ -6,6 +6,7 @@ let
   post-commit = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";
+    src = ./custom/scripts/post-commit;
     dependencies = [ pkgs.git pkgs.coreutils ];
   });
   initialization = (import ./custom/native/initialization/default.nix {});
