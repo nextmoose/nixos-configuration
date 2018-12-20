@@ -152,7 +152,7 @@ in
       (import ./custom/utils/custom-script-derivation.nix {
          name = "foobar";
 	 src = ./custom/scripts/foobar;
-	 dependencies = [ pkgs.coreutils ];
+	 dependencies = [ pkgs.coreutils pkgs.findutils ];
       })
     ];
   };

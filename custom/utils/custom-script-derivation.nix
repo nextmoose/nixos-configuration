@@ -15,6 +15,6 @@ pkgs.stdenv.mkDerivation {
 	makeWrapper \
 	  $out/scripts/${name}.sh \
 	  $out/bin/${name} \
-	   --set PATH ${pkgs.lib.makeBinPath [ ] }
+	   --set PATH ${pkgs.lib.makeBinPath dependencies }
    '';
 }
