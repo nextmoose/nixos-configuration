@@ -151,7 +151,7 @@ in
       })
       (import ./custom/utils/custom-script-derivation.nix {
          name = "foobar";
-	 src = ./custom/scripts/foo-bar.sh;
+	 src = ./custom/scripts/foobar;
 	 dependencies = [ pkgs.coreutils ];
       })
     ];
