@@ -3,7 +3,7 @@ let
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
-  post-commit = (import ./utils/custom-script-derivation.nix {
+  post-commit = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";
     dependencies = [ pkgs.git pkgs.coreutils ];
