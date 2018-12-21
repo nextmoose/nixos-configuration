@@ -45,6 +45,12 @@ let
     src = ./custom/scripts/pass-init;
     dependencies = [ gnupg-import dot-ssh-init dot-ssh-add-domain pkgs.pass gnupg-key-id pkgs.coreutils pkgs.which ];
   });
+  pass-entrypoint = (import ./custom/utils/custom/script-derivation.nix {
+    pkgs = pkgs;
+    name = "pass-entrypoint";
+    src = ./custom/scripts/pass-entrypoint;
+    dependencies = [ pass-init pkgs.pass ];
+  });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
@@ -143,6 +149,10 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   systemd.services = {
+    docker-image-read-only-pass = (import ./custom/utils/docker-image.nix {
+      name = "read-only-pass";
+      entrypoint = [ pass-entrypoint ];
+    });
     docker-image-lighttable = (import ./custom/utils/docker-image.nix {
       name = "lighttable";
       entrypoint = [ "${lighttable}/bin/lighttable" ];
