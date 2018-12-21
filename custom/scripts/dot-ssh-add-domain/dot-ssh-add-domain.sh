@@ -67,5 +67,5 @@ EOF
     ) &&
     pass show "${DOMAIN}.id_rsa" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
     pass show "${DOMAIN}.known_hosts" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
-    chmod 0400 "${HOME}/.ssh/${DOMAIN}.conf" \
-	  true
+    chmod 0400 "${HOME}/.ssh/${DOMAIN}.conf" &&
+    true
