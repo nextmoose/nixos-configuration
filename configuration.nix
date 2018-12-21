@@ -7,7 +7,13 @@ let
     pkgs = pkgs;
     name = "gnupg-import";
     src = ./custom/scripts/gnupg-import;
-    dependencies = [ pkgs.mktemp installed-pass pkgs.coreutils ];
+    dependencies = [ pkgs.mktemp installed-pass pkgs.coreutils pkgs.gnupg ];
+  });
+  gnupg-key-id = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "gnupg-key-id";
+    src = ./custom/scripts/gnupg-key-id;
+    dependencies = [ pkgs.coreutils pkgs.gnupg ];
   });
   dot-ssh-init = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
@@ -15,11 +21,29 @@ let
     src = ./custom/scripts/dot-ssh-init;
     dependencies = [ pkgs.coreutils ];
   });
+  dot-ssh-add-domain = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "dot-ssh-add-domain";
+    src = ./custom/scripts/dot-ssh-add-domain;
+    dependencies = [ pkgs.coreutils installed-pass ];
+  });
   post-commit = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";
     src = ./custom/scripts/post-commit;
     dependencies = [ pkgs.git pkgs.coreutils ];
+  });
+  pre-commit = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "pre-commit";
+    src = ./custom/scripts/pre-commit;
+    dependencies = [ pkgs.git pkgs.coreutils ];
+  });
+  pass-init = (import ./custom/utils/custom/script-derivation.nix {
+    pkgs = pkgs;
+    name = "pass-init";
+    src = ./custom/scripts/pass-init;
+    dependencies = [ gnupg-import dot-ssh-init dot-ssh-add-domain pkgs.pass gnupg-key-id pkgs.coreutils pkgs.which ];
   });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
