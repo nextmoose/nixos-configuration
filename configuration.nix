@@ -152,7 +152,7 @@ in
     docker-image-read-only-pass = (import ./custom/utils/docker-image.nix {
       name = "read-only-pass";
       contents = [ pass-entrypoint ];
-      entrypoint = [ pass-entrypoint ];
+      entrypoint = [ "${pass-entrypoint}/bin/pass-entrypoint" ];
     });
     docker-image-lighttable = (import ./custom/utils/docker-image.nix {
       name = "lighttable";
