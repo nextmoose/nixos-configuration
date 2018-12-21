@@ -95,7 +95,7 @@ done &&
 	    pass git config user.email "${COMMITTER_EMAIL}" &&
 	    ln --symbolic $(which post-commit) "${HOME}/.password-store/.git/hooks" &&
 	    pass git remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
-	    pass git fetch origin "${ORIGIN_BRANCH" &&
+	    pass git fetch origin "${ORIGIN_BRANCH}" &&
 	    pass git checkout "${ORIGIN_BRANCH}" &&
 	    true
     elif [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
