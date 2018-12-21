@@ -43,7 +43,7 @@ let
     pkgs = pkgs;
     name = "pass-init";
     src = ./custom/scripts/pass-init;
-    dependencies = [ gnupg-import dot-ssh-init dot-ssh-add-domain pkgs.pass gnupg-key-id pkgs.coreutils pkgs.which ];
+    dependencies = [ gnupg-import dot-ssh-init dot-ssh-add-domain pkgs.pass gnupg-key-id pkgs.coreutils pkgs.which post-commit pre-commit ];
   });
   pass-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
