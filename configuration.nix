@@ -3,6 +3,18 @@ let
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
+  gnupg-import = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "gnupg-import";
+    src = ./custom/scripts/gnupg-import;
+    dependencies = [ pkgs.mktemp installed-pass pkgs.coreutils ];
+  });
+  dot-ssh-init = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "dot-ssh-init";
+    src = ./custom/scripts/dot-ssh-init;
+    dependencies = [ pkgs.coreutils ];
+  });
   post-commit = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";
