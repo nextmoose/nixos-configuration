@@ -176,7 +176,7 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
-      (import ./custom/other/zoom/default.nix {})
+#      (import ./custom/other/zoom/default.nix {})
       (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})

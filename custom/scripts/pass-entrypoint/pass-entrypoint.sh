@@ -103,5 +103,5 @@ done &&
 	    exit 68 &&
 	    true
     fi &&
-    pass "${COMMAND}" &&
+    pass ${COMMAND} &&
     true
