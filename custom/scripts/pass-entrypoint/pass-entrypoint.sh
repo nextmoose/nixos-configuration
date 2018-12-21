@@ -74,7 +74,8 @@ do
 		true
 	    ;;
 	--command)
-	    COMMAND="${@}" &&
+	    shift &&
+		COMMAND="${@}" &&
 		shift "${#}" &&
 		true
 	    ;;
