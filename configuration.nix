@@ -39,13 +39,13 @@ let
     src = ./custom/scripts/pre-commit;
     dependencies = [ pkgs.git pkgs.coreutils ];
   });
-  pass-init = (import ./custom/utils/custom/script-derivation.nix {
+  pass-init = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "pass-init";
     src = ./custom/scripts/pass-init;
     dependencies = [ gnupg-import dot-ssh-init dot-ssh-add-domain pkgs.pass gnupg-key-id pkgs.coreutils pkgs.which ];
   });
-  pass-entrypoint = (import ./custom/utils/custom/script-derivation.nix {
+  pass-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "pass-entrypoint";
     src = ./custom/scripts/pass-entrypoint;
