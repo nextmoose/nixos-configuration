@@ -73,12 +73,6 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--command)
-	    shift &&
-		COMMAND="${@}" &&
-		shift "${#}" &&
-		true
-	    ;;
 	*)
 	    echo Unsupported Option &&
 		echo "${2}" &&
@@ -103,5 +97,5 @@ done &&
 	    exit 68 &&
 	    true
     fi &&
-    pass ${COMMAND} &&
+    bash &&
     true

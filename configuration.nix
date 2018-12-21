@@ -49,7 +49,7 @@ let
     pkgs = pkgs;
     name = "pass-entrypoint";
     src = ./custom/scripts/pass-entrypoint;
-    dependencies = [ pass-init pkgs.pass ];
+    dependencies = [ pass-init pkgs.pass pkgs.bash ];
   });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
@@ -151,7 +151,7 @@ in
   systemd.services = {
     docker-image-read-only-pass = (import ./custom/utils/docker-image.nix {
       name = "read-only-pass";
-      contents = [ pass-entrypoint ];
+      contents = [ pass-entrypoint pkgs.bash ];
       entrypoint = [ "${pass-entrypoint}/bin/pass-entrypoint" ];
     });
     docker-image-lighttable = (import ./custom/utils/docker-image.nix {
