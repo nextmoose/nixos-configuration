@@ -101,6 +101,8 @@ done &&
     elif [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
     then
 	dot-ssh-add-domain --domain upstream --host "${UPSTREAM_HOST}" --user "${UPSTREAM_USER}" --port "${UPSTREAM_PORT}" &&
+	    echo HERE &&
+	    ls -alh "${HOME}/.password-store/.git/hooks" &&
 	    ln --symbolic $(which pre-commit) "${HOME}/.password-store/.git/hooks" &&
 	    pass git remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
 	    pass git remote set-url --push upstream no_push &&
