@@ -2,8 +2,7 @@
    pkgs ? import <nixpkgs> {},
    node ? pkgs.node,
    name,
-   src,
-   dependencies
+   src
 }:
 pkgs.stdenv.mkDerivation {
    name = name;
