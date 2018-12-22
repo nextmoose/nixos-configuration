@@ -124,7 +124,7 @@ done &&
 	    git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
 	    true
     fi &&
-    ln $(which post-commit) "${HOME}/project/.git/hooks" &&
+    ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
     then
 	dot-ssh-add-domain --domain upstream --host "${UPSTREAM_HOST}" --user "${UPSTREAM_USER}" --port "${UPSTREAM_PORT}" &&
