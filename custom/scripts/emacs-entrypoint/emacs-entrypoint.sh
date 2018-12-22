@@ -135,5 +135,5 @@ done &&
 	--report-organization "${REPORT_ORGANIZATION}" \
 	--report-repository "${REPORT_REPOSITORY}" \
 	--report-branch "${REPORT_BRANCH}" &&
-    emacs project &&
+    emacs "${HOME}/project" &&
     true
