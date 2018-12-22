@@ -17,10 +17,12 @@ COMMITTER_NAME="Emory Merryman" &&
 	    --committer-name)
 		COMMITTER_NAME="${2}" &&
 		    shift 2 &&
+		    true
 		;;
-	    --committer-name)
-		COMMITTER_NAME="${2}" &&
+	    --committer-email)
+		COMMITTER_EMAIL="${2}" &&
 		    shift 2 &&
+		    true
 		;;
 	    --upstream-host)
 		UPSTREAM_HOST="${2}" &&
