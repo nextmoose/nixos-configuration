@@ -94,7 +94,7 @@ let
     pkgs = pkgs;
     node = node;
     name = "vuecli";
-    src = ./custom/npm/vuecli;
+    src = ./custom/npm/vue-cli;
   });
   vuecli-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
