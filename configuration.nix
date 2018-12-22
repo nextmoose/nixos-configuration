@@ -115,7 +115,7 @@ let
   lighttable = (import ./custom/initialization/lighttable/default.nix {
     pkgs = pkgs;
     pass = pass;
-  }+-);
+  });
 in
 {
   boot.loader.systemd-boot.enable = true;
