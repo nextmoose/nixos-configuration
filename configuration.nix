@@ -57,7 +57,7 @@ let
     src = ./custom/scripts/old-secrets;
     dependencies = [ pkgs.docker ];
   });
-  development-enviroment-init = (import ./custom/utils/custom-script-derivation.nix {
+  development-environment-init = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "development-environment-init";
     src = ./custom/scripts/development-environment-init;
