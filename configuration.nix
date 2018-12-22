@@ -67,7 +67,7 @@ let
     pkgs = pkgs;
     name = "emacs-entrypoint";
     src= ./custom/scripts/emacs-entrypoint;
-    dependencies = [ development-environment-init pkgs.emacs  pkgs.git ];
+    dependencies = [ development-environment-init pkgs.emacs  pkgs.git vuecli ];
   });
   atom-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
@@ -86,6 +86,17 @@ let
     name = "launch-emacs-ide";
     src = ./custom/scripts/launch-emacs-ide;
     dependencies = [ pkgs.docker ];
+  });
+  vuecli = (import ./custom/utils/custom-npm-derivation.nix {
+    pkgs = pkgs;
+    name = "vuecli";
+    src = ./custom/npm/vuecli;
+  });
+  vuecli-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "vuecli-entrypoint";
+    src = ./custom/scripts/vuecli-entrypoint;
+    dependencies = [ development-environment-init bash vuecli ];
   });
   launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
@@ -199,6 +210,11 @@ in
        name = "emacs";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
+    });
+    docker-image-vueclie = (import ./custom/utils/docker-image.nix {
+       name = "vueclie";
+       contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
+       entrypoint = [ "${vuecli-entrypoint}/bin/vuecli-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
