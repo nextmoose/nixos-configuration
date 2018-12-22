@@ -8,7 +8,7 @@ docker \
     --env DISPLAY \
     emacs \
     --committer-name "Emory Merryman" \
-    --committer-email "emory.merryman@gmail.com" \
+    --committer-email emory.merryman@gmail.com \
     --upstream-host github.com \
     --upstream-user git \
     --upstream-port 22 \
