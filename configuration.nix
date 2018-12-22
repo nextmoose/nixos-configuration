@@ -69,6 +69,12 @@ let
     src= ./custom/scripts/emacs-entrypoint;
     dependencies = [ development-environment-init pkgs.emacs ];
   });
+  launch-emacs-ide = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "launch-emacs-ide";
+    src = ./custom/scripts/launch-emacs-ide;
+    dependencies = [ pkgs.docker ];
+  });
   launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "launch-configuration-ide";
