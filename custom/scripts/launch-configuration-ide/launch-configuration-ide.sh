@@ -18,7 +18,7 @@ docker \
     --origin-host github.com \
     --origin-user git \
     --origin-port 22 \
-    --origin-organization rebelplutonium \
+    --origin-organization nextmoose \
     --origin-repository nixos-configuration \
     --origin-branch level-5 \
     --report-host github.com \
