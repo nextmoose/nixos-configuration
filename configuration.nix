@@ -155,8 +155,8 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   systemd.services = {
-    docker-image-read-only-pass = (import ./custom/utils/docker-image.nix {
-      name = "read-only-pass";
+    docker-image-pass = (import ./custom/utils/docker-image.nix {
+      name = "pass";
       contents = [ pass-entrypoint pkgs.bash ];
       entrypoint = [ "${pass-entrypoint}/bin/pass-entrypoint" ];
     });
@@ -182,7 +182,7 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
-#      (import ./custom/other/zoom/default.nix {})
+      old-secrets
       (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
