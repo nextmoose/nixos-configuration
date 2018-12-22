@@ -197,6 +197,7 @@ in
     });
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
+       contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
