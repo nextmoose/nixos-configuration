@@ -116,7 +116,7 @@ do
 done &&
     development-environment-init \
 	--committer-name "${COMMITTER_NAME}" \
-	--committer-email "${COMITTER_EMAIL}" \
+	--committer-email "${COMMITTER_EMAIL}" \
 	--upstream-host "${UPSTREAM_HOST}" \
 	--upstream-user "${UPSTREAM_USER}" \
 	--upstream-port "${UPSTREAM_PORT}" \
