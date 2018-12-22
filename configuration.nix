@@ -51,6 +51,12 @@ let
     src = ./custom/scripts/pass-entrypoint;
     dependencies = [ pass-init pkgs.pass pkgs.bash ];
   });
+  old-secrets = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "old-secrets";
+    src = ./custom/scripts/old-secrets;
+    dependencies = [ pkgs.docker ];
+  });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
