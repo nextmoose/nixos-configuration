@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo ARGS="${@}" &&
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
@@ -119,17 +118,13 @@ done &&
     dot-ssh-init &&
     mkdir "${HOME}/project" &&
     git -C "${HOME}/project" init &&
-    (cat <<EOF
-COMMITTER_NAME=${COMMITTER_NAME}
-COMMITTER_EMAIL=${COMMITTER_EMAIL}
-EOF
-    )
     if [ ! -z "${COMMITTER_NAME}" ] && [ ! -z "${COMMITTER_EMAIL}" ]
     then
 	git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
 	    git -C "${HOME}/project" config user.email "${COMMITTER_EMAIL}" &&
 	    true
     fi &&
+    git -C "${HOME}/project" config user.signingkey $(gnupg-key-id) &&
     ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
     then

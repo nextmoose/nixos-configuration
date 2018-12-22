@@ -61,7 +61,7 @@ let
     pkgs = pkgs;
     name = "development-environment-init";
     src = ./custom/scripts/development-environment-init;
-    dependencies = [ gnupg-import dot-ssh-init pkgs.coreutils pkgs.git dot-ssh-add-domain pkgs.which post-commit ];
+    dependencies = [ gnupg-import dot-ssh-init pkgs.coreutils pkgs.git dot-ssh-add-domain pkgs.which post-commit gnupg-key-id ];
   });
   emacs-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
