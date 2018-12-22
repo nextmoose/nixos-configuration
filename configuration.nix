@@ -57,6 +57,22 @@ let
     src = ./custom/scripts/old-secrets;
     dependencies = [ pkgs.docker ];
   });
+  development-enviroment-init = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "development-environment-init";
+    src = ./custom/scripts/development-environment-init;
+    dependencies = [ gnupg-import dot-ssh-init pkgs.coreutils pkgs.git dot-ssh-add-domain ];
+  });
+  emacs-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "emacs-entrypoint";
+    dependencies = [ development-environment-init pkgs.emacs ];
+  });
+  launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "launch-configuration-ide";
+    dependencies = [ pkgs.docker ];
+  });
   initialization = (import ./custom/native/initialization/default.nix {});
   pass = (import ./custom/native/pass/default.nix {
     pkgs = pkgs;
@@ -155,6 +171,10 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   systemd.services = {
+    docker-image-emacs = (import ./custom/utils/docker-image.nix {
+       name = "emacs";
+       entrypoint = [ "${emacs-entrypoint}/bin/emacs" ];
+    });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
       contents = [ pass-entrypoint pkgs.bash ];
@@ -183,6 +203,7 @@ in
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
       old-secrets
+      launch-configuration-ide
       (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
