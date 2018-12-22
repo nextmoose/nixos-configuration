@@ -230,6 +230,7 @@ in
       old-secrets
       launch-configuration-ide
       launch-atom-ide
+      launch-emacs-ide
       (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
