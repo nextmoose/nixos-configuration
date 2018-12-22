@@ -9,12 +9,12 @@ pkgs.stdenv.mkDerivation {
    src = src;
    buildInputs = [ node ];
    buildPhase = ''
-     npm install &&
+     # npm install &&
        true
    '';
    installPhase = ''
      cp --recursive . $out &&
-       ln --symbolic $out/node_modules/.bin $out/bin &&
+       # ln --symbolic $out/node_modules/.bin $out/bin &&
        true
    '';
 }
