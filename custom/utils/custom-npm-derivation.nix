@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation {
    src = src;
    buildInputs = [ node ];
    buildPhase = ''
-     npm install &&
+     npm install --unsafe-perm &&
        true
    '';
    installPhase = ''
