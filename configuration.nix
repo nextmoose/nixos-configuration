@@ -3,6 +3,9 @@ let
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
+  node = (import ./custom/native/node/default.nix {
+    pkgs = pkgs;
+  });
   gnupg-import = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-import";
@@ -89,6 +92,7 @@ let
   });
   vuecli = (import ./custom/utils/custom-npm-derivation.nix {
     pkgs = pkgs;
+    node = node;
     name = "vuecli";
     src = ./custom/npm/vuecli;
   });
@@ -111,7 +115,7 @@ let
   lighttable = (import ./custom/initialization/lighttable/default.nix {
     pkgs = pkgs;
     pass = pass;
-  });
+  }+-);
 in
 {
   boot.loader.systemd-boot.enable = true;
