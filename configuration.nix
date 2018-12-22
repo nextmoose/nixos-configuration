@@ -96,7 +96,7 @@ let
     pkgs = pkgs;
     name = "vuecli-entrypoint";
     src = ./custom/scripts/vuecli-entrypoint;
-    dependencies = [ development-environment-init bash vuecli ];
+    dependencies = [ development-environment-init pkgs.bash vuecli ];
   });
   launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
