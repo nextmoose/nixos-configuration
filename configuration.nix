@@ -66,7 +66,7 @@ let
   emacs-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "emacs-entrypoint";
-    src= ./custom/scripts/development-environment/emacs-entrypoint;
+    src= ./custom/scripts/emacs-entrypoint;
     dependencies = [ development-environment-init pkgs.emacs ];
   });
   launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
