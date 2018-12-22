@@ -128,7 +128,7 @@ done &&
     then
 	dot-ssh-add-domain --domain upstream --host "${UPSTREAM_HOST}" --user "${UPSTREAM_USER}" --port "${UPSTREAM_PORT}" &&
 	    git -C "${HOME}/project" remote add upstream "upstream:${UPSTREAM_ORGANIZATION}/${UPSTREAM_REPOSITORY}.git" &&
-	    git -C "${HOME}/project}" remote set-url --push upstream no_push &&
+	    git -C "${HOME}/project" remote set-url --push upstream no_push &&
 	    git -C "${HOME}/project" fetch upstream "${UPSTREAM_BRANCH}" &&
 	    git -C "${HOME}/project" checkout "upstream/${UPSTREAM_BRANCH}" &&
 	    true
