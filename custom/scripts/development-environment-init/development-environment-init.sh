@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo ARGS="${@}" &&
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
@@ -120,7 +121,7 @@ done &&
     git -C "${HOME}/project" init &&
     (cat <<EOF
 COMMITTER_NAME=${COMMITTER_NAME}
-COMMITTER_EMAIL="${COMMITTER_EMAIL}
+COMMITTER_EMAIL=${COMMITTER_EMAIL}
 EOF
     )
     if [ ! -z "${COMMITTER_NAME}" ] && [ ! -z "${COMMITTER_EMAIL}" ]
