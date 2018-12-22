@@ -69,6 +69,18 @@ let
     src= ./custom/scripts/emacs-entrypoint;
     dependencies = [ development-environment-init pkgs.emacs ];
   });
+  atom-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "atom-entrypoint";
+    src= ./custom/scripts/atom-entrypoint;
+    dependencies = [ development-environment-init pkgs.atom ];
+  });
+  launch-atom-ide = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "launch-atom-ide";
+    src = ./custom/scripts/launch-atom-ide;
+    dependencies = [ pkgs.docker ];
+  });
   launch-emacs-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "launch-emacs-ide";
@@ -179,6 +191,10 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   systemd.services = {
+    docker-image-atom = (import ./custom/utils/docker-image.nix {
+       name = "atom";
+       entrypoint = [ "${atom-entrypoint}/bin/atom-entrypoint" ];
+    });
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
@@ -212,6 +228,7 @@ in
     extraUsers.user.packages = [
       old-secrets
       launch-configuration-ide
+      launch-atom-ide
       (import ./installed/pass/default.nix {})
       (import ./installed/default.nix { inherit pkgs; })
       (import ./custom/native/utils/default.nix {})
