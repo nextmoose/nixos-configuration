@@ -67,7 +67,7 @@ let
     pkgs = pkgs;
     name = "emacs-entrypoint";
     src= ./custom/scripts/emacs-entrypoint;
-    dependencies = [ development-environment-init pkgs.emacs  pkgs.git vuecli ];
+    dependencies = [ development-environment-init pkgs.emacs  pkgs.git vuecli pkgs.gnupg ];
   });
   atom-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
