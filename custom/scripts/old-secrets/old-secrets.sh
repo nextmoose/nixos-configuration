@@ -13,7 +13,6 @@ docker \
     --upstream-user git \
     --upstream-port 22 \
     --upstream-organization desertedscorpion \
-    --upstream-repository \
-    passwordstore \
+    --upstream-repository passwordstore \
     --upstream-branch master &&
     true
