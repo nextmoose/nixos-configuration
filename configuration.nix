@@ -67,7 +67,7 @@ let
     pkgs = pkgs;
     name = "emacs-entrypoint";
     src= ./custom/scripts/emacs-entrypoint;
-    dependencies = [ development-environment-init pkgs.emacs ];
+    dependencies = [ development-environment-init pkgs.emacs  pkgs.git ];
   });
   atom-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
