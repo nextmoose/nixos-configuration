@@ -72,6 +72,7 @@ let
   launch-configuration-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "launch-configuration-ide";
+    src = ./custom/scripts/launch-configuration-ide;
     dependencies = [ pkgs.docker ];
   });
   initialization = (import ./custom/native/initialization/default.nix {});
