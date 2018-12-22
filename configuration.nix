@@ -175,7 +175,7 @@ in
   systemd.services = {
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
-       entrypoint = [ "${emacs-entrypoint}/bin/emacs" ];
+       entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
