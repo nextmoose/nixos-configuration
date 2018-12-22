@@ -148,12 +148,14 @@ done &&
 			git -C "${HOME}/project" checkout -b "${ORIGIN_BRANCH}" &&
 			    true
 		    ) &&
+			true
+	    ) &&
 	    true
-    fi &&
-    if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_ORGANIZATION}" ] && [ ! -z "${REPORT_REPOSITORY}" ] && [ ! -z "${REPORT_BRANCH}" ]
-    then
-	dot-ssh-add-domain --domain report --host "${REPORT_HOST}" --user "${REPORT_USER}" --port "${REPORT_PORT}" &&
-	    git -C "${HOME}/project" remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
-	    true
-    fi &&
-    true
+	    fi &&
+		    if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_ORGANIZATION}" ] && [ ! -z "${REPORT_REPOSITORY}" ] && [ ! -z "${REPORT_BRANCH}" ]
+		    then
+			dot-ssh-add-domain --domain report --host "${REPORT_HOST}" --user "${REPORT_USER}" --port "${REPORT_PORT}" &&
+			    git -C "${HOME}/project" remote add report "report:${REPORT_ORGANIZATION}/${REPORT_REPOSITORY}.git" &&
+			    true
+		    fi &&
+		    true
