@@ -118,6 +118,11 @@ done &&
     dot-ssh-init &&
     mkdir "${HOME}/project" &&
     git -C "${HOME}/project" init &&
+    (cat <<EOF
+COMMITTER_NAME=${COMMITTER_NAME}
+COMMITTER_EMAIL="${COMMITTER_EMAIL}
+EOF
+    )
     if [ ! -z "${COMMITTER_NAME}" ] && [ ! -z "${COMMITTER_EMAIL}" ]
     then
 	git -C "${HOME}/project" config user.name "${COMMITTER_NAME}" &&
