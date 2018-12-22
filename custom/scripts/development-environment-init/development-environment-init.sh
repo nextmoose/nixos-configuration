@@ -138,8 +138,16 @@ done &&
     then
 	dot-ssh-add-domain --domain origin --host "${ORIGIN_HOST}" --user "${ORIGIN_USER}" --port "${ORIGIN_PORT}" &&
 	    git -C "${HOME}/project" remote add origin "origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git" &&
-	    git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
-	    git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
+	    (
+		(
+		    git -C "${HOME}/project" fetch origin "${ORIGIN_BRANCH}" &&
+			git -C "${HOME}/project" checkout "${ORIGIN_BRANCH}" &&
+			true
+		) ||
+		    (
+			git -C "${HOME}/project" checkout -b "${ORIGIN_BRANCH}" &&
+			    true
+		    ) &&
 	    true
     fi &&
     if [ ! -z "${REPORT_HOST}" ] && [ ! -z "${REPORT_USER}" ] && [ ! -z "${REPORT_PORT}" ] && [ ! -z "${REPORT_ORGANIZATION}" ] && [ ! -z "${REPORT_REPOSITORY}" ] && [ ! -z "${REPORT_BRANCH}" ]
