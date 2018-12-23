@@ -70,7 +70,7 @@ let
     pkgs = pkgs;
     name = "emacs-entrypoint";
     src= ./custom/scripts/emacs-entrypoint;
-    dependencies = [ development-environment-init pkgs.emacs  pkgs.git node pkgs.gnupg ];
+    dependencies = [ development-environment-init pkgs.emacs  pkgs.git node pkgs.gnupg pkgs.bash ];
   });
   atom-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
@@ -213,6 +213,12 @@ in
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
+       run = ''
+         mkdir /usr &&
+	   mkdir /usr/bin &&
+	   ln --symbolic ${pkgs.coreutils}/bin/env /usr/bin &&
+	   true
+       '';
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {

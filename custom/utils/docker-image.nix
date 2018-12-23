@@ -3,7 +3,8 @@
   name,
   entrypoint,
   cmd ? [],
-  contents ? []
+  contents ? [],
+  run ? ""
 }:
 let
   image = pkgs.dockerTools.buildImage {
@@ -14,6 +15,7 @@ let
         mkdir /home /tmp &&
         useradd --create-home user &&
         chmod 0777 /tmp &&
+	${run}
         true
     '';
     config = {
