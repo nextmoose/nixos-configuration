@@ -231,10 +231,6 @@ in
       contents = [ node pkgs.bash ];
       entrypoint = [ "${pkgs.bash}/bin/bash" ];
     });
-    docker-image-lighttable = (import ./custom/utils/docker-image.nix {
-      name = "lighttable";
-      entrypoint = [ "${lighttable}/bin/lighttable" ];
-    });
   };
   systemd.services.foo = {
     description = "FOO Daemon";
