@@ -229,7 +229,7 @@ in
     docker-image-node = (import ./custom/utils/docker-image.nix {
       name = "node";
       contents = [ node pkgs.bash ];
-      entrypoint = [ "${pkgs.bash}/bin/bash ];
+      entrypoint = [ "${pkgs.bash}/bin/bash" ];
     });
     docker-image-lighttable = (import ./custom/utils/docker-image.nix {
       name = "lighttable";
