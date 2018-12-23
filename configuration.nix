@@ -226,6 +226,11 @@ in
       contents = [ pass-entrypoint pkgs.bash ];
       entrypoint = [ "${pass-entrypoint}/bin/pass-entrypoint" ];
     });
+    docker-image-node = (import ./custom/utils/docker-image.nix {
+      name = "node";
+      contents = [ node pkgs.bash ];
+      entrypoint = [ "${pkgs.bash}/bin/bash ];
+    });
     docker-image-lighttable = (import ./custom/utils/docker-image.nix {
       name = "lighttable";
       entrypoint = [ "${lighttable}/bin/lighttable" ];
