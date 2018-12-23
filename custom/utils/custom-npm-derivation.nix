@@ -8,12 +8,10 @@ pkgs.stdenv.mkDerivation {
    name = name;
    src = src;
    buildInputs = [ node ];
-   buildPhase = ''
-     npm install --unsafe-perm &&
-       true
-   '';
    installPhase = ''
      cp --recursive . $out &&
+       cd $out &&
+       npm install &&
        # ln --symbolic $out/node_modules/.bin $out/bin &&
        true
    '';
