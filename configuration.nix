@@ -213,12 +213,6 @@ in
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
-       run = ''
-         mkdir /usr &&
-	   mkdir /usr/bin &&
-	   ln --symbolic ${pkgs.coreutils}/bin/env /usr/bin &&
-	   true
-       '';
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
@@ -228,8 +222,14 @@ in
     });
     docker-image-node = (import ./custom/utils/docker-image.nix {
       name = "node";
-      contents = [ node pkgs.bash ];
+      contents = [ node pkgs.bash pkgs.coreutils pkgs.gnugrep pkgs.findutils ];
       entrypoint = [ "${pkgs.bash}/bin/bash" ];
+       run = ''
+         mkdir /usr &&
+	   mkdir /usr/bin &&
+	   ln --symbolic ${pkgs.coreutils}/bin/env /usr/bin &&
+	   true
+       '';
     });
   };
   systemd.services.foo = {
