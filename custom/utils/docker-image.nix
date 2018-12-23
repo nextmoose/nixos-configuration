@@ -22,6 +22,9 @@ let
       entrypoint = entrypoint;
       cmd = cmd;
       User = "user";
+      ExposedPorts = {
+        "8080/tcp": {};
+      };
     };
   };
 in
