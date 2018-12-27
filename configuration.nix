@@ -295,6 +295,9 @@ in
       pkgs.chromium
       pkgs.physlock
       pkgs.nixops
+      pkgs.lighttable
+      pkgs.atom
+      pkgs.netbeans
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
