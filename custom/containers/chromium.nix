@@ -47,6 +47,7 @@ in
 	  "naepdomgkenhinolocfifgehidddafch" # browserpass
 	  "bkdgflcldnnnapblkhphbgpggdiikppg" # duck duck go
 	  "jlhmfgmfgeifomenelglieieghnjghma" # webex
+	  "hmbjbjdpkobdjplfobhljndfdfdipjhg" # zoom
 	];
       };
     };
