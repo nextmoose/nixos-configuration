@@ -233,7 +233,7 @@ in
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
-    docker-image-emacs = (import ./custom/utils/docker-image.nix {
+    docker-image-lighttable = (import ./custom/utils/docker-image.nix {
        name = "lighttable";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${lighttable-entrypoint}/bin/lighttable-entrypoint" ];
