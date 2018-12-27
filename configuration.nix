@@ -253,7 +253,7 @@ in
     mutableUsers = false;
     extraUsers.user.isNormalUser = true;
     extraUsers.user.uid = 1000;
-    extraUsers.user.extraGroups = [ "wheel" "docker" ];
+    extraUsers.user.extraGroups = [ "wheel" "docker" "vboxusers" ];
     extraUsers.user.packages = [
       old-secrets
       launch-configuration-ide
@@ -293,6 +293,14 @@ in
       })
       post-commit
     ];
+  };
+  virtualisation.virtualbox = {
+    guest = {
+      enable = true;
+      x11 = true;
+    };
+    host = {
+      enable = true;
   };
   virtualisation.docker = {
     enable = true;
