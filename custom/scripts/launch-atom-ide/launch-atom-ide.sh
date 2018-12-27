@@ -22,6 +22,7 @@ COMMITTER_NAME="Emory Merryman" &&
 	    --committer-email)
 		COMMITTER_EMAIL="${2}" &&
 		    shift 2 &&
+		    true
 		;;
 	    --upstream-host)
 		UPSTREAM_HOST="${2}" &&
