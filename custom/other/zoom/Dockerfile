@@ -12,5 +12,5 @@ RUN \
     true
 USER user
 WORKDIR /home/user
-ENTRYPOINT [ "zoom" ]
+ENTRYPOINT [ "bash" ]
 CMD []
