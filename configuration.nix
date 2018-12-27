@@ -9,7 +9,7 @@ let
   zoom = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "zoom";
-    src = ./custom/scripts/gnupg-zoom;
+    src = ./custom/scripts/zoom;
     dependencies = [ pkgs.docker ];
   });
   gnupg-import = (import ./custom/utils/custom-script-derivation.nix {
