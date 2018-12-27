@@ -311,15 +311,6 @@ in
       post-commit
     ];
   };
-  virtualisation.virtualbox = {
-    guest = {
-      enable = true;
-      x11 = true;
-    };
-    host = {
-      enable = true;
-    };
-  };
   virtualisation.docker = {
     enable = true;
     autoPrune = {
