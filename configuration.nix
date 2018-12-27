@@ -6,6 +6,12 @@ let
   node = (import ./custom/native/node/default.nix {
     pkgs = pkgs;
   });
+  zoom = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "zoom";
+    src = ./custom/scripts/gnupg-zoom;
+    dependencies = [ pkgs.docker ];
+  });
   gnupg-import = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-import";
