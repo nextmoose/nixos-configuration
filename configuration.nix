@@ -102,6 +102,12 @@ let
     src = ./custom/scripts/launch-emacs-ide;
     dependencies = [ pkgs.docker ];
   });
+  launch-lighttable-ide = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "launch-table-ide";
+    src = ./custom/scripts/launch-table-ide;
+    dependencies = [ pkgs.docker ];
+  });
   vuecli = (import ./custom/utils/custom-npm-derivation.nix {
     pkgs = pkgs;
     node = node;
@@ -226,6 +232,11 @@ in
        name = "emacs";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
+    });
+    docker-image-emacs = (import ./custom/utils/docker-image.nix {
+       name = "lighttable";
+       contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
+       entrypoint = [ "${lighttable-entrypoint}/bin/lighttable-entrypoint" ];
     });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
