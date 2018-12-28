@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
   };
   installPhase = ''
     mkdir $out &&
-      cp . $out &&
+      cp --recursive . $out &&
       cd $out &&
       sh ./scripts/install-sdk.sh &&
       true
