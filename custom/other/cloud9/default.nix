@@ -3,7 +3,7 @@
 }:
 pkgs.stdenv.mkDerivation {
   name = "cloud9";
-  src = pkgs.fetchfromgithub {
+  src = pkgs.fetchFromGithub {
     owner = "c9";
     repo = "core";
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
