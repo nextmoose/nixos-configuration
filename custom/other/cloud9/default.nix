@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
-  buildInputs = [ pkgs.bash insecure-curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which ];
+  buildInputs = [ pkgs.bash insecure-curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which pkgs.tree ];
   buildPhase = ''
     export HOME=. &&
       export GIT_SSL_NO_VERIFY=true &&
@@ -34,6 +34,7 @@ pkgs.stdenv.mkDerivation {
       mkdir ./.c9/node &&
       mkdir ./.c9/node/bin &&
       ln --symbolic $(which node) $(which npm) ./.c9/node/bin &&
+      tree &&
       curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
