@@ -15,16 +15,16 @@ pkgs.stdenv.mkDerivation {
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
   buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git ];
-  buildPhase = ''
-    export HOME=. &&
-      export GIT_SSL_NO_VERIFY=true &&
-      export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
-      sh ./scripts/install-sdk.sh &&
-      true
-  '';
   installPhase = ''
     mkdir $out &&
-      cp --recursive . $out &&
+      mkdir $out/home &&
+      export HOME=$out/home &&
+      export GIT_SSL_NO_VERIFY=true &&
+      export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
+      cp --recursive . $out/home &&
+      cd $out/home &&
+      sh ./scripts/install-sdk.sh &&
+      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
 }
