@@ -33,7 +33,7 @@ pkgs.stdenv.mkDerivation {
       mkdir ./.c9/ &&
       mkdir ./.c9/node &&
       mkdir ./.c9/node/bin &&
-      ln --symbolic $(which node) $(which npm) ./c9/node/bin &&
+      ln --symbolic $(which node) $(which npm) ./.c9/node/bin &&
       curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
