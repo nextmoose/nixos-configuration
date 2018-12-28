@@ -1,4 +1,5 @@
 #!/bin/sh
 
-curl --insecure "${@}" &&
+echo curl --insecure "${@}" &&
+    curl --insecure "${@}" &&
     true
