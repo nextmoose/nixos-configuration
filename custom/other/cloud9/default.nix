@@ -25,9 +25,9 @@ pkgs.stdenv.mkDerivation {
       which node &&
       node --version &&
       echo curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
+      # curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
       echo BETA &&
-      curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
+      # curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
   installPhase = ''
