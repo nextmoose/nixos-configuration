@@ -22,8 +22,6 @@ pkgs.stdenv.mkDerivation {
   };
   buildInputs = [ pkgs.bash insecure-curl node pkgs.which pkgs.git ];
   buildPhase = ''
-    ls -alh &&
-    pwd &&
     sh ./scripts/install-sdk.sh &&
       true
   '';
