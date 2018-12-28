@@ -6,7 +6,7 @@ let
     pkgs = pkgs;
   });
   insecure-curl = (import ../../utils/custom-script-derivation.nix {
-    name = "insecure-curl";
+    name = "curl";
     src = ../../scripts/insecure-curl;
     pkgs = pkgs;
     dependencies = [ pkgs.curl ];
