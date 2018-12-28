@@ -26,10 +26,11 @@ pkgs.stdenv.mkDerivation {
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
-      mkdir c9 &&
-      mkdir c9/node &&
-      mkdir c9/node/bin &&
-      ln --symbolic $(which npm) c9/node/bin &&
+      mkdir .c9 &&
+      mkdir .c9/node &&
+      mkdir .c9/node/bin &&
+      ln --symbolic $(which npm) .c9/node/bin &&
+      tree &&
       curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
       sh ./install.sh -d c9 &&
       true
