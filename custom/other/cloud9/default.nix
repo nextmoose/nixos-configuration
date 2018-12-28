@@ -16,4 +16,4 @@ pkgs.stdenv.mkDerivation {
       sh ./scripts/install-sdk.sh &&
       true
   '';
-};
+}
