@@ -22,6 +22,7 @@ pkgs.stdenv.mkDerivation {
   };
   buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which pkgs.tree ];
   buildPhase = ''
+   exit 64 &&
     export HOME=. &&
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
