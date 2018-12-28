@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation {
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
-  buildInputs = [ pkgs.wget pkgs.curl node pkgs.which pkgs.git ];
+  buildInputs = [ pkgs.bash pkgs.wget pkgs.curl node pkgs.which pkgs.git ];
   buildPhase = ''
     ./scripts/install-sdk.sh &&
       true
