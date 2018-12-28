@@ -27,9 +27,9 @@ pkgs.stdenv.mkDerivation {
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
       echo FINISHED INSTALLING &&
-      curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      echo ALPHA &&
-      sh ./install.sh install &&
+      echo curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
+      echo FINISHED DOWNLOADING &&
+      echo sh ./install.sh install &&
       true
   '';
   installPhase = ''
