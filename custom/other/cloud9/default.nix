@@ -26,10 +26,6 @@ pkgs.stdenv.mkDerivation {
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
-      echo FINISHED INSTALLING &&
-      echo curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      echo FINISHED DOWNLOADING &&
-      echo sh ./install.sh install &&
       true
   '';
   installPhase = ''
