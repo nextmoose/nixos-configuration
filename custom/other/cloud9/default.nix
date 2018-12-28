@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
-      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
+#      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
   installPhase = ''
