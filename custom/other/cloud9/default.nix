@@ -31,7 +31,7 @@ pkgs.stdenv.mkDerivation {
       mkdir c9/node/bin &&
       ln --symbolic $(which npm) c9/node/bin &&
       curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      sh ./install.sh c9 &&
+      sh ./install.sh -d c9 &&
       true
   '';
   installPhase = ''
