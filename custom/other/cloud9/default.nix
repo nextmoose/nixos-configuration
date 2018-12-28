@@ -26,6 +26,9 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir $out &&
       cp --recursive . $out/c9sdk &&
+      mkdir $out/bin &&
+      touch $out/bin/findme &&
+      chmod a+rx $out/bin/findme &&
       true
   '';
 }
