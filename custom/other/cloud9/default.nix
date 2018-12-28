@@ -15,17 +15,17 @@ pkgs.stdenv.mkDerivation {
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
   buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git ];
-  installPhase = ''
-    mkdir $out &&
-      mkdir $out/home &&
-      export HOME=$out/home &&
+  buildPhase = ''
+    export HOME=. &&
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
-      cp --recursive . $out/home &&
-      cd $out/home &&
-      git init &&
       sh ./scripts/install-sdk.sh &&
       curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
+      true
+  '';
+  installPhase = ''
+    mkdir $out &&
+      cp --recursive . $out/c9sdk &&
       true
   '';
 }
