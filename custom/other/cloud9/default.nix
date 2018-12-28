@@ -26,16 +26,9 @@ pkgs.stdenv.mkDerivation {
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
-      which python &&
-      python --version &&
-      which node &&
-      node --version &&
-      mkdir ./.c9/ &&
-      mkdir ./.c9/node &&
-      mkdir ./.c9/node/bin &&
-      ln --symbolic $(which node) $(which npm) ./.c9/node/bin &&
-      tree &&
-      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
+      mkdir c9 &&
+      curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
+      sh ./install.sh c9 &&
       true
   '';
   installPhase = ''
