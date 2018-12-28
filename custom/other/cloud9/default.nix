@@ -5,6 +5,12 @@ let
   node = (import ../../native/node/default.nix {
     pkgs = pkgs;
   });
+  insecure-curl = (import ../../utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "curl";
+    src = ../../scripts/insecure-curl;
+    dependencies = [ pkgs.curl ];
+  });
 in
 pkgs.stdenv.mkDerivation {
   name = "cloud9";
@@ -14,7 +20,7 @@ pkgs.stdenv.mkDerivation {
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
-  buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which ];
+  buildInputs = [ pkgs.bash insecure-curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which ];
   buildPhase = ''
     export HOME=. &&
       export GIT_SSL_NO_VERIFY=true &&
@@ -24,10 +30,7 @@ pkgs.stdenv.mkDerivation {
       python --version &&
       which node &&
       node --version &&
-      echo curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      # curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      echo BETA &&
-      # curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
+      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
   installPhase = ''
