@@ -23,6 +23,7 @@ pkgs.stdenv.mkDerivation {
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       cp --recursive . $out/home &&
       cd $out/home &&
+      git init &&
       sh ./scripts/install-sdk.sh &&
       curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
