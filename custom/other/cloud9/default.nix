@@ -5,6 +5,12 @@ let
   node = (import ../../native/node/default.nix {
     pkgs = pkgs;
   });
+  insecure-curl = (import ../../utils/custom-script-derivation.nix {
+    name = "insecure-curl";
+    src = ../../scripts/insecure-curl;
+    pkgs = pkgs;
+    dependencies = [ pkgs.curl ];
+  });
 in
 pkgs.stdenv.mkDerivation {
   name = "cloud9";
@@ -14,7 +20,7 @@ pkgs.stdenv.mkDerivation {
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
-  buildInputs = [ pkgs.bash pkgs.wget node pkgs.which pkgs.git ];
+  buildInputs = [ pkgs.bash insecure-curl node pkgs.which pkgs.git ];
   buildPhase = ''
     ls -alh &&
     pwd &&
