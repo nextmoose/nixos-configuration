@@ -27,15 +27,5 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . $out &&
       true
   '';
-}  buildInputs = [ pkgs.bash insecure-curl node pkgs.which pkgs.git ];
-  buildPhase = ''
-    git config http.sslVerify false &&
-      sh ./scripts/install-sdk.sh &&
-      true
-  '';
-  installPhase = ''
-    mkdir $out &&
-      cp --recursive . $out &&
-      true
-  '';
 }
+xs
