@@ -22,14 +22,15 @@ pkgs.stdenv.mkDerivation {
   };
   buildInputs = [ pkgs.bash insecure-curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which pkgs.tree ];
   buildPhase = ''
-    export HOME=. &&
+    export HOME=./home &&
+      mkdir ./home &&
       export GIT_SSL_NO_VERIFY=true &&
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
-      mkdir .c9 &&
-      mkdir .c9/node &&
-      mkdir .c9/node/bin &&
-      ln --symbolic $(which npm) .c9/node/bin &&
+      mkdir ./home/.c9 &&
+      mkdir ./home/.c9/node &&
+      mkdir ./home/.c9/node/bin &&
+      ln --symbolic $(which npm) ./home.c9/node/bin &&
       tree &&
       curl --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
       sh ./install.sh -d c9 &&
