@@ -17,6 +17,7 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [ pkgs.wget pkgs.curl node pkgs.which pkgs.git ];
   buildPhase = ''
     ./scripts/install-sdk.sh &&
+      true
   '';
   installPhase = ''
     mkdir $out &&
