@@ -28,4 +28,3 @@ pkgs.stdenv.mkDerivation {
       true
   '';
 }
-xs
