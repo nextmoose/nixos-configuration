@@ -22,6 +22,11 @@ pkgs.stdenv.mkDerivation {
       sh ./scripts/install-sdk.sh &&
       which python &&
       python --version &&
+      which node &&
+      node --version &&
+      echo curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
+      curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
+      echo BETA &&
       curl --insecure -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash &&
       true
   '';
