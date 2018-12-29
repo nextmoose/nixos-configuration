@@ -38,8 +38,8 @@ fi
 VERSION=1
 NODE_VERSION=v6.3.1
 NODE_VERSION_ARM_PI=v0.10.28
-NPM=$C9_DIR/node/bin/npm
-NODE=$C9_DIR/node/bin/node
+NPM=npm
+NODE=node
 
 export TMP=$C9_DIR/tmp
 export TMPDIR=$TMP
@@ -163,7 +163,7 @@ start() {
     
     "base" )
       echo "Installing base packages. Use --help for more options"
-      start install node tmux_install nak ptyjs collab
+      start install tmux_install nak ptyjs collab
     ;;
     
     * )
