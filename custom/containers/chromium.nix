@@ -12,6 +12,9 @@ let
   });
 in
 {
+  additionalCapabilities = [
+    "CAP_SYS_ADMIN"
+  ];
   allowedDevices = [ {
     modifier = "rw";
     node = "/dev/video0";
