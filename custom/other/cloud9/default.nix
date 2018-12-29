@@ -15,7 +15,7 @@ let
     pkgs = pkgs;
     name = "install-it";
     src = ./install;
-    dependencies = [ insecure-curl pkgs.which node python tmux gnumake ];
+    dependencies = [ insecure-curl pkgs.which node pkgs.python pkgs.tmux pkgs.xsgnumake ];
   });
 in
 pkgs.stdenv.mkDerivation {
