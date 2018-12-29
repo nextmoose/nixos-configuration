@@ -1,4 +1,4 @@
-# ide container for nix
+# ide container for nix ... how long for a push
 {
   pkgs ? import <nixpkgs> {},
   development-environment-init
