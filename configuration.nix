@@ -226,6 +226,7 @@ in
   systemd.services = {
     docker-image-atom = (import ./custom/utils/docker-image.nix {
        name = "atom";
+       contents = [ pkgs.bash pkgs.coreutils pkgs.atom pkgs.git ];
        entrypoint = [ "${atom-entrypoint}/bin/atom-entrypoint" ];
     });
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
