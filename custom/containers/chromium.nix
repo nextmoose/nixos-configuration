@@ -14,7 +14,7 @@ in
 {
   allowedDevices = [ {
     modifier = "rw";
-    node = "/dev/video";
+    node = "/dev/video0";
   }];
   bindMounts = {
     "/run/user/1000" = {
