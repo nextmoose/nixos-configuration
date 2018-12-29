@@ -141,7 +141,7 @@ in
   containers = {
     nix-gui = (import ./custom/containers/nix-gui.nix {
       pkgs = pkgs;
-      development-environment-int = development-environment-init;
+      development-environment-init = development-environment-init;
     });
     emacs = (import ./custom/containers/emacs.nix {
       pkgs = pkgs;
