@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
         $out/scripts/atom.sh \
         $out/bin/atom \
         --set STORE_DIR "$out" \
-        --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom pkgs.git pkgs.coreutils pkgs.bash ] } &&
+        --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom pkgs.git pkgs.coreutils pkgs.bash pkgs.trash-cli   pkgs.glib.dev ] } &&
     true
   '';
 }
