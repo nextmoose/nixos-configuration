@@ -9,10 +9,10 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [ pkgs.makeWrapper node ];
   installPhase = ''
     mkdir $out &&
-    mkdir $out/npm-packages &&
     mkdir $out/home &&
+    mkdir $out/home/npm-packages &&
     export HOME=$out/home &&
-    export NPM_PACKAGES=$out/npm-packages &&
+    export NPM_PACKAGES=$out/home/npm-packages &&
     npm install -g ${node-packages} &&
     makeWrapper \
       ${node}/bin/node \
