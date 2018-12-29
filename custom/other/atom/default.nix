@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/atom.sh \
         $out/script/atom \
-        --set ATOM_HOME=$out/atom \
+        --set ATOM_HOME "$out/atom" \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom] } &&
     true
   '';
