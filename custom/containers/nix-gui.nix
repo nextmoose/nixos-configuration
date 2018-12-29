@@ -17,7 +17,6 @@
   {
     environment.variables.DISPLAY=":0.0";
     services.mingetty.autologinUser = "user";
-    sound.enable = true;
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
