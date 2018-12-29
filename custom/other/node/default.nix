@@ -14,6 +14,7 @@ pkgs.stdenv.mkDerivation {
     export HOME=$out/home &&
     export NPM_PACKAGES=$out/home/npm-packages &&
     echo OUT=$out &&
+    echo $out/home/npm-packages > $out/home/npmrc &&
     ${node}/bin/npm install -g ${node-packages} &&
     makeWrapper \
       ${node}/bin/node \
