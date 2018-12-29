@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation {
       export NODE_TLS_REJECT_UNAUTHORIZED=0 &&
       sh ./scripts/install-sdk.sh &&
       curl --insecure --output install.sh -L https://raw.githubusercontent.com/c9/install/master/install.sh &&
-      sh ./install.sh help &&
+      sh ./install.sh install nak &&
       true
   '';
   installPhase = ''
