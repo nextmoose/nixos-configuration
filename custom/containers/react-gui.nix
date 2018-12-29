@@ -29,6 +29,9 @@
         pkgs.git
         pkgs.trash-cli
         pkgs.glib.dev
+        (import ../native/node/default.nix {
+          pkgs = pkgs;
+        });
       ];
     };
   };
