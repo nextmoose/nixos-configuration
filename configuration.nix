@@ -275,6 +275,7 @@ in
       old-secrets
       launch-configuration-ide
       launch-atom-ide
+      launch-lighttable-ide
       launch-emacs-ide
       zoom
       (import ./installed/pass/default.nix {})
