@@ -15,7 +15,7 @@ let
     pkgs = pkgs;
     name = "install-it";
     src = ./install;
-    dependencies = [ insecure-curl pkgs.which node pkgs.python pkgs.tmux pkgs.gnumake pkgs.coreutils pkgs.gcc pkgs.gnutar ];
+    dependencies = [ insecure-curl pkgs.which node pkgs.python pkgs.tmux pkgs.gnumake pkgs.coreutils pkgs.gcc pkgs.gnutar pkgs.gzip ];
   });
 in
 pkgs.stdenv.mkDerivation {
