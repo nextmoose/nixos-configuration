@@ -23,6 +23,7 @@
       packages = [
         development-environment-init
         pkgs.atom
+        pkgs.git
         pkgs.gvfs-trash
         pkgs.glib.dev
       ];
