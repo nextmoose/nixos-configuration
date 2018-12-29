@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . $out &&
       makeWrapper \
         $out/scripts/atom.sh \
-        $out/script/atom \
+        $out/bin/atom \
         --set ATOM_HOME "$out/atom" \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom] } &&
     true
