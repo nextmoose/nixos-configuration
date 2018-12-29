@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
         $out/scripts/atom.sh \
         $out/bin/atom \
         --set ATOM_HOME "$out/atom" \
-        --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom] } &&
+        --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom pkgs.git pkgs.coreutils pkgs.bash ] } &&
     true
   '';
 }
