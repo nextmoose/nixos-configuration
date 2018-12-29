@@ -25,6 +25,7 @@
           pkgs = pkgs;
           name = "developer-environment-init";
           src = ../scripts/developer-environment-init;
+	  dependencies = [ pass pkgs.coreutils ];
        })
         pkgs.atom
       ];
