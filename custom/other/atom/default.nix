@@ -5,7 +5,7 @@
 pkgs.stdenv.mkDerivation {
   name = "atom";
   src = ./src;
-  buildInputs = [ pkgs.makeWrapper pkgs.atom ];
+  buildInputs = [ pkgs.makeWrapper pkgs.atom pkgs.git ];
   buildPhase = ''
     chmod 0500 scripts/*.sh &&
       mkdir atom &&
