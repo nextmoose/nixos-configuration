@@ -22,8 +22,12 @@ in
       isReadOnly = true;
     };
     "/srv/host" = {
-      hostPath ="/";
+      hostPath = "/";
       isReadOnly = true;
+    };
+    "/srv/home" = {
+      hostPath = "/home/user";
+      isReadOnly = false;
     };
   };
   config = { config, pkgs, ...}:
