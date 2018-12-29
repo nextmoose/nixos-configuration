@@ -13,6 +13,7 @@ pkgs.stdenv.mkDerivation {
     mkdir $out/home/npm-packages &&
     export HOME=$out/home &&
     export NPM_PACKAGES=$out/home/npm-packages &&
+    echo OUT=$out &&
     ${node}/bin/npm install -g ${node-packages} &&
     makeWrapper \
       ${node}/bin/node \
