@@ -16,7 +16,6 @@
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0.0";
-    programs.bash.shellInit = "${developer-environment-init}/bin/developer-environment-init";
     services.mingetty.autologinUser = "user";
     sound.enable = true;
     users.extraUsers.user = {
