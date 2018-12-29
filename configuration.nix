@@ -228,36 +228,15 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   systemd.services = {
-    docker-image-atom = (import ./custom/utils/docker-image.nix {
-       name = "atom";
-       contents = [ pkgs.bash pkgs.coreutils pkgs.atom pkgs.git ];
-       entrypoint = [ "${atom-entrypoint}/bin/atom-entrypoint" ];
-    });
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
        contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
        entrypoint = [ "${emacs-entrypoint}/bin/emacs-entrypoint" ];
     });
-    docker-image-lighttable = (import ./custom/utils/docker-image.nix {
-       name = "lighttable";
-       contents = [ pkgs.bash pkgs.coreutils pkgs.git ];
-       entrypoint = [ "${lighttable-entrypoint}/bin/lighttable-entrypoint" ];
-    });
     docker-image-pass = (import ./custom/utils/docker-image.nix {
       name = "pass";
       contents = [ pass-entrypoint pkgs.bash ];
       entrypoint = [ "${pass-entrypoint}/bin/pass-entrypoint" ];
-    });
-    docker-image-node = (import ./custom/utils/docker-image.nix {
-      name = "node";
-      contents = [ node pkgs.bash pkgs.coreutils pkgs.gnugrep pkgs.findutils ];
-      entrypoint = [ "${pkgs.bash}/bin/bash" ];
-       run = ''
-         mkdir /usr &&
-	   mkdir /usr/bin &&
-	   ln --symbolic ${pkgs.coreutils}/bin/env /usr/bin &&
-	   true
-       '';
     });
   };
   systemd.services.foo = {
