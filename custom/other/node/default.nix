@@ -3,7 +3,7 @@
   node ? pkgs.nodejs,
   node-packages ? ""
 }:
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   name = "node";
   src = ./src;
   buildInputs = [ pkgs.makeWrapper node ];
