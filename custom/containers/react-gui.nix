@@ -3,6 +3,11 @@
   pkgs ? import <nixpkgs> {},
   development-environment-init
 }:
+let
+  old-node = (import ../native/node/default.nix {
+      pkgs = pkgs;
+    });
+in
 {
   bindMounts = {
     "/srv/host" = {
@@ -29,8 +34,10 @@
         pkgs.git
         pkgs.trash-cli
         pkgs.glib.dev
-        (import ../native/node/default.nix {
+        (import ../other/node/default.nix {
           pkgs = pkgs;
+          node = old-node;
+          node-packages = "create-react-app";  
         })
       ];
     };
