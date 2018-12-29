@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  pass
+  development-environment-ini
 }:
 {
   bindMounts = {
@@ -21,12 +21,7 @@
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
-        (import ../utils/custom-script-derivation.nix {
-          pkgs = pkgs;
-          name = "development-environment-init";
-          src = ../scripts/development-environment-init;
-	  dependencies = [ pass pkgs.coreutils ];
-       })
+        development-environment-init
         pkgs.atom
       ];
     };
