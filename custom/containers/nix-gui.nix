@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  development-environment-ini
+  development-environment-init
 }:
 {
   bindMounts = {
