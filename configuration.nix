@@ -82,7 +82,7 @@ let
     pkgs = pkgs;
     name = "atom-entrypoint";
     src= ./custom/scripts/atom-entrypoint;
-    dependencies = [ development-environment-init pkgs.atom ];
+    dependencies = [ development-environment-init pkgs.atom pkgs.coreutils ];
   });
   lighttable-entrypoint = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
