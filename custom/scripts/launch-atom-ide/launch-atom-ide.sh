@@ -164,6 +164,7 @@ COMMITTER_NAME="Emory Merryman" &&
 	container \
 	run \
 	--detach \
+	--mount type=bind,source=/etc/machine-id,destination=/etc/machine-id,readonly=true \
 	--mount type=bind,source=/tmp/.X11-unix/X0,destination=/tmp/.X11-unix/X0,readonly=true \
 	--env DISPLAY \
 	atom \
