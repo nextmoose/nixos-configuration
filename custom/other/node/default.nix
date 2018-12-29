@@ -10,6 +10,8 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir $out &&
     mkdir $out/project &&
+    mkdir $out/home &&
+    export HOME=$out/home &&
     cd $out/project &&
     npm install ${node-packages} &&
     ${node}/bin/npm install -g ${node-packages} &&
