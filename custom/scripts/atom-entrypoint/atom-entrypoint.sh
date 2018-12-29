@@ -135,6 +135,6 @@ done &&
 	--report-organization "${REPORT_ORGANIZATION}" \
 	--report-repository "${REPORT_REPOSITORY}" \
 	--report-branch "${REPORT_BRANCH}" &&
-    cd project &&
+    cd /home/user/project &&
     atom --foreground &&
     true
