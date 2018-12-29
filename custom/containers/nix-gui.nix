@@ -1,3 +1,4 @@
+# ide container
 {
   pkgs ? import <nixpkgs> {},
   development-environment-init
