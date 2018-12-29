@@ -31,7 +31,7 @@
         pkgs.glib.dev
         (import ../native/node/default.nix {
           pkgs = pkgs;
-        });
+        })
       ];
     };
   };
