@@ -35,6 +35,7 @@ in
         pkgs.trash-cli
         pkgs.glib.dev
         old-node
+        pkgs.nodePackages.node2nix
       ];
     };
   };
