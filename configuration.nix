@@ -312,9 +312,6 @@ in
 	 dependencies = [ pkgs.coreutils pkgs.findutils ];
       })
       post-commit
-      (import ./custom/other/cloud9/default.nix {
-        pkgs = pkgs;
-      })
     ];
   };
   virtualisation.docker = {
