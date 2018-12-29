@@ -139,6 +139,10 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
+    nix-gui = (import ./custom/containers/nix-gui.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
     emacs = (import ./custom/containers/emacs.nix {
       pkgs = pkgs;
       pass = installed-pass;
