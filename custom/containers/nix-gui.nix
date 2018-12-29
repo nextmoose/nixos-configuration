@@ -22,7 +22,10 @@
       isNormalUser = true;
       packages = [
         development-environment-init
-        pkgs.atom
+        (import ../other/atom.nix {
+          pkgs = pkgs;
+          atom-package = "git-plus";
+        })
         pkgs.git
         pkgs.trash-cli
         pkgs.glib.dev
