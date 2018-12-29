@@ -23,8 +23,7 @@
         development-environment-init
         pkgs.atom
         pkgs.git
-        pkgs.trash
-        pkgs.glib.dev
+        pkgs.trash-cli
       ];
     };
   };
