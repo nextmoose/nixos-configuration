@@ -23,6 +23,8 @@
       packages = [
         development-environment-init
         pkgs.atom
+        pkgs.gvfs-trash
+        pkgs.glib.dev
       ];
     };
   };
