@@ -12,6 +12,10 @@ let
   });
 in
 {
+  allowedDevices = [ {
+    modifier = "rw";
+    node = "/dev/video";
+  }];
   bindMounts = {
     "/run/user/1000" = {
       hostPath = "/run/user/1000";
