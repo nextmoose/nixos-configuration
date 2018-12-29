@@ -24,7 +24,7 @@
         development-environment-init
         (import ../other/atom/default.nix {
           pkgs = pkgs;
-          atom-package = "git-plus";
+          atom-packages = "git-plus nix";
         })
         pkgs.git
         pkgs.trash-cli

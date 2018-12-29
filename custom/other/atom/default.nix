@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  atom-package
+  atom-packages
 }:
 pkgs.stdenv.mkDerivation {
   name = "atom";
@@ -10,7 +10,7 @@ pkgs.stdenv.mkDerivation {
     chmod 0500 scripts/*.sh &&
       mkdir atom &&
       export ATOM_HOME=atom &&
-      apm install ${atom-package} &&
+      apm install ${atom-packages} &&
       true
   '';
   installPhase = ''
