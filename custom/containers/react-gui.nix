@@ -1,4 +1,4 @@
-# ide container for react
+# ide container for react.js
 {
   pkgs ? import <nixpkgs> {},
   development-environment-init
