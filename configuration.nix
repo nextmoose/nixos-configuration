@@ -105,7 +105,7 @@ let
   launch-lighttable-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "launch-lightttable-ide";
-    src = ./custom/scripts/launch-table-ide;
+    src = ./custom/scripts/launch-lighttable-ide;
     dependencies = [ pkgs.docker ];
   });
   vuecli = (import ./custom/utils/custom-npm-derivation.nix {
