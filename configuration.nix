@@ -143,7 +143,11 @@ in
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
-    emacs = (import ./custom/containers/emacs.nix {
+    react-gui = (import ./custom/containers/react-gui.nix {
+      pkgs = pkgs;
+      development-environment-init = development-environment-init;
+    });
+   emacs = (import ./custom/containers/emacs.nix {
       pkgs = pkgs;
       pass = installed-pass;
     });
