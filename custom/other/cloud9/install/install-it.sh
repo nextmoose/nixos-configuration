@@ -38,8 +38,8 @@ fi
 VERSION=1
 NODE_VERSION=v6.3.1
 NODE_VERSION_ARM_PI=v0.10.28
-NPM=npm
-NODE=node
+NPM=$C9_DIR/node/bin/npm
+NODE=$C9_DIR/node/bin/node
 
 export TMP=$C9_DIR/tmp
 export TMPDIR=$TMP
