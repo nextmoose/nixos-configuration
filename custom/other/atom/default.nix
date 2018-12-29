@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/atom.sh \
         $out/bin/atom \
-        --set ATOM_PACKAGES "$out/atom" \
+        --set STORE_DIR "$out" \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.atom pkgs.git pkgs.coreutils pkgs.bash ] } &&
     true
   '';
