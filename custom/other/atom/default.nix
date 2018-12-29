@@ -1,5 +1,6 @@
 {
-  pkgs ? import <nixpkgs> {}
+  pkgs ? import <nixpkgs> {},
+  atom-package
 }:
 pkgs.stdenv.mkDerivation {
   name = "atom";
