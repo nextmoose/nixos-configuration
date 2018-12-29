@@ -1,4 +1,5 @@
 #!/bin/sh
 
-atom "${@}" &&
-  true
+ln --symbolic ${ATOM_PACKAGES} ${HOME}/.atom/packages &&
+    atom "${@}" &&
+    true
