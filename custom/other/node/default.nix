@@ -10,6 +10,8 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir $out &&
     mkdir $out/npm-packages &&
+    mkdir $out/home &&
+    export HOME=$out/home &&
     export NPM_PACKAGES=$out/npm-packages &&
     npm install -g ${node-packages} &&
     makeWrapper \
