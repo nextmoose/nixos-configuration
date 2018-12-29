@@ -10,6 +10,7 @@ pkgs.stdenv.mkDerivation {
     chmod 0500 scripts/*.sh &&
       mkdir atom &&
       export ATOM_HOME=atom &&
+      export GIT_SSL_NO_VERIFY=true &&
       apm install ${atom-packages} &&
       true
   '';
