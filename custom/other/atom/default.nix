@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
       apm install ${atom-package} &&
       true
   '';
-  install-phase = ''
+  installPhase = ''
     mkdir $out &&
       cp --recursive . $out &&
       makeWrapper \
