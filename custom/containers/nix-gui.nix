@@ -23,8 +23,8 @@
       packages = [
         (import ../utils/custom-script-derivation.nix {
           pkgs = pkgs;
-          name = "developer-environment-init";
-          src = ../scripts/developer-environment-init;
+          name = "development-environment-init";
+          src = ../scripts/development-environment-init;
 	  dependencies = [ pass pkgs.coreutils ];
        })
         pkgs.atom
