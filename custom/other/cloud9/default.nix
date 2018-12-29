@@ -15,7 +15,7 @@ let
     pkgs = pkgs;
     name = "install-it";
     src = ./install;
-    dependencies = [ insecure-curl pkgs.which node pkgs.python pkgs.tmux pkgs.xsgnumake ];
+    dependencies = [ insecure-curl pkgs.which node pkgs.python pkgs.tmux pkgs.gnumake ];
   });
 in
 pkgs.stdenv.mkDerivation {
@@ -26,7 +26,7 @@ pkgs.stdenv.mkDerivation {
     rev = "c4d1c59dc8d6619bdca3dbe740291cd5cd26352c";
     sha256 = "1q3h3nhrip4bclm627n8k8g0jgpnfl840ipv8kphn4q413qzcyc7";
   };
-  buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which pkgs.tree install ];
+  buildInputs = [ pkgs.bash pkgs.curl pkgs.nodejs pkgs.which pkgs.git pkgs.python pkgs.which pkgs.tree install-it ];
   buildPhase = ''
     export HOME=. &&
       export GIT_SSL_NO_VERIFY=true &&
