@@ -104,7 +104,7 @@ let
   });
   launch-lighttable-ide = (import ./custom/utils/custom-script-derivation.nix {
     pkgs = pkgs;
-    name = "launch-table-ide";
+    name = "launch-lightttable-ide";
     src = ./custom/scripts/launch-table-ide;
     dependencies = [ pkgs.docker ];
   });
