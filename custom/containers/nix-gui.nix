@@ -2,7 +2,6 @@
   pkgs ? import <nixpkgs> {},
   pass
 }:
-in
 {
   bindMounts = {
     "/srv/host" = {
