@@ -34,11 +34,7 @@ in
         pkgs.git
         pkgs.trash-cli
         pkgs.glib.dev
-        (import ../other/node/default.nix {
-          pkgs = pkgs;
-          node = old-node;
-          node-packages = "create-react-app";  
-        })
+        old-node
       ];
     };
   };
