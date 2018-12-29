@@ -24,6 +24,7 @@
         pkgs.atom
         pkgs.git
         pkgs.trash-cli
+        pkgs.glib.dev
       ];
     };
   };
