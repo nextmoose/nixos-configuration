@@ -10,7 +10,7 @@ let
     npm-global-install = (import ../utils/custom-script-derivation.nix{
         pkgs = pkgs;
         src = ../scripts/npm-global-install;
-        name = npm-global-install;
+        name = "npm-global-install";
         dependencies = [ old-node pkgs.coreutils ];
       });
 in
