@@ -119,6 +119,7 @@ COMMITTER_NAME="Emory Merryman" &&
     POST_COMMIT="${2}" &&
       shift 2 &&
       true
+      ;;
 	    *)
 		echo Unsupported Option &&
 		    echo "${1}" &&
