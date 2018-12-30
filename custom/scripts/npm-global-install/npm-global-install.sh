@@ -16,5 +16,5 @@ mkdir "${HOME}/.npm-packages" &&
   fi &&
   npm install -g "${@}" &&
   mkdir --parents "${HOME}/bin" &&
-  ln --symbolic --force "${HOME}/.npm-packages/bin/*" "${HOME}/bin"
+  ln --symbolic --force ${HOME}/.npm-packages/bin/* "${HOME}/bin"
   true
