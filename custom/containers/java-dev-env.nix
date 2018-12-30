@@ -22,7 +22,7 @@
       packages = [
         development-environment-init
         pkgs.jdk10
-        pkgs.mvn
+        pkgs.maven
         pkgs.geany
       ];
     };
