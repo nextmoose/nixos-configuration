@@ -15,14 +15,14 @@
   };
   config = { config, pkgs, ...}:
   {
-    allowUnfree = true;
     environment.variables.DISPLAY=":0.0";
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
         development-environment-init
-        pkgs.oraclejre8
+        pkgs.jdk10
+        pkgs.mvn
       ];
     };
   };
