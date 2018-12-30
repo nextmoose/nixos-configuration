@@ -144,7 +144,7 @@ in
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
-    javascript-dev-env = (import ./custom/containers/react-gui.nix {
+    javascript-dev-env = (import ./custom/containers/javascript-dev-env.nix {
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
