@@ -237,7 +237,6 @@ in
   sound.enable = true;
   system.stateVersion = "18.03";
   system.autoUpgrade = {
-    channel = "https://nixos.org/channels/nixos-18.09-small";
     enable = true;
   };
   systemd.services = {
