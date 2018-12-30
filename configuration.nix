@@ -285,7 +285,7 @@ in
       pkgs.physlock
       pkgs.nixops
       pkgs.lighttable
-      pkgs.atom
+      pkgs.atom-beta
       pkgs.netbeans
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
