@@ -29,6 +29,9 @@
         pkgs.tomcat9
         pkgs.git
         pkgs.mariadb
+        (import ../native/node/default.nix {
+          pkgs = pkgs;
+          })
       ];
     };
   };
