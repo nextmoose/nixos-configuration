@@ -31,6 +31,9 @@ in
           pkgs = pkgs;
           atom-packages = "git-plus react";
         })
+        (import ./node/create-react-app/default.nix {
+          pkgs = pkgs;  
+        })
         pkgs.git
         pkgs.trash-cli
         pkgs.glib.dev
