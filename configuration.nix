@@ -148,6 +148,10 @@ in
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
+    java-dev-env = (import ./custom/containers/java-dev-env.nix {
+      pkgs = pkgs;
+      development-environment-init = development-environment-init;
+    });
    emacs = (import ./custom/containers/emacs.nix {
       pkgs = pkgs;
       pass = installed-pass;
