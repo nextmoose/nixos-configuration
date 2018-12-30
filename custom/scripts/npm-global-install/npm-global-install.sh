@@ -14,6 +14,7 @@ mkdir "${HOME}/.npm-packages" &&
     echo "${NPMRC_PATCH}" > "${HOME}/.npmrc" &&
       true
   fi &&
+  npm install -g "${@}" &&
   mkdir --parents "${HOME}/bin" &&
   ln --symbolic --force "${HOME}/.npm-packages/bin/*" "${HOME}/bin"
   true
