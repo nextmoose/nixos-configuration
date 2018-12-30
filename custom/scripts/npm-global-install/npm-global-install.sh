@@ -15,5 +15,5 @@ mkdir "${HOME}/.npm-packages" &&
       true
   fi &&
   mkdir --parents "${HOME}/bin" &&
-  ln --symbolic "${HOME}/.npm-packages/bin/*" "${HOME}/bin"
+  ln --symbolic --force "${HOME}/.npm-packages/bin/*" "${HOME}/bin"
   true
