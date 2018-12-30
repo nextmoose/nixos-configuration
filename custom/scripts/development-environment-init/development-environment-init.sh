@@ -11,7 +11,7 @@ COMMITTER_NAME="Emory Merryman" &&
     ORIGIN_USER="git" &&
     ORIGIN_PORT="22" &&
     ORIGIN_ORGANIZATION="nextmoose" &&
-    POST_COMMIT="no" &&
+    POST_COMMIT="yes" &&
     while [ "${#}" -gt 0 ]
     do
 	case "${1}" in
