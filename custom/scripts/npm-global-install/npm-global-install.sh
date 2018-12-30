@@ -6,12 +6,12 @@ mkdir "${HOME}/.npm-packages" &&
   then
     if [ -z "$(grep '${NPMRC_PATCH}' ${HOME}/.npmrc)" ]
     then
-      cat "${NPMRC_PATCH}" >> "${HOME}/.npmrc" &&
+      echo "${NPMRC_PATCH}" >> "${HOME}/.npmrc" &&
         true
     fi &&
       true
   else
-    cat "${NPMRC_PATCH}" > "${HOME}/.npmrc" &&
+    echo "${NPMRC_PATCH}" > "${HOME}/.npmrc" &&
       true
   fi &&
   mkdir --parents "${HOME}/bin" &&
