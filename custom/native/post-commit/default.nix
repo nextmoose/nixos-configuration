@@ -11,6 +11,7 @@ pkgs.stdenv.mkDerivation rec {
       makeWrapper \
         $out/scripts/post-commit.sh \
 	$out/bin/post-commit \
+  --set GIT_EXEC_PATH "" \
 	--set PATH ${pkgs.lib.makeBinPath [ pkgs.git pkgs.coreutils ]} &&
       true
   '';
