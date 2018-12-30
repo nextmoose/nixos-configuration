@@ -11,6 +11,7 @@ COMMITTER_NAME="Emory Merryman" &&
     ORIGIN_USER="git" &&
     ORIGIN_PORT="22" &&
     ORIGIN_ORGANIZATION="nextmoose" &&
+    POST_COMMIT="no" &&
     while [ "${#}" -gt 0 ]
     do
 	case "${1}" in
@@ -114,6 +115,10 @@ COMMITTER_NAME="Emory Merryman" &&
 		    shift 2 &&
 		    true
 		;;
+    --post-commit)
+    POST_COMMIT="${2}" &&
+      shift 2 &&
+      true
 	    *)
 		echo Unsupported Option &&
 		    echo "${1}" &&
@@ -171,7 +176,11 @@ COMMITTER_NAME="Emory Merryman" &&
 	    true
     fi &&
     git -C "${HOME}/project" config user.signingkey $(gnupg-key-id) &&
-    ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
+    if [ "${POST_COMMIT}" == "yes" ]
+    then
+      ln --symbolic $(which post-commit) "${HOME}/project/.git/hooks" &&
+        true
+    fi &&
     if [ ! -z "${UPSTREAM_HOST}" ] && [ ! -z "${UPSTREAM_USER}" ] && [ ! -z "${UPSTREAM_PORT}" ] && [ ! -z "${UPSTREAM_ORGANIZATION}" ] && [ ! -z "${UPSTREAM_REPOSITORY}" ] && [ ! -z "${UPSTREAM_BRANCH}" ]
     then
 	dot-ssh-add-domain --domain upstream --host "${UPSTREAM_HOST}" --user "${UPSTREAM_USER}" --port "${UPSTREAM_PORT}" &&
