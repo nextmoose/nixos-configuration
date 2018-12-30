@@ -1,4 +1,3 @@
-# Main config
 { config, pkgs, ... }:
 let
   installed-pass = (import ./installed/pass/default.nix{
