@@ -27,6 +27,8 @@
         pkgs.jetbrains.idea-community
         pkgs.jedit
         pkgs.tomcat9
+        pkgs.git
+        pkgs.mariadb
       ];
     };
   };
