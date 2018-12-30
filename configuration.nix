@@ -231,6 +231,10 @@ in
   };
   sound.enable = true;
   system.stateVersion = "18.03";
+  system.autoUpgrade = {
+    channel = "https://nixos.org/channels/nixos-18.09-small";
+    enable = true;
+  };
   systemd.services = {
     docker-image-emacs = (import ./custom/utils/docker-image.nix {
        name = "emacs";
@@ -285,7 +289,7 @@ in
       pkgs.physlock
       pkgs.nixops
       pkgs.lighttable
-      pkgs.atom-beta
+      pkgs.atom
       pkgs.netbeans
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
