@@ -23,6 +23,7 @@
         development-environment-init
         pkgs.jdk10
         pkgs.mvn
+        pkgs.geany
       ];
     };
   };
