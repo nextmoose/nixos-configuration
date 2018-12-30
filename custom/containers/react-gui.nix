@@ -7,6 +7,12 @@ let
   old-node = (import ../native/node/default.nix {
       pkgs = pkgs;
     });
+    npm-global-install = (import ../utils/custom-script-derivation.nix{
+        pkgs = pkgs;
+        src = ../scripts/npm-global-install;
+        name = npm-global-install;
+        dependencies = [ old-node pkgs.coreutils ];
+      });
 in
 {
   bindMounts = {
@@ -21,7 +27,10 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    environment.variables.DISPLAY=":0.0";
+    environment.variables = {
+      DISPLAY=":0.0";
+      NPM_PACKAGES="/home/user/.npm-packages";
+   };
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       isNormalUser = true;
