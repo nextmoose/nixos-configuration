@@ -140,11 +140,11 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   containers = {
-    nix-gui = (import ./custom/containers/nix-gui.nix {
+    nix-dev-env = (import ./custom/containers/nix-dev-env.nix {
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
-    react-gui = (import ./custom/containers/react-gui.nix {
+    javascript-dev-env = (import ./custom/containers/react-gui.nix {
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
