@@ -24,6 +24,9 @@
         pkgs.jdk10
         pkgs.maven
         pkgs.geany
+        pkgs.jetbrains.idea-community
+        pkgs.jedit
+        pkgs.tomcat
       ];
     };
   };
