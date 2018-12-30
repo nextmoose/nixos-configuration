@@ -26,7 +26,7 @@
         pkgs.geany
         pkgs.jetbrains.idea-community
         pkgs.jedit
-        pkgs.tomcat
+        pkgs.tomcat9
       ];
     };
   };
