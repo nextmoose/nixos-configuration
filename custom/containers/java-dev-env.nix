@@ -22,12 +22,8 @@
     environment.variables.DISPLAY=":0.0";
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
-    users.groups.docker = {
-      gid = 131;
-    };
     users.groups.wheel = {};
     users.extraUsers.user = {
-      extraGroups = [ "docker" "wheel" ];
       isNormalUser = true;
       packages = [
         development-environment-init
@@ -46,6 +42,7 @@
           })
       ];
     };
+    virtualisation.docker.enable = true;
   };
 #  tmpfs = [ "/home" ];
 }
