@@ -297,6 +297,7 @@ in
       pkgs.netbeans
       pkgs.jetbrains.idea-community
       pkgs.maven
+      pkgs.docker_compose
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
