@@ -20,6 +20,7 @@
     services.mingetty.autologinUser = "user";
     users.groups.wheel = {};
     users.extraUsers.user = {
+      extraGroups = [ "docker" ];
       isNormalUser = true;
       packages = [
         development-environment-init
