@@ -22,7 +22,7 @@
     environment.variables.DISPLAY=":0.0";
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
-      extraGroups = [ docker ];
+      extraGroups = [ "docker" ];
       isNormalUser = true;
       packages = [
         development-environment-init
