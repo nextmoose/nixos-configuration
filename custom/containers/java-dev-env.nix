@@ -12,10 +12,6 @@
       hostPath = "/home/user";
       isReadOnly = false;
     };
-    "/var/run/docker.sock" = {
-      hostPath = "/var/run/docker.sock";
-      isReadOnly = false;
-    };
   };
   config = { config, pkgs, ...}:
   {
