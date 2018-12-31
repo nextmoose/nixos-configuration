@@ -19,6 +19,7 @@
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.groups.wheel = {};
+    users.groups.docker = {};
     users.extraUsers.user = {
       extraGroups = [ "docker" ];
       isNormalUser = true;
@@ -32,8 +33,6 @@
         pkgs.tomcat9
         pkgs.git
         pkgs.mariadb
-        pkgs.docker
-        pkgs.docker_compose
         (import ../native/node/default.nix {
           pkgs = pkgs;
           })
