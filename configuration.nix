@@ -298,6 +298,7 @@ in
       pkgs.jetbrains.idea-community
       pkgs.maven
       pkgs.docker_compose
+      pkgs.jdk10
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
