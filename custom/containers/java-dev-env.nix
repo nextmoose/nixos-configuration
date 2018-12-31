@@ -12,6 +12,10 @@
       hostPath = "/home/user";
       isReadOnly = false;
     };
+    "/var/run/docker.sock" = {
+      hostPath = "/var/run/docker.sock";
+      isReadOnly = false;
+    };
   };
   config = { config, pkgs, ...}:
   {
@@ -29,6 +33,8 @@
         pkgs.tomcat9
         pkgs.git
         pkgs.mariadb
+        pkgs.docker
+        pkgs.docker_compose
         (import ../native/node/default.nix {
           pkgs = pkgs;
           })
