@@ -295,6 +295,7 @@ in
       pkgs.lighttable
       pkgs.atom
       pkgs.netbeans
+      pkgs.jetbrains.idea-community
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
