@@ -296,7 +296,7 @@ in
       pkgs.atom
       pkgs.netbeans
       pkgs.jetbrains.idea-community
-      pkgs.mvn
+      pkgs.maven
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
