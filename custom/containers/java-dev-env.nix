@@ -22,7 +22,9 @@
     environment.variables.DISPLAY=":0.0";
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
-    users.groups.docker.gid = 131;
+    users.groups.docker = {
+      gid = 131;
+    };
     users.groups.wheel = {};
     users.extraUsers.user = {
       extraGroups = [ "docker" "wheel" ];
