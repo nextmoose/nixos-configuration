@@ -21,6 +21,7 @@
   {
     environment.variables.DISPLAY=":0.0";
     services.mingetty.autologinUser = "user";
+    users.groups.docker = {};
     users.extraUsers.user = {
       extraGroups = [ "docker" ];
       isNormalUser = true;
