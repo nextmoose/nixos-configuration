@@ -6,7 +6,7 @@ let
   });
   my-atom = (import ./custom/utils/custom-script-derivation.nix{
     pkgs = pkgs;
-    name = "pass";
+    name = "atom";
     src = ./custom/scripts/atom;
     dependencies = [ pkgs.atom pkgs.trash-cli pkgs.glib.dev ];
   });
