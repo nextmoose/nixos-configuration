@@ -7,7 +7,7 @@ let
   my-atom = (import ./custom/utils/custom-script-derivation.nix{
     pkgs = pkgs;
     name = "pass";
-    src = ./custom/scripts/atom
+    src = ./custom/scripts/atom;
     dependencies = [ pkgs.atom pkgs.trash-cli pkgs.glib.dev ];
   });
   node = (import ./custom/native/node/default.nix {
