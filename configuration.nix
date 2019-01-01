@@ -4,6 +4,12 @@ let
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
+  my-atom = (import ./custom/utils/custom-script-derivation.nix{
+    pkgs = pkgs;
+    name = "pass";
+    src = ./custom/scripts/atom
+    dependencies = [ pkgs.atom pkgs.trash-cli pkgs.glib.dev]
+  });
   node = (import ./custom/native/node/default.nix {
     pkgs = pkgs;
   });
@@ -293,7 +299,7 @@ in
       pkgs.physlock
       pkgs.nixops
       pkgs.lighttable
-      pkgs.atom
+      my-atom
       pkgs.netbeans
       pkgs.jetbrains.idea-community
       pkgs.maven
