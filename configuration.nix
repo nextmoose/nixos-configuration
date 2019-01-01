@@ -8,7 +8,7 @@ let
     pkgs = pkgs;
     name = "atom";
     src = ./custom/scripts/atom;
-    dependencies = [ pkgs.atom pkgs.trash-cli pkgs.glib.dev ];
+    dependencies = [ pkgs.atom pkgs.trash-cli pkgs.glib.dev pkgs.coreutils pkgs.git pkgs.bash ];
   });
   node = (import ./custom/native/node/default.nix {
     pkgs = pkgs;
