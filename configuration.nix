@@ -150,6 +150,10 @@ in
       pkgs = pkgs;
       development-environment-init = development-environment-init;
     });
+    go-dev-env = (import ./custom/containers/go-dev-env.nix {
+      pkgs = pkgs;
+      development-environment-init = development-environment-init;
+    });
     javascript-dev-env = (import ./custom/containers/javascript-dev-env.nix {
       pkgs = pkgs;
       development-environment-init = development-environment-init;
