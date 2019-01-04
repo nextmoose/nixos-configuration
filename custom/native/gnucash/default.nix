@@ -24,7 +24,7 @@ pkgs.stdenv.mkDerivation {
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
         --set STORE_DIR "$out" \
-        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import]} &&
+        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import pkgs.aws-cli ]} &&
      true
   '';
 }
