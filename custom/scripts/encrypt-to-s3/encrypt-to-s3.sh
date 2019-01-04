@@ -39,7 +39,6 @@ done &&
   tar --create --file "${TEMP_DIR}/${NAME}.tar" --directory "${SOURCE_DIRECTORY}" "${SOURCE}" &&
   gzip -9 --to-stdout "${TEMP_DIR}/${NAME}.tar" > "${TEMP_DIR}/${NAME}.tar.gz" &&
   gpg --output "${TEMP_DIR}/${NAME}.tar.gz.gpg" --sign --encrypt --recipient $(gnupg-key-id) "${TEMP_DIR}/${NAME}.tar.gz" &&
-  mkisofs -o "${TEMP_DIR}/${NAME}.tar.gz.gpg.iso" -R -joliet-long "${TEMP_DIR}/${NAME}.tar.gz.gpg" && 
-  mkisofs -o "${TEMP_DIR}/${NAME}.tar.gz.gpg.iso" &&
-  dvdisaster &&
+  mkisofs -o "${TEMP_DIR}/${NAME}.tar.gz.gpg.iso" -R -joliet-long "${TEMP_DIR}/${NAME}.tar.gz.gpg" &&
+  dvdisaster --image "${TEMP_DIR}/${NAME}.tar.gz.gpg.iso" -mRS01 --redundancy high --ecc "${TEMP_DIR}/${NAME}.tar.gz.gpg.ecc" --create &&
   true
