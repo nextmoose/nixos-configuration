@@ -13,7 +13,7 @@ let
     pkgs = pkgs;
     name = "aws-cli-init";
     src = ../../scripts/aws-cli-init;
-    dependencies = [ pass pkgs.coreutils pkgs.aws-cli ];
+    dependencies = [ pass pkgs.coreutils pkgs.awscli ];
   });
 in
 pkgs.stdenv.mkDerivation {
@@ -30,7 +30,7 @@ pkgs.stdenv.mkDerivation {
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
         --set STORE_DIR "$out" \
-        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import pkgs.aws-cli pkgs.gnugrep pkgs.findutils]} &&
+        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import pkgs.awscli pkgs.gnugrep pkgs.findutils]} &&
      true
   '';
 }
