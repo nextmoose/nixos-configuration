@@ -22,6 +22,7 @@ do
       BUCKET="${2}" &&
         shift 2 &&
         true
+    ;;
     *)
       echo "Unknown Option" &&
         echo "${1}" &&
