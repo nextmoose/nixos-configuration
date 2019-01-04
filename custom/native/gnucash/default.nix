@@ -7,7 +7,7 @@ let
     pkgs = pkgs;
     name = "gnupg-import";
     src = ../../scripts/gnupg-import;
-    dependencies = [ pass pkgs.coreutils pkgs.gnucash ];
+    dependencies = [ pass pkgs.coreutils pkgs.gnupg ];
   });
 in
 pkgs.stdenv.mkDerivation {
