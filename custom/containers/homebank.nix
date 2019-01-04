@@ -8,7 +8,13 @@ let
     name = "gnupg-import";
     src = ../scripts/gnupg-import;
     dependencies = [ pkgs.gnucash pkgs.coreutils ];
-  })
+  });
+  push-to-s3 = (import ../utils/custom-script-derivation.nix{
+    pkgs = pkgs;
+    name = "push-to-s3";
+    src = ../scripts/push-to-s3;
+    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrecord pkgs.dvdisaster pkgs.awscli ];
+  });
 in
 {
   bindMounts = {
@@ -34,6 +40,7 @@ in
           src = ../scripts/homebank;
           dependencies = [ pkgs.homebank gnupg-import ];
         })
+        gnupg-import
       ];
     };
   };
