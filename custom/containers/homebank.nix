@@ -7,13 +7,13 @@ let
     pkgs = pkgs;
     name = "gnupg-import";
     src = ../scripts/gnupg-import;
-    dependencies = [ pkgs.gnucash pkgs.coreutils ];
+    dependencies = [ pkgs.gnucash pkgs.coreutils pass ];
   });
   aws-cli-init = (import ../utils/custom-script-derivation.nix {
     pkgs = pkgs;
     name = "aws-cli-init";
     src = ../scripts/aws-cli-init;
-    dependencies = [ pkgs.coreutils pkgs.awscli ];
+    dependencies = [ pkgs.coreutils pkgs.awscli pass ];
   });
   push-to-s3 = (import ../utils/custom-script-derivation.nix{
     pkgs = pkgs;
