@@ -313,6 +313,7 @@ in
       pkgs.maven
       pkgs.docker_compose
       pkgs.jdk10
+      pkgs.cdrkit
       (import ./custom/native/node/default.nix {
         pkgs = pkgs;
       })
