@@ -21,10 +21,10 @@ let
     src = ../scripts/aws-cli-init;
     dependencies = [ pkgs.coreutils pkgs.awscli pass ];
   });
-  push-to-s3 = (import ../utils/custom-script-derivation.nix{
+  encrypt-to-s3 = (import ../utils/custom-script-derivation.nix{
     pkgs = pkgs;
-    name = "push-to-s3";
-    src = ../scripts/push-to-s3;
+    name = "encrypt-to-s3";
+    src = ../scripts/encrypt-to-s3;
     dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id ];
   });
 in
@@ -55,6 +55,7 @@ in
         gnupg-import
         gnupg-key-id
         pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli
+        encrypt-to-s3
       ];
     };
   };
