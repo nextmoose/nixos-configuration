@@ -56,6 +56,7 @@ in
         gnupg-key-id
         pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli
         encrypt-to-s3
+        pass
       ];
     };
   };
