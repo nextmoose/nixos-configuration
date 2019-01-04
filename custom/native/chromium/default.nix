@@ -1,5 +1,8 @@
 {
-  pkgs ? import <nixpkgs> {}
+  pkgs ? import <nixpkgs> {},
+  flash ? import ../flash/default.nix {
+    pkgs = pkgs;
+  }
 }:
 pkgs.stdenv.mkDerivation {
   name = "chromium";
@@ -13,6 +16,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/chromium.sh \
         $out/bin/chromium \
+        --set FLASH_STORE= ${pkgs} \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.chromium pkgs.coreutils pkgs.gnugrep ]} &&
       true
   '';
