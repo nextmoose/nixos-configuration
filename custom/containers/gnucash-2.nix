@@ -24,7 +24,6 @@
           pkgs = pkgs;
           pass = pass;
         })
-        pkgs.kmymoney
         pkgs.homebank
         pkgs.skrooge
       ];
