@@ -174,7 +174,11 @@ in
       pkgs = pkgs;
       pass = installed-pass;
     });
-  old-secrets = (import ./custom/containers/old-secrets.nix {
+    gnucash-2 = (import ./custom/containers/gnucash-2.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
+   old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
       pass = installed-pass;
     });
