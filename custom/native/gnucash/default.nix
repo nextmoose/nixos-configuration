@@ -6,7 +6,7 @@ let
   gnupg-import = (import ../../utils/custom-script-derivation.nix{
     pkgs = pkgs;
     name = "gnupg-import";
-    src = ../scripts/gnupg-import;
+    src = ../../scripts/gnupg-import;
     dependencies = [ pass pkgs.coreutils pkgs.gnucash ];
   });
 in
