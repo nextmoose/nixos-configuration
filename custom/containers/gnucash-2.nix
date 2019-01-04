@@ -27,5 +27,5 @@
       ];
     };
   };
-#  tmpfs = [ "/home" ];
+  tmpfs = [ "/home" ];
 }
