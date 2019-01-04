@@ -8,6 +8,7 @@ pkgs.stdenv.mkDerivation {
   };
   installPhase = ''
     mkdir $out &&
+      ls -alh . &&
       cp --recursive . $out &&
       true
   '';
