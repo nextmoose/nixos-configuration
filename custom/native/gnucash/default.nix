@@ -23,6 +23,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
+        --set STORE_DIR "$out" \
         --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import]} &&
      true
   '';
