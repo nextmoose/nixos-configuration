@@ -4,7 +4,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchurl {
     name = "flash_player_ppapi_linux.x86_64.tar.gz";
     url = "https://fpdownload.adobe.com/pub/flashplayer/pdc/32.0.0.101/flash_player_ppapi_linux.x86_64.tar.gz";
-    sha512 = "231z9nvbmvd2hs83gnl6xbikyhm5ra1jka31394vdchwkahbwmp15j6kwxpb6y283swlyaf28bkdzycvlc2rdcsm07wp3izgk0k1z04";
+    sha512 = "0zjyvhz9gal2ac1lqd4g51zwfhf5vfm84363jg3k3lk90pym97a68kf7syagj9aiv6lib78v9zx3nhnnmkimkpdv8jx3j919k2npj9r";
   };
   installPhase = ''
     mkdir $out &&
