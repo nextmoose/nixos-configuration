@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/chromium.sh \
         $out/bin/chromium \
-        --set FLASH_STORE= ${pkgs} \
+        --set FLASH_STORE ${pkgs} \
         --set PATH ${pkgs.lib.makeBinPath [ pkgs.chromium pkgs.coreutils pkgs.gnugrep ]} &&
       true
   '';
