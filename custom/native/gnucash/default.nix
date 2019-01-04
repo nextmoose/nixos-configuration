@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> {}}:
+{
+  pkgs ? import <nixpkgs> {},
+  pass
+}:
 pkgs.stdenv.mkDerivation {
   name = "gnucash";
   src = ./src;
@@ -12,7 +15,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
-        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils ]} &&
      true
   '';
 }

@@ -21,7 +21,8 @@
       isNormalUser = true;
       packages = [
         (import ../native/gnucash/default.nix {
-          pkgs = pkgs;  
+          pkgs = pkgs;
+          pass = pass;
         })
       ];
     };
