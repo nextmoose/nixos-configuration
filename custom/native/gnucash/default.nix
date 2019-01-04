@@ -2,6 +2,14 @@
   pkgs ? import <nixpkgs> {},
   pass
 }:
+let
+  gnupg-import = (import ../utils/custom-script-derivation.nix{
+    pkgs = pkgs;
+    name = "gnupg-import";
+    src = ../scripts/gnupg-import;
+    dependencies = [ pass pkgs.coreutils pkgs.gnucash ];
+  });
+in
 pkgs.stdenv.mkDerivation {
   name = "gnucash";
   src = ./src;
@@ -15,7 +23,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
-        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils ]} &&
+        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import]} &&
      true
   '';
 }
