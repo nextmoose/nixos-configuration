@@ -9,6 +9,12 @@ let
     src = ../scripts/gnupg-import;
     dependencies = [ pkgs.gnucash pkgs.coreutils ];
   });
+  aws-cli-init = (import ../utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "aws-cli-init";
+    src = ../scripts/aws-cli-init;
+    dependencies = [ pkgs.coreutils pkgs.awscli ];
+  });
   push-to-s3 = (import ../utils/custom-script-derivation.nix{
     pkgs = pkgs;
     name = "push-to-s3";
