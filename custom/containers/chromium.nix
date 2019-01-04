@@ -7,12 +7,8 @@ let
     pkgs = pkgs;
     pass = pass;
   });
-  flash = (import ../native/flash/default.nix {
-    pkgs = pkgs;
-  });
   chromium = (import ../native/chromium/default.nix {
     pkgs = pkgs;
-    flash = flash;
   });
 in
 {
