@@ -9,6 +9,12 @@ let
     src = ../../scripts/gnupg-import;
     dependencies = [ pass pkgs.coreutils pkgs.gnupg ];
   });
+  aws-cli-init = (import ../../utils/custom-script-derivation.nix{
+    pkgs = pkgs;
+    name = "aws-cli-init";
+    src = ../../scripts/aws-cli-init;
+    dependencies = [ pass pkgs.coreutils pkgs.aws-cli ];
+  });
 in
 pkgs.stdenv.mkDerivation {
   name = "gnucash";
