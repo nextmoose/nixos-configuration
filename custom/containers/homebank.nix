@@ -41,6 +41,7 @@ in
           dependencies = [ pkgs.homebank gnupg-import ];
         })
         gnupg-import
+        pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli
       ];
     };
   };
