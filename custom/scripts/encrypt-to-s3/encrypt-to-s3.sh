@@ -33,4 +33,5 @@ done &&
   echo ${TEMP_DIR} &&
   tar --create --file "${TEMP_DIR}/${NAME}.tar" --directory "${SOURCE_DIRECTORY}" "${SOURCE}" &&
   gzip -9 --to-stdout "${TEMP_DIR}/${NAME}.tar" > "${TEMP_DIR}/${NAME}.tar.gz" &&
+  gnupg --output "${TEMP_DIR}/${NAME}.tar.gz.gpg" --encrypt --sign --recipient $(gnupg-key-id) "${TEMP_DIR}/${NAME}.tar.gz"
   true
