@@ -25,7 +25,7 @@ let
     pkgs = pkgs;
     name = "encrypt-to-s3";
     src = ../scripts/encrypt-to-s3;
-    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id ];
+    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id pkgs.mktemp ];
   });
 in
 {
