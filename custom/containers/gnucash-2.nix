@@ -20,11 +20,8 @@
     users.extraUsers.user = {
       isNormalUser = true;
       packages = [
-        (import ../utils/custom-script-derivation.nix {
-          pkgs = pkgs;
-          name = "gnucash";
-          src = ../scripts/gnucash;
-          dependencies = [ pkgs.gnucash ]
+        (import ../native/gnucash/default.nix {
+          pkgs = pkgs;  
         })
       ];
     };
