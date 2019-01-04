@@ -13,7 +13,7 @@ let
     pkgs = pkgs;
     name = "push-to-s3";
     src = ../scripts/push-to-s3;
-    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrecord pkgs.dvdisaster pkgs.awscli ];
+    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli ];
   });
 in
 {
