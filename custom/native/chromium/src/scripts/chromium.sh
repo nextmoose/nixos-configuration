@@ -1,7 +1,7 @@
 #!/bin/sh
 
 chromium \
-  --ppapi-flash-path="${FLASH_STORE}/lib/adobe-flashplugin/libpepflashplayer.so"
+  --ppapi-flash-path="${FLASH_STORE}/libpepflashplayer.so" \
   --disable-gpu \
   --user-data-dir="${HOME}/data" &&
   true
