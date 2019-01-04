@@ -15,4 +15,4 @@ pkgs.stdenv.mkDerivation {
         --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash ]} &&
      true
   '';
-};
+}
