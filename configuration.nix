@@ -178,7 +178,11 @@ in
       pkgs = pkgs;
       pass = installed-pass;
     });
-   old-secrets = (import ./custom/containers/old-secrets.nix {
+    homebank = (import ./custom/containers/homebank.nix {
+      pkgs = pkgs;
+      pass = installed-pass;
+    });
+    old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
       pass = installed-pass;
     });
