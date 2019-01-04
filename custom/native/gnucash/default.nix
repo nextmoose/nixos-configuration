@@ -3,7 +3,7 @@
   pass
 }:
 let
-  gnupg-import = (import ../utils/custom-script-derivation.nix{
+  gnupg-import = (import ../../utils/custom-script-derivation.nix{
     pkgs = pkgs;
     name = "gnupg-import";
     src = ../scripts/gnupg-import;
