@@ -30,7 +30,7 @@ pkgs.stdenv.mkDerivation {
         $out/scripts/gnucash.sh \
         $out/bin/gnucash \
         --set STORE_DIR "$out" \
-        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import pkgs.awscli pkgs.gnugrep pkgs.findutils]} &&
+        --set PATH ${pkgs.lib.makeBinPath [  pkgs.gnucash  pass  pkgs.coreutils gnupg-import pkgs.awscli pkgs.gnugrep pkgs.findutils 	pkgs.gnome2.GConf ]} &&
      true
   '';
 }
