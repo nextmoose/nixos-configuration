@@ -3,16 +3,6 @@
 while [ "${#}" -gt 0 ]
 do
   case "${1}" in
-    --name)
-      NAME="${2}" &&
-        shift 2 &&
-        true
-    ;;
-    --source-directory)
-      SOURCE_DIRECTORY="${2}" &&
-        shift 2 &&
-        true
-    ;;
     --source)
       SOURCE="${2}" &&
         shift 2 &&
@@ -36,7 +26,8 @@ do
 done &&
   TEMP_DIR=$(mktemp -d) &&
   echo ${TEMP_DIR} &&
-  tar --create --file "${TEMP_DIR}/${NAME}.tar" --directory "${SOURCE_DIRECTORY}" "${SOURCE}" &&
+  NAME=$(basename ${SOURCE}) &&
+  tar --create --file "${TEMP_DIR}/${NAME}.tar" --directory "${HOME}" "${SOURCE}" &&
   gzip -9 --to-stdout "${TEMP_DIR}/${NAME}.tar" > "${TEMP_DIR}/${NAME}.tar.gz" &&
   gpg --output "${TEMP_DIR}/${NAME}.tar.gz.gpg" --sign --encrypt --recipient $(gnupg-key-id) "${TEMP_DIR}/${NAME}.tar.gz" &&
   mkisofs -o "${TEMP_DIR}/${NAME}.tar.gz.gpg.iso" -R -joliet-long "${TEMP_DIR}/${NAME}.tar.gz.gpg" &&
