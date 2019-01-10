@@ -27,6 +27,12 @@ let
     src = ../scripts/encrypt-to-s3;
     dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id pkgs.mktemp ];
   });
+  decrypt-from-s3 = (import ../utils/custom-script-derivation.nix{
+    pkgs = pkgs;
+    name = "decrypt-from-s3";
+    src = ../scripts/decrypt-from-s3;
+    dependencies = [ pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id pkgs.mktemp pkgs.fuseiso ];
+  });
 in
 {
   bindMounts = {
