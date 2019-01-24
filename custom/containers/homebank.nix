@@ -50,8 +50,10 @@ let
 in
 {
   additionalCapabilities = [
-    "CAP_SYS_ADMIN"
     "CAP_SETUID"
+    "CAP_SETGID"
+    "CAP_SYS_ADMIN"
+    "CAP_SETPCAP"
   ];
   bindMounts = {
     "/run/user/1000" = {
