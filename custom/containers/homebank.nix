@@ -64,6 +64,13 @@ in
   };
   config = { config, pkgs, ...}:
   {
+    filesystems = {
+      "/mnt" = {
+        "/device" = "/home/user/xxx.iso";
+        "fsType" = "iso9660";
+        "options" = "loop,noauto";
+      };
+    };
     environment.variables.DISPLAY=":0.0";
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
