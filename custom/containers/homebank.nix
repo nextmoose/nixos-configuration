@@ -91,6 +91,9 @@ in
         pkgs.pmount
         pkgs.s3fs
         pkgs.udevil
+        pkgs.fuse-7z-ng
+        pkgs.	p7zip
+        pkgs.xorriso
       ];
     };
   };
