@@ -49,6 +49,9 @@ let
   });
 in
 {
+  additionalCapabilities = [
+    "CAP_SYS_ADMIN"
+  ];
   bindMounts = {
     "/run/user/1000" = {
       hostPath = "/run/user/1000";
