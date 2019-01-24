@@ -64,7 +64,7 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    filesystems = {
+    fileSystems = {
       "/mnt" = {
         "/device" = "/home/user/xxx.iso";
         "fsType" = "iso9660";
