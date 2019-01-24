@@ -83,6 +83,14 @@ in
         encrypt-to-s3
         decrypt-from-s3
         pass
+        pkgs.archivemount
+        pkgs.autofs5
+        pkgs.bashmount
+        pkgs.bindfs
+        pkgs.mount
+        pkgs.pmount
+        pkgs.s3fs
+        pkgs.udevil
       ];
     };
   };
