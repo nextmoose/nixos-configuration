@@ -31,11 +31,8 @@ do
 done &&
   TEMP_DIR=$(mktemp -d) &&
   echo ${TEMP_DIR} &&
-  mkdir "${TEMP_DIR}/mount" &&
-  fuseiso "${IMAGE}" "${TEMP_DIR}/mount" &&
-  mkdir "${TEMP_DIR}/work" &&
-  gpg --output "${TEMP_DIR}/work/${DESTINATION}.tar.gz" --decrypt "${TEMP_DIR}/mount/${DESTINATION}.tar.gz.gpg" &&
-  gunzip --to-stdout "${TEMP_DIR}/work/${DESTINATION}.tar.gz" > "${TEMP_DIR}/work/${DESTINATION}.tar" &&
-  mkdir "${TEMP_DIR}/target" &&
-  tar --extract --file "${TEMP_DIR}/work/${DESTINATION}.tar" --directory "${TEMP_DIR}/target" &&
+  xorriso -osirrox on -indev "${IMAGE}" -extract / "${TEMP_DIR}" &&
+  gpg --output "${TEMP_DIR}/${DESTINATION}.tar.gz" --decrypt "${TEMP_DIR}/${DESTINATION}.tar.gz.gpg" &&
+  gunzip --to-stdout "${TEMP_DIR}/${DESTINATION}.tar.gz" > "${TEMP_DIR}/${DESTINATION}.tar" &&
+  tar --extract --file "${TEMP_DIR}/${DESTINATION}.tar" --directory "${TEMP_DIR}" &&
   true

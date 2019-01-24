@@ -45,6 +45,7 @@ let
       pkgs.fuseiso
       pkgs.kmod
       pkgs.utillinux
+      pkgs.xorriso
     ];
   });
 in
