@@ -51,6 +51,7 @@ in
 {
   additionalCapabilities = [
     "CAP_SYS_ADMIN"
+    "CAP_SETUID"
   ];
   bindMounts = {
     "/run/user/1000" = {
