@@ -48,8 +48,10 @@ in
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0.0";
+    security.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
+      extraGroups = [ "wheel" ]
       isNormalUser = true;
       packages = [
         (import ../utils/custom-script-derivation.nix {
