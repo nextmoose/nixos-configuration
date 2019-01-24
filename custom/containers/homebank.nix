@@ -44,7 +44,7 @@ let
       pkgs.mktemp
       pkgs.fuseiso
       pkgs.kmod
-      pkgs.util-linux
+      pkgs.utillinux
     ];
   });
 in
