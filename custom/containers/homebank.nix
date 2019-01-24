@@ -51,7 +51,7 @@ in
     security.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
-      extraGroups = [ "wheel" ]
+      extraGroups = [ "wheel" ];
       isNormalUser = true;
       packages = [
         (import ../utils/custom-script-derivation.nix {
