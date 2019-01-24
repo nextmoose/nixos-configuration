@@ -87,7 +87,6 @@ in
         pkgs.autofs5
         pkgs.bashmount
         pkgs.bindfs
-        pkgs.mount
         pkgs.pmount
         pkgs.s3fs
         pkgs.udevil
