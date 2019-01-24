@@ -50,7 +50,6 @@ let
 in
 {
   additionalCapabilities = [
-    "CAP_SETUID"
     "CAP_SETGID"
     "CAP_SYS_ADMIN"
     "CAP_SETPCAP"
