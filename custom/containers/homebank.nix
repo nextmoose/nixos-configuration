@@ -48,7 +48,7 @@ in
   config = { config, pkgs, ...}:
   {
     environment.variables.DISPLAY=":0.0";
-    security.wheelNeedsPassword = false;
+    security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
       extraGroups = [ "wheel" ];
