@@ -31,7 +31,7 @@ let
     pkgs = pkgs;
     name = "decrypt-from-s3";
     src = ../scripts/decrypt-from-s3;
-    dependencies = [ pkgs.kmod-debian-aliases pkgs.coreutils pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id pkgs.mktemp pkgs.fuseiso ];
+    dependencies = [ pkgs.kmod-debian-aliases pkgs.coreutils pkgs.gnutar pkgs.gzip pkgs.gnupg pkgs.cdrkit pkgs.dvdisaster pkgs.awscli gnupg-key-id pkgs.mktemp pkgs.fuseiso pkgs.kmod];
   });
 in
 {
