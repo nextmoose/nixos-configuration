@@ -1,7 +1,13 @@
 { pkgs ? import <nixpkgs>{} }:
-{
+rec {
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
+  });
+  gnupg-key-id = (import ./custom/utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "gnupg-key-id";
+    src = ./custom/scripts/gnupg-key-id;
+    dependencies = [ pkgs.coreutils pkgs.gnupg ];
   });
   encrypt-to-s3 = (import ../utils/custom-script-derivation.nix{
     pkgs = pkgs;
