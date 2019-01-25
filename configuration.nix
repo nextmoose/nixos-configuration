@@ -1,6 +1,9 @@
 #
 { config, pkgs, ... }:
 let
+  staples = (import ./custom/staples.nix{
+    pkgs = pkgs;
+  });
   installed-pass = (import ./installed/pass/default.nix{
     pkgs = pkgs;
   });
@@ -181,6 +184,8 @@ in
     homebank = (import ./custom/containers/homebank.nix {
       pkgs = pkgs;
       pass = installed-pass;
+      encrypt-to-s3 = staples.encrypt-to-s3;
+      decrypt-from-s3 = staples.decrypt-from-s3;
     });
     old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;
