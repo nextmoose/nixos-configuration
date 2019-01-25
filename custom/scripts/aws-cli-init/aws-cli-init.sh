@@ -5,11 +5,7 @@ do
   case "${1}" in
     --aws-access-key-id)
       AWS_ACCESS_KEY_ID="${2}" &&
-        shift 2 &&
-        true
-    ;;
-    --aws-secret-access-key)
-      AWS_SECRET_ACCESS_KEY="${2}" &&
+      AWS_SECRET_ACCESS_KEY="pass show aws/iam/${2}" &&
         shift 2 &&
         true
     ;;

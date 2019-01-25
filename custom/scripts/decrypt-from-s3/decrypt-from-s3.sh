@@ -8,11 +8,6 @@ do
         shift 2 &&
         true
     ;;
-    --image)
-      IMAGE="${2}" &&
-        shift 2 &&
-        true
-    ;;
     --bucket)
       BUCKET="${2}" &&
         shift 2 &&
@@ -30,9 +25,14 @@ do
     true
 done &&
   TEMP_DIR=$(mktemp -d) &&
-  echo ${TEMP_DIR} &&
-  xorriso -osirrox on -indev "${IMAGE}" -extract / "${TEMP_DIR}" &&
+  cleanup() {
+    rm --recursive --force "${TEMP_DIR}" &&
+      true
+  } &&
+  trap cleanup EXIT &&
+  aws s3 cp s3://${BUCKET}/${DESTINATION}.tar.gz.gpg.iso "${TEMP_DIR}" &&
+  xorriso -osirrox on -indev "${TEMP_DIR}/${DESTINATION}.tar.gz.gpg.iso" -extract / "${TEMP_DIR}" &&
   gpg --output "${TEMP_DIR}/${DESTINATION}.tar.gz" --decrypt "${TEMP_DIR}/${DESTINATION}.tar.gz.gpg" &&
   gunzip --to-stdout "${TEMP_DIR}/${DESTINATION}.tar.gz" > "${TEMP_DIR}/${DESTINATION}.tar" &&
-  tar --extract --file "${TEMP_DIR}/${DESTINATION}.tar" --directory "${TEMP_DIR}" &&
+  tar --extract --file "${TEMP_DIR}/${DESTINATION}.tar" --directory "${HOME}" &&
   true

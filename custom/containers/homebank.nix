@@ -40,7 +40,11 @@ in
   };
   config = { config, pkgs, ...}:
   {
-    environment.variables.DISPLAY=":0.0";
+    environment.variables = {
+      DISPLAY=":0.0";
+      BUCKET = "063a969c-ebc4-49dc-9853-e2e0974132fb";
+      ACCESS_KEY_ID = "AKIAJYGTH5EGV54AOYUA";
+    };
     security.sudo.wheelNeedsPassword = false;
     services.mingetty.autologinUser = "user";
     users.extraUsers.user = {
