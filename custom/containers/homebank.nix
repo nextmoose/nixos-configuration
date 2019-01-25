@@ -55,7 +55,7 @@ in
           pkgs = pkgs;
           name = "homebank";
           src = ../scripts/homebank;
-          dependencies = [ pkgs.homebank gnupg-import installed-pass encrypt-to-s3 decrypt-from-s3 ];
+          dependencies = [ pkgs.homebank gnupg-import pass encrypt-to-s3 decrypt-from-s3 ];
         })
         gnupg-import
         gnupg-key-id
