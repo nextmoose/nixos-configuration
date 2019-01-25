@@ -26,7 +26,7 @@ rec {
     ];
   });
   decrypt-from-s3 = (import ./utils/custom-script-derivation.nix{
-s    name = "decrypt-from-s3";
+    name = "decrypt-from-s3";
     src = ./scripts/decrypt-from-s3;
     dependencies =  [
       pkgs.kmod-debian-aliases
