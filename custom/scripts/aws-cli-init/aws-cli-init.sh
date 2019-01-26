@@ -40,29 +40,24 @@ then
   touch "${HOME}/.aws/credentials" &&
     if [ ! -z "${AWS_ACCESS_KEY_ID}" ]
     then
-      echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> "${HOME}/.aws/credentials" &&
+      echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> "${HOME}/.aws/credentials" &&
         true
     fi &&
     if [ ! -z "${AWS_SECRET_ACCESS_KEY}" ]
     then
-      echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> "${HOME}/.aws/credentials" &&
+      echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> "${HOME}/.aws/credentials" &&
         true
     fi &&
+    if [ ! -z "${REGION}" ]
+    then
+      echo "region = ${REGION}" >> "${HOME}/.aws/config" &&
         true
-fi &&
-if [ -f "${HOME}/.aws/config" ]
-then
-  touch "${HOME}/.aws/config" &&
-  if [ ! -z "${REGION}" ]
-  then
-    echo "region=${REGION}" >> "${HOME}/.aws/config" &&
-      true
     fi &&
     if [ ! -z "${OUTPUT}" ]
     then
-      echo "output=${OUTPUT}" >> "${HOME}/.aws/config" &&
+      echo "output = ${OUTPUT}" >> "${HOME}/.aws/config" &&
         true
-      fi &&
+    fi &&
     true
   fi &&
   true
