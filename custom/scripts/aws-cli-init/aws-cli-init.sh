@@ -14,7 +14,7 @@ do
         shift 2 &&
         true
     ;;
-    --OUTPUT)
+    --out)
       OUTPUT="${2}" &&
         shift 2 &&
         true
