@@ -48,6 +48,12 @@ then
       echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> "${HOME}/.aws/credentials" &&
         true
     fi &&
+    echo >> "${HOME}/.aws/credentials" &&
+    chmod 0400 "${HOME}/.aws/credentials" &&
+    true
+  fi &&
+  if [ ! -f "${HOME}/.aws/config" ]
+    touch "${HOME}/.aws/config" &&
     if [ ! -z "${REGION}" ]
     then
       echo "region = ${REGION}" >> "${HOME}/.aws/config" &&
