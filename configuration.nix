@@ -186,6 +186,7 @@ in
       pass = installed-pass;
       encrypt-to-s3 = staples.encrypt-to-s3;
       decrypt-from-s3 = staples.decrypt-from-s3;
+      aws-cli-init = staples.aws-cli-init;
     });
     old-secrets = (import ./custom/containers/old-secrets.nix {
       pkgs = pkgs;

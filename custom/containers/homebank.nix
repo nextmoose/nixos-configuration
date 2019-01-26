@@ -2,7 +2,8 @@
   pkgs ? import <nixpkgs> {},
   pass,
   encrypt-to-s3,
-  decrypt-from-s3
+  decrypt-from-s3,
+  aws-cli-init
 }:
 let
   gnupg-import = (import ../utils/custom-script-derivation.nix {
@@ -55,7 +56,7 @@ in
           pkgs = pkgs;
           name = "homebank";
           src = ../scripts/homebank;
-          dependencies = [ pkgs.homebank gnupg-import pass encrypt-to-s3 decrypt-from-s3 ];
+          dependencies = [ pkgs.homebank gnupg-import pass encrypt-to-s3 decrypt-from-s3 aws-cli-init ];
         })
         gnupg-import
         gnupg-key-id
@@ -73,6 +74,7 @@ in
         pkgs.fuse-7z-ng
         pkgs.	p7zip
         pkgs.xorriso
+        aws-cli-init
       ];
     };
   };

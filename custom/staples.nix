@@ -1,5 +1,11 @@
 { pkgs ? import <nixpkgs>{} }:
 rec {
+  aws-cli-init = (import ./utils/custom-script-derivation.nix {
+    pkgs = pkgs;
+    name = "aws-cli-init";
+    src = ./scripts/aws-cli-init;
+    dependencies = [ pkgs.coreutils pkgs.awscli ];
+  });
   installed-pass = (import ../installed/pass/default.nix{
     pkgs = pkgs;
   });
