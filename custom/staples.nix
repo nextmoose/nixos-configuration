@@ -4,7 +4,7 @@ rec {
     pkgs = pkgs;
     name = "aws-cli-init";
     src = ./scripts/aws-cli-init;
-    dependencies = [ pkgs.coreutils pkgs.awscli ];
+    dependencies = [ pkgs.coreutils pkgs.awscli installed-pass ];
   });
   installed-pass = (import ../installed/pass/default.nix{
     pkgs = pkgs;

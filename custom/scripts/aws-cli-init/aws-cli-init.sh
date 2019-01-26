@@ -5,7 +5,7 @@ do
   case "${1}" in
     --aws-access-key-id)
       AWS_ACCESS_KEY_ID="${2}" &&
-      AWS_SECRET_ACCESS_KEY="pass show aws/iam/${2}" &&
+      AWS_SECRET_ACCESS_KEY="$(pass show aws/iam/${2})" &&
         shift 2 &&
         true
     ;;
@@ -58,6 +58,8 @@ then
       echo "output = ${OUTPUT}" >> "${HOME}/.aws/config" &&
         true
     fi &&
+    echo >> "${HOME}/.aws/config" &&
+    chmod 0400 "${HOME}/.aws/config" &&
     true
   fi &&
   true
