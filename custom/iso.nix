@@ -1,6 +1,7 @@
 {
   config,
   pkgs ? (import <nixpkgs> {}),
+  secrets
   ...
 }:
 let
@@ -15,6 +16,11 @@ in
   ];
   environment.systemPackages = [
     staples.foo
+    (import ./create-assembly.nix {
+      pkgs = pkgs;
+      name = "secrets";
+      src = secrets;
+    })
   ];
   programs.bash.shellInit = ''
   '';
