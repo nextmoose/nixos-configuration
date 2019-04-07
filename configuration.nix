@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
-  staples = ./custom/assembly.nix {
+  staples = (import ./custom/assembly.nix {
     pkgs = pkgs;
-  };
+  });
 in
 {
   boot.loader = {

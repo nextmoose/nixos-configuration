@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> {}
 } :
 rec {
-  cleanup-old-installation = ./assembly {
+  cleanup-old-installation = (import ./assembly {
     pkgs = pkgs;
     name = "cleanup-old-installation";
     src = ./assemblies/cleanup-old-installation;
@@ -12,8 +12,8 @@ rec {
       pkgs.lvm2
       pkgs.coreutils
     ];
-  };
-  decrypt-installation-secrets = ./assembly {
+  });
+  decrypt-installation-secrets = (import ./assembly {
     pkgs = pkgs;
     name = "decrypt-installation-secrets";
     src = ./decrypt-installation-secrets;
@@ -24,8 +24,8 @@ rec {
       pkgs.gzip
       pkgs.gnutar
     ];
-  };
-  encrypt-installation-secrets = ./assembly {
+  });
+  encrypt-installation-secrets = (import ./assembly {
     pkgs = pkgs;
     name = "encrypt-installation-secrets";
     src = ./encrypt-installation-secrets;
@@ -36,13 +36,13 @@ rec {
       pkgs.gzip
       pkgs.gnutar
     ];
-  };
-  wpa-wifi = ./assemby {
+  });
+  wpa-wifi = (import ./assemby {
     pkgs = pkgs;
     name = "wpa-wifi";
     src = ./assemblies/wpa-wifi;
     dependencies = [
       pkgs.wpa_supplicant
     ];
-  };
+  });
 }
