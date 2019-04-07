@@ -25,18 +25,6 @@ rec {
       pkgs.gnutar
     ];
   });
-  encrypt-installation-secrets = (import ./assembly.nix {
-    pkgs = pkgs;
-    name = "encrypt-installation-secrets";
-    src = ./assemblies/encrypt-installation-secrets;
-    dependencies = [
-      pkgs.mktemp
-      pkgs.coreutils
-      pkgs.gnupg
-      pkgs.gzip
-      pkgs.gnutar
-    ];
-  });
   wpa-wifi = (import ./assembly.nix {
     pkgs = pkgs;
     name = "wpa-wifi";
