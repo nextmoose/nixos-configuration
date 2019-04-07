@@ -1,11 +1,13 @@
 {
   config,
   pkgs ? (import <nixpkgs> {}),
-  staples ? (import ./staples.nix{
-    pkgs = pkgs;
-  }),
   ...
 }:
+let
+  staples = (import ./staples.nix{
+    pkgs = pkgs;
+  })
+in
 {
   imports = [
     <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
