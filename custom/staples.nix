@@ -25,6 +25,18 @@ rec {
       pkgs.gnutar
     ];
   };
+  encrypt-installation-secrets = ./assembly {
+    pkgs = pkgs;
+    name = "encrypt-installation-secrets";
+    src = ./encrypt-installation-secrets;
+    dependencies = [
+      pkgs.mktemp
+      pkgs.coreutils
+      pkgs.gpg
+      pgks.gzip
+      pkgs.gnutar
+    ];
+  };
   install-nixos = ./assembly {
     pkgs = pkgs;
     name = "install-nixos";
