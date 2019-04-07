@@ -37,16 +37,6 @@ rec {
       pkgs.gnutar
     ];
   };
-  install-nixos = ./assembly {
-    pkgs = pkgs;
-    name = "install-nixos";
-    src = ./install-nixos;
-    dependencies = [
-      decrypt-installation-secrets
-      cleanup-old-installation
-      init-install
-    ];
-  };
   wpa-wifi = ./assemby {
     pkgs = pkgs;
     name = "wpa-wifi";
