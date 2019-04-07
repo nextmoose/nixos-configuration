@@ -1,4 +1,0 @@
-######## The following lines were added by GnuCash. ########
-xml:readwrite:$(HOME)/.gconf
-xml:readonly:/nix/store/8k7flcfhbdax6lnghsqw3y9f1pkiqx62-gnucash-2.4.15/etc/gconf/gconf.xml.defaults
-############## End of lines added by GnuCash. ##############

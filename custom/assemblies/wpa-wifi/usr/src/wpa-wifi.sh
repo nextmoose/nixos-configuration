@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wpa_supplicant -B -i wlo1 -c <(wpa_passphrase "${SSID}" "${PASSWORD}") &&
+  true

@@ -1,54 +1,46 @@
-{ pkgs ? import <nixpkgs>{} }:
+{
+  pkgs ? import <nixpkgs> {}
+} :
 rec {
-  aws-cli-init = (import ./utils/custom-script-derivation.nix {
+  cleanup-old-installation = ./assembly {
     pkgs = pkgs;
-    name = "aws-cli-init";
-    src = ./scripts/aws-cli-init;
-    dependencies = [ pkgs.coreutils pkgs.awscli installed-pass ];
-  });
-  installed-pass = (import ../installed/pass/default.nix{
-    pkgs = pkgs;
-  });
-  gnupg-key-id = (import ./utils/custom-script-derivation.nix {
-    pkgs = pkgs;
-    name = "gnupg-key-id";
-    src = ./scripts/gnupg-key-id;
-    dependencies = [ pkgs.coreutils pkgs.gnupg ];
-  });
-  encrypt-to-s3 = (import ./utils/custom-script-derivation.nix{
-    pkgs = pkgs;
-    name = "encrypt-to-s3";
-    src = ./scripts/encrypt-to-s3;
+    name = "cleanup-old-installation";
+    src = ./assemblies/cleanup-old-installation;
     dependencies = [
+      pkgs.util-linux
+      pkgs.cryptsetup
+      pkgs.lvm2
       pkgs.coreutils
-      pkgs.gnutar
-      pkgs.gzip
-      pkgs.gnupg
-      pkgs.cdrkit
-      pkgs.dvdisaster
-      pkgs.awscli
-      gnupg-key-id
-      pkgs.mktemp
     ];
-  });
-  decrypt-from-s3 = (import ./utils/custom-script-derivation.nix{
-    name = "decrypt-from-s3";
-    src = ./scripts/decrypt-from-s3;
-    dependencies =  [
-      pkgs.kmod-debian-aliases
+  };
+  decrypt-installation-secrets = ./assembly {
+    pkgs = pkgs;
+    name = "decrypt-installation-secrets";
+    src = ./decrypt-installation-secrets;
+    dependencies = [
+      pkgs.mktemp
       pkgs.coreutils
-      pkgs.gnutar
+      pkgs.gpg
       pkgs.gzip
-      pkgs.gnupg
-      pkgs.cdrkit
-      pkgs.dvdisaster
-      pkgs.awscli
-      gnupg-key-id
-      pkgs.mktemp
-      pkgs.fuseiso
-      pkgs.kmod
-      pkgs.utillinux
-      pkgs.xorriso
+      pkgs.gnutar
     ];
-  });
+  };
+  install-nixos = ./assembly {
+    pkgs = pkgs;
+    name = "install-nixos";
+    src = ./install-nixos;
+    dependencies = [
+      decrypt-installation-secrets
+      cleanup-old-installation
+      init-install
+    ];
+  };
+  wpa-wifi = ./assemby {
+    pkgs = pkgs;
+    name = "wpa-wifi";
+    src = ./assemblies/wpa-wifi;
+    dependencies = [
+      pkgs.wpa_supplicant
+    ];
+  };
 }
