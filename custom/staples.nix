@@ -7,7 +7,7 @@ rec {
     name = "cleanup-old-installation";
     src = ./assemblies/cleanup-old-installation;
     dependencies = [
-      pkgs.util-linux
+      pkgs.utillinux
       pkgs.cryptsetup
       pkgs.lvm2
       pkgs.coreutils
