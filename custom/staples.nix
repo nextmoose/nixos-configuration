@@ -20,7 +20,7 @@ rec {
     dependencies = [
       pkgs.mktemp
       pkgs.coreutils
-      pkgs.gpg
+      pkgs.gnupg
       pkgs.gzip
       pkgs.gnutar
     ];
