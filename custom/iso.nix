@@ -15,11 +15,7 @@ in
   ];
   environment.systemPackages = [
     staples.foo
-    (import ./create-assembly.nix {
-      pkgs = pkgs;
-      name = "secrets";
-      src = secrets;
-    })
+    staples.secrets
   ];
   programs.bash.shellInit = ''
   '';
