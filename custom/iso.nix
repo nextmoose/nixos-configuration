@@ -1,6 +1,7 @@
 {
   config,
   pkgs ? (import <nixpkgs> {}),
+  secrets,
   ...
 }:
 let
