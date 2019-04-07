@@ -4,7 +4,7 @@
 rec {
   create-installation-is = (import ./assembly.nix {
     pkgs = pkgs;
-    name = "cleanup-old-installation";
+    name = "create-installation-iso";
     src = ./assemblies/create-installation-iso;
     dependencies = [
       pkgs.utillinux
