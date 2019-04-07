@@ -16,7 +16,7 @@ rec {
   decrypt-installation-secrets = (import ./assembly.nix {
     pkgs = pkgs;
     name = "decrypt-installation-secrets";
-    src = ./decrypt-installation-secrets;
+    src = ./assemblies/decrypt-installation-secrets;
     dependencies = [
       pkgs.mktemp
       pkgs.coreutils
