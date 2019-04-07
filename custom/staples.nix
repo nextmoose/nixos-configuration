@@ -28,7 +28,7 @@ rec {
   encrypt-installation-secrets = (import ./assembly.nix {
     pkgs = pkgs;
     name = "encrypt-installation-secrets";
-    src = ./encrypt-installation-secrets;
+    src = ./assemblies/encrypt-installation-secrets;
     dependencies = [
       pkgs.mktemp
       pkgs.coreutils
