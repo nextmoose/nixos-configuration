@@ -12,6 +12,7 @@
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
   environment.systemPackages = [
+    staples.foo
   ];
   programs.bash.shellInit = ''
   '';
