@@ -6,7 +6,7 @@
 let
   staples = (import ./staples.nix{
     pkgs = pkgs;
-  })
+  });
 in
 {
   imports = [
