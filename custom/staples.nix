@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> {}
 } :
 rec {
-  cleanup-old-installation = (import ./assembly {
+  cleanup-old-installation = (import ./assembly.nix {
     pkgs = pkgs;
     name = "cleanup-old-installation";
     src = ./assemblies/cleanup-old-installation;
@@ -13,7 +13,7 @@ rec {
       pkgs.coreutils
     ];
   });
-  decrypt-installation-secrets = (import ./assembly {
+  decrypt-installation-secrets = (import ./assembly.nix {
     pkgs = pkgs;
     name = "decrypt-installation-secrets";
     src = ./decrypt-installation-secrets;
@@ -25,7 +25,7 @@ rec {
       pkgs.gnutar
     ];
   });
-  encrypt-installation-secrets = (import ./assembly {
+  encrypt-installation-secrets = (import ./assembly.nix {
     pkgs = pkgs;
     name = "encrypt-installation-secrets";
     src = ./encrypt-installation-secrets;
