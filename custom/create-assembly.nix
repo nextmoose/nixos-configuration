@@ -3,7 +3,7 @@
    pkgs ? import <nixpkgs> {},
    name,
    src,
-   dependencies
+   dependencies ? []
 }:
 pkgs.stdenv.mkDerivation {
    name = name;
