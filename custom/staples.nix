@@ -37,7 +37,7 @@ rec {
       pkgs.gnutar
     ];
   });
-  wpa-wifi = (import ./assemby {
+  wpa-wifi = (import ./assembly.nix {
     pkgs = pkgs;
     name = "wpa-wifi";
     src = ./assemblies/wpa-wifi;
