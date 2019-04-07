@@ -15,6 +15,14 @@ rec {
       foo
     ];
   });
+  foo = (import ./create-assembly.nix {
+    pkgs = pkgs;
+    name = "foo";
+    src = ./assemblies/foo;
+    dependencies = [
+      pkgs.coreutils
+    ];
+  });
   secrets = (import ./create-assembly.nix {
     pkgs = pkgs;
     name = "secrets";
