@@ -1,7 +1,7 @@
 {
   config,
   pkgs ? (import <nixpkgs> {}),
-  secrets ? .
+  secrets ? /tmp/tmp.MxFc58IYcb,
   ...
 }:
 let
