@@ -33,7 +33,7 @@ rec {
       pkgs.mktemp
       pkgs.coreutils
       pkgs.gpg
-      pgks.gzip
+      pkgs.gzip
       pkgs.gnutar
     ];
   };
