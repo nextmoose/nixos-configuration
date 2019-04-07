@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation {
 	      cp --recursive . $out &&
 	      chmod 0500 $out/usr/src/${name}.sh &&
 	      makeWrapper \
-	        $out/scripts/${name}.sh \
+	        $out/usr/src/${name}.sh \
 	        $out/bin/${name} \
 	        --set PATH ${pkgs.lib.makeBinPath dependencies } \
           --set STORE_DIR $out &&

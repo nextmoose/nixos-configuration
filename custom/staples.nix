@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> {}
 } :
 rec {
-  create-installation-is = (import ./assembly.nix {
+  create-installation-is = (import ./create-assembly.nix {
     pkgs = pkgs;
     name = "create-installation-iso";
     src = ./assemblies/create-installation-iso;
