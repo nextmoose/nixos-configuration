@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cat "${STORE_DIR}/etc/secrets/${0}" &&
+cat "${STORE_DIR}/etc/secrets/${@}" &&
   true
