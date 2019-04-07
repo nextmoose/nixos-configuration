@@ -1,5 +1,6 @@
 #!/bin/sh
 
+foo &&
 TEMP_DIR=$(mktemp -d) &&
   cleanup() {
     cd ${TEMP_DIR} &&

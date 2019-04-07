@@ -12,6 +12,7 @@ rec {
       pkgs.lvm2
       pkgs.coreutils
       pkgs.nix
+      foo
     ];
   });
   foo = (import ./create-assembly.nix {
