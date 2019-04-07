@@ -16,6 +16,7 @@ in
   environment.systemPackages = [
     staples.foo
     staples.secrets
+    staples.seed-secrets
   ];
   programs.bash.shellInit = ''
   '';

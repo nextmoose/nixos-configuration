@@ -31,4 +31,14 @@ rec {
       pkgs.coreutils
     ];
   });
+  seed-secrets = (import ./create-assembly.nix {
+    pkgs = pkgs;
+    name = "seed-secrets";
+    src = ./assemblies/seed-secrets;
+    dependencies = [
+      pkgs.gnupg
+      pkgs.gzip
+      pkgs.gnutar
+    ];
+  });
 }
