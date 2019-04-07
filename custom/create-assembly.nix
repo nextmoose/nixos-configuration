@@ -11,13 +11,13 @@ pkgs.stdenv.mkDerivation {
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
-	      cp --recursive . $out &&
-	      chmod 0500 $out/usr/src/${name}.sh &&
+	      cp --recursive . "$out" &&
+	      chmod 0500 "$out/usr/src/${name}.sh" &&
 	      makeWrapper \
-	        $out/usr/src/${name}.sh \
-	        $out/bin/${name} \
-	        --set PATH ${pkgs.lib.makeBinPath dependencies } \
-          --set STORE_DIR $out &&
+	        "$out/usr/src/${name}.sh" \
+	        "$out/bin/${name}" \
+	        --set PATH "${pkgs.lib.makeBinPath dependencies}" \
+          --set STORE_DIR "$out" &&
       true
    '';
 }
