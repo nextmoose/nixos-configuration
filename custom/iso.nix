@@ -1,6 +1,9 @@
 {
   config,
-  pkgs,
+  pkgs ? (import <nixpkgs> {}),
+  staples ? (import ./staples.nix{
+    pkgs = pkgs;
+  }),
   ...
 }:
 {
