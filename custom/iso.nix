@@ -1,10 +1,10 @@
 {
   config,
   pkgs ? (import <nixpkgs> {}),
+  secrets ? /tmp/tmp.MxFc58IYcb,
   ...
 }:
 let
-  secrets = /tmp/tmp.MxFc58IYcb;
   staples = (import ./staples.nix{
     pkgs = pkgs;
   });
