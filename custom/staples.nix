@@ -14,4 +14,9 @@ rec {
       pkgs.nix
     ];
   });
+  foo = (import ./create-assembly.nix {
+    pkgs = pkgs;
+    name = "foo";
+    src = ./assemblies/foo;
+  });
 }
