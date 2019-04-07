@@ -11,6 +11,7 @@ rec {
       pkgs.cryptsetup
       pkgs.lvm2
       pkgs.coreutils
+      pkgs.nix
     ];
   });
 }
