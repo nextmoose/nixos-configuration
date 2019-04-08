@@ -17,14 +17,14 @@ pkgs.stdenv.mkDerivation {
       echo AAAA &&
       ls -alh $out/etc &&
       echo AAAA &&
-      ls -alh $out/etc/nixos-install &&
+      ls -alh $out/etc/install-nixos &&
       echo AAAA &&
-      ls -alh $out/etc/nixos-install/custom &&
+      ls -alh $out/etc/install-nixos/custom &&
       echo AAAA &&
-      ls -alh $out/etc/nixos-install/custom/install-nixos &&
+      ls -alh $out/etc/install-nixos/custom/install-nixos &&
       echo AAAA &&
-      ls -alh $out/etc/nixos-install/custom/install-nixos/install-nixos.sh &&
-      cp $out/etc/nixos-install/custom/install-nixos/install-nixos.sh $out/usr/src &&
+      ls -alh $out/etc/install-nixos/custom/install-nixos/install-nixos.sh &&
+      cp $out/etc/install-nixos/custom/install-nixos/install-nixos.sh $out/usr/src &&
       chmod 0500 $out/usr/src/install-nixos.sh &&
       mkdir $out/bin &&
       makeWrapper \
