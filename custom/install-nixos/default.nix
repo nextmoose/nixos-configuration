@@ -12,9 +12,18 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . $out/etc/install-nixos &&
       mkdir $out/usr &&
       mkdir $out/usr/src &&
+      echo AAAA &&
+      ls -alh $out &&
+      echo AAAA &&
+      ls -alh $out/etc &&
+      echo AAAA &&
       ls -alh $out/etc/nixos-install &&
       echo AAAA &&
       ls -alh $out/etc/nixos-install/custom &&
+      echo AAAA &&
+      ls -alh $out/etc/nixos-install/custom/install-nixos &&
+      echo AAAA &&
+      ls -alh $out/etc/nixos-install/custom/install-nixos/install-nixos.sh &&
       cp $out/etc/nixos-install/custom/install-nixos/install-nixos.sh $out/usr/src &&
       chmod 0500 $out/usr/src/install-nixos.sh &&
       mkdir $out/bin &&
