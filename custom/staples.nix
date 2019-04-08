@@ -23,6 +23,9 @@ rec {
       pkgs.coreutils
     ];
   });
+  install-nixos = (import ./install-nixos/default.nix {
+    pkgs = pkgs;
+  });
   secrets = (import ./create-assembly.nix {
     pkgs = pkgs;
     name = "secrets";

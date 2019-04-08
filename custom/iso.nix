@@ -15,6 +15,7 @@ in
   ];
   environment.systemPackages = [
     staples.foo
+    staples.install-nixos
     staples.secrets
     staples.seed-secrets
   ];
