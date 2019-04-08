@@ -12,7 +12,7 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . $out/etc/install-nixos &&
       mkdir $out/usr &&
       mkdir $out/usr/src &&
-      cp $out/etc/install/nixos-install/custom/install-nixos/install-nixos.sh $out/usr/src &&
+      cp $out/etc/nixos-install/custom/install-nixos/install-nixos.sh $out/usr/src &&
       chmod 0500 $out/usr/src/install-nixos.sh &&
       mkdir $out/bin &&
       makeWrapper \
