@@ -3,6 +3,11 @@
 while [ "${#}" -gt 0 ]
 do
   case "${1}" in
+    --configuration-directory)
+      CONFIGURATION_DIRECTORY="${2}" &&
+        shift 2 &&
+        true
+      ;;
     --gpg-secret-keys-file)
       GPG_SECRET_KEYS_FILE="${2}" &&
         shift 2 &&
@@ -24,7 +29,17 @@ do
   esac &&
     true
 done &&
-if [ -z "${GPG_SECRET_KEYS_FILE}" ]
+if [ -z "${CONFIGURATION_DIRECTORY}" ]
+then
+  echo Unspecified CONFIGURATION_DIRECTORY &&
+    exit 64 &&
+    true
+elif [ ! -d "${CONFIGURATION_DIRECTORY}" ]
+then
+  echo "Missing CONFIGURATION_DIRECTORY=${CONFIGURATION_DIRECTORY}" &&
+    exit 64 &&
+    true
+elif [ -z "${GPG_SECRET_KEYS_FILE}" ]
 then
   echo Unspecified GPG_SECRET_KEYS_FILE &&
     exit 64 &&
@@ -53,8 +68,17 @@ cleanup() {
     true
 } &&
 trap cleanup EXIT &&
-read -s -p "SYMMETRIC PASSPHRASE? " SYMMETRIC_PASSPHRASE &&
 cp "${STORE_DIR}/etc/nixos-live/iso.nix" "${TEMP_DIR}" &&
+mkdir "${TEMP_DIR}/secrets" &&
+cat "${GPG_SECRET_KEYS_FILE}" > "${TEMP_DIR}/secrets/private.gpg.asc" &&
+cat "${GPG_OWNERTRUST_FILE}" > "${TEMP_DIR}/secrets/ownertrust.gpg.asc" &&
+chmod 0400 "${TEMP_DIR}/secrets/private.gpg.asc" "${TEMP_DIR}/secrets/ownertrust.gpg.asc" &&
+tar --create --file "${TEMP_DIR}/secrets.tar" --directory "${TEMP_DIR}" secrets &&
+gzip -9 --to-stdout "${TEMP_DIR}/secrets.tar" > "${TEMP_DIR}/secrets.tar.gz" &&
+gpg --armor --output "${TEMP_DIR}/secrets.tar.gz.gpg" --symmetric "${TEMP_DIR}/secrets.tar.gz" &&
+mkdir "${TEMP_DIR}/nixos-live" &&
+cat "${STORE_DIR}/etc/nixos-live/iso.nix" > "${TEMP_DIR}/nixos-live/iso.nix" &&
+cp --recursive "${CONFIGURATION_DIRECTORY}" "${TEMP_DIR}/configuration" &&
 cd "${TEMP_DIR}" &&
-nix-build "<nixpkgs/nixos>" -A config.system.build.isoImage -I nixos-config=iso.nix &&
+nix-build "<nixpkgs/nixos>" -A config.system.build.isoImage -I "nixos-config=${TEMP_DIR}/configuration/iso.nix" &&
 true
