@@ -80,15 +80,12 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" "vboxusers" ];
     extraUsers.user.packages = [
+      pkgs.emacs
+      pkgs.chromium
+      pkgs.git
+      staples.nmcli-wifi
+      staples.pass
     ];
-  };
-  virtualisation.docker = {
-    enable = true;
-    autoPrune = {
-      enable = true;
-      flags = [ "--all" ];
-      dates = "daily";
-    };
   };
 }
 # lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere

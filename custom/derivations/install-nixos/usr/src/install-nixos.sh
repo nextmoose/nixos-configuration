@@ -109,36 +109,28 @@ EOF
     swapon -L SWAP &&
     mkdir /mnt/etc &&
     mkdir /mnt/etc/nixos &&
-    mkdir /mnt/etc/nixos/standard &&
-    cp --recursive ${TEMP_DIR}/secrets/pass /mnt/etc/nixos/standard &&
-    cp ${TEMP_DIR}/secrets/pass.tar.gz /mnt/etc/nixos/installed/pass/src &&
+    cp --recursive "${STORE_DIR}/etc/install-nixos/standard" /mnt/etc/nixos/standard &&
+    mkdir /mnt/etc/nixos/standard/derivations/pass/etc &&
+    cp --recursive "${TEMP_DIR}/secrets/pass" /mnt/etc/nixos/standard/derivations/pass/etc &&
     HASHED_USER_PASSWORD="$(cat ${TEMP_DIR}/secrets/hashed-user-passphrase.asc)" &&
-    (cat > /mnt/etc/nixos/installed/password.nix <<EOF
-{ config, pkgs, ... }:
-{
-  users.extraUsers.user.hashedPassword = "${HASHED_USER_PASSWORD}";
-}
-EOF
-    ) &&
-    mkdir ${TEMP_DIR}/configuration &&
-    git -C ${TEMP_DIR}/configuration init &&
-    git -C ${TEMP_DIR}/configuration remote add upstream "${UPSTREAM_URL}" &&
-    git -C ${TEMP_DIR}/configuration remote set-url --push upstream no_push &&
-    git -C ${TEMP_DIR}/configuration fetch upstream "${UPSTREAM_BRANCH}" &&
-    git -C ${TEMP_DIR}/configuration checkout "upstream/${UPSTREAM_BRANCH}" &&
-    if [ -f ${TEMP_DIR}/configuration/configuration.nix ]
+    sed \
+      -e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
+      -e "w/mnt/etc/nixos/standard/password.nix" \
+      "${STORE_DIR}/etc/install-nixos/password.nix" &&
+    mkdir "${TEMP_DIR}/configuration" &&
+    git -C "${TEMP_DIR}/configuration" init &&
+    git -C "${TEMP_DIR}/configuration" remote add upstream "${UPSTREAM_URL}" &&
+    git -C "${TEMP_DIR}/configuration" remote set-url --push upstream no_push &&
+    git -C "${TEMP_DIR}/configuration" fetch --depth 1 upstream "${UPSTREAM_BRANCH}" &&
+    git -C "${TEMP_DIR}/configuration" checkout "upstream/${UPSTREAM_BRANCH}" &&
+    if [ -f "${TEMP_DIR}/configuration/configuration.nix" ]
     then
-	cp ${TEMP_DIR}/configuration/configuration.nix /mnt/etc/nixos &&
+	cp "${TEMP_DIR}/configuration/configuration.nix" /mnt/etc/nixos &&
 	    true
     fi &&
-    if [ -d ${TEMP_DIR}/configuration/custom ]
+    if [ -d "${TEMP_DIR}/configuration/custom" ]
     then
-	rsync --verbose --recursive ${TEMP_DIR}/configuration/custom /mnt/etc/nixos &&
-	    true
-    fi &&
-    if [ -f ${TEMP_DIR}/configuration/install.sh ]
-    then
-	sh ${TEMP_DIR}/configuration/install.sh &&
+	rsync --verbose --recursive "${TEMP_DIR}/configuration/custom" /mnt/etc/nixos &&
 	    true
     fi &&
     PATH=/run/current-system/sw/bin nixos-generate-config --root /mnt &&
