@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs ? (import <nixpkgs>{}),
+  ...
+}:
 let
-  staples = (import ./custom/assembly.nix {
+  staples = (import ./custom/staples.nix {
     pkgs = pkgs;
   });
 in
@@ -8,7 +12,7 @@ in
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
-  }
+  };
   hardware = {
     pulseaudio.enable = true;
   };

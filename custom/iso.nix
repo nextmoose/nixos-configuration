@@ -14,10 +14,7 @@ in
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
   environment.systemPackages = [
-    staples.foo
     staples.install-nixos
-    staples.secrets
-    staples.seed-secrets
   ];
   programs.bash.shellInit = ''
   '';
