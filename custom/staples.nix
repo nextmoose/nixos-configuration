@@ -7,7 +7,6 @@ rec {
     name = "configure-nixos";
     src = ./derivations/configure-nixos;
     dependencies = [
-      pkgs.mktemp
       pkgs.coreutils
       pkgs.git
       pkgs.rsync
@@ -22,11 +21,13 @@ rec {
     name = "install-nixos";
     src = ./derivations/install-nixos;
     dependencies = [
+      pkgs.mktemp
       configure-nixos
       pkgs.gnused
       pkgs.gnugrep
       pkgs.systemd
       pkgs.which
+      pkgs.rsync
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
