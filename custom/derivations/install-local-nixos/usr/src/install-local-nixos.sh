@@ -81,5 +81,6 @@ EOF
       --delete \
       "${TEMP_DIR}/nixos-configuration/custom" \
       /etc/nixos &&
-    /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch &&
+    export PATH=/run/wrappers/bin:/run/current-system/sw/bin:$(dirname $(which systemd)):$(dirname $(which grep)) &&
+    sudo nixos-rebuild switch &&
     true
