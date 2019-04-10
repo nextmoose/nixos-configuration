@@ -1,5 +1,5 @@
 #!/bin/sh
 
 shift 1 &&
-  cat "${STORE_DIR}/etc/pass/${@}" &&
+  cat "${STORE_DIR}/var/${@}" &&
   true

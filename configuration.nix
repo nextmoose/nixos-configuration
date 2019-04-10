@@ -23,6 +23,7 @@ in
   };
   imports = [
     ./hardware-configuration.nix
+    ./custom/password.nix
   ];
   networking = {
     networkmanager = {

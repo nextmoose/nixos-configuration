@@ -2,6 +2,17 @@
   pkgs ? import <nixpkgs> {}
 } :
 rec {
+  install-local-nixos = (import ./create-derivation.nix {
+    pkgs = pkgs;
+    name = "install-local-nixos";
+    src = ./derivations/install-local-nixos;
+    dependencies = [
+      pkgs.mktemp
+      pkgs.coreutils
+      pkgs.git
+      pkgs.rsync
+    ];
+  });
   nmcli-wifi = (import ./create-derivation.nix {
     pkgs = pkgs;
     name = "nmcli-wifi";
