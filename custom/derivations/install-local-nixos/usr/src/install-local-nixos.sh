@@ -76,4 +76,5 @@ done &&
       --delete \
       "${TEMP_DIR}/nixos-configuration/custom" \
       /etc/nixos &&
+    sudo nixos-rebuild switch &&
     true
