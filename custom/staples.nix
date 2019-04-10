@@ -11,6 +11,7 @@ rec {
       pkgs.coreutils
       pkgs.git
       pkgs.rsync
+      pass
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
