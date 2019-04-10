@@ -86,7 +86,7 @@ in
       pkgs.git
       staples.nmcli-wifi
       staples.pass
-      staples.install-local-nixos
+      staples.install-nixos
     ];
   };
 }
