@@ -13,6 +13,7 @@ rec {
       pkgs.rsync
       pass
       pkgs.gnutar
+      pkgs.mkpasswd
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
