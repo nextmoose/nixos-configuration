@@ -57,7 +57,7 @@ done &&
   sed \
     -e "s#\${HASHED_USER_PASSWORD}##" \
     -e "w${TEMP_DIR}/nixos-configuration/custom/password.nix" \
-    "${STORE_DIR}/etc/install-local-nixos/password.nix" &&
+    "${STORE_DIR}/etc/password.nix" &&
   /run/wrappers/bin/sudo \
     rm \
     --recursive \
