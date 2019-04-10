@@ -87,6 +87,7 @@ in
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos
+      staples.install-nixos-backup
     ];
   };
 }
