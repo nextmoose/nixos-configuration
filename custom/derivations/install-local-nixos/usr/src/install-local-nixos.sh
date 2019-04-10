@@ -42,15 +42,17 @@ done &&
       exit 64 &&
       true
   fi &&
-  mkdir "${TEMP_DIR}/repository"
+  mkdir "${TEMP_DIR}/repository" &&
   git -C "${TEMP_DIR}/repository" init &&
-  git -C "${TEMP_DIR}/repository" remote add "${CANONICAL_REMOTE}" &&
-  git -C "${TEMP_DIR}/repository" fetch --depth 1 "${CANONICAL_REMOTE}" "${BRANCH}" &&
-  git -C "${TEMP_DIR}/repository" archive --prefix nixos-configuration --output "${TEMP_DIR}/nixos-configuration.tar" &&
+  git -C "${TEMP_DIR}/repository" remote add canonical "${CANONICAL_REMOTE}" &&
+  git -C "${TEMP_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
+  git -C "${TEMP_DIR}/repository" archive --prefix nixos-configuration/ --output "${TEMP_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
   tar --extract --file "${TEMP_DIR}/nixos-configuration.tar" --directory "${TEMP_DIR}" &&
   mkdir "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var" &&
   pass show private.gpg > "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg" &&
+  pass show private.gpg2 > "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg2" &&
   pass show ownertrust.gpg > "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg" &&
+  pass show ownertrust.gpg2 > "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
   HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
   sed \
     -e "s#\${HASHED_USER_PASSWORD}##" \
