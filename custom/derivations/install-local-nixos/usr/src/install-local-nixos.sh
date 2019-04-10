@@ -55,7 +55,7 @@ done &&
   pass show ownertrust.gpg2 > "${TEMP_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
   HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
   sed \
-    -e "s#\${HASHED_USER_PASSWORD}##" \
+    -e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
     -e "w${TEMP_DIR}/nixos-configuration/custom/password.nix" \
     "${STORE_DIR}/etc/password.nix" &&
   /run/wrappers/bin/sudo \
