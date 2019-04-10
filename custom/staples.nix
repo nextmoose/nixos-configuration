@@ -17,6 +17,7 @@ rec {
       pkgs.gnused
       pkgs.gnugrep
       pkgs.systemd
+      pkgs.which
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
