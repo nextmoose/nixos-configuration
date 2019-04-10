@@ -5,7 +5,7 @@ rec {
   configure-nixos = (import ./create-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
-    src = ./derivations/install-local-nixos;
+    src = ./derivations/configure-nixos;
     dependencies = [
       pkgs.mktemp
       pkgs.coreutils
