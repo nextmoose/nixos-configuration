@@ -18,7 +18,7 @@ rec {
     name = "nmcli-wifi";
     src = ./derivations/nmcli-wifi;
     dependencies = [
-      pkgs.network-manager
+      pkgs.networkmanager
     ];
   });
   pass = (import ./create-derivation.nix {
