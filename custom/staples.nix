@@ -17,18 +17,12 @@ rec {
       pkgs.gnused
     ];
   });
-  install-local-nixos = (import ./create-derivation.nix {
+  install-nixos = (import ./create-derivation.nix {
     pkgs = pkgs;
-    name = "install-local-nixos";
-    src = ./derivations/install-local-nixos;
+    name = "install-nixos";
+    src = ./derivations/install-nixos;
     dependencies = [
-      pkgs.mktemp
-      pkgs.coreutils
-      pkgs.git
-      pkgs.rsync
-      pass
-      pkgs.gnutar
-      pkgs.mkpasswd
+      configure-nixos
       pkgs.gnused
       pkgs.gnugrep
       pkgs.systemd
