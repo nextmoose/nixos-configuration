@@ -96,7 +96,6 @@ done &&
     mkdir "${WORK_DIR}/backup" &&
     /run/wrappers/bin/sudo \
 	mv \
-	--recursive \
 	--force \
 	"${CONFIG_DIR}/configuration.nix" \
 	"${CONFIG_DIR}/custom" \
