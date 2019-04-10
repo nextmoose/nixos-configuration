@@ -15,7 +15,6 @@ rec {
       pkgs.gnutar
       pkgs.mkpasswd
       pkgs.gnused
-      pkgs.nixosrebuild
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
