@@ -28,6 +28,7 @@ rec {
       pkgs.systemd
       pkgs.which
       pkgs.rsync
+      pkgs.coreutils
     ];
   });
   nmcli-wifi = (import ./create-derivation.nix {
