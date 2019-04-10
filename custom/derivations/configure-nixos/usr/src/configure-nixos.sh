@@ -89,11 +89,6 @@ done &&
     pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg" &&
     pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
-    (cat <<EOF
-USER_PASSWORD=${USER_PASSWORD}
-HASHED_USER_PASSWORD=${HASHED_USER_PASSWORD}
-EOF
-    ) &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
 	-e "w${WORK_DIR}/nixos-configuration/custom/password.nix" \
