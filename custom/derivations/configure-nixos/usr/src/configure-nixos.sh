@@ -53,7 +53,6 @@ done &&
 	echo "WORK_DIR=${WORK_DIR} does not exist" &&
 	    exit 64 &&
 	    true
-    fi &&
     elif [ -z "${CONFIG_DIR}" ]
     then
 	echo Unspecified CONFIG_DIR &&
