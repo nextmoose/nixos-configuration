@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  rescue ? import staples.nix {
+  rescue ? import ./rescue.nix {
     pkgs = pkgs;
   }
 } :
