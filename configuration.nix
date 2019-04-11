@@ -4,8 +4,12 @@
   ...
 }:
 let
+  rescue = (import ./custom/rescue.nix {
+    pkgs = pkgs;
+  });
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
+    rescue = rescue;
   });
 in
 {
