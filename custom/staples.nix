@@ -80,7 +80,7 @@ rec {
   setup-user = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "setup-user";
-    src = ./scripts/user-setup;
+    src = ./scripts/setup-user;
     dependencies = [
       init-gnupg
       init-read-only-pass
