@@ -4,12 +4,12 @@
   ...
 }:
 let
-  rescue = (import ./custom/rescue.nix {
-    pkgs = pkgs;
-  });
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
-    rescue = rescue;
+  });
+  rescue = (import ./custom/rescue.nix {
+    pkgs = pkgs;
+    pass = staples.pass;
   });
 in
 {
@@ -91,7 +91,7 @@ in
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos
-      staples.install-nixos-backup
+      rescue.rescue-install-nixos
     ];
   };
 }

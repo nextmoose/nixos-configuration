@@ -1,8 +1,5 @@
 {
   pkgs ? import <nixpkgs> {},
-  rescue ? import ./rescue.nix {
-    pkgs = pkgs;
-  }
 } :
 rec {
   configure-nixos = (import ./create-derivation.nix {
@@ -77,14 +74,6 @@ rec {
     src = ./derivations/pass;
     dependencies = [
       pkgs.coreutils
-    ];
-  });
-  rescue = (import ./create-derivation.nix {
-    pkgs = pkgs;
-    name = "rescue";
-    src = ./derivations/rescue;
-    dependencies = [
-      rescue.install-nixos
     ];
   });
 }
