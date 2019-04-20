@@ -22,6 +22,7 @@ rec {
     src = ./scripts/init-gnupg;
     dependencies = [
       pass
+      pkgs.coreutils
       pkgs.mktemp
       pkgs.gnupg
     ];
