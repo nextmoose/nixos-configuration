@@ -44,21 +44,21 @@ fi &&
 	    mkdir "${HOME}/.setup/dot_ssh" &&
 	    init-dot-ssh --dot-ssh "${HOME}/.setup/dot_ssh" &&
 	    add-ssh-domain \
-		--dot-ssh "${HOME}/.setup/dot-ssh" &&
+		--dot-ssh "${HOME}/.setup/dot_ssh" &&
 		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
 		--domain upstream \
 		--host github.com \
 		--user git &&
 	    add-ssh-domain \
-		--dot-ssh "${HOME}/.setup/dot-ssh" &&
+		--dot-ssh "${HOME}/.setup/dot_ssh" &&
 		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
 		--domain origin \
 		--host github.com \
 		--user git &&
 	    add-ssh-domain \
-		--dot-ssh "${HOME}/.setup/dot-ssh" &&
+		--dot-ssh "${HOME}/.setup/dot_ssh" &&
 		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
 		--domain report \
