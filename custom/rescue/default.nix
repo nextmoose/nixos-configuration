@@ -2,7 +2,8 @@
 	pkgs ? import <nixpkgs> {},
 	pass
 }:
-let dependencies = [
+let
+  dependencies = [
       pass
       pkgs.coreutils
       pkgs.git
@@ -15,6 +16,7 @@ let dependencies = [
       pkgs.systemd
       pkgs.which
 ];
+in
 pkgs.stdenv.mkDerivation {
 	name = "rescue";
 	src = ./src;
