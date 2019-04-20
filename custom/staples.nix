@@ -118,6 +118,14 @@ rec {
       pkgs.coreutils
     ];
   });
+  read-write-pass = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "read-write-pass";
+    src = ./scripts/read-write-pass;
+    dependencies = [
+      pkgs.pass
+    ];
+  });
   setup-user = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "setup-user";

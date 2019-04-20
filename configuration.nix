@@ -99,6 +99,7 @@ in
       staples.init-read-only-pass
       staples.nmcli-wifi
       staples.install-nixos
+      staples.read-write-pass
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
