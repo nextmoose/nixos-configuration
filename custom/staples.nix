@@ -36,6 +36,15 @@ rec {
       pkgs.gnupg
     ];
   });
+  init-read-only-pass = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-read-only-pass";
+    src = ./scripts/init-read-only-pass;
+    dependencies = [
+      pkgs.pass
+      pkgs.git
+    ];
+  });
   install-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
