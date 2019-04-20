@@ -3,13 +3,13 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--remote)
-	    REMOTE="${2}" &&
+	--canonical-system-remote)
+	    CANONICAL_SYSTEM_REMOTE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--branch)
-	    BRANCH="${2}" &&
+	--canonical-system-branch)
+	    CANONICAL_SYSTEM_BRANCH="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -20,6 +20,16 @@ do
 	    ;;
 	--committer-email)
 	    COMMITTER_EMAIL="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--origin-system-remote)
+	    ORIGIN_SYSTEM_REMOTE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--origin-system-branch)
+	    ORIGIN_SYSTEM_BRANCH="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -34,7 +44,17 @@ do
     esac &&
 	true
 done &&
-    if [ -z "${COMMITTER_NAME}" ]
+    if [ -z "${CANONICAL_SYSTEM_REMOTE}" ]
+    then
+	echo Unspecified CANONICAL_SYSTEM_REMOTE &&
+	    exit 64 &&
+	    true
+    elif [ -z "${CANONICAL_SYSTEM_BRANCH}" ]
+    then
+	echo Unspecified CANONICAL_SYSTEM_BRANCH &&
+	    exit 64 &&
+	    true
+    elif [ -z "${COMMITTER_NAME}" ]
     then
 	echo Unspecified COMMITTER_NAME &&
 	    exit 64 &&
@@ -42,6 +62,16 @@ done &&
     elif [ -z "${COMMITTER_EMAIL}" ]
     then
 	echo Unspecified COMMITTER_EMAIL &&
+	    exit 64 &&
+	    true
+    elif [ -z "${ORIGIN_SYSTEM_REMOTE}" ]
+    then
+	echo Unspecified ORIGIN_SYSTEM_REMOTE &&
+	    exit 64 &&
+	    true
+    elif [ -z "${ORIGIN_SYSTEM_BRANCH}" ]
+    then
+	echo Unspecified ORIGIN_SYSTEM_BRANCH &&
 	    exit 64 &&
 	    true
     fi &&
@@ -60,8 +90,8 @@ done &&
 	    init-read-only-pass \
 		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
-		--remote "${REMOTE}" \
-		--branch "${BRANCH}" &&
+		--remote "${CANONICAL_SYSTEM_REMOTE}" \
+		--branch "${CANONICAL_SYSTEM_BRANCH}" &&
 	    mkdir --parents "${HOME}/.ssh" &&
 	    init-dot-ssh --dot-ssh "${HOME}/.ssh" &&
 	    add-ssh-domain \
@@ -90,8 +120,8 @@ done &&
 	    init-read-write-pass \
 		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/stores/readwrite/system" \
-		--remote "origin:nextmoose/secrets.git" \
-		--branch "${BRANCH}" \
+		--remote "${ORIGIN_SYSTEM_REMOTE}" \
+		--branch "${ORIGIN_SYSTEM_BRANCH}" \
 		--committer-name "${COMMITTER_NAME}" \
 		--committer-email "${COMMITTER_EMAIL}" &&
 	    true

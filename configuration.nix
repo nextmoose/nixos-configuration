@@ -38,10 +38,12 @@ in
   };
   programs.bash.loginShellInit = ''
     ${staples.setup-user}/bin/setup-user \
-      --remote https://github.com/nextmoose/secrets.git \
-      --branch master \
+      --canonical-system-remote https://github.com/nextmoose/secrets.git \
+      --canonical-system-branch master \
       --committer-name "Emory Merryman" \
-      --committer-email "emory.merryman@gmail.com" &&
+      --committer-email "emory.merryman@gmail.com" \
+      --canonical-system-remote origin:nextmoose/secrets.git \
+      --canonical-system-branch master &&
       true
   '';
   security.sudo.wheelNeedsPassword = false;
