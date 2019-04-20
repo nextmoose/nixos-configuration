@@ -31,7 +31,7 @@ pkgs.stdenv.mkDerivation {
 	    makeWrapper \
 	      "$out/src/install-nixos.sh" \
 	      "$out/bin/rescue-install-nixos" \
-	      --set PATH "${pkgs.lib.makeBinPath []}" \
+	      --set PATH "${pkgs.lib.makeBinPath dependencies}" \
               --set STORE_DIR "$out" &&
 	    true
 	'';
