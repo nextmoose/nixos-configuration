@@ -84,6 +84,7 @@ in
       pkgs.emacs
       pkgs.chromium
       pkgs.git
+      staples.init-gnupg
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos

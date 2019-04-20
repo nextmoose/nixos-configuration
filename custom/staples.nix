@@ -16,6 +16,16 @@ rec {
       pkgs.gnused
     ];
   });
+  init-gnupg = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-gnupg";
+    src = ./scripts/init-gnupg;
+    dependencies = [
+      pass
+      pkgs.mktemp
+      pkgs.gpg
+    ];
+  });
   install-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
