@@ -41,6 +41,10 @@ fi &&
 		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
 		--remote "${REMOTE}" \
 		--branch "${BRANCH}" &&
+	    mkdir "${HOME}/.setup/dot_ssh" &&
+	    init-dot-ssh --dot-ssh "${HOME}/.setup/dot_ssh" &&
+	    mkdir "${HOME}/.setup/stores/readwrite" &&
+	    mkdir "${HOME}/.setup/stores/readwrite/system" &&
 	    true
     fi &&
     touch "${HOME}/.setup/flag" &&

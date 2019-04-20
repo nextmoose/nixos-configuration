@@ -25,6 +25,15 @@ rec {
       pkgs.coreutils
     ];
   });
+  init-dot-ssh = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-dot-ssh";
+    src = ./scripts/init-dot-ssh;
+    dependencies = [
+      pkgs.coreutils
+      pkgs.gnused
+    ];
+  });
   init-gnupg = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "init-gnupg";
@@ -82,6 +91,7 @@ rec {
     name = "setup-user";
     src = ./scripts/setup-user;
     dependencies = [
+      init-dot-ssh
       init-gnupg
       init-read-only-pass
       pkgs.coreutils
