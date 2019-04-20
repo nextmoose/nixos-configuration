@@ -1,10 +1,8 @@
 {
-	pkgs ? import <nixpkgs> {},
-	pass
+	pkgs ? import <nixpkgs> {}
 }:
 let
   dependencies = [
-      pass
       pkgs.bash
       pkgs.coreutils
       pkgs.git

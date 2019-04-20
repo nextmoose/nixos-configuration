@@ -23,6 +23,26 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--private-gpg-file)
+	    PRIVATE_GPG_FILE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--private-gpg2-file)
+	    PRIVATE_GPG2_FILE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--ownertrust-gpg-file)
+	    OWNERTRUST_GPG_FILE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--ownertrust-gpg2-file)
+	    OWNERTRUST_GPG2_FILE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&
@@ -63,6 +83,46 @@ done &&
 	echo "CONFIG_DIR=${CONFIG_DIR} does not exist" &&
 	    exit 64 &&
 	    true
+    elif [ -z "${PRIVATE_GPG_FILE}" ]
+    then
+	echo Unspecified PRIVATE_GPG_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${PRIVATE_GPG_FILE}" ]
+    then
+	echo "PRIVATE_GPG_FILE=${PRIVATE_GPG_FILE} does not exist" &&
+	    exit 64 &&
+	    true
+    elif [ -z "${PRIVATE_GPG2_FILE}" ]
+    then
+	echo Unspecified PRIVATE_GPG2_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${PRIVATE_GPG2_FILE}" ]
+    then
+	echo "PRIVATE_GPG2_FILE=${PRIVATE_GPG2_FILE} does not exist" &&
+	    exit 64 &&
+	    true
+    elif [ -z "${OWNERTRUST_GPG_FILE}" ]
+    then
+	echo Unspecified OWNERTRUST_GPG_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${OWNERTRUST_GPG_FILE}" ]
+    then
+	echo "OWNERTRUST_GPG_FILE=${OWNERTRUST_GPG_FILE} does not exist" &&
+	    exit 64 &&
+	    true
+    elif [ -z "${OWNERTRUST_GPG2_FILE}" ]
+    then
+	echo Unspecified OWNERTRUST_GPG2_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${OWNERTRUST_GPG2_FILE}" ]
+    then
+	echo "OWNERTRUST_GPG2_FILE=${OWNERTRUST_GPG2_FILE} does not exist" &&
+	    exit 64 &&
+	    true
     fi &&
     read -s -p "USER PASSWORD? " USER_PASSWORD &&
     read -s -p "VERIFY USER PASSWORD? " VERIFY_USER_PASSWORD &&
@@ -84,10 +144,10 @@ done &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
     mkdir "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var" &&
-    pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg" &&
-    pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg2" &&
-    pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg" &&
-    pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
+    cat "${PRIVATE_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg" &&
+    cat "${PRIVATE_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg2" &&
+    cat "${OWNERTRUST_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg" &&
+    cat "${OWNERTRUST_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \

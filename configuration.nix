@@ -7,10 +7,6 @@ let
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
   });
-  rescue = (import ./custom/rescue/default.nix {
-    pkgs = pkgs;
-    pass = staples.pass;
-  });
 in
 {
   boot.loader = {
@@ -91,7 +87,9 @@ in
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos
-      rescue
+      (import ./custom/rescue/default.nix {
+      	 pkgs = pkgs;
+      })
     ];
   };
 }
