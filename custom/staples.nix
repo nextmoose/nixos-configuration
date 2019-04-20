@@ -101,6 +101,7 @@ rec {
     name = "setup-user";
     src = ./scripts/setup-user;
     dependencies = [
+      add-ssh-domain
       init-dot-ssh
       init-gnupg
       init-read-only-pass
