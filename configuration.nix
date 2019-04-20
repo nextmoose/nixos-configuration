@@ -85,7 +85,7 @@ in
       pkgs.chromium
       pkgs.git
       staples.init-gnupg
-      staples.init-pass
+      staples.init-read-only-pass
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos
