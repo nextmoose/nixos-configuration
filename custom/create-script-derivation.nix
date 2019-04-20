@@ -3,8 +3,7 @@
    pkgs ? import <nixpkgs> {},
    name,
    src,
-   dependencies ? [],
-   binary-name ? name
+   dependencies ? []
 }:
 pkgs.stdenv.mkDerivation {
    name = name;
@@ -17,7 +16,7 @@ pkgs.stdenv.mkDerivation {
 	      mkdir "$out/bin" &&
 	      makeWrapper \
 	        "$out/src/${name}.sh" \
-	        "$out/bin/${binary-name}" \
+	        "$out/bin/${name}" \
 	        --set PATH "${pkgs.lib.makeBinPath dependencies}" \
           --set STORE_DIR "$out/src" &&
       true
