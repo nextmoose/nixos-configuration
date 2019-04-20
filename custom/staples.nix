@@ -2,6 +2,16 @@
   pkgs ? import <nixpkgs> {},
 } :
 rec {
+  add-ssh-domain = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "add-ssh-domain";
+    src = ./scripts/add-ssh-domain;
+    dependencies = [
+      pkgs.coreutils
+      pkgs.gnused
+      pkgs.pass
+    ];
+  });
   configure-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
