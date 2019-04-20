@@ -89,7 +89,7 @@ done &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
     pass git fetch origin "${BRANCH}" &&
-    pass git checkout --track -b master origin/master &&
+    pass git rebase origin/master &&
     pass git checkout "${BRANCH}" &&
     pass git config user.name "${COMMITTER_NAME}" &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
