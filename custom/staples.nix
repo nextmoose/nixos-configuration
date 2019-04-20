@@ -83,7 +83,7 @@ rec {
     src = ./scripts/user-setup;
     dependencies = [
       init-gnupg
-      init-pass
+      init-read-only-pass
       pkgs.coreutils
     ];
   });
