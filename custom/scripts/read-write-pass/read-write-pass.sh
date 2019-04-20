@@ -14,7 +14,8 @@ do
 		true
 	    ;;
 	--)
-	    ARGUMENTS="${@}" &&
+	    shift &&
+		ARGUMENTS="${@}" &&
 		shift "${#}" &&
 		true
 	    ;;
