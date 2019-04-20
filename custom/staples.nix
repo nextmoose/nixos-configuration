@@ -12,6 +12,14 @@ rec {
       pkgs.pass
     ];
   });
+  challenge = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "challenge";
+    src = ./scripts/challenge;
+    dependencies = [
+      pkgs.python27Packages.xkcdpass
+    ];
+  });
   challenge-secrets = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "challenge-secrets";
