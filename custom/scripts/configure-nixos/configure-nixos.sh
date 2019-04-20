@@ -65,7 +65,9 @@ done &&
 	    true
     fi &&
     read -s -p "USER PASSWORD? " USER_PASSWORD &&
+    echo &&
     read -s -p "VERIFY USER PASSWORD? " VERIFY_USER_PASSWORD &&
+    echo &&
     if [ -z "${USER_PASSWORD}" ]
     then
 	echo Empty USER_PASSWORD &&
