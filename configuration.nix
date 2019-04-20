@@ -42,6 +42,8 @@ in
       --canonical-system-branch master \
       --committer-name "Emory Merryman" \
       --committer-email "emory.merryman@gmail.com" \
+      --origin-challenge-remote origin:nextmoose/challenge-secrets.git \
+      --origin-challenge-branch master &&
       --origin-system-remote origin:nextmoose/secrets.git \
       --origin-system-branch master &&
       true
@@ -95,6 +97,7 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
+      staples.challenge-secrets
       staples.init-gnupg
       staples.init-read-only-pass
       staples.nmcli-wifi

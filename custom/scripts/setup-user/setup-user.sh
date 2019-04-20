@@ -23,8 +23,18 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--origin-system-remote)
-	    ORIGIN_SYSTEM_REMOTE="${2}" &&
+	--challenge-system-remote)
+	    CHALLENGE_SYSTEM_REMOTE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--challenge-system-branch)
+	    CHALLENGE_SYSTEM_BRANCH="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--challenge-system-remote)
+	    CHALLENGE_SYSTEM_REMOTE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -62,6 +72,16 @@ done &&
     elif [ -z "${COMMITTER_EMAIL}" ]
     then
 	echo Unspecified COMMITTER_EMAIL &&
+	    exit 64 &&
+	    true
+    elif [ -z "${ORIGIN_CHALLENGE_REMOTE}" ]
+    then
+	echo Unspecified ORIGIN_CHALLENGE_REMOTE &&
+	    exit 64 &&
+	    true
+    elif [ -z "${ORIGIN_CHALLENGE_BRANCH}" ]
+    then
+	echo Unspecified ORIGIN_CHALLENGE_BRANCH &&
 	    exit 64 &&
 	    true
     elif [ -z "${ORIGIN_SYSTEM_REMOTE}" ]
@@ -122,6 +142,14 @@ done &&
 		--password-store-dir "${HOME}/.setup/stores/readwrite/system" \
 		--remote "${ORIGIN_SYSTEM_REMOTE}" \
 		--branch "${ORIGIN_SYSTEM_BRANCH}" \
+		--committer-name "${COMMITTER_NAME}" \
+		--committer-email "${COMMITTER_EMAIL}" &&
+	    mkdir "${HOME}/.setup/stores/readwrite/challenge" &&
+	    init-read-write-pass \
+		--gnupghome "${HOME}/.setup/gnupg" \
+		--password-store-dir "${HOME}/.setup/stores/readwrite/challenge" \
+		--remote "${ORIGIN_CHALLENGE_REMOTE}" \
+		--branch "${ORIGIN_CHALLENGE_BRANCH}" \
 		--committer-name "${COMMITTER_NAME}" \
 		--committer-email "${COMMITTER_EMAIL}" &&
 	    true
