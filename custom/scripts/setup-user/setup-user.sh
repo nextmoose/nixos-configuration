@@ -33,7 +33,7 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--challenge-system-remote)
+	--origin-system-remote)
 	    ORIGIN_SYSTEM_REMOTE="${2}" &&
 		shift 2 &&
 		true
