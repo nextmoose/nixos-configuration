@@ -65,6 +65,19 @@ rec {
       gnupg-key-id
     ];
   });
+  init-read-write-pass = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-read-write-pass";
+    src = ./scripts/init-read-write-pass;
+    dependencies = [
+      pkgs.pass
+      pkgs.git
+      gnupg-key-id
+      pkgs.which
+      pkgs.coreutils
+      post-commit
+    ];
+  });
   install-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
@@ -93,6 +106,15 @@ rec {
     name = "pass";
     src = ./scripts/pass;
     dependencies = [
+      pkgs.coreutils
+    ];
+  });
+  post-commit = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "post-commit";
+    src = ./scripts/post-commit;
+    dependencies = [
+      pkgs.git
       pkgs.coreutils
     ];
   });
