@@ -84,6 +84,21 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    if [ -f "${DOT_SSH}/${DOMAIN}.conf" ]
+    then
+	chmod 0600 "${DOT_SSH}/${DOMAIN}.conf" &&
+	    true
+    fi &&
+    if [ -f "${DOT_SSH}/${DOMAIN}.id_rsa" ]
+    then
+	chmod 0600 "${DOT_SSH}/${DOMAIN}.id_rsa" &&
+	    true
+    fi &&
+    if [ -f "${DOT_SSH}/${DOMAIN}.known_hosts" ]
+    then
+	chmod 0600 "${DOT_SSH}/${DOMAIN}.known_hosts" &&
+	    true
+    fi &&
     sed \
 	-e "s#\${DOMAIN}#${DOMAIN}#" \
 	-e "s#\${HOST}#${HOST}#" \
