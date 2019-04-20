@@ -13,6 +13,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--committer-name)
+	    COMMITTER_NAME="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--committer-email)
+	    COMMITTER_EMAIL="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&
@@ -24,11 +34,22 @@ do
     esac &&
 	true
 done &&
-if [ ! -d "${HOME}/.setup" ]
-then
-    mkdir "${HOME}/.setup" &&
-	true
-fi &&
+    if [ -z "${COMMITTER_NAME}" ]
+    then
+	echo Unspecified COMMITTER_NAME &&
+	    exit 64 &&
+	    true
+    elif [ -z "${COMMITTER_EMAIL}" ]
+    then
+	echo Unspecified COMMITTER_EMAIL &&
+	    exit 64 &&
+	    true
+    fi &&
+    if [ ! -d "${HOME}/.setup" ]
+    then
+	mkdir "${HOME}/.setup" &&
+	    true
+    fi &&
     if [ ! -f "${HOME}/.setup/flag" ]
     then
 	mkdir "${HOME}/.setup/gnupg" &&
@@ -66,6 +87,13 @@ fi &&
 		--user git &&
 	    mkdir "${HOME}/.setup/stores/readwrite" &&
 	    mkdir "${HOME}/.setup/stores/readwrite/system" &&
+	    init-read-write-pass \
+		--gnupghome "${HOME}/.setup/gnupg" \
+		--password-store-dir "${HOME}/.setup/stores/readwrite/system" \
+		--remote "origin:nextmoose/secrets.git" \
+		--branch "${BRANCH}" \
+		--committer-name "${COMMITTER_NAME}" \
+		--committer-email "${COMMITTER_EMAIL}" &&
 	    true
     fi &&
     touch "${HOME}/.setup/flag" &&

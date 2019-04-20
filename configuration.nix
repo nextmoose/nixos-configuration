@@ -39,7 +39,9 @@ in
   programs.bash.loginShellInit = ''
     ${staples.setup-user}/bin/setup-user \
       --remote https://github.com/nextmoose/secrets.git \
-      --branch master &&
+      --branch master \
+      --committer-name "Emory Merryman" \
+      --committer-email "emory.merryman@gmail.com" &&
       true
   '';
   security.sudo.wheelNeedsPassword = false;
