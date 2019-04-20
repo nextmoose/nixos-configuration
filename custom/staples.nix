@@ -77,4 +77,14 @@ rec {
       pkgs.coreutils
     ];
   });
+  setup-user = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "setup-user";
+    src = ./scripts/user-setup;
+    dependencies = [
+      init-gnupg
+      init-pass
+      pkgs.coreutils
+    ];
+  });
 }

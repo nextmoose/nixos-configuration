@@ -36,6 +36,12 @@ in
       externalInterface = "wl01";
     };
   };
+  programs.bash.loginShellInit = ''
+    ${staple.setup-user}/bin/setup-user \
+      --remote https://github.com/nextmoose/secrets.git \
+      --branch master &&
+      true
+  '';
   security.sudo.wheelNeedsPassword = false;
   services = {
     avahi = {
