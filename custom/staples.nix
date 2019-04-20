@@ -16,6 +16,15 @@ rec {
       pkgs.gnused
     ];
   });
+  gnupg-key-id = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "gnupg-key-id";
+    src = ./scripts/gnupg-key-id;
+    dependencies = [
+      pkgs.gnupg
+      pkgs.coreutils
+    ];
+  });
   init-gnupg = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "init-gnupg";
