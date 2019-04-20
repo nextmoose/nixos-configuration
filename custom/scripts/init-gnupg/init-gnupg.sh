@@ -3,8 +3,8 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--home-dir)
-	    HOME_DIR="${2}" &&
+	--gnupgdir)
+	    GNUPGDIR="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -19,14 +19,14 @@ do
     esac &&
 	true
 done &&
-    if [ -z "${HOME_DIR}" ]
+    if [ -z "${GNUPGDIR}" ]
     then
-	echo Unspecified HOME_DIR &&
+	echo Unspecified GNUPGDIR &&
 	    exit 64 &&
 	    true
-    elif [ ! -d "${HOME_DIR}" ]
+    elif [ ! -d "${GNUPGDIR}" ]
     then
-	echo "Specified HOME_DIR=${HOME_DIR} does not exist" &&
+	echo "Specified GNUPGDIR=${GNUPGDIR} does not exist" &&
 	    exit 64 &&
 	    true
     fi &&
@@ -40,8 +40,8 @@ done &&
     pass show private.gpg2 > "${WORK_DIR}/private.gpg2.asc" &&
     pass show ownertrust.gpg > "${WORK_DIR}/ownertrust.gpg.asc" &&
     pass show ownertrust.gpg2 > "${WORK_DIR}/ownertrust.gpg2.asc" &&
-    gpg --homedir "${HOME_DIR}" --batch --import "${WORK_DIR}/private.gpg.asc" &&
-    gpg --homedir "${HOME_DIR}" --import "${WORK_DIR}/private.gpg2.asc" &&
-    gpg --homedir "${HOME_DIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg.asc" &&
-    gpg2 --homedir "${HOME_DIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg2.asc" &&
+    gpg --homedir "${GNUPGDIR}" --batch --import "${WORK_DIR}/private.gpg.asc" &&
+    gpg --homedir "${GNUPGDIR}" --import "${WORK_DIR}/private.gpg2.asc" &&
+    gpg --homedir "${GNUPGDIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg.asc" &&
+    gpg2 --homedir "${GNUPGDIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg2.asc" &&
     true
