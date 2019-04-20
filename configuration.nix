@@ -7,7 +7,7 @@ let
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
   });
-  rescue = (import ./custom/rescue.nix {
+  rescue = (import ./custom/rescue/default.nix {
     pkgs = pkgs;
     pass = staples.pass;
   });
