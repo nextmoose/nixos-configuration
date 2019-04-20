@@ -47,7 +47,7 @@ done &&
 	    true
     } &&
     trap cleanup EXIT &&
-    sh "${STORE_DIR}/configure-nixos.sh" \
+    sh "${STORE_DIR}/src/configure-nixos.sh" \
 	--canonical-remote "${CANONICAL_REMOTE}" \
 	--branch "${BRANCH}" \
 	--work-dir "${TEMP_DIR}" \
