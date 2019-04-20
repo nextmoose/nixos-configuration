@@ -91,7 +91,7 @@ in
       staples.nmcli-wifi
       staples.pass
       staples.install-nixos
-      rescue.rescue-install-nixos
+      rescue
     ];
   };
 }
