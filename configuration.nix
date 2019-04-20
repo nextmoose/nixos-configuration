@@ -97,6 +97,7 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
+                  pkgs.python27Packages.xkcdpass
       staples.challenge-secrets
       staples.init-gnupg
       staples.init-read-only-pass
