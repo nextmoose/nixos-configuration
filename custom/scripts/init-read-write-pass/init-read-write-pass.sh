@@ -63,6 +63,7 @@ done &&
     then
 	echo "Specified GNUPGHOME=${GNUPGHOME} does not exist" &&
 	    exit 64 &&
+	    true
     elif [ -z "${REMOTE}" ]
     then
 	echo Unspecified REMOTE &&
