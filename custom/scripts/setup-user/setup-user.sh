@@ -23,13 +23,13 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--challenge-system-remote)
-	    CHALLENGE_SYSTEM_REMOTE="${2}" &&
+	--origin-challenge-remote)
+	    ORIGIN_CHALLENGE_REMOTE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--challenge-system-branch)
-	    CHALLENGE_SYSTEM_BRANCH="${2}" &&
+	--origin-challenge-branch)
+	    ORIGIN_CHALLENGE_BRANCH="${2}" &&
 		shift 2 &&
 		true
 	    ;;
