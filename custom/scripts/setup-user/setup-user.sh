@@ -32,12 +32,12 @@ fi &&
     if [ ! -f "${HOME}/.setup/flag" ]
     then
 	mkdir "${HOME}/.setup/gnupg" &&
-	    init-gnupg --gnupgdir "${HOME}/.setup/gnupg" &&
+	    init-gnupg --gnupghome "${HOME}/.setup/gnupg" &&
 	    mkdir "${HOME}/.setup/stores" &&
 	    mkdir "${HOME}/.setup/stores/readonly" &&
 	    mkdir "${HOME}/.setup/stores/readonly/system" &&
 	    init-read-only-pass \
-		--gnupgdir "${HOME}/.setup/gnupg" \
+		--gnupghome "${HOME}/.setup/gnupg" \
 		--password-store-dir "${HOME}/.setup/passwordstores/readonly/system" \
 		--remote "${REMOTE}" \
 		--branch "${BRANCH}" &&
