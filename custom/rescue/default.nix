@@ -24,6 +24,9 @@ pkgs.stdenv.mkDerivation {
 	installPhase = ''
 	  mkdir $out &&
 	    cp --recursive . $out/src &&
+	    chmod \
+	      0500 \
+	      $out/src/install-nixos.sh &&
 	    mkdir $out/bin &&
 	    makeWrapper \
 	      "$out/src/install-nixos.sh" \
