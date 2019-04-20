@@ -51,7 +51,7 @@ done &&
 	    true
     fi &&
     export GNUPGHOME="${HOME_DIR}" &&
-    pass init $(gnupg-keyid) &&
+    pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add canonical "${REMOTE}" &&
     pass git fetch canonical "${BRANCH}" &&
