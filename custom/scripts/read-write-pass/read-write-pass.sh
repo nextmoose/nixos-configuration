@@ -30,5 +30,5 @@ do
     esac &&
 	true
 done &&
-    pass "${ARGUMENTS}" &&
+    pass ${ARGUMENTS} &&
     true
