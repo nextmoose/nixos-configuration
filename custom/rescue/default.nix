@@ -5,6 +5,7 @@
 let
   dependencies = [
       pass
+      pkgs.bash
       pkgs.coreutils
       pkgs.git
       pkgs.gnugrep
