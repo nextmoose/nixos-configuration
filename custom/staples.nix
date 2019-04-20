@@ -12,6 +12,14 @@ rec {
       pkgs.pass
     ];
   });
+  challenge-secrets = (import ./create-script-derivation.nix {
+    pkgs = pkgs;
+    name = "challenge-secrets";
+    src = ./scripts/challenge-secrets;
+    dependencies [
+      pkgs.pass
+    ];
+  });
   configure-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
