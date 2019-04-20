@@ -37,7 +37,7 @@ in
     };
   };
   programs.bash.loginShellInit = ''
-    ${staple.setup-user}/bin/setup-user \
+    ${staples.setup-user}/bin/setup-user \
       --remote https://github.com/nextmoose/secrets.git \
       --branch master &&
       true
