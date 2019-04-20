@@ -91,13 +91,13 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" "vboxusers" ];
     extraUsers.user.packages = [
-      pkgs.emacs
       pkgs.chromium
+      pkgs.emacs
       pkgs.git
+      pkgs.pass
       staples.init-gnupg
       staples.init-read-only-pass
       staples.nmcli-wifi
-      staples.pass
       staples.install-nixos
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
