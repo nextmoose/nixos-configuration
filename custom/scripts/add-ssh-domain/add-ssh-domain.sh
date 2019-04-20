@@ -88,7 +88,7 @@ done &&
 	-e "s#\${DOMAIN}#${DOMAIN}#" \
 	-e "s#\${HOST}#${HOST}#" \
 	-e "s#\${USER}#${USER}#" \
-	-e "s#\${HOME}#${DOT_SSH}#" \
+	-e "s#\${DOT_SSH}#${DOT_SSH}#" \
 	-e "w${DOT_SSH}/${DOMAIN}.conf" \
 	"${STORE_DIR}/config" &&
     pass show "${DOMAIN}.id_rsa" > "${DOT_SSH}/${DOMAIN}.id_rsa" &&
