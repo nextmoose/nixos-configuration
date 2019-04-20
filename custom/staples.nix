@@ -16,7 +16,7 @@ rec {
     pkgs = pkgs;
     name = "challenge-secrets";
     src = ./scripts/challenge-secrets;
-    dependencies [
+    dependencies = [
       pkgs.pass
     ];
   });
