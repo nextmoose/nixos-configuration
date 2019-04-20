@@ -63,7 +63,6 @@ done &&
     then
 	echo "Specified GNUPGHOME=${GNUPGHOME} does not exist" &&
 	    exit 64 &&
-	    true
     elif [ -z "${REMOTE}" ]
     then
 	echo Unspecified REMOTE &&
@@ -89,6 +88,7 @@ done &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
     pass git fetch origin "${BRANCH}" &&
+    pass git checkout --track -b master origin/master &&
     pass git checkout "${BRANCH}" &&
     pass git config user.name "${COMMITTER_NAME}" &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
