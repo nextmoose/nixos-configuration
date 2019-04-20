@@ -83,11 +83,11 @@ done &&
     git -C "${WORK_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
-    mkdir "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var" &&
-    pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg" &&
-    pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/private.gpg2" &&
-    pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg" &&
-    pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/var/ownertrust.gpg2" &&
+    mkdir "${WORK_DIR}/nixos-configuration/custom/derivations/pass/secrets" &&
+    pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/secrets/private.gpg" &&
+    pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/secrets/private.gpg2" &&
+    pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/secrets/ownertrust.gpg" &&
+    pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/derivations/pass/secrets/ownertrust.gpg2" &&
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
