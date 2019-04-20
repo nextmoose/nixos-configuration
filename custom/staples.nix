@@ -127,6 +127,7 @@ rec {
       init-dot-ssh
       init-gnupg
       init-read-only-pass
+      init-read-write-pass
       pkgs.coreutils
     ];
   });
