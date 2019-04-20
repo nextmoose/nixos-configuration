@@ -1,1 +1,1 @@
-Includes ${HOME}/.ssh/*.conf
+Include ${HOME}/.ssh/*.conf
