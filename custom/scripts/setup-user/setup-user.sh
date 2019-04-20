@@ -34,7 +34,7 @@ do
 		true
 	    ;;
 	--challenge-system-remote)
-	    CHALLENGE_SYSTEM_REMOTE="${2}" &&
+	    ORIGIN_SYSTEM_REMOTE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
