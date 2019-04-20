@@ -43,7 +43,7 @@ in
       --committer-name "Emory Merryman" \
       --committer-email "emory.merryman@gmail.com" \
       --origin-challenge-remote origin:nextmoose/challenge-secrets.git \
-      --origin-challenge-branch master &&
+      --origin-challenge-branch master \
       --origin-system-remote origin:nextmoose/secrets.git \
       --origin-system-branch master &&
       true
