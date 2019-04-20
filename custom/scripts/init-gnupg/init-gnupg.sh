@@ -42,6 +42,6 @@ done &&
     pass show ownertrust.gpg2 > "${WORK_DIR}/ownertrust.gpg2.asc" &&
     gpg --homedir "${GNUPGDIR}" --batch --import "${WORK_DIR}/private.gpg.asc" &&
     gpg --homedir "${GNUPGDIR}" --import "${WORK_DIR}/private.gpg2.asc" &&
-    gpg --homedir "${GNUPGDIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg.asc" &&
-    gpg2 --homedir "${GNUPGDIR}" import-ownertrust "${WORK_DIR}/ownertrust.gpg2.asc" &&
+    gpg --homedir "${GNUPGDIR}" --import-ownertrust "${WORK_DIR}/ownertrust.gpg.asc" &&
+    gpg2 --homedir "${GNUPGDIR}" --import-ownertrust "${WORK_DIR}/ownertrust.gpg2.asc" &&
     true
