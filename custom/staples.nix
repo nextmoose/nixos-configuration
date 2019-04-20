@@ -43,6 +43,7 @@ rec {
     dependencies = [
       pkgs.pass
       pkgs.git
+      gnupg-key-id
     ];
   });
   install-nixos = (import ./create-script-derivation.nix {
