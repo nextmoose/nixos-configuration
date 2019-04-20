@@ -31,7 +31,7 @@ done &&
     fi &&
     chmod 0700 "${DOT_SSH}" &&
     sed \
-	-e "s#${HOME}#${DOT_SSH}#" \
+	-e "s#\${HOME}#${DOT_SSH}#" \
 	-e "w${DOT_SSH}/config" \
 	"${STORE_DIR}/config" &&
     true
