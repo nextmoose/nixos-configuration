@@ -2,10 +2,10 @@
   pkgs ? import <nixpkgs> {},
 } :
 rec {
-  configure-nixos = (import ./create-derivation.nix {
+  configure-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
-    src = ./derivations/configure-nixos;
+    src = ./scripts/configure-nixos;
     dependencies = [
       pkgs.coreutils
       pkgs.git
@@ -16,10 +16,10 @@ rec {
       pkgs.gnused
     ];
   });
-  install-nixos = (import ./create-derivation.nix {
+  install-nixos = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
-    src = ./derivations/install-nixos;
+    src = ./scripts/install-nixos;
     dependencies = [
       pkgs.mktemp
       configure-nixos
@@ -31,18 +31,18 @@ rec {
       pkgs.coreutils
     ];
   });
-  nmcli-wifi = (import ./create-derivation.nix {
+  nmcli-wifi = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "nmcli-wifi";
-    src = ./derivations/nmcli-wifi;
+    src = ./scripts/nmcli-wifi;
     dependencies = [
       pkgs.networkmanager
     ];
   });
-  pass = (import ./create-derivation.nix {
+  pass = (import ./create-script-derivation.nix {
     pkgs = pkgs;
     name = "pass";
-    src = ./derivations/pass;
+    src = ./scripts/pass;
     dependencies = [
       pkgs.coreutils
     ];
