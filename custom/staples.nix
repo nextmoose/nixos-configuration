@@ -23,7 +23,7 @@ rec {
     dependencies = [
       pass
       pkgs.mktemp
-      pkgs.gpg
+      pkgs.gnupg
     ];
   });
   install-nixos = (import ./create-script-derivation.nix {
