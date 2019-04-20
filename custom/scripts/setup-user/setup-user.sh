@@ -38,7 +38,7 @@ fi &&
 	    mkdir "${HOME}/.setup/stores/readonly/system" &&
 	    init-read-only-pass \
 		--gnupghome "${HOME}/.setup/gnupg" \
-		--password-store-dir "${HOME}/.setup/passwordstores/readonly/system" \
+		--password-store-dir "${HOME}/.setup/stores/readonly/system" \
 		--remote "${REMOTE}" \
 		--branch "${BRANCH}" &&
 	    true
