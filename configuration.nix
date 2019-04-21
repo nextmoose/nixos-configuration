@@ -64,9 +64,6 @@ in
         "31 *  * * * user nix-collect-garbage"
       ];
     };
-    dockerRegistry = {
-      enable = true;
-    };
     physlock = {
       allowAnyUser = true;
       disableSysRq = true;
