@@ -12,7 +12,7 @@ rec {
     init-gnupg-volume = (import ./docker-image.nix {
       pkgs = pkgs;
       name = "system-volume";
-      entrypoint = "${init-gnupg}/bin/init-gnupg"
+      entrypoint = "${init-gnupg}/bin/init-gnupg";
     });
   };
   add-ssh-domain = (import ./script-derivation.nix {
