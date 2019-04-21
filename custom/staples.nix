@@ -8,6 +8,7 @@ rec {
       name = "init-gnupg";
       image = "init-gnupg";
       start-docker-container = start-docker-container;
+      arguments = "--gnupghome /home/user";
     });
     init-gnupg-image = (import ./docker-image.nix {
       pkgs = pkgs;
