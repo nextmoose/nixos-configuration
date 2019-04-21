@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> {},
 } :
 rec {
-  add-ssh-domain = (import ./create-script-derivation.nix {
+  add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "add-ssh-domain";
     src = ./scripts/add-ssh-domain;
@@ -12,7 +12,7 @@ rec {
       pkgs.pass
     ];
   });
-  challenge = (import ./create-script-derivation.nix {
+  challenge = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "challenge";
     src = ./scripts/challenge;
@@ -20,7 +20,7 @@ rec {
       pkgs.python27Packages.xkcdpass
     ];
   });
-  challenge-secrets = (import ./create-script-derivation.nix {
+  challenge-secrets = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "challenge-secrets";
     src = ./scripts/challenge-secrets;
@@ -28,7 +28,7 @@ rec {
       pkgs.pass
     ];
   });
-  configure-nixos = (import ./create-script-derivation.nix {
+  configure-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
     src = ./scripts/configure-nixos;
@@ -42,7 +42,7 @@ rec {
       pkgs.gnused
     ];
   });
-  gnupg-key-id = (import ./create-script-derivation.nix {
+  gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
     src = ./scripts/gnupg-key-id;
@@ -51,7 +51,7 @@ rec {
       pkgs.coreutils
     ];
   });
-  init-dot-ssh = (import ./create-script-derivation.nix {
+  init-dot-ssh = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "init-dot-ssh";
     src = ./scripts/init-dot-ssh;
@@ -60,7 +60,7 @@ rec {
       pkgs.gnused
     ];
   });
-  init-gnupg = (import ./create-script-derivation.nix {
+  init-gnupg = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "init-gnupg";
     src = ./scripts/init-gnupg;
@@ -71,7 +71,7 @@ rec {
       pkgs.gnupg
     ];
   });
-  init-read-only-pass = (import ./create-script-derivation.nix {
+  init-read-only-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "init-read-only-pass";
     src = ./scripts/init-read-only-pass;
@@ -81,7 +81,7 @@ rec {
       gnupg-key-id
     ];
   });
-  init-read-write-pass = (import ./create-script-derivation.nix {
+  init-read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "init-read-write-pass";
     src = ./scripts/init-read-write-pass;
@@ -94,7 +94,7 @@ rec {
       post-commit
     ];
   });
-  install-nixos = (import ./create-script-derivation.nix {
+  install-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
     src = ./scripts/install-nixos;
@@ -109,7 +109,7 @@ rec {
       pkgs.coreutils
     ];
   });
-  nmcli-wifi = (import ./create-script-derivation.nix {
+  nmcli-wifi = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "nmcli-wifi";
     src = ./scripts/nmcli-wifi;
@@ -117,7 +117,7 @@ rec {
       pkgs.networkmanager
     ];
   });
-  pass = (import ./create-script-derivation.nix {
+  pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "pass";
     src = ./scripts/pass;
@@ -125,7 +125,7 @@ rec {
       pkgs.coreutils
     ];
   });
-  post-commit = (import ./create-script-derivation.nix {
+  post-commit = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";
     src = ./scripts/post-commit;
@@ -134,7 +134,7 @@ rec {
       pkgs.coreutils
     ];
   });
-  read-write-pass = (import ./create-script-derivation.nix {
+  read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "read-write-pass";
     src = ./scripts/read-write-pass;
@@ -142,7 +142,7 @@ rec {
       pkgs.pass
     ];
   });
-  setup-user = (import ./create-script-derivation.nix {
+  setup-user = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "setup-user";
     src = ./scripts/setup-user;

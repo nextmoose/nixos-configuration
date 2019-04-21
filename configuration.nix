@@ -82,9 +82,18 @@ in
     };
   };
   sound.enable = true;
-  system.stateVersion = "18.03";
-  system.autoUpgrade = {
-    enable = true;
+  system = {
+    autoUpgrade = {
+      enable = true;
+    };
+    stateVersion = "18.03";
+  }
+  systemd.services = {
+    foo = (import ./docker-image {
+      name = "foo";
+      entrypoint = "${pkgs.coreutils}/bin/echo";
+      cmd = [ "world" ];
+    });
   };
   time.timeZone = "US/Eastern";
   users = {
