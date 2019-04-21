@@ -87,7 +87,7 @@ in
       enable = true;
     };
     stateVersion = "18.03";
-  }
+  };
   systemd.services = {
     foo = (import ./docker-image {
       name = "foo";
