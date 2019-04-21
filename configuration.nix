@@ -88,7 +88,7 @@ in
     };
     stateVersion = "18.03";
   };
-  systemd.services = images;
+  systemd.services = staples.images;
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
