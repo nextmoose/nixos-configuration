@@ -173,4 +173,12 @@ rec {
       pkgs.coreutils
     ];
   });
+  start-docker-container = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "start-docker-container";
+    src = ./scripts/start-docker-container;
+    dependencies = [
+      pkgs.docker
+    ]
+  });
 }

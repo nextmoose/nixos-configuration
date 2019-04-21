@@ -55,5 +55,7 @@ done &&
 	    --restart always \
 	    "${IMAGE}" \
 	    "${ARGUMENTS}" &&
+	    docker container start "${NAME}" &&
+	    true
     fi &&
     true
