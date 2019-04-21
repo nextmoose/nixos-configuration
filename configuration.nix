@@ -91,7 +91,7 @@ in
     mutableUsers = false;
     extraUsers.user.isNormalUser = true;
     extraUsers.user.uid = 1000;
-    extraUsers.user.extraGroups = [ "wheel" "docker" "vboxusers" ];
+    extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
       pkgs.chromium
       pkgs.emacs
@@ -108,6 +108,10 @@ in
       	 pkgs = pkgs;
       })
     ];
+  };
+  virtualisation.docker = {
+    autoPrune.enable = true;
+    enable = true;
   };
 }
 # lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere
