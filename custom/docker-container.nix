@@ -11,7 +11,7 @@
   serviceConfig = {
     Type = "oneshot";
     ExecStart = ''
-      ${start-docker-container}/bin/start-docker-container \
+      ${pkgs.coreutils}/bin/echo ${start-docker-container}/bin/start-docker-container \
         --image ${image} \
 	--name ${name} \
 	-- ${arguments} &&
