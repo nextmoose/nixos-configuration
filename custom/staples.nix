@@ -11,7 +11,7 @@ rec {
     });
     init-gnupg-volume = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "system-volume";
+      name = "init-gnupg-volume";
       entrypoint = "${init-gnupg}/bin/init-gnupg";
     });
   };
