@@ -3,16 +3,15 @@
 } :
 rec {
   images = {
-    foo = (import ./docker-image.nix {
+    init-gnupg = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "foo";
-      entrypoint = [ "${pkgs.coreutils}/bin/echo" "hello" ];
-      cmd = [ "world" ];
+      name = "gnupg";
+      entrypoint = [ "${init-gnupg}/bin/init-gnupg" ]
     });
-    init-gnupg-volume = (import ./docker-image.nix {
+    init-read-only-pass = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "init-gnupg-volume";
-      entrypoint = "${init-gnupg}/bin/init-gnupg";
+      name = "init-read-only-pass";
+      entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ]
     });
   };
   add-ssh-domain = (import ./script-derivation.nix {
