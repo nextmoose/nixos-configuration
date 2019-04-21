@@ -179,6 +179,6 @@ rec {
     src = ./scripts/start-docker-container;
     dependencies = [
       pkgs.docker
-    ]
+    ];
   });
 }
