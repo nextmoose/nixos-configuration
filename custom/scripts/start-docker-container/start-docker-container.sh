@@ -54,7 +54,7 @@ done &&
 	    --name "${NAME}" \
 	    --restart always \
 	    "${IMAGE}" \
-	    "${ARGUMENTS}" &&
+	    ${ARGUMENTS} &&
 	    docker container start "${NAME}" &&
 	    true
     fi &&
