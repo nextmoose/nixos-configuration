@@ -11,7 +11,7 @@
     ExecStart = "${pkgs.docker}/bin/docker container ls";
     ExecStop = "${pkgs.docker}/bin/docker container ls";
   };
-  after = [ "${image}" ];
-  requires = [ "${image}" ];
+  after = [ "${image}.service" ];
+  requires = [ "${image}.service" ];
   wantedBy = [ "default.target" ];
 }
