@@ -1,5 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
+  name,
   image
 }:
 {
