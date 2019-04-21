@@ -89,7 +89,7 @@ in
     stateVersion = "18.03";
   };
   systemd.services = {
-    foo = (import ./custom/docker-image {
+    foo = (import ./custom/docker-image.nix {
       name = "foo";
       entrypoint = "${pkgs.coreutils}/bin/echo";
       cmd = [ "world" ];
