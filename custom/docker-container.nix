@@ -7,7 +7,8 @@
   enable = true;
   serviceConfig = {
     Type = "oneshot";
-    ExecStart = "${pkgs.docker}/bin/docker container
+    ExecStart = "${pkgs.docker}/bin/docker container ls";
+    ExecStop = "${pkgs.docker}/bin/docker container ls";
   };
   after = [ "docker.service" ${image} ];
   requires = [ "docker.service" ${image} ];
