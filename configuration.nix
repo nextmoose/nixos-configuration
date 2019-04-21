@@ -88,13 +88,7 @@ in
     };
     stateVersion = "18.03";
   };
-  systemd.services = {
-    foo = (import ./custom/docker-image.nix {
-      name = "foo";
-      entrypoint = "${pkgs.coreutils}/bin/echo";
-      cmd = [ "world" ];
-    });
-  };
+  systemd.services = images;
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;

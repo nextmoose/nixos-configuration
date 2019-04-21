@@ -2,6 +2,14 @@
   pkgs ? import <nixpkgs> {},
 } :
 rec {
+  images = {
+    foo = (import ./docker-image.nix {
+      pkgs = pkgs;
+      name = foo;
+      entrypoint = "${pkgs.coreutils}/bin/echo hello";
+      cmd = [ "world" ];
+    });
+  };
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "add-ssh-domain";
