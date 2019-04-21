@@ -11,7 +11,7 @@ rec {
     init-read-only-pass = (import ./docker-image.nix {
       pkgs = pkgs;
       name = "init-read-only-pass";
-      entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ]
+      entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
     });
   };
   add-ssh-domain = (import ./script-derivation.nix {
