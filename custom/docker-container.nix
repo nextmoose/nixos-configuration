@@ -14,7 +14,8 @@
       ${start-docker-container}/bin/start-docker-container \
         --image ${image} \
 	--name ${name} \
-	-- ${arguments} &&x
+	-- ${arguments} &&
+	true
     '';
     ExecStop = "${pkgs.docker}/bin/docker container ls";
   };
