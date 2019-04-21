@@ -1,17 +1,24 @@
 {
   pkgs ? import <nixpkgs> {},
   name,
-  image
+  image,
+  start-docker-container,
+  arguments ? ""
 }:
 {
   description = "Docker Container Service -- ${name}";
   enable = true;
   serviceConfig = {
     Type = "oneshot";
-    ExecStart = "${pkgs.docker}/bin/docker container ls";
+    ExecStart = ''
+      ${start-docker-container}/bin/start-docker-container \
+        --image ${image} \
+	--name ${name} \
+	-- ${arguments} &&x
+    '';
     ExecStop = "${pkgs.docker}/bin/docker container ls";
   };
-  after = [ "${image}.service" ];
-  requires = [ "${image}.service" ];
+  after = [ "${image}-image.service" ];
+  requires = [ "${image}-image.service" ];
   wantedBy = [ "default.target" ];
 }
