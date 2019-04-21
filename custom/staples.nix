@@ -6,7 +6,7 @@ rec {
     init-gnupg-container = (import ./docker-container.nix {
       pkgs = pkgs;
       name = "init-gnupg";
-      image = "init-gnupg";
+      image = "init-gnupg-image";
     });
     init-gnupg-image = (import ./docker-image.nix {
       pkgs = pkgs;
