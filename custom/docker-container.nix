@@ -16,7 +16,7 @@
 	--name ${name} \
 	-- ${arguments}
     '';
-    ExecStop = "${pkgs.docker}/bin/docker container ls";
+    ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
   };
   after = [ "${image}-image.service" ];
   requires = [ "${image}-image.service" ];
