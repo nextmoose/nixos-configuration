@@ -6,7 +6,7 @@ rec {
     foo = (import ./docker-image.nix {
       pkgs = pkgs;
       name = "foo";
-      entrypoint = [ "${pkgs.coreutils}/bin/echo", "hello" ];
+      entrypoint = [ "${pkgs.coreutils}/bin/echo" "hello" ];
       cmd = [ "world" ];
     });
   };
