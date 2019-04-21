@@ -11,11 +11,10 @@
   serviceConfig = {
     Type = "oneshot";
     ExecStart = ''
-      ${pkgs.coreutils}/bin/echo ${start-docker-container}/bin/start-docker-container \
+      ${start-docker-container}/bin/start-docker-container \
         --image ${image} \
 	--name ${name} \
-	-- ${arguments} &&
-	true
+	-- ${arguments}
     '';
     ExecStop = "${pkgs.docker}/bin/docker container ls";
   };
