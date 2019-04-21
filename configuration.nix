@@ -36,18 +36,6 @@ in
       externalInterface = "wl01";
     };
   };
-  programs.bash.loginShellInit = ''
-    ${staples.setup-user}/bin/setup-user \
-      --canonical-system-remote https://github.com/nextmoose/secrets.git \
-      --canonical-system-branch master \
-      --committer-name "Emory Merryman" \
-      --committer-email "emory.merryman@gmail.com" \
-      --origin-challenge-remote origin:nextmoose/challenge-secrets.git \
-      --origin-challenge-branch master \
-      --origin-system-remote origin:nextmoose/secrets.git \
-      --origin-system-branch master &&
-      true
-  '';
   security.sudo.wheelNeedsPassword = false;
   services = {
     avahi = {

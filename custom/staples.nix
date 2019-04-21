@@ -9,6 +9,11 @@ rec {
       entrypoint = [ "${pkgs.coreutils}/bin/echo" "hello" ];
       cmd = [ "world" ];
     });
+    system-volume = (import ./docker-image.nix {
+      pkgs = pkgs;
+      name = "system-volume";
+      entrypoint = "${init-gnupg}/bin/init-gnupg"
+    });
   };
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
