@@ -66,7 +66,6 @@ in
     };
     dockerRegistry = {
       enable = true;
-      enableDelete = true;
     };
     physlock = {
       allowAnyUser = true;
