@@ -6,7 +6,7 @@ rec {
     init-gnupg = (import ./docker-image.nix {
       pkgs = pkgs;
       name = "gnupg";
-      entrypoint = [ "${init-gnupg}/bin/init-gnupg" ]
+      entrypoint = [ "${init-gnupg}/bin/init-gnupg" ];
     });
     init-read-only-pass = (import ./docker-image.nix {
       pkgs = pkgs;
