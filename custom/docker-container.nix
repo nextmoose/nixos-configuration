@@ -1,5 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
+  image
 }:
 {
   description = "Docker Container Service -- ${name}";
@@ -8,7 +9,7 @@
     Type = "oneshot";
     ExecStart = "${pkgs.docker}/bin/docker container
   };
-  after = [ "docker.service" ];
-  requires = [ "docker.service" ];
+  after = [ "docker.service" ${image} ];
+  requires = [ "docker.service" ${image} ];
   wantedBy = [ "default.target" ];
 }

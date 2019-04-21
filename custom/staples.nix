@@ -2,13 +2,17 @@
   pkgs ? import <nixpkgs> {},
 } :
 rec {
-  images = {
-    init-gnupg = (import ./docker-image.nix {
+  images = rec {
+    init-gnupg-container = (import ./docker-container.nix {
       pkgs = pkgs;
-      name = "gnupg";
+      image = "init-gnupg";
+    });
+    init-gnupg-image = (import ./docker-image.nix {
+      pkgs = pkgs;
+      name = "init-gnupg";
       entrypoint = [ "${init-gnupg}/bin/init-gnupg" ];
     });
-    init-read-only-pass = (import ./docker-image.nix {
+    init-read-only-pass-image = (import ./docker-image.nix {
       pkgs = pkgs;
       name = "init-read-only-pass";
       entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
