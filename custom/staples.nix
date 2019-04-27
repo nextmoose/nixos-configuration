@@ -6,7 +6,7 @@ rec {
     system-secrets-read-only-pass-container = (import ./docker-container.nix {
       pkgs = pkgs;
       name = "system-secrets-read-only-pass-container";
-      image = "read-only-pass-image";
+      image = "read-only-pass";
       arguments = ''
         --remote https://github.com/nextmoose/secrets.git \
 	--branch master
