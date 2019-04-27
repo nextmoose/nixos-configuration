@@ -14,7 +14,7 @@ rec {
     });
     read-only-pass-image = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "read-only-pass";
+      name = "read-only-pass-image";
       entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
     });
   };
