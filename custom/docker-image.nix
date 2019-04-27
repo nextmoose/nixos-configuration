@@ -9,6 +9,7 @@
 let
   image = pkgs.dockerTools.buildImage {
     name = name;
+    tag = "latest";
     contents = contents;
     runAsRoot = ''
       ${pkgs.dockerTools.shadowSetup}
@@ -22,9 +23,6 @@ let
       entrypoint = entrypoint;
       cmd = cmd;
       User = "user";
-      Volumes = {
-        "/home/user" = {};
-      };
     };
   };
 in
