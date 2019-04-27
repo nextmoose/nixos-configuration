@@ -5,7 +5,7 @@ rec {
   images = rec {
     system-secrets-read-only-pass-container = (import ./docker-container.nix {
       pkgs = pkgs;
-      name = "system-secrets-read-only-pass-container";
+      name = "system-secrets-read-only-pass";
       image = "read-only-pass";
       arguments = ''
         --remote https://github.com/nextmoose/secrets.git \
@@ -14,7 +14,7 @@ rec {
     });
     read-only-pass-image = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "read-only-pass-image";
+      name = "read-only-pass";
       entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
     });
   };
