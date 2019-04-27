@@ -10,7 +10,7 @@ rec {
       arguments = ''
         --remote https://github.com/nextmoose/secrets.git \
 	--branch master
-      ''
+      '';
     });
     read-only-pass-image = (import ./docker-image.nix {
       pkgs = pkgs;
