@@ -20,6 +20,15 @@ rec {
         pkgs.cacert
       ];
     });
+    pass-image = (import ./docker-image.nix {
+      pkgs = pkgs;
+      name = "pass";
+      entrypoint = [ "${pkgs.pass}/bin/pass" ];
+      contents = [
+        pkgs.find
+	pkgs.tree
+      ];
+    });
   };
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
