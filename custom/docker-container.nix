@@ -13,7 +13,6 @@
       ${pkgs.docker}/bin/docker \
         run \
 	--name "${name}" \
-	--restart always \
 	--detach \
 	"${image}" \
 	${arguments}

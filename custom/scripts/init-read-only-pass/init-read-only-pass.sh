@@ -42,11 +42,4 @@ done &&
     export GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
-    echo ALL DONE &&
-    pass show &&
-    sleep infinity &&
-    # problem with sleep
-    #    sleep 2147483647 &&
-    #
-    #    sleep inf &&
     true
