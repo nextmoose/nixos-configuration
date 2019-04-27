@@ -16,6 +16,9 @@ rec {
       pkgs = pkgs;
       name = "read-only-pass";
       entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
+      contents = [
+        pkgs.cacert
+      ];
     });
   };
   add-ssh-domain = (import ./script-derivation.nix {
@@ -109,7 +112,6 @@ rec {
       pkgs.git
       gnupg-key-id
       pkgs.coreutils
-      pkgs.cacert
     ];
   });
   init-read-write-pass = (import ./script-derivation.nix {
