@@ -2,7 +2,6 @@
   pkgs ? import <nixpkgs> {},
   name,
   image,
-  start-docker-container,
   arguments ? ""
 }:
 {
@@ -11,10 +10,13 @@
   serviceConfig = {
     Type = "oneshot";
     ExecStart = ''
-      ${start-docker-container}/bin/start-docker-container \
-        --image ${image} \
-	--name ${name} \
-	-- ${arguments}
+      ${pkgs.docker}/bin/docker \
+        run \
+	--name "${name}" \
+	--restart always \
+	--detach \
+	"${image}" \
+	${arguments}
     '';
     ExecStop = "${pkgs.docker}/bin/docker container stop ${name}";
   };

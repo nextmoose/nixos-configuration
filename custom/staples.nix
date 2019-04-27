@@ -3,21 +3,18 @@
 } :
 rec {
   images = rec {
-    init-gnupg-container = (import ./docker-container.nix {
+    system-secrets-read-only-pass-container = (import ./docker-container.nix {
       pkgs = pkgs;
-      name = "init-gnupg";
-      image = "init-gnupg";
-      start-docker-container = start-docker-container;
-      arguments = "--gnupghome /home/user";
+      name = "system-secrets-read-only-pass-container";
+      image = "init-read-only-pass-image";
+      arguments = ''
+        --remote https://github.com/nextmoose/secrets.git \
+	--branch master
+      ''
     });
-    init-gnupg-image = (import ./docker-image.nix {
+    read-only-pass-image = (import ./docker-image.nix {
       pkgs = pkgs;
-      name = "init-gnupg";
-      entrypoint = [ "${init-gnupg}/bin/init-gnupg" ];
-    });
-    init-read-only-pass-image = (import ./docker-image.nix {
-      pkgs = pkgs;
-      name = "init-read-only-pass";
+      name = "read-only-pass";
       entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
     });
   };
@@ -70,6 +67,18 @@ rec {
       pkgs.coreutils
     ];
   });
+  gnupg-ownertrust = (import ./injectable/gnupg-ownertrust/default.nix {
+    pkgs = pkgs;
+  });
+  gnupg2-ownertrust = (import ./injectable/gnupg2-ownertrust/default.nix {
+    pkgs = pkgs;
+  });
+  gnupg-private-keys = (import ./injectable/gnupg-private-keys/default.nix {
+    pkgs = pkgs;
+  });
+  gnupg2-private-keys = (import ./injectable/gnupg2-private-keys/default.nix {
+    pkgs = pkgs;
+  });
   init-dot-ssh = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "init-dot-ssh";
@@ -84,10 +93,10 @@ rec {
     name = "init-gnupg";
     src = ./scripts/init-gnupg;
     dependencies = [
-      pass
-      pkgs.coreutils
-      pkgs.mktemp
-      pkgs.gnupg
+      gnupg-ownertrust
+      gnupg2-ownertrust
+      gnupg-private-keys
+      gnupg2-private-keys
     ];
   });
   init-read-only-pass = (import ./script-derivation.nix {
@@ -95,9 +104,11 @@ rec {
     name = "init-read-only-pass";
     src = ./scripts/init-read-only-pass;
     dependencies = [
+      init-gnupg
       pkgs.pass
       pkgs.git
       gnupg-key-id
+      pkgs.coreutils
     ];
   });
   init-read-write-pass = (import ./script-derivation.nix {
