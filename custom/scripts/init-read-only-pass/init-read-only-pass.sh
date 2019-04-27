@@ -42,5 +42,6 @@ done &&
     export GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
-    sleep inf &&
+    sleep 2147483647 &&
+#    sleep inf &&
     true
