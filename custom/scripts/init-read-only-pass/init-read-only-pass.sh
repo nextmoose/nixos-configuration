@@ -44,6 +44,7 @@ done &&
     pass git checkout "canonical/${BRANCH}" &&
     echo ALL DONE &&
     pass show &&
+    sleep infinity &&
     # problem with sleep
     #    sleep 2147483647 &&
     #
