@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
         "$out/src/gnupg-private-keys.sh" \
 	"$out/bin/gnupg-private-keys" \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.gnupg ]}" \
-	--set STORE_DIR "$out" &&
+	--set STORE_DIR "$out/src" &&
       true
   '';
 }

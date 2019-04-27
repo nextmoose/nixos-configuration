@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
         "$out/src/gnupg-ownertrust.sh" \
 	"$out/bin/gnupg-ownertrust" \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.gnupg ]}" \
-	--set STORE_DIR "$out" &&
+	--set STORE_DIR "$out/src" &&
       true
   '';
 }
