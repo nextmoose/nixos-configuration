@@ -109,6 +109,7 @@ rec {
       pkgs.git
       gnupg-key-id
       pkgs.coreutils
+      pkgs.openssl
     ];
   });
   init-read-write-pass = (import ./script-derivation.nix {
