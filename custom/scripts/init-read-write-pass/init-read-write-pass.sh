@@ -8,6 +8,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--id-rsa)
+	    ID_RSA="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user-known-hosts)
+	    USER_KNOWN_HOSTS="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--user)
 	    USER="${2}" &&
 		shift 2 &&
@@ -49,6 +59,16 @@ done &&
 	echo Unspecified HOST &&
 	    exit 64 &&
 	    true
+    elif [ -z "${ID_RSA}" ]
+    then
+	echo Unspecified ID_RSA &&
+	    exit 64 &&
+	    true
+    elif [ -z "${USER_KNOWN_HOSTS}" ]
+    then
+	echo Unspecified USER_KNOWN_HOSTS &&
+	    exit 64 &&
+	    true
     elif [ -z "${USER}" ]
     then
 	echo Unspecified USER &&
@@ -80,6 +100,8 @@ done &&
     add-ssh-domain \
 	--domain origin \
 	--host "${HOST}" \
+	--id-rsa "${ID_RSA}" \
+	--user-known-hosts "${USER_KNOWN_HOSTS}" \
 	--user "${USER}" &&
     pass init $(gnupg-key-id) &&
     pass git init &&

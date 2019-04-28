@@ -13,6 +13,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--id-rsa)
+	    ID_RSA="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user-known-hosts)
+	    USER_KNOWN_HOSTS="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--user)
 	    USER="${2}" &&
 		shift 2 &&
@@ -33,6 +43,16 @@ done &&
 	echo Unspecified HOST &&
 	    exit 64 &&
 	    true
+    elif [ -z "${ID_RSA}" ]
+    then
+	echo Unspecified ID_RSA &&
+	    exit 64 &&
+	    true
+    elif [ -z "${USER_KNOWN_HOSTS}" ]
+    then
+	echo Unspecified USER_KNOWN_HOSTS &&
+	    exit 64 &&
+	    true
     elif [ -z "${USER}" ]
     then
 	echo Unspecified USER &&
@@ -46,8 +66,8 @@ done &&
 	-e "s#\${HOME}#${HOME}#" \
 	-e "w${HOME}/.ssh/${DOMAIN}.conf" \
 	"${STORE_DIR}/config" &&
-    pass show "${DOMAIN}.id_rsa" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
-    pass show "${DOMAIN}.known_hosts" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
+    echo "${ID_RSA}" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
+    echo "${USER_KNOWN_HOSTS}" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
     chmod \
 	0400 \
 	"${HOME}/.ssh/${DOMAIN}.conf" \
