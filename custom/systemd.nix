@@ -14,7 +14,7 @@
     entrypoint = "${staples.init-read-write-pass}/bin/init-read-write-pass";
     contents = [
       pkgs.cacert
-    ]
+    ];
   });
   pass-image = (import ./docker-image.nix {
     pkgs = pkgs;
