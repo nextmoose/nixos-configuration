@@ -1,10 +1,9 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs,
   name,
   entrypoint,
   cmd ? [],
-  contents ? [],
-  run ? ""
+  contents ? []
 }:
 let
   image = pkgs.dockerTools.buildImage {
@@ -16,17 +15,12 @@ let
         mkdir /home /tmp &&
         useradd --create-home user &&
         chmod 0777 /tmp &&
-	${run}
         true
     '';
     config = {
       entrypoint = entrypoint;
       cmd = cmd;
       User = "user";
-      Volumes = {
-        "/home" = {
-	};
-      };
     };
   };
 in

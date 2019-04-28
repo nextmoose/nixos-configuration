@@ -1,35 +1,7 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs
 } :
 rec {
-  images = rec {
-    system-secrets-read-only-pass-container = (import ./docker-container.nix {
-      pkgs = pkgs;
-      name = "system-secrets-read-only-pass";
-      image = "read-only-pass";
-      arguments = ''
-        --remote https://github.com/nextmoose/secrets.git \
-	--branch master
-      '';
-    });
-    read-only-pass-image = (import ./docker-image.nix {
-      pkgs = pkgs;
-      name = "read-only-pass";
-      entrypoint = [ "${init-read-only-pass}/bin/init-read-only-pass" ];
-      contents = [
-        pkgs.cacert
-      ];
-    });
-    pass-image = (import ./docker-image.nix {
-      pkgs = pkgs;
-      name = "pass";
-      entrypoint = [ "${pkgs.pass}/bin/pass" ];
-      contents = [
-        pkgs.find
-	pkgs.tree
-      ];
-    });
-  };
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "add-ssh-domain";
@@ -90,6 +62,11 @@ rec {
   });
   gnupg2-private-keys = (import ./injectable/gnupg2-private-keys/default.nix {
     pkgs = pkgs;
+  });
+  homer = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "homer";
+    src = ./scripts/homer;
   });
   init-dot-ssh = (import ./script-derivation.nix {
     pkgs = pkgs;
@@ -175,6 +152,11 @@ rec {
       pkgs.git
       pkgs.coreutils
     ];
+  });
+  read-only-pass = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "read-only-pass";
+    src = ./scripts/read-only-pass;
   });
   read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;

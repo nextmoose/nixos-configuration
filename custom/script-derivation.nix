@@ -1,6 +1,5 @@
-
 {
-   pkgs ? import <nixpkgs> {},
+   pkgs,
    name,
    src,
    dependencies ? []

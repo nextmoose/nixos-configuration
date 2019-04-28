@@ -76,7 +76,10 @@ in
     };
     stateVersion = "18.03";
   };
-  systemd.services = staples.images;
+  systemd.services = (import ./custom/docker-images.nix {
+    pkgs = pkgs;
+    staples = staples;
+  });
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
