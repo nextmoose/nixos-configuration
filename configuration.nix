@@ -91,13 +91,14 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
-                  pkgs.python27Packages.xkcdpass
+      pkgs.python27Packages.xkcdpass
       staples.challenge-secrets
       staples.init-gnupg
       staples.init-read-only-pass
       staples.nmcli-wifi
       staples.install-nixos
       staples.read-write-pass
+      staples.system-secrets-read-only-pass
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
