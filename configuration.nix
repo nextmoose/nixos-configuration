@@ -99,6 +99,7 @@ in
       staples.install-nixos
       staples.read-write-pass
       staples.system-secrets-read-only-pass
+      staples.system-secrets-read-write-pass
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
