@@ -3,13 +3,13 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--password-store-dir)
-	    export PASSWORD_STORE_DIR="${2}" &&
+	--host)
+	    HOST="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--gnupghome)
-	    export GNUPGHOME="${2}" &&
+	--user)
+	    USER="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -44,24 +44,14 @@ do
     esac &&
 	true
 done &&
-    if [ -z "${PASSWORD_STORE_DIR}" ]
+    if [ -z "${HOST}" ]
     then
-	echo Unspecified PASSWORD_STORE_DIR &&
+	echo Unspecified HOST &&
 	    exit 64 &&
 	    true
-    elif [ ! -d "${PASSWORD_STORE_DIR}" ]
+    elif [ -z "${USER}" ]
     then
-	echo "Specified PASSWORD_STORE_DIR=${PASSWORD_STORE_DIR} does not exist" &&
-	    exit 64 &&
-	    true
-    elif [ -z "${GNUPGHOME}" ]
-    then
-	echo Unspecified GNUPGHOME &&
-	    exit 64 &&
-	    true
-    elif [ ! -d "${GNUPGHOME}" ]
-    then
-	echo "Specified GNUPGHOME=${GNUPGHOME} does not exist" &&
+	echo Unspecified USER &&
 	    exit 64 &&
 	    true
     elif [ -z "${REMOTE}" ]
@@ -85,6 +75,12 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    init-gnupg &&
+    init-dot-ssh &&
+    add-ssh-domain \
+	--domain origin \
+	--host "${HOST}" \
+	--user "${USER}" &&
     pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
@@ -93,5 +89,5 @@ done &&
     pass git checkout "${BRANCH}" &&
     pass git config user.name "${COMMITTER_NAME}" &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
-    ln --symbolic $(which post-commit) "${PASSWORD_STORE_DIR}/.git/hooks" &&
+    ln --symbolic $(which post-commit) "${HOME}/.git/hooks" &&
     true

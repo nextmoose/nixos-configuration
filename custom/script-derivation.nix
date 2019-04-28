@@ -2,7 +2,8 @@
    pkgs,
    name,
    src,
-   dependencies ? []
+   dependencies ? [],
+   binary-name ? name
 }:
 pkgs.stdenv.mkDerivation {
    name = name;

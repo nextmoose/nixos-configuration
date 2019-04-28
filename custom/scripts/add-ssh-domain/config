@@ -1,5 +1,5 @@
 Host ${DOMAIN}
 HostName ${HOST}
 User ${USER}
-IdentityFile ${DOT_SSH}/${DOMAIN}.id_rsa
-UserKnownHostsFile ${DOT_SSH}/${DOMAIN}.known_hosts
+IdentityFile ${HOME}/.ssh/${DOMAIN}.id_rsa
+UserKnownHostsFile ${HOME}/.ssh/${DOMAIN}.known_hosts
