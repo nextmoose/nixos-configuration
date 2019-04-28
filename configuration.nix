@@ -76,7 +76,7 @@ in
     };
     stateVersion = "18.03";
   };
-  systemd.services = (import ./custom/docker-images.nix {
+  systemd.services = (import ./custom/systemd.nix {
     pkgs = pkgs;
     staples = staples;
   });
