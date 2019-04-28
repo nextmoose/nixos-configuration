@@ -24,7 +24,7 @@ UUID=b5b09d3c-88b5-47ed-b15a-ab9bd25fe37b &&
 		start \
 		--interactive \
 		--tty \
-		$(cat "${WORK_DIR}/cidfile") > "${WORK_DIR}/start.log" 2>&1 &&
+		$(cat "${WORK_DIR}/cid") > "${WORK_DIR}/start.log" 2>&1 &&
 	    true
     fi &&
     docker \
