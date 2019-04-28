@@ -5,7 +5,7 @@ UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
     then
 	WORK_DIR=$(mktemp -d) &&
 	    cleanup(){
-		rm --recursive --force "${WORK_DIR}" &&
+		echo rm --recursive --force "${WORK_DIR}" &&
 		    true
 	    } &&
 	    trap cleanup EXIT &&
