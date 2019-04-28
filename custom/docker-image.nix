@@ -21,6 +21,10 @@ let
       entrypoint = entrypoint;
       cmd = cmd;
       User = "user";
+      Volumes = {
+        "/home" = {
+	};
+      };
     };
   };
 in
