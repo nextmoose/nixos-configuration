@@ -105,6 +105,9 @@ rec {
     name = "init-read-write-pass";
     src = ./scripts/init-read-write-pass;
     dependencies = [
+      init-gnupg
+      init-dot-ssh
+      add-ssh-domain
       pkgs.pass
       pkgs.git
       gnupg-key-id
