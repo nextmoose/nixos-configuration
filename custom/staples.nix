@@ -193,6 +193,7 @@ rec {
     src = ./scripts/system-secrets-read-only-pass;
     dependencies = [
       pkgs.docker
+      pkgs.cacert
     ];
   });
 }
