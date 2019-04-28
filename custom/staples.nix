@@ -98,6 +98,7 @@ rec {
       pkgs.git
       gnupg-key-id
       pkgs.coreutils
+      pkgs.cacert
     ];
   });
   init-read-write-pass = (import ./script-derivation.nix {
