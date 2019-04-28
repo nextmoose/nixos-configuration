@@ -103,6 +103,9 @@ done &&
 	--id-rsa "${ID_RSA}" \
 	--user-known-hosts "${USER_KNOWN_HOSTS}" \
 	--user "${USER}" &&
+    ls -alh "${HOME}/.ssh" &&
+    cat "${HOME}/.ssh/config" &&
+    cat "${HOME}/.ssh/origin.conf" &&
     pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
