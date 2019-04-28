@@ -192,7 +192,7 @@ rec {
     name = "system-secrets-read-only-pass";
     src = ./scripts/system-secrets-read-only-pass;
     dependencies = [
-      pkgs.pass
+      pkgs.docker
     ];
   });
 }
