@@ -1,7 +1,7 @@
 #!/bin/sh
 
 UUID=b5b09d3c-88b5-47ed-b15a-ab9bd25fe37b &&
-    if [ -z "$(docker container ls --quiet --filter label=uuid=${UUID})" ]
+    if [ -z "$(docker container ls --quiet --all --filter label=uuid=${UUID})" ]
     then
 	WORK_DIR=$(mktemp -d) &&
 	    cleanup(){
