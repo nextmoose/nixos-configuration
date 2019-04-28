@@ -39,6 +39,7 @@ done &&
     pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add canonical "${REMOTE}" &&
+    ls -alh /etc/ssl/certs &&
     export GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
