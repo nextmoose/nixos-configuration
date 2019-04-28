@@ -187,4 +187,12 @@ rec {
       pkgs.docker
     ];
   });
+  system-secrets-read-only-pass = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "system-secrets-read-only-pass";
+    src = ./scripts/system-secrets-read-only-pass;
+    dependencies = [
+      pkgs.pass
+    ];
+  });
 }
