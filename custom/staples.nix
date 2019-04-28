@@ -192,6 +192,7 @@ rec {
     name = "system-secrets-read-only-pass";
     src = ./personal/system-secrets-read-only-pass;
     dependencies = [
+      pkgs.mktemp
       pkgs.docker
     ];
   });
