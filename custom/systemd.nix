@@ -17,4 +17,9 @@
     name = "init-read-only-pass";
     entrypoint = "${staples.init-read-only-pass}/bin/init-read-only-pass";
   });
+  pass-image = (import ./docker-image.nix {
+    pkgs = pkgs;
+    name = "pass";
+    entrypoint = "${pkgs.pass}/bin/pass";
+  });
 }

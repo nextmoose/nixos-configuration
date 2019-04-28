@@ -13,7 +13,8 @@
       ${pkgs.docker}/bin/docker \
         run \
 	--name "${name}" \
-	--detach \
+	--interactive \
+	--tty \
 	"${image}" \
 	${arguments}
     '';
