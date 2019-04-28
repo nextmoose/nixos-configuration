@@ -21,6 +21,8 @@ UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
 		--id-rsa "$(system-secrets-read-only-pass show origin.id_rsa)" \
 		--user-known-hosts "$(system-secrets-read-only-pass show origin.known_hosts)" \
 		--user git \
+		--committer-name "Emory Merryman" \
+		--committer-email "emory.merryman@gmail.com" \
 		--remote origin:nextmoose/secrets.git \
 		--branch master > "${WORK_DIR}/create.log" 2>&1 &&
 	    docker \
