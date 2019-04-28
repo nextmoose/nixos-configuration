@@ -21,5 +21,8 @@
     pkgs = pkgs;
     name = "pass";
     entrypoint = "${pkgs.pass}/bin/pass";
+    contents = [
+      pkgs.cacert
+    ];
   });
 }
