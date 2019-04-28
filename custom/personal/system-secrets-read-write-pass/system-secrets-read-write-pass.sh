@@ -1,6 +1,6 @@
 #!/bin/sh
 
-UUID=b5b09d3c-88b5-47ed-b15a-ab9bd25fe37b &&
+UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
     if [ -z "$(docker container ls --quiet --all --filter label=uuid=${UUID})" ]
     then
 	WORK_DIR=$(mktemp -d) &&
