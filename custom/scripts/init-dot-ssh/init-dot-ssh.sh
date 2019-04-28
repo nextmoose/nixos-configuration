@@ -1,6 +1,7 @@
 #!/bin/sh
 
-chmod 0700 "${HOME}/.ssh" &&
+mkdir "${HOME}/.ssh" &&
+    chmod 0700 "${HOME}/.ssh" &&
     sed \
 	-e "s#\${HOME}#${HOME}#" \
 	-e "w${HOME}/.ssh/config" \
