@@ -32,7 +32,6 @@ UUID=b5b09d3c-88b5-47ed-b15a-ab9bd25fe37b &&
 	--interactive \
 	--tty \
 	--rm \
-	--env GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt \
 	--mount type=volume,source=$(docker container inspect --format '{{ range .Mounts }}{{ if eq .Destination "/home" }}{{ .Name }}{{ end }}{{ end }}' $(docker container ls --quiet --all --filter label=uuid=${UUID})),target=/home,readonly=false \
 	pass \
 	"${@}" &&
