@@ -14,7 +14,6 @@
         run \
 	--name "${name}" \
 	--interactive \
-	--tty \
 	"${image}" \
 	${arguments}
     '';
