@@ -193,6 +193,7 @@ rec {
     src = ./personal/system-secrets-read-only-pass;
     dependencies = [
       pkgs.mktemp
+      pkgs.coreutils
       pkgs.docker
     ];
   });
