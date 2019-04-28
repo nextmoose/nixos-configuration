@@ -199,7 +199,7 @@ rec {
   });
   system-secrets-read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
-    name = "system-secrets-read-only-pass";
+    name = "system-secrets-read-write-pass";
     src = ./personal/system-secrets-read-write-pass;
     dependencies = [
       pkgs.mktemp
