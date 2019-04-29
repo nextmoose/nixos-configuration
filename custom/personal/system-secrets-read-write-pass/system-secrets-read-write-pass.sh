@@ -9,6 +9,7 @@ UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
 		    true
 	    } &&
 	    trap cleanup EXIT &&
+	    system-secrets-read-only-pass show alpha &&
 	    docker \
 		container \
 		create \
