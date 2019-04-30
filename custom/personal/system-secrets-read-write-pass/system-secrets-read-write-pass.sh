@@ -9,7 +9,8 @@ UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
 		    true
 	    } &&
 	    trap cleanup EXIT &&
-	    system-secrets-read-only-pass show alpha &&
+	    system-secrets-read-only-pass show origin.id_rsa > "${WORK_DIR}/origin.id_rsa" &&
+	    system-secrets-read-only-pass show origin.known_hosts > "${WORK_DIR}/origin.known_hosts" &&
 	    docker \
 		container \
 		create \
@@ -19,8 +20,8 @@ UUID=ba7743e2-61d9-4c3b-8595-fb82059756ad &&
 		--label uuid=${UUID} \
 		init-read-write-pass \
 		--host github.com \
-		--id-rsa "$(system-secrets-read-only-pass show origin.id_rsa)" \
-		--user-known-hosts "$(system-secrets-read-only-pass show origin.known_hosts)" \
+		--id-rsa "$(cat ${WORK_DIR}/origin.id_rsa)" \
+		--user-known-hosts "$(cat ${WORK_DIR}/origin.known_hosts)" \
 		--user git \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" \
