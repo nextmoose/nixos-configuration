@@ -164,8 +164,7 @@ rec {
       add-ssh-domain
       init-dot-ssh
       init-gnupg
-      init-read-only-pass
-      init-read-write-pass
+      pkgs.pass
       pkgs.coreutils
     ];
   });
