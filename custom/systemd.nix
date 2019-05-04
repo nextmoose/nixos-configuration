@@ -22,5 +22,8 @@
     pkgs = pkgs;
     name = "read-only-pass";
     entrypoint = "${staples.read-only-pass}/bin/read-only-pass";
+    contents = [
+      pkgs.pass
+    ]
   });
 }
