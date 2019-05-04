@@ -166,6 +166,7 @@ rec {
       init-gnupg
       pkgs.pass
       pkgs.coreutils
+      gnupg-key-id
     ];
   });
   read-write-pass = (import ./script-derivation.nix {
