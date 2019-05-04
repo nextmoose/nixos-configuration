@@ -160,6 +160,14 @@ rec {
     pkgs = pkgs;
     name = "read-only-pass";
     src = ./scripts/read-only-pass;
+    dependencies = [
+      add-ssh-domain
+      init-dot-ssh
+      init-gnupg
+      init-read-only-pass
+      init-read-write-pass
+      pkgs.coreutils
+    ];
   });
   read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
