@@ -17,6 +17,7 @@ let
     staples.docker-image-id
     pkgs.mktemp
     pkgs.findutils
+    pkgs.coreutils
   ];
 in
 pkgs.stdenv.mkDerivation {
