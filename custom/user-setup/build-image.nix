@@ -3,7 +3,8 @@
   name,
   entrypoint,
   cmd ? [],
-  contents ? []
+  contents ? [],
+  uuid
 }:
 pkgs.dockerTools.buildImage {
   name = name;
