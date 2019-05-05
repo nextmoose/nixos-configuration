@@ -7,6 +7,10 @@ let
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
   });
+  user-setup = (import ./custom/user-setup/default.nix {
+    pkgs = pkgs;
+    staples = staples;
+  });
 in
 {
   boot.loader = {
@@ -99,6 +103,7 @@ in
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
+      user-setup
     ];
   };
   virtualisation.docker = {
