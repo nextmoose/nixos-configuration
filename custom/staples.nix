@@ -50,6 +50,14 @@ rec {
       pkgs.docker
     ];
   });
+  docker-container-id = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "docker-container-id";
+    src = ./scripts/docker-container-id;
+    dependencies = [
+      pkgs.docker
+    ];
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";

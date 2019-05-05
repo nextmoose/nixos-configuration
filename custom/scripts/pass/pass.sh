@@ -1,5 +1,13 @@
 #!/bin/sh
 
-shift 1 &&
-  cat "${STORE_DIR}/secrets/${@}" &&
-  true
+UUID="${1}" &&
+    shift &&
+    docker \
+	container \
+	run \
+	--interactive \
+	--tty \
+	$(docker-container-id "${UUID}") \
+	pass \
+	${@} &&
+    true
