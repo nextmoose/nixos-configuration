@@ -16,7 +16,10 @@ in
 pkgs.stdenv.mkDerivation {
   name = "user-setup";
   src = ./src;
-   buildInputs = [ pkgs.makeWrapper ];
+   buildInputs = [
+     pkgs.makeWrapper
+     staples.docker-image-id
+   ];
    installPhase = ''
       mkdir "$out" &&
       mkdir "$out/images" &&
