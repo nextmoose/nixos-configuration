@@ -40,8 +40,8 @@ pkgs.stdenv.mkDerivation {
 	"$out/bin/user-setup" \
 	--set PATH "${pkgs.lib.makeBinPath dependencies }" \
 	--set READ_ONLY_PASS_IMAGE_UUID "5c6872cb-5274-4292-8894-514afe182845" \
-	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID system-secrets-read-only-pass-container-pass-uuid \
-	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID system-secrets-read-write-pass-container-uuid \
+	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "${system-secrets-read-only-pass-container-pass-uuid}" \
+	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "${system-secrets-read-write-pass-container-uuid}" \
         --set STORE_DIR "$out" &&
       true
    '';
