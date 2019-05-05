@@ -86,10 +86,10 @@ done &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
     
-    pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-private-keys/src/gnupg-private-keys.asc" &&
-    pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-private-keys/src/gnupg2-private-keys.asc" &&
-    pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-ownertrust/src/gnupg-ownertrust.asc" &&
-    pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-ownertrust/src/gnupg2-ownertrust.asc" &&
+    system-secrets-read-only-pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-private-keys/src/gnupg-private-keys.asc" &&
+    system-secrets-read-only-pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-private-keys/src/gnupg2-private-keys.asc" &&
+    system-secrets-read-only-pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-ownertrust/src/gnupg-ownertrust.asc" &&
+    system-secrets-read-only-pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-ownertrust/src/gnupg2-ownertrust.asc" &&
 
     mkdir "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets" &&
     pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/private.gpg" &&
