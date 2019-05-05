@@ -1,6 +1,8 @@
 {
   pkgs,
-  staples
+  staples,
+  system-secrets-read-only-container-uuid,
+  system-secrets-read-write-container-uuid
 } :
 let
   read-only-pass-image = (import ./build-image.nix {
@@ -38,8 +40,8 @@ pkgs.stdenv.mkDerivation {
 	"$out/bin/user-setup" \
 	--set PATH "${pkgs.lib.makeBinPath dependencies }" \
 	--set READ_ONLY_PASS_IMAGE_UUID "5c6872cb-5274-4292-8894-514afe182845" \
-	--set SYSTEM_SECRETS_READ_ONLY_PASS_IMAGE_UUID "99cc243e-2d33-4c3a-9872-e979d9b8809e" \
-	--set SYSTEM_SECRETS_READ_WRITE_PASS_IMAGE_UUID "2464f0e3-d01c-4259-a9b2-1f8cfd3c5d3a" \
+	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID system-secrets-read-only-container-pass-uuid \
+	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID system-secrets-read-write-pass-container-uuid \
         --set STORE_DIR "$out" &&
       true
    '';

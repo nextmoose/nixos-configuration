@@ -10,6 +10,8 @@ let
   user-setup = (import ./custom/user-setup/default.nix {
     pkgs = pkgs;
     staples = staples;
+    system-secrets-read-only-pass-container-uuid = "5c9868fa-6a38-4174-b476-4119cf4b64d3";
+    system-secrets-read-write-pass-container-uuid = "34577200-1d76-4e17-9de8-c8b152cb3832";
   });
 in
 {
