@@ -19,12 +19,12 @@ pkgs.stdenv.mkDerivation {
    installPhase = ''
       mkdir "$out" &&
       mkdir "$out/images" &&
-      cp "${read-only-pass-image}" "$out/images/read-only-pass.tar &&
+      cp "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
       cp --recursive . "$out/src" &&
       mkdir "$out/bin" &&
       makeWrapper \
-        $out/src/user-setup.sh \
-	$out/bin/user-setup \
+        "$out/src/user-setup.sh" \
+	"$out/bin/user-setup" \
 	--set PATH "${pkgs.lib.makeBinPath [pkgs.docker]}" \
         --set STORE_DIR "$out/src" &&
       true
