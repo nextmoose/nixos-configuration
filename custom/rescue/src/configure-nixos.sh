@@ -143,11 +143,12 @@ done &&
     git -C "${WORK_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
-    mkdir "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets" &&
-    cat "${PRIVATE_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/private.gpg" &&
-    cat "${PRIVATE_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/private.gpg2" &&
-    cat "${OWNERTRUST_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/ownertrust.gpg" &&
-    cat "${OWNERTRUST_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/ownertrust.gpg2" &&
+
+    cat "${PRIVATE_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-private-keys/src/gnupg-private-keys.asc" &&
+    cat "${PRIVATE_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-private-keys/src/gnupg2-private-keys.asc" &&
+    cat "${OWNERTRUST_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-ownertrust/src/gnupg-ownertrust.asc" &&
+    cat "${OWNERTRUST_GPG2_FILE}" > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-ownertrust/src/gnupg2-ownertrust.asc" &&
+
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
