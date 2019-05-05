@@ -142,6 +142,7 @@ done &&
     git -C "${WORK_DIR}/repository" remote add canonical "${CANONICAL_REMOTE}" &&
     git -C "${WORK_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
+    mkdir "${WORK_DIR}/nixos-configuration" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}/nixos-configuration" &&
 
     cat "${PRIVATE_GPG_FILE}" > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-private-keys/src/gnupg-private-keys.asc" &&
