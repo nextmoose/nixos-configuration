@@ -18,7 +18,6 @@ pkgs.stdenv.mkDerivation {
   src = ./src;
    buildInputs = [
      pkgs.makeWrapper
-     staples.docker-image-id
    ];
    installPhase = ''
       mkdir "$out" &&
@@ -30,7 +29,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/user-setup.sh" \
 	"$out/bin/user-setup" \
-	--set PATH "${pkgs.lib.makeBinPath [pkgs.docker]}" \
+	--set PATH "${pkgs.lib.makeBinPath [pkgs.docker staples.docker-image-id]}" \
 	--set READ_ONLY_PASS_IMAGE_UUID "5c6872cb-5274-4292-8894-514afe182845" \
         --set STORE_DIR "$out" &&
       true
