@@ -76,10 +76,6 @@ in
     };
     stateVersion = "18.03";
   };
-  systemd.services = (import ./custom/systemd.nix {
-    pkgs = pkgs;
-    staples = staples;
-  });
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;

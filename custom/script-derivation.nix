@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
 	        "$out/src/${name}.sh" \
 	        "$out/bin/${binary-name}" \
 	        --set PATH "${pkgs.lib.makeBinPath dependencies}" \
-          --set STORE_DIR "$out/src" &&
+                --set STORE_DIR "$out/src" &&
       true
    '';
 }
