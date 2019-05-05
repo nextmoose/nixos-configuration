@@ -52,8 +52,8 @@ pkgs.stdenv.mkDerivation {
 	"$out/bin/user-teardown" \
 	--set READ_ONLY_PASS_IMAGE_UUID "5c6872cb-5274-4292-8894-514afe182845" \
 	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "2a9f1b25-4c9e-4a4d-99a9-e31cdbcfe1b4" \
-	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "7419053a-804d-4ee3-b754-c4e4bdd50ca9" &&
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.docker ]}" \
+	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "7419053a-804d-4ee3-b754-c4e4bdd50ca9" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.docker ]}" &&
       makeWrapper \
         "$out/src/system-secrets-read-only-pass.sh" \
         "$out/bin/system-secrets-read-only-pass" \
