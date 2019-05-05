@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation {
         "$out/src/user-setup.sh" \
 	"$out/bin/user-setup" \
 	--set PATH "${pkgs.lib.makeBinPath [pkgs.docker]}" \
-        --set STORE_DIR "$out/src" &&
+        --set STORE_DIR "$out" &&
       true
    '';
 }
