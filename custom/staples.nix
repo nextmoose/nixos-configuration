@@ -36,7 +36,7 @@ rec {
       pkgs.coreutils
       pkgs.git
       pkgs.rsync
-      pass
+      user
       pkgs.gnutar
       pkgs.mkpasswd
       pkgs.gnused
@@ -235,5 +235,12 @@ rec {
       pkgs.docker
       system-secrets-read-only-pass
     ];
+  });
+  user = (import ./user/default.nix {
+    pkgs = pkgs;
+    read-only-pass = read-only-pass;
+    pass = pass;
+    docker-image-id = docker-image-id;
+    docker-container-id = docker-container-id;
   });
 }

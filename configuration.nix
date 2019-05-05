@@ -7,10 +7,6 @@ let
   staples = (import ./custom/staples.nix {
     pkgs = pkgs;
   });
-  user-setup = (import ./custom/user-setup/default.nix {
-    pkgs = pkgs;
-    staples = staples;
-  });
 in
 {
   boot.loader = {
@@ -91,19 +87,12 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
-      pkgs.python27Packages.xkcdpass
-      staples.challenge-secrets
-      staples.init-gnupg
-      staples.init-read-only-pass
       staples.nmcli-wifi
       staples.install-nixos
-      staples.read-write-pass
-      staples.system-secrets-read-only-pass
-      staples.system-secrets-read-write-pass
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
-      user-setup
+      staples.user
     ];
   };
   virtualisation.docker = {
