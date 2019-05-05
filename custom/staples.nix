@@ -160,7 +160,8 @@ rec {
     name = "pass";
     src = ./scripts/pass;
     dependencies = [
-      pkgs.coreutils
+      staples.docker-container-id
+      pkgs.docker
     ];
   });
   post-commit = (import ./script-derivation.nix {
