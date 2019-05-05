@@ -9,7 +9,7 @@ let
     entrypoint = "${staples.read-only-pass}/bin/read-only-pass";
     contents = [
       pkgs.pass
-    ]
+    ];
   });
 in
 pkgs.stdenv.mkDerivation {
@@ -29,5 +29,4 @@ pkgs.stdenv.mkDerivation {
         --set STORE_DIR "$out/src" &&
       true
    '';
-
 }
