@@ -4,7 +4,7 @@ UUID="${1}" &&
     shift &&
     docker \
 	container \
-	run \
+	exec \
 	--interactive \
 	--tty \
 	$(docker-container-id "${UUID}") \
