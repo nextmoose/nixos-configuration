@@ -7,7 +7,6 @@
 }:
 pkgs.dockerTools.buildImage {
   name = name;
-  tag = "latest";
   contents = contents;
   runAsRoot = ''
     ${pkgs.dockerTools.shadowSetup}
@@ -23,6 +22,9 @@ pkgs.dockerTools.buildImage {
     Volumes = {
       "/home" = {
       };
+    };
+    Labels = {
+      uuid = uuid;
     };
   };
 }

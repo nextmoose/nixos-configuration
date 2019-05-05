@@ -42,6 +42,14 @@ rec {
       pkgs.gnused
     ];
   });
+  docker-image-id = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "docker-image-id";
+    src = ./scripts/docker-image-id;
+    dependencies = [
+      pkgs.docker
+    ];
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
