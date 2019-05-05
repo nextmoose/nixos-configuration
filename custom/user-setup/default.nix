@@ -21,6 +21,7 @@ pkgs.stdenv.mkDerivation {
       mkdir "$out/images" &&
       cp "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
       cp --recursive . "$out/src" &&
+      chmod 0500 "$out/src/user-setup.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/user-setup.sh" \
