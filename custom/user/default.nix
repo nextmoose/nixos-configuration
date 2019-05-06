@@ -26,7 +26,7 @@ let
     contents = [
       pkgs.pass
     ];
-    uuid = readwrite-pass-image-uuid;
+    uuid = read-write-pass-image-uuid;
   });
   dependencies = [
     pkgs.docker
