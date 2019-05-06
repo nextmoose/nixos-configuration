@@ -43,19 +43,19 @@ done &&
 	echo Unspecified HOST &&
 	    exit 64 &&
 	    true
-    elif [ -z "${ID_RSA}" ]
-    then
-	echo Unspecified ID_RSA &&
-	    exit 64 &&
-	    true
-    elif [ -z "${USER_KNOWN_HOSTS}" ]
-    then
-	echo Unspecified USER_KNOWN_HOSTS &&
-	    exit 64 &&
-	    true
     elif [ -z "${USER}" ]
     then
 	echo Unspecified USER &&
+	    exit 64 &&
+	    true
+    fi &&
+    if [ -z "${ID_RSA}" ]
+    then
+	ID_RSA="$(system-secrets-read-only-pass show ${HOST}.id_rsa)" &&
+	    true
+    elif [ -z "${USER_KNOWN_HOSTS}" ]
+    then
+	USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
 	    exit 64 &&
 	    true
     fi &&

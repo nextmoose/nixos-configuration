@@ -3,20 +3,44 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--gnupghome)
-	    export GNUPGHOME="${2}" &&
+	--host)
+	    HOST="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--password-store-dir)
-	    export PASSWORD_STORE_DIR="${2}" &&
+	--id-rsa)
+	    ID_RSA="${2}" &&
 		shift 2 &&
 		true
 	    ;;
-	--)
-	    shift &&
-		ARGUMENTS="${@}" &&
-		shift "${#}" &&
+	--user-known-hosts)
+	    USER_KNOWN_HOSTS="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user)
+	    USER="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--remote)
+	    REMOTE="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--branch)
+	    BRANCH="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--committer-name)
+	    COMMITTER_NAME="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--committer-email)
+	    COMMITTER_EMAIL="${2}" &&
+		shift 2 &&
 		true
 	    ;;
 	*)
@@ -30,5 +54,56 @@ do
     esac &&
 	true
 done &&
-    pass ${ARGUMENTS} &&
+    if [ -z "${HOST}" ]
+    then
+	echo Unspecified HOST &&
+	    exit 64 &&
+	    true
+    elif [ -z "${USER}" ]
+    then
+	echo Unspecified USER &&
+	    exit 64 &&
+	    true
+    elif [ -z "${REMOTE}" ]
+    then
+	echo Unspecified REMOTE &&
+	    exit 64 &&
+	    true
+    elif [ -z "${BRANCH}" ]
+    then
+	echo Unspecified BRANCH &&
+	    exit 64 &&
+	    true
+    elif [ -z "${COMMITTER_NAME}" ]
+    then
+	echo Unspecified COMMITTER_NAME &&
+	    exit 64 &&
+	    true
+    elif [ -z "${COMMITTER_EMAIL}" ]
+    then
+	echo Unspecified COMMITTER_EMAIL &&
+	    exit 64 &&
+	    true
+    fi &&
+    init-gnupg &&
+    init-dot-ssh &&
+    add-ssh-domain \
+	--domain origin \
+	--host "${HOST}" \
+	--id-rsa "${ID_RSA}" \
+	--user-known-hosts "${USER_KNOWN_HOSTS}" \
+	--user "${USER}" &&
+    ls -alh "${HOME}/.ssh" &&
+    cat "${HOME}/.ssh/config" &&
+    cat "${HOME}/.ssh/origin.conf" &&
+    pass init $(gnupg-key-id) &&
+    pass git init &&
+    pass git remote add origin "${REMOTE}" &&
+    pass git fetch origin "${BRANCH}" &&
+    pass git rebase origin/master &&
+    pass git checkout "${BRANCH}" &&
+    pass git config user.name "${COMMITTER_NAME}" &&
+    pass git config user.email "${COMMITTER_EMAIL}" &&
+    ln --symbolic $(which post-commit) "${HOME}/.git/hooks" &&
+    sleep inf &&
     true

@@ -10,6 +10,7 @@ rec {
       pkgs.coreutils
       pkgs.gnused
       pkgs.pass
+      user
     ];
   });
   challenge = (import ./script-derivation.nix {
@@ -104,34 +105,6 @@ rec {
       gnupg2-private-keys
     ];
   });
-  init-read-only-pass = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "init-read-only-pass";
-    src = ./scripts/init-read-only-pass;
-    dependencies = [
-      init-gnupg
-      pkgs.pass
-      pkgs.git
-      gnupg-key-id
-      pkgs.coreutils
-    ];
-  });
-  init-read-write-pass = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "init-read-write-pass";
-    src = ./scripts/init-read-write-pass;
-    dependencies = [
-      init-gnupg
-      init-dot-ssh
-      add-ssh-domain
-      pkgs.pass
-      pkgs.git
-      gnupg-key-id
-      pkgs.which
-      pkgs.coreutils
-      post-commit
-    ];
-  });
   install-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
@@ -188,10 +161,18 @@ rec {
   });
   read-write-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
-    name = "read-write-pass";
+    name = "init-read-write-pass";
     src = ./scripts/read-write-pass;
     dependencies = [
+      init-gnupg
+      init-dot-ssh
+      add-ssh-domain
       pkgs.pass
+      pkgs.git
+      gnupg-key-id
+      pkgs.which
+      pkgs.coreutils
+      post-commit
     ];
   });
   setup-user = (import ./script-derivation.nix {
