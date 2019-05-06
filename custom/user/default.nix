@@ -1,5 +1,6 @@
 {
   pkgs,
+  read-write-pass,
   read-only-pass,
   pass,
   docker-image-id,
