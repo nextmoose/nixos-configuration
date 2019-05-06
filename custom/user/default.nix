@@ -1,8 +1,8 @@
 {
   pkgs,
-  read-only-pass
-  pass
-  docker-image-id
+  read-only-pass,
+  pass,
+  docker-image-id,
   docker-container-id
 } :
 let
