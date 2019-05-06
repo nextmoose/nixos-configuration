@@ -160,7 +160,7 @@ rec {
     name = "pass";
     src = ./scripts/pass;
     dependencies = [
-      staples.docker-container-id
+      docker-container-id
       pkgs.docker
     ];
   });
