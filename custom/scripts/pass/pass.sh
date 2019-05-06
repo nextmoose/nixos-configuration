@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo BB ${@} &&
+echo BB ${@} $(docker-container-id ${1}) &&
 UUID="${1}" &&
     shift &&
     docker \
