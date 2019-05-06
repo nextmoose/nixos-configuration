@@ -92,11 +92,6 @@ done &&
     system-secrets-read-only-pass show gpg.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-ownertrust/src/gnupg-ownertrust.asc" &&
     system-secrets-read-only-pass show gpg2.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-ownertrust/src/gnupg2-ownertrust.asc" &&
 
-    mkdir "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets" &&
-    pass show private.gpg > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/private.gpg" &&
-    pass show private.gpg2 > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/private.gpg2" &&
-    pass show ownertrust.gpg > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/ownertrust.gpg" &&
-    pass show ownertrust.gpg2 > "${WORK_DIR}/nixos-configuration/custom/scripts/pass/secrets/ownertrust.gpg2" &&
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
