@@ -1,7 +1,9 @@
 #!/bin/sh
 
-echo BB ${@} $(docker-container-id ${1}) &&
-UUID="${1}" &&
+echo BB ${@} &&
+    UUID="${1}" &&
+    echo BB ${UUID} &&
+    echo BB $(docker-container-id ${UUID}) &&
     shift &&
     docker \
 	container \

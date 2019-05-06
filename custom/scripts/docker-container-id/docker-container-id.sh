@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker container ls --quiet --filter "label=uuid=${@}" &&
+docker container ls --no-trunc --quiet --filter "label=uuid=${@}" &&
     true
