@@ -175,19 +175,6 @@ rec {
       post-commit
     ];
   });
-  setup-user = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "setup-user";
-    src = ./scripts/setup-user;
-    dependencies = [
-      add-ssh-domain
-      init-dot-ssh
-      init-gnupg
-      init-read-only-pass
-      init-read-write-pass
-      pkgs.coreutils
-    ];
-  });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "start-docker-container";
