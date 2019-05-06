@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo BB ${@} &&
 UUID="${1}" &&
     shift &&
     docker \
