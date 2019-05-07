@@ -202,4 +202,11 @@ rec {
       system-secrets-read-only-pass
     ];
   });
+  user = (import ./user/default.nix {
+    pkgs = pkgs;
+    pass = pass;
+    read-only-pass = read-only-pass;
+    docker-image-id = docker-image-id;
+    docker-container-id = docker-container-id;
+  });
 }
