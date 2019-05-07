@@ -207,7 +207,7 @@ rec {
   user = (import ./user/default.nix {
     pkgs = pkgs;
     read-only-pass = read-only-pass;
-    read-write-pass = read-write-pass;
+//    read-write-pass = read-write-pass;
     pass = pass;
     docker-image-id = docker-image-id;
     docker-container-id = docker-container-id;
