@@ -19,17 +19,6 @@ let
     ];
     uuid = read-only-pass-image-uuid;
   });
-  /*
-  read-write-pass-image = (import ./build-image.nix {
-    pkgs = pkgs;
-    name = "read-write-pass";
-    entrypoint = "${read-write-pass}/bin/read-write-pass";
-    contents = [
-      pkgs.pass
-    ];
-    uuid = read-write-pass-image-uuid;
-  });
-  */
   dependencies = [
     pkgs.docker
     docker-image-id
@@ -77,11 +66,6 @@ pkgs.stdenv.mkDerivation {
         "$out/bin/system-secrets-read-only-pass" \
 	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "$system-secrets-read-only-container-uuid" \
         --set PATH "${pkgs.lib.makeBinPath [ pass ] }" &&
-#      makeWrapper \
-#        "$out/src/system-secrets-read-write-pass.sh" \
-#        "$out/bin/system-secrets-read-write-pass" \
-#	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "$system-secrets-read-write-container-uuid" \
-#        --set PATH "${pkgs.lib.makeBinPath [ pass ] }" &&
       true
    '';
 }
