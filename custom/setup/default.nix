@@ -6,7 +6,6 @@
 } :
 let
   json = builtins.toJSON uuids;
-  xml = builtins.toXML uuids;
 in
 pkgs.stdenv.mkDerivation {
   name = "setup";
@@ -18,11 +17,10 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 "$out/src/setup.sh" &&
       mkdir "$out/bin" &&
       echo '${json}' > "$out/uuids.json" &&
-      echo '${xml}' > "$out/uuids.xml" &&
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id pkgs.jq] }" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id pkgs.jq ] }" \
 	--set STORE_DIR "$out" &&
      true
   '';
