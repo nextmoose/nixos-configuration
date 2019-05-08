@@ -27,7 +27,7 @@ pkgs.stdenv.mkDerivation {
       chmod 0500 "$out/src/setup.sh" &&
       echo '${json}' > "$out/uuids.json" &&
       mkdir "$out/images" &&
-      cat read-only-pass-image > "$out/images/read-only-pass.tar" &&
+      ln --symbolic "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/setup.sh" \
