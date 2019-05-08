@@ -93,6 +93,7 @@ in
       	 pkgs = pkgs;
       })
       staples.setup
+      pkgs.jq
     ];
   };
   virtualisation.docker = {

@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id] }" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id pkgs.jq] }" \
 	--set STORE_DIR "$out" &&
      true
   '';
