@@ -41,15 +41,16 @@ WORK_DIR=$(mktemp -d) &&
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master \
 		--foo bar &&
+	    echo DDD &&
 	    true
     fi &&
-    echo DDD &&
+    echo EEE &&
     find "${WORK_DIR}" -name *.cid | while read CIDFILE
     do
-	echo EEE ${CIDFILE} &&
+	echo FFF ${CIDFILE} &&
 	    docker container start $(cat ${CIDFILE}) &&
 	    rm --force "${CIDFILE}" &&
-	    echo FFF ${CIDFILE} &&
+	    echo GGG ${CIDFILE} &&
 	    true
     done &&
     true
