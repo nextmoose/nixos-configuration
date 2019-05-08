@@ -41,10 +41,13 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master &&
 	    true
     fi &&
+    echo DDD &&
     find "${WORK_DIR}" -name *.cid | while read CIDFILE
     do
-	docker container start $(cat ${CIDFILE}) &&
+	echo EEE ${CIDFILE} &&
+	    docker container start $(cat ${CIDFILE}) &&
 	    rm --force "${CIDFILE}" &&
+	    echo FFF ${CIDFILE} &&
 	    true
     done &&
     true
