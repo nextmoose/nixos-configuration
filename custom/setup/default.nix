@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/setup.sh" &&
       mkdir "$out/bin" &&
-      cat ${json} > "$out/uuids.json" &&
+      echo "${json}" > "$out/uuids.json" &&
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
