@@ -1,6 +1,18 @@
 {
   pkgs
 } :
+let
+  uuids = {
+    images = {
+      read-only-pass = "afe57ba0-feef-476b-9ad1-48265a2dea92";
+      read-write-pass = "b080b562-9a71-471e-b903-11e58012e7a2";
+    };
+    containers = {
+      system-secrets-read-only-pass = "688e3276-08da-457f-9aa8-823b2e6acbf3";
+      system-secrets-read-write-pass = "87bb24b6-f9e1-46c1-8d49-d56940bcdd07";
+    };
+  };
+in
 rec {
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
@@ -10,6 +22,7 @@ rec {
       pkgs.coreutils
       pkgs.gnused
       pkgs.pass
+      user
     ];
   });
   challenge = (import ./script-derivation.nix {
@@ -173,6 +186,12 @@ rec {
       post-commit
     ];
   });
+  setup = (import ./setup/default.nix {
+    pkgs = pkgs;
+    uuids = uuids;
+    docker-image-id = docker-image-id;
+    docker-container-id = docker-container-id;
+  });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "start-docker-container";
@@ -201,12 +220,5 @@ rec {
       pkgs.docker
       system-secrets-read-only-pass
     ];
-  });
-  user = (import ./user/default.nix {
-    pkgs = pkgs;
-    pass = pass;
-    read-only-pass = read-only-pass;
-    docker-image-id = docker-image-id;
-    docker-container-id = docker-container-id;
   });
 }

@@ -27,45 +27,22 @@ let
     pkgs.coreutils
   ];
 in
-pkgs.stdenv.mkDerivation {
-  name = "user-setup";
-  src = ./src;
-   buildInputs = [
-     pkgs.makeWrapper
-   ];
-   installPhase = ''
-      mkdir "$out" &&
-      mkdir "$out/images" &&
-      cp "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
-      cp --recursive . "$out/src" &&
-      chmod \
-        0500 \
-	$out/src/user-setup.sh \
-	$out/src/user-teardown.sh \
-	$out/src/system-secrets-read-only-pass.sh \
-	$out/src/system-secrets-read-write-pass.sh \
-	&&
-      mkdir "$out/bin" &&
-      makeWrapper \
-        "$out/src/user-setup.sh" \
-	"$out/bin/user-setup" \
-	--set PATH "${pkgs.lib.makeBinPath dependencies }" \
-	--set READ_ONLY_PASS_IMAGE_UUID "$read-only-pass-image-uuid" \
-	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "$system-secrets-read-only-container-uuid" \
-	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "$system-secrets-read-write-container-uuid" \
-        --set STORE_DIR "$out" &&
-      makeWrapper \
-        "$out/src/user-teardown.sh" \
-	"$out/bin/user-teardown" \
-	--set READ_ONLY_PASS_IMAGE_UUID "$read-only-pass-image-uuid" \
-	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "$system-secrets-read-only-container-uuid" \
-	--set SYSTEM_SECRETS_READ_WRITE_PASS_CONTAINER_UUID "$system-secrets-read-write-container-uuid" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.docker docker-container-id ]}" &&
-      makeWrapper \
-        "$out/src/system-secrets-read-only-pass.sh" \
-        "$out/bin/system-secrets-read-only-pass" \
-	--set SYSTEM_SECRETS_READ_ONLY_PASS_CONTAINER_UUID "$system-secrets-read-only-container-uuid" \
-        --set PATH "${pkgs.lib.makeBinPath [ pass ] }" &&
-      true
-   '';
+{
+  setup = (import ./setup/default.nix {
+    pkgs = pkgs;
+    read-only-pass-image = read-only-pass-image;
+    read-only-pass-image-uuid = read-only-pass
+    system-secrets-read-only-pass-container-uuid = system-secrets-read-only-pass-container-uuid;
+  });
+  teardown = (import ./teardown/default.nix {
+    pkgs = pkgs;
+    read-only-pass-image = read-only-pass-image;
+    system-secrets-read-only-pass-container = system-secrets-read-only-pass-container;
+  });
+  system-secrets-read-only-pass = (import ./pass/default.nix {
+    pkgs = pkgs;
+    name = "system-secrets-read-only-pass";
+    uuid = system-secrets-read-only-pass-uuid;
+    docker-container-id = docker-container-id;
+  });
 }
