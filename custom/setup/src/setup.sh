@@ -15,35 +15,28 @@ WORK_DIR=$(mktemp -d) &&
     if [ -z "$(docker-container-id $(jq -r --from-file ${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js ${STORE_DIR}/uuids.json))" ]
     then
 	echo BBB &&
-	    echo "${WORK_DIR}/system-secrets-read-only-pass.cid" &&
-	    jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" "${STORE_DIR}/uuids.json" &&
-	    jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json" &&
-	    docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json") &&
-	    echo CCC &&
+	    CIDFILE="${WORK_DIR}/system-secrets-read-only-pass.cid" &&
+	    UUID=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") &&
+	    IMAGE_ID=$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) &&
 	    echo \
 		docker \
 		container \
-		run \
-		--detach \
-		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
+		create \
+		--cidfile "${CIDFILE}" \
 		--restart always \
-		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" "${STORE_DIR}/uuids.json") \
-		$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
 		--remote https://github.com/nextmoose/secrets.git \
-		--branch master \
-		--foo bar &&
-	    echo DDD 1 &&
+		--branch master &&
 	    docker \
 		container \
-		run \
-		--detach \
-		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
+		create \
+		--cidfile "${CIDFILE}" \
 		--restart always \
-		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
-		$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
 		--remote https://github.com/nextmoose/secrets.git \
-		--branch master \
-		--foo bar &&
+		--branch master &&
 	    echo DDD 2 &&
 	    true
     fi &&
