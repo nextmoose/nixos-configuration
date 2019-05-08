@@ -19,7 +19,7 @@ WORK_DIR=$(mktemp -d) &&
 	    create \
 	    --cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 	    --restart always \
-	    --label uuid=$(jq --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
+	    --label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
 	    $(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
 	    --remote https://github.com/nextmoose/secrets.git \
 	    --branch master &&
@@ -28,7 +28,7 @@ WORK_DIR=$(mktemp -d) &&
 		create \
 		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 		--restart always \
-		--label uuid=$(jq --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
+		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
 		$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master &&
