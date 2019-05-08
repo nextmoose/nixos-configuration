@@ -23,7 +23,8 @@ WORK_DIR=$(mktemp -d) &&
 	    echo \
 		docker \
 		container \
-		create \
+		run \
+		--detach \
 		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 		--restart always \
 		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" "${STORE_DIR}/uuids.json") \
@@ -34,7 +35,8 @@ WORK_DIR=$(mktemp -d) &&
 	    echo DDD 1 &&
 	    docker \
 		container \
-		create \
+		run \
+		--detach \
 		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 		--restart always \
 		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
