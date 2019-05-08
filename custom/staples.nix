@@ -22,7 +22,6 @@ rec {
       pkgs.coreutils
       pkgs.gnused
       pkgs.pass
-      user
     ];
   });
   challenge = (import ./script-derivation.nix {
