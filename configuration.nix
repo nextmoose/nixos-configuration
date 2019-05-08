@@ -92,6 +92,7 @@ in
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
+      staples.setup
     ];
   };
   virtualisation.docker = {
