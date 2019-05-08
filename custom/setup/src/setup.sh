@@ -31,6 +31,7 @@ WORK_DIR=$(mktemp -d) &&
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master \
 		--foo bar &&
+	    echo DDD 1 &&
 	    docker \
 		container \
 		create \
@@ -41,7 +42,7 @@ WORK_DIR=$(mktemp -d) &&
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master \
 		--foo bar &&
-	    echo DDD &&
+	    echo DDD 2 &&
 	    true
     fi &&
     echo EEE &&
