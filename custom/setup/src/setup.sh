@@ -3,6 +3,7 @@
 WORK_DIR=$(mktemp -d) &&
     cleanup() {
 	rm --recursive --force "${WORK_DIR}" &&
+	    true
     } &&
     trap cleanup EXIT &&
     if [ -z "$(docker-image-id $(jq -r --from-file ${STORE_DIR}/src/queries/images/read-only-pass.js ${STORE_DIR}/uuids.json))" ]
