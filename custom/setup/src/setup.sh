@@ -11,7 +11,7 @@ WORK_DIR=$(mktemp -d) &&
 	docker image load --quiet --input "${STORE_DIR}/images/read-only-pass.tar" &&
 	    true
     fi &&
-    if [ -z "$(docker-container-id $(jq -r --from-file ${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js ${STORE_DIR}/uuids.js))" ]
+    if [ -z "$(docker-container-id $(jq -r --from-file ${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js ${STORE_DIR}/uuids.json))" ]
     then
 	docker \
 	    container \
