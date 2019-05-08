@@ -16,7 +16,7 @@ WORK_DIR=$(mktemp -d) &&
     then
 	echo BBB &&
 	    echo "${WORK_DIR}/system-secrets-read-only-pass.cid" &&
-	    jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" &&
+	    jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" "${STORE_DIR}/uuids.json" &&
 	    jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json" &&
 	    docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json") &&
 	    echo CCC &&
@@ -26,7 +26,7 @@ WORK_DIR=$(mktemp -d) &&
 		create \
 		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 		--restart always \
-		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
+		--label uuid=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js" "${STORE_DIR}/uuids.json") \
 		$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master &&
