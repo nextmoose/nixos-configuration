@@ -13,13 +13,26 @@ WORK_DIR=$(mktemp -d) &&
     fi &&
     if [ -z "$(docker-container-id $(jq -r --from-file ${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js ${STORE_DIR}/uuids.json))" ]
     then
-	docker \
+	echo \
+	    docker \
 	    container \
 	    create \
 	    --cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
 	    --restart always \
 	    --label uuid=$(jq --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
-	    $(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json"))
+	    $(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
+	    --remote https://github.com/nextmoose/secrets.git \
+	    --branch master &&
+	    docker \
+		container \
+		create \
+		--cidfile "${WORK_DIR}/system-secrets-read-only-pass.cid" \
+		--restart always \
+		--label uuid=$(jq --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") \
+		$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) \
+		--remote https://github.com/nextmoose/secrets.git \
+		--branch master &&
+	    true
     fi &&
     find "${WORK_DIR}" -name *.cid | while read CIDFILE
     do
