@@ -190,6 +190,7 @@ rec {
     uuids = uuids;
     docker-image-id = docker-image-id;
     docker-container-id = docker-container-id;
+    read-only-pass = read-only-pass;
   });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
