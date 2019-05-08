@@ -26,6 +26,7 @@ pkgs.stdenv.mkDerivation {
       cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/setup.sh" &&
       echo '${json}' > "$out/uuids.json" &&
+      mkdir "$out/images" &&
       cat read-only-pass-image > "$out/images/read-only-pass.tar" &&
       mkdir "$out/bin" &&
       makeWrapper \
