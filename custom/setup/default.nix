@@ -17,6 +17,15 @@ let
     ];
     uuid = uuids.images.read-only-pass;
   });
+  read-write-pass-image = (import ./build-image.nix {
+    pkgs = pkgs;
+    name = "read-write-pass";
+    entrypoint = "${read-write-pass}/bin/read-write-pass";
+    contents = [
+      pkgs.pass
+    ];
+    uuid = uuids.images.read-only-pass;
+  });
 in
 pkgs.stdenv.mkDerivation {
   name = "setup";
@@ -26,15 +35,16 @@ pkgs.stdenv.mkDerivation {
     mkdir $out &&
       cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/setup.sh" &&
-      echo '${json}' > "$out/uuids.json" &&
-      mkdir "$out/images" &&
-      ln --symbolic "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id uuid-parser pkgs.findutils ] }" \
 	--set STORE_DIR "$out" &&
-     true
+      echo '${json}' > "$out/uuids.json" &&
+      mkdir "$out/images" &&
+      ln --symbolic "${read-only-pass-image}" "$out/images/read-only-pass.tar" &&
+      ln --symbolic "${read-write-pass-image}" "$out/images/read-write-pass.tar" &&
+      true
   '';
 }
