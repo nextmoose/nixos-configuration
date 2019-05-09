@@ -16,8 +16,11 @@ WORK_DIR=$(mktemp -d) &&
     then
 	echo BBB &&
 	    CIDFILE="${WORK_DIR}/system-secrets-read-only-pass.cid" &&
+	    echo BBB 2 &&
 	    UUID=$(jq -r --from-file "${STORE_DIR}/src/queries/containers/system-secrets-read-only-pass.js") &&
+	    echo BBB 3 &&
 	    IMAGE_ID=$(docker-image-id $(jq -r --from-file "${STORE_DIR}/src/queries/images/read-only-pass.js" "${STORE_DIR}/uuids.json")) &&
+	    echo BBB 4 &&
 	    echo \
 		docker \
 		container \
