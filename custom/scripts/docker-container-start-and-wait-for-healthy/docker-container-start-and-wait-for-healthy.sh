@@ -5,11 +5,11 @@ do
     case "${1}" in
 	--cidfile)
 	    CIDFILE="${2}" &&
-		shift &&
+		shift 2 &&
 		true
 	    ;;
 	*)
-	    echo Unspecified Option &&
+	    echo Unknown Option &&
 		echo "${1}" &&
 		echo "${0}" &&
 		echo "${@}" &&
