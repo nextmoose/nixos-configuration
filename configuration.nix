@@ -93,6 +93,7 @@ in
       	 pkgs = pkgs;
       })
       staples.setup
+      staples.teardown
       pkgs.jq
     ];
   };
