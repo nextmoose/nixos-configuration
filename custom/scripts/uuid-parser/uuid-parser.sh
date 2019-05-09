@@ -36,5 +36,5 @@ done &&
 ["${DOMAIN}"]["${KEY}"]
 EOF
     ) &&
-    jq -r --from-file "${QUERY_FILE}" "${DATA_FILE}" &&
+    jq -r --from-file "${WORK_DIR}/query.js" "${DATA_FILE}" &&
     true
