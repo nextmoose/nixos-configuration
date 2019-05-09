@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
 	$out/bin/teardown \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.docker pkgs.jq ]}" \
 	--set STORE_DIR "$out" &&
-      cat '${json}' > "$out/uuids.json" &&
+      echo '${json}' > "$out/uuids.json" &&
       true
   '';
 }
