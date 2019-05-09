@@ -4,7 +4,7 @@
   docker-container-id,
   uuids,
   uuid-parser,
-  read-only-pass
+  read-only-pass,
   read-write-pass
 } :
 let
