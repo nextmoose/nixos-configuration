@@ -30,7 +30,7 @@ WORK_DIR=$(mktemp -d) &&
 		"${IMAGE_ID}" \
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master &&
-	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
+	    docker-container-start-and-wait-for-healthy "${CIDFILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
@@ -51,7 +51,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
+	    docker-container-start-and-wait-for-healthy "${CIDFILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
@@ -72,7 +72,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
+	    docker-container-start-and-wait-for-healthy "${CIDFILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
@@ -93,7 +93,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
+	    docker-container-start-and-wait-for-healthy "${CIDFILE}" &&
 	    true
     fi &&
     true
