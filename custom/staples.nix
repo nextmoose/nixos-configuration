@@ -191,6 +191,7 @@ rec {
     docker-image-id = docker-image-id;
     docker-container-id = docker-container-id;
     read-only-pass = read-only-pass;
+    uuid-parser = uuid-parser;
   });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
@@ -220,5 +221,15 @@ rec {
       pkgs.docker
       system-secrets-read-only-pass
     ];
+  });
+  teardown = (import ./teardown/default.nix {
+    pkgs = pkgs;
+    uuids = uuids;
+  });
+  uuid-parser = (import ./scripts-derivation.nix {
+    pkgs = pkgs;
+    name = "uuid-parser";
+    src = ./scripts/uuid-parser;
+    dependencies = [ pkgs.jq pkgs.mktemp pkgs.coreutils ];
   });
 }

@@ -3,6 +3,7 @@
   docker-image-id,
   docker-container-id,
   uuids,
+  uuid-parser,
   read-only-pass
 } :
 let
@@ -32,7 +33,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id pkgs.jq pkgs.findutils ] }" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id uuid-parser pkgs.findutils ] }" \
 	--set STORE_DIR "$out" &&
      true
   '';
