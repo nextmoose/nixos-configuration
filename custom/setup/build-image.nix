@@ -19,6 +19,12 @@ pkgs.dockerTools.buildImage {
   config = {
     entrypoint = entrypoint;
     cmd = cmd;
+    HealthCheck = {
+      Test = "${docker-health-check}/bin/docker-health-check";
+      Interval = 30000000000;
+      Timeout = 10000000000;
+      Retries = 3;
+    };
     User = "user";
     Volumes = {
       "/home" = {

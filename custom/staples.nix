@@ -50,6 +50,11 @@ rec {
       pkgs.gnused
     ];
   });
+  docker-health-check = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "docker-health-check";
+    src = ./scripts/docker-health-check;
+  });
   docker-image-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "docker-image-id";
