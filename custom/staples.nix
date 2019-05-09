@@ -24,6 +24,7 @@ rec {
       pkgs.coreutils
       pkgs.gnused
       pkgs.pass
+      system-secrets-read-only-pass
     ];
   });
   browser-secrets-read-write-pass = (import ./secrets/default.nix {

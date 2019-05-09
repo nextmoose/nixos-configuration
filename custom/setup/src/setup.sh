@@ -54,7 +54,7 @@ WORK_DIR=$(mktemp -d) &&
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
     then
-	CIDFILE="${WORK_DIR}/browser-secrets-read-only-write.cid" &&
+	CIDFILE="${WORK_DIR}/browser-secrets-read-write-pass.cid" &&
 	    UUID=$(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
 	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
 	    docker \
@@ -74,7 +74,7 @@ WORK_DIR=$(mktemp -d) &&
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
     then
-	CIDFILE="${WORK_DIR}/challenge-secrets-read-only-write.cid" &&
+	CIDFILE="${WORK_DIR}/challenge-secrets-read-write-pass.cid" &&
 	    UUID=$(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
 	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
 	    docker \
