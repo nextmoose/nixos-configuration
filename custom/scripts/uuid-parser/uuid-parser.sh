@@ -5,14 +5,17 @@ do
     case "${1}" in
 	--domain)
 	    DOMAIN="${2}" &&
+		shift 2 &&
 		true
 	    ;;
 	--key)
 	    KEY="${2}" &&
+		shift 2 &&
 		true
 	    ;;
 	--data-file)
 	    DATA_FILE="${2}" &&
+		shift 2 &&
 		true
 	    ;;
 	--test)
