@@ -30,6 +30,7 @@ WORK_DIR=$(mktemp -d) &&
 		"${IMAGE_ID}" \
 		--remote https://github.com/nextmoose/secrets.git \
 		--branch master &&
+	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]

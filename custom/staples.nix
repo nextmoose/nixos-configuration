@@ -71,6 +71,15 @@ rec {
       pkgs.docker
     ];
   });
+  docker-container-start-and-wait-for-healthy = (import ./script/derivation.nix {
+    pkgs = pkgs;
+    name = "docker-container-start-and-wait-for-healthy";
+    src = ./scripts/docker-container-start-and-wait-for-healthy;
+    dependencies = [
+      pkgs.docker
+      pkgs.coreutils
+    ];
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
@@ -195,6 +204,7 @@ rec {
     read-only-pass = read-only-pass;
     read-write-pass = read-write-pass;
     uuid-parser = uuid-parser;
+    docker-container-start-and-wait-for-healthy = docker-container-start-and-wait-for-healthy;
   });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
