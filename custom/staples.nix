@@ -26,14 +26,14 @@ rec {
       pkgs.pass
     ];
   });
-  browser-secrets = (import ./secrets/default.nix {
+  browser-secrets-read-write-pass = (import ./secrets/default.nix {
     pkgs = pkgs;
-    name = "browser-secrets";
+    name = "browser-secrets-read-write-pass";
     uuid = uuids.containers.browser-secrets-read-write-pass;
   });
-  challenge-secrets = (import ./secrets/default.nix {
+  challenge-secrets-read-write-pass = (import ./secrets/default.nix {
     pkgs = pkgs;
-    name = "challenge-secrets";
+    name = "challenge-secrets-read-write-pass";
     uuid = uuids.containers.challenge-secrets-read-write-pass;
   });
   configure-nixos = (import ./script-derivation.nix {
