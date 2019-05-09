@@ -26,21 +26,15 @@ rec {
       pkgs.pass
     ];
   });
-  challenge = (import ./script-derivation.nix {
+  browser-secrets = (import ./secrets/default.nix {
     pkgs = pkgs;
-    name = "challenge";
-    src = ./scripts/challenge;
-    dependencies = [
-      pkgs.python27Packages.xkcdpass
-    ];
+    name = "browser-secrets";
+    uuid = uuids.containers.browser-secrets-read-write-pass;
   });
-  challenge-secrets = (import ./script-derivation.nix {
+  challenge-secrets = (import ./secrets/default.nix {
     pkgs = pkgs;
     name = "challenge-secrets";
-    src = ./scripts/challenge-secrets;
-    dependencies = [
-      pkgs.pass
-    ];
+    uuid = uuids.containers.challenge-secrets-read-write-pass;
   });
   configure-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
