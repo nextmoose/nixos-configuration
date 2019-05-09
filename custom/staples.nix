@@ -191,6 +191,7 @@ rec {
     docker-image-id = docker-image-id;
     docker-container-id = docker-container-id;
     read-only-pass = read-only-pass;
+    read-write-pass = read-write-pass;
     uuid-parser = uuid-parser;
   });
   start-docker-container = (import ./script-derivation.nix {

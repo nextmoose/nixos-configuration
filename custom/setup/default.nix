@@ -5,6 +5,7 @@
   uuids,
   uuid-parser,
   read-only-pass
+  read-write-pass
 } :
 let
   json = builtins.toJSON uuids;
