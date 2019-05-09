@@ -204,6 +204,7 @@ rec {
     read-only-pass = read-only-pass;
     read-write-pass = read-write-pass;
     uuid-parser = uuid-parser;
+    docker-health-check = docker-health-check;
     docker-container-start-and-wait-for-healthy = docker-container-start-and-wait-for-healthy;
   });
   start-docker-container = (import ./script-derivation.nix {

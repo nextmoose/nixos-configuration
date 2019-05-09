@@ -6,6 +6,7 @@
   uuid-parser,
   read-only-pass,
   read-write-pass,
+  docker-health-check,
   docker-container-start-and-wait-for-healthy
 } :
 let
