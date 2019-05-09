@@ -42,6 +42,6 @@ done &&
     pass git config http.sslVerify false &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
-    touch "${HOME}/.docker-health" &&
+    touch "${HOME}/.health-check" &&
     sleep inf &&
     true

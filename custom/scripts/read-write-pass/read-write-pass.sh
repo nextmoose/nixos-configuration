@@ -106,5 +106,5 @@ done &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
     ln --symbolic $(which post-commit) "${HOME}/.git/hooks" &&
     sleep inf &&
-    touch "${HOME}/.docker-health" &&
+    touch "${HOME}/.health-check" &&
     true
