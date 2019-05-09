@@ -23,7 +23,7 @@ pkgs.dockerTools.buildImage {
     HealthCheck = {
       Test = [
         "CMD"
-        "${docker-health-check}/bin/docker-health-check";
+        "${docker-health-check}/bin/docker-health-check"
       ];
       Interval = 30000000000;
       Timeout = 10000000000;
