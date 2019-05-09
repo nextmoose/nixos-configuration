@@ -20,6 +20,7 @@ do
 	    ;;
 	--test)
 	    TEST="${2}" &&
+		shift 2 &&
 		true
 	    ;;
 	*)
