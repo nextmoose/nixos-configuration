@@ -44,7 +44,6 @@ WORK_DIR=$(mktemp -d) &&
 		--restart always \
 		--label "uuid=${UUID}" \
 		"${IMAGE_ID}" \
-		--domain origin \
 		--host github.com \
 		--user git \
 		--remote origin:nextmoose/secrets.git \
@@ -65,7 +64,6 @@ WORK_DIR=$(mktemp -d) &&
 		--restart always \
 		--label "uuid=${UUID}" \
 		"${IMAGE_ID}" \
-		--domain origin \
 		--host github.com \
 		--user git \
 		--remote origin:nextmoose/browser-secrets.git \
@@ -86,7 +84,6 @@ WORK_DIR=$(mktemp -d) &&
 		--restart always \
 		--label "uuid=${UUID}" \
 		"${IMAGE_ID}" \
-		--domain origin \
 		--host github.com \
 		--user git \
 		--remote origin:nextmoose/challenge-secrets.git \
