@@ -21,16 +21,6 @@ WORK_DIR=$(mktemp -d) &&
 	CIDFILE="${WORK_DIR}/system-secrets-read-only-pass.cid" &&
 	    UUID=$(uuid-parser --domain containers --key system-secrets-read-only-pass --data-file "${STORE_DIR}/uuids.json") &&
 	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-only-pass --data-file "${STORE_DIR}/uuids.json")) &&
-	    echo \
-		docker \
-		container \
-		create \
-		--cidfile "${CIDFILE}" \
-		--restart always \
-		--label "uuid=${UUID}" \
-		"${IMAGE_ID}" \
-		--remote https://github.com/nextmoose/secrets.git \
-		--branch master &&
 	    docker \
 		container \
 		create \
@@ -42,76 +32,73 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master &&
 	    true
     fi &&
-    fun() {
-	if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-	then
-	    CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&
-		UUID=$(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-		IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-		docker \
-		    container \
-		    create \
-		    --cidfile "${CIDFILE}" \
-		    --restart always \
-		    --label "uuid=${UUID}" \
-		    "${IMAGE_ID}" \
-		    --domain origin \
-		    --host github.com \
-		    --user git \
-		    --remote origin:nextmoose/secrets.git \
-		    --branch master \
-		    --committer-name "Emory Merryman" \
-		    --committer-email "emory.merryman@gmail.com" &&
-		true
-	fi &&
-	if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-	then
-	    CIDFILE="${WORK_DIR}/browser-secrets-read-only-write.cid" &&
-		UUID=$(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-		IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-		docker \
-		    container \
-		    create \
-		    --cidfile "${CIDFILE}" \
-		    --restart always \
-		    --label "uuid=${UUID}" \
-		    "${IMAGE_ID}" \
-		    --domain origin \
-		    --host github.com \
-		    --user git \
-		    --remote origin:nextmoose/browser-secrets.git \
-		    --branch master \
-		    --committer-name "Emory Merryman" \
-		    --committer-email "emory.merryman@gmail.com" &&
-		true
-	fi &&
-	    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-	    then
-		CIDFILE="${WORK_DIR}/challenge-secrets-read-only-write.cid" &&
-		    UUID=$(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-		    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-		    docker \
-			container \
-			create \
-			--cidfile "${CIDFILE}" \
-			--restart always \
-			--label "uuid=${UUID}" \
-			"${IMAGE_ID}" \
-			--domain origin \
-			--host github.com \
-			--user git \
-			--remote origin:nextmoose/challenge-secrets.git \
-			--branch master \
-			--committer-name "Emory Merryman" \
-			--committer-email "emory.merryman@gmail.com" &&
-		    true
-	    fi &&
+    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
+    then
+	CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&
+	    UUID=$(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
+	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
+	    docker \
+		container \
+		create \
+		--cidfile "${CIDFILE}" \
+		--restart always \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
+		--domain origin \
+		--host github.com \
+		--user git \
+		--remote origin:nextmoose/secrets.git \
+		--branch master \
+		--committer-name "Emory Merryman" \
+		--committer-email "emory.merryman@gmail.com" &&
 	    true
-    } &&
-    find "${WORK_DIR}" -name *.cid | while read CIDFILE
-    do
-	docker container start $(cat ${CIDFILE}) &&
-	    rm --force "${CIDFILE}" &&
+    fi &&
+    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
+    then
+	CIDFILE="${WORK_DIR}/browser-secrets-read-only-write.cid" &&
+	    UUID=$(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
+	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
+	    docker \
+		container \
+		create \
+		--cidfile "${CIDFILE}" \
+		--restart always \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
+		--domain origin \
+		--host github.com \
+		--user git \
+		--remote origin:nextmoose/browser-secrets.git \
+		--branch master \
+		--committer-name "Emory Merryman" \
+		--committer-email "emory.merryman@gmail.com" &&
 	    true
-    done &&
-    true
+    fi &&
+    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
+    then
+	CIDFILE="${WORK_DIR}/challenge-secrets-read-only-write.cid" &&
+	    UUID=$(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
+	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
+	    docker \
+		container \
+		create \
+		--cidfile "${CIDFILE}" \
+		--restart always \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
+		--domain origin \
+		--host github.com \
+		--user git \
+		--remote origin:nextmoose/challenge-secrets.git \
+		--branch master \
+		--committer-name "Emory Merryman" \
+		--committer-email "emory.merryman@gmail.com" &&
+	    true
+} &&
+find "${WORK_DIR}" -name *.cid | while read CIDFILE
+do
+    docker container start $(cat ${CIDFILE}) &&
+	rm --force "${CIDFILE}" &&
+	true
+done &&
+true

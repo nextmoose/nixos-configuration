@@ -25,7 +25,7 @@ let
     contents = [
       pkgs.pass
     ];
-    uuid = uuids.images.read-only-pass;
+    uuid = uuids.images.read-write-pass;
   });
 in
 pkgs.stdenv.mkDerivation {
