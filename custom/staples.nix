@@ -71,7 +71,7 @@ rec {
       pkgs.docker
     ];
   });
-  docker-container-start-and-wait-for-healthy = (import ./script/derivation.nix {
+  docker-container-start-and-wait-for-healthy = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "docker-container-start-and-wait-for-healthy";
     src = ./scripts/docker-container-start-and-wait-for-healthy;
