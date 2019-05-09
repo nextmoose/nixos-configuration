@@ -51,6 +51,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
+	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
@@ -71,6 +72,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
+	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
 	    true
     fi &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
@@ -91,12 +93,7 @@ WORK_DIR=$(mktemp -d) &&
 		--branch master \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
+	    docker-container-start-and-wait-for-healthy "${CID_FILE}" &&
 	    true
     fi &&
-    find "${WORK_DIR}" -name *.cid | while read CIDFILE
-    do
-	docker container start $(cat ${CIDFILE}) &&
-	    rm --force "${CIDFILE}" &&
-	    true
-    done &&
     true
