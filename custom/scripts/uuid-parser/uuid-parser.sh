@@ -15,6 +15,10 @@ do
 	    DATA_FILE="${2}" &&
 		true
 	    ;;
+	--test)
+	    TEST="${2}" &&
+		true
+	    ;;
 	*)
 	    echo Unsupported Options &&
 		echo "${1}" &&
@@ -36,5 +40,13 @@ done &&
 .["${DOMAIN}"]["${KEY}"]
 EOF
     ) &&
-    jq -r --from-file "${WORK_DIR}/query.js" "${DATA_FILE}" &&
+    if [ -z "${TEST}" ]
+    then
+	jq -r --from-file "${WORK_DIR}/query.js" "${DATA_FILE}" &&
+	    true
+    else
+	cat "${WORK_DIR}/query.js" &&
+	    echo jq -r --from-file "${WORK_DIR}/query.js" "${DATA_FILE}" &&
+	    true
+    fi &&
     true
