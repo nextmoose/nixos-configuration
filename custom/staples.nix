@@ -226,7 +226,7 @@ rec {
     pkgs = pkgs;
     uuids = uuids;
   });
-  uuid-parser = (import ./scripts-derivation.nix {
+  uuid-parser = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "uuid-parser";
     src = ./scripts/uuid-parser;
