@@ -87,6 +87,8 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
+      staples.browser-secrets
+      staples.challenge-secrets
       staples.nmcli-wifi
       staples.install-nixos
       (import ./custom/rescue/default.nix {
