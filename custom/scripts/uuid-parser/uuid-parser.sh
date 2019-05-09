@@ -33,7 +33,7 @@ done &&
     } &&
     trap cleanup EXIT &&
     (cat > ${WORK_DIR}/query.js <<EOF
-["${DOMAIN}"]["${KEY}"]
+.["${DOMAIN}"]["${KEY}"]
 EOF
     ) &&
     jq -r --from-file "${WORK_DIR}/query.js" "${DATA_FILE}" &&
