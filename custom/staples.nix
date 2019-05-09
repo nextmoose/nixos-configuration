@@ -201,26 +201,10 @@ rec {
       pkgs.docker
     ];
   });
-  system-secrets-read-only-pass = (import ./script-derivation.nix {
+  system-secrets-read-only-pass = (import ./secrets/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
-    src = ./personal/system-secrets-read-only-pass;
-    dependencies = [
-      pkgs.mktemp
-      pkgs.coreutils
-      pkgs.docker
-    ];
-  });
-  system-secrets-read-write-pass = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "system-secrets-read-write-pass";
-    src = ./personal/system-secrets-read-write-pass;
-    dependencies = [
-      pkgs.mktemp
-      pkgs.coreutils
-      pkgs.docker
-      system-secrets-read-only-pass
-    ];
+    uuid = uuids.containers.system-secrets-read-only-pass;
   });
   teardown = (import ./teardown/default.nix {
     pkgs = pkgs;

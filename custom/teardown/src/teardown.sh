@@ -20,7 +20,7 @@ done &&
     do
 	docker image ls --quiet --no-trunc --filter "label=uuid=${UUID}" --all | while read IMAGE
 	do
-	    docker container rm "${IMAGE}" &&
+	    docker image rm "${IMAGE}" &&
 		true
 	done &&
 	    true
