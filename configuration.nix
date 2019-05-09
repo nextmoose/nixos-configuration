@@ -93,6 +93,7 @@ in
       	 pkgs = pkgs;
       })
       staples.setup
+      staples.system-secrets-read-only-pass
       staples.teardown
       pkgs.jq
     ];
