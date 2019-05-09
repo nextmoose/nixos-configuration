@@ -33,6 +33,28 @@ WORK_DIR=$(mktemp -d) &&
 	    echo DDD 2 &&
 	    true
     fi &&
+    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
+    then
+	CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&
+	    UUID=$(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
+	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
+	    docker \
+		container \
+		create \
+		--cidfile "${CIDFILE}" \
+		--restart always \
+		--label "uuid=${UUID}" \
+		"${IMAGE_ID}" \
+		--domain origin \
+		--host github.com \
+		--user git \
+		--remote origin:nextmoose/secrets.git \
+		--branch master \
+		--committer-name "Emory Merryman" \
+		--committer-email "emory.merryman@gmail.com" &&
+	    echo DDD 2 &&
+	    true
+    fi &&
     find "${WORK_DIR}" -name *.cid | while read CIDFILE
     do
 	docker container start $(cat ${CIDFILE}) &&

@@ -94,6 +94,7 @@ in
       })
       staples.setup
       staples.system-secrets-read-only-pass
+      staples.system-secrets-read-write-pass
       staples.teardown
       pkgs.jq
     ];

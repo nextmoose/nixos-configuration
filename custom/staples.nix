@@ -206,6 +206,11 @@ rec {
     name = "system-secrets-read-only-pass";
     uuid = uuids.containers.system-secrets-read-only-pass;
   });
+  system-secrets-read-write-pass = (import ./secrets/default.nix {
+    pkgs = pkgs;
+    name = "system-secrets-read-write-pass";
+    uuid = uuids.containers.system-secrets-read-write-pass;
+  });
   teardown = (import ./teardown/default.nix {
     pkgs = pkgs;
     uuids = uuids;
