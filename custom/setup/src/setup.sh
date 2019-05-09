@@ -94,11 +94,10 @@ WORK_DIR=$(mktemp -d) &&
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
 	    true
-} &&
-find "${WORK_DIR}" -name *.cid | while read CIDFILE
-do
-    docker container start $(cat ${CIDFILE}) &&
-	rm --force "${CIDFILE}" &&
-	true
-done &&
-true
+	find "${WORK_DIR}" -name *.cid | while read CIDFILE
+	do
+	    docker container start $(cat ${CIDFILE}) &&
+		rm --force "${CIDFILE}" &&
+		true
+	done &&
+	    true
