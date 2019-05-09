@@ -18,6 +18,7 @@ let
       pkgs.pass
     ];
     uuid = uuids.images.read-only-pass;
+    docker-container-health-check = docker-container-health-check;
   });
   read-write-pass-image = (import ./build-image.nix {
     pkgs = pkgs;
@@ -27,6 +28,7 @@ let
       pkgs.pass
     ];
     uuid = uuids.images.read-write-pass;
+    docker-container-health-check = docker-container-health-check;
   });
 in
 pkgs.stdenv.mkDerivation {

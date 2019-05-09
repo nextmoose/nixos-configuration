@@ -4,7 +4,8 @@
   entrypoint,
   cmd ? [],
   contents ? [],
-  uuid
+  uuid,
+  docker-container-health-check
 }:
 pkgs.dockerTools.buildImage {
   name = name;
@@ -20,7 +21,7 @@ pkgs.dockerTools.buildImage {
     entrypoint = entrypoint;
     cmd = cmd;
     HealthCheck = {
-      Test = "${docker-health-check}/bin/docker-health-check";
+      Test = "${docker-container-health-check}/bin/docker-container-health-check";
       Interval = 30000000000;
       Timeout = 10000000000;
       Retries = 3;
