@@ -21,7 +21,10 @@ pkgs.dockerTools.buildImage {
     entrypoint = entrypoint;
     cmd = cmd;
     HealthCheck = {
-      Test = "${docker-health-check}/bin/docker-health-check";
+      Test = [
+        "CMD"
+        "${docker-health-check}/bin/docker-health-check";
+      ];
       Interval = 30000000000;
       Timeout = 10000000000;
       Retries = 3;
