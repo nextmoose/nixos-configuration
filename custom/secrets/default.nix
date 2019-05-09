@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation {
 	mkdir "$out/bin" &&
 	makeWrapper \
 	  "$out/src/secrets.sh" \
-	  "$out/bin/${name} \
+	  "$out/bin/${name}" \
 	  --set UUID "${uuid}" \
 	  --set PATH "${pkgs.lib.makeBinPath [ pkgs.docker  ]}" &&
        true
