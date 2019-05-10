@@ -46,7 +46,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/setup.sh" \
 	"$out/bin/setup" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id uuid-parser pkgs.findutils docker-container-start-and-wait-for-healthy start-read-only-pass-container ] }" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.docker docker-image-id docker-container-id uuid-parser pkgs.findutils docker-container-start-and-wait-for-healthy start-read-only-pass-container docker-image-load ] }" \
 	--set STORE_DIR "$out" &&
       echo '${json}' > "$out/uuids.json" &&
       mkdir "$out/images" &&
