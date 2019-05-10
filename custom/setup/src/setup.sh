@@ -22,7 +22,6 @@ WORK_DIR=$(mktemp -d) &&
     start-read-write-pass-container \
 	--key system-secrets-read-write-pass \
 	--data-file ${STORE_DIR}/uuids.json \
-	--remote \
 	--host github.com \
 	--user git \
 	--remote origin:nextmoose/secrets.git \
@@ -32,7 +31,6 @@ WORK_DIR=$(mktemp -d) &&
     start-read-write-pass-container \
 	--key browser-secrets-read-write-pass \
 	--data-file "${STORE_DIR}/uuids.json" \
-	--remote \
 	--host github.com \
 	--user git \
 	--remote origin:nextmoose/browser-secrets.git \
@@ -42,12 +40,10 @@ WORK_DIR=$(mktemp -d) &&
     start-read-write-pass-container \
 	--key challenge-secrets-read-write-pass \
 	--data-file ${STORE_DIR}/uuids.json \
-	--remote \
 	--host github.com \
 	--user git \
 	--remote origin:nextmoose/challenge-secrets.git \
 	--branch master \
 	--committer-name "Emory Merryman" \
 	--committer-email "emory.merryman@gmail.com" &&
-    fi &&
     true

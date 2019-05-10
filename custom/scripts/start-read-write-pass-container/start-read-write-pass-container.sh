@@ -13,6 +13,26 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--host)
+	    HOST="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--id-rsa)
+	    ID_RSA="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user-known-hosts)
+	    USER_KNOWN_HOSTS="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user)
+	    USER="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--remote)
 	    REMOTE="${2}" &&
 		shift 2 &&
@@ -57,6 +77,16 @@ done &&
     elif [ ! -f "${DATA_FILE}" ]
     then
 	echo Specified Data File "${DATA_FILE}" does not exist &&
+	    exit 64 &&
+	    true
+    elif [ -z "${HOST}" ]
+    then
+	echo Unspecified HOST &&
+	    exit 64 &&
+	    true
+    elif [ -z "${USER}" ]
+    then
+	echo Unspecified USER &&
 	    exit 64 &&
 	    true
     elif [ -z "${REMOTE}" ]
