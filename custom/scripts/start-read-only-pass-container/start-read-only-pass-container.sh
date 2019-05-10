@@ -22,6 +22,7 @@ do
 	    BRANCH="${2}" &&
 		shift 2 &&
 		true
+	    ;;
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&
