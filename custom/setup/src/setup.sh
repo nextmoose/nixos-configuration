@@ -16,23 +16,11 @@ WORK_DIR=$(mktemp -d) &&
 	docker image load --quiet --input "${STORE_DIR}/images/read-write-pass.tar" &&
 	    true
     fi &&
-    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-only-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	CIDFILE="${WORK_DIR}/system-secrets-read-only-pass.cid" &&
-	    UUID=$(uuid-parser --domain containers --key system-secrets-read-only-pass --data-file "${STORE_DIR}/uuids.json") &&
-	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-only-pass --data-file "${STORE_DIR}/uuids.json")) &&
-	    docker \
-		container \
-		create \
-		--cidfile "${CIDFILE}" \
-		--restart always \
-		--label "uuid=${UUID}" \
-		"${IMAGE_ID}" \
-		--remote https://github.com/nextmoose/secrets.git \
-		--branch master &&
-	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
-	    true
-    fi &&
+    start-read-only-pass-container \
+	--key system-secrets-read-only-pass-container \
+	--data-file "${STORE_DIR}/uuids.json" \
+	--remote https://github.com/nextmoose/secrets.git \
+	--branch master &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
     then
 	CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&

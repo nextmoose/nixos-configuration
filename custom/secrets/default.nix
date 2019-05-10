@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation {
 	  "$out/src/secrets.sh" \
 	  "$out/bin/${name}" \
 	  --set UUID "${uuid}" \
-	  --set PATH "${pkgs.lib.makeBinPath [ pkgs.docker  ]}" &&
+	  --set PATH "${pkgs.lib.makeBinPath [ pkgs.docker pkgs.coreutils ]}" &&
        true
   '';
 }
