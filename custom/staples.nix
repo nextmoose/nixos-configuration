@@ -218,6 +218,7 @@ rec {
     docker-health-check = docker-health-check;
     docker-container-start-and-wait-for-healthy = docker-container-start-and-wait-for-healthy;
     start-read-only-pass-container = start-read-only-pass-container;
+    start-read-write-pass-container = start-read-write-pass-container;
     docker-image-load = docker-image-load;
   });
   start-docker-container = (import ./script-derivation.nix {
@@ -232,6 +233,19 @@ rec {
     pkgs = pkgs;
     name = "start-read-only-pass-container";
     src = ./scripts/start-read-only-pass-container;
+    dependencies = [
+      pkgs.docker
+      pkgs.coreutils
+      docker-container-start-and-wait-for-healthy
+      uuid-parser
+      docker-image-id
+      docker-container-id
+    ];
+  });
+  start-read-write-pass-container = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "start-read-write-pass-container";
+    src = ./scripts/start-read-write-pass-container;
     dependencies = [
       pkgs.docker
       pkgs.coreutils

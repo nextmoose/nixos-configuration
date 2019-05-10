@@ -19,68 +19,35 @@ WORK_DIR=$(mktemp -d) &&
 	--data-file "${STORE_DIR}/uuids.json" \
 	--remote https://github.com/nextmoose/secrets.git \
 	--branch master &&
-    exit 65 &&
-    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&
-	    UUID=$(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-	    docker \
-		container \
-		create \
-		--cidfile "${CIDFILE}" \
-		--restart always \
-		--label "uuid=${UUID}" \
-		"${IMAGE_ID}" \
-		--host github.com \
-		--user git \
-		--remote origin:nextmoose/secrets.git \
-		--branch master \
-		--committer-name "Emory Merryman" \
-		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
-	    true
-    fi &&
-    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	CIDFILE="${WORK_DIR}/browser-secrets-read-write-pass.cid" &&
-	    UUID=$(uuid-parser --domain containers --key browser-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-	    docker \
-		container \
-		create \
-		--cidfile "${CIDFILE}" \
-		--restart always \
-		--label "uuid=${UUID}" \
-		"${IMAGE_ID}" \
-		--host github.com \
-		--user git \
-		--remote origin:nextmoose/browser-secrets.git \
-		--branch master \
-		--committer-name "Emory Merryman" \
-		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
-	    true
-    fi &&
-    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	CIDFILE="${WORK_DIR}/challenge-secrets-read-write-pass.cid" &&
-	    UUID=$(uuid-parser --domain containers --key challenge-secrets-read-write-pass --data-file "${STORE_DIR}/uuids.json") &&
-	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${STORE_DIR}/uuids.json")) &&
-	    docker \
-		container \
-		create \
-		--cidfile "${CIDFILE}" \
-		--restart always \
-		--label "uuid=${UUID}" \
-		"${IMAGE_ID}" \
-		--host github.com \
-		--user git \
-		--remote origin:nextmoose/challenge-secrets.git \
-		--branch master \
-		--committer-name "Emory Merryman" \
-		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
-	    true
+    start-read-write-pass-container \
+	--key system-secrets-read-write-pass \
+	--data-file ${STORE_DIR}/uuids.json \
+	--remote \
+	--host github.com \
+	--user git \
+	--remote origin:nextmoose/secrets.git \
+	--branch master \
+	--committer-name "Emory Merryman" \
+	--committer-email "emory.merryman@gmail.com" &&
+    start-read-write-pass-container \
+	--key browser-secrets-read-write-pass \
+	--data-file "${STORE_DIR}/uuids.json" \
+	--remote \
+	--host github.com \
+	--user git \
+	--remote origin:nextmoose/browser-secrets.git \
+	--branch master \
+	--committer-name "Emory Merryman" \
+	--committer-email "emory.merryman@gmail.com" &&
+    start-read-write-pass-container \
+	--key challenge-secrets-read-write-pass \
+	--data-file ${STORE_DIR}/uuids.json \
+	--remote \
+	--host github.com \
+	--user git \
+	--remote origin:nextmoose/challenge-secrets.git \
+	--branch master \
+	--committer-name "Emory Merryman" \
+	--committer-email "emory.merryman@gmail.com" &&
     fi &&
     true
