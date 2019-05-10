@@ -119,8 +119,8 @@ done &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key ${KEY} --data-file ${DATA_FILE}))" ]
     then
 	CIDFILE="${WORK_DIR}/cid" &&
-	    UUID=$(uuid-parser --domain containers --key system-secrets-read-only-pass --data-file "${DATA_FILE}") &&
-	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-only-pass --data-file "${DATA_FILE}")) &&
+	    UUID=$(uuid-parser --domain containers --key "${KEY}" --data-file "${DATA_FILE}") &&
+	    IMAGE_ID=$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file "${DATA_FILE}")) &&
 	    docker \
 		container \
 		create \
