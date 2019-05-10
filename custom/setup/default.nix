@@ -8,7 +8,8 @@
   read-write-pass,
   docker-health-check,
   docker-container-start-and-wait-for-healthy,
-  start-read-only-pass-container
+  start-read-only-pass-container,
+  docker-image-load
 } :
 let
   json = builtins.toJSON uuids;
