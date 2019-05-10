@@ -6,16 +6,14 @@ WORK_DIR=$(mktemp -d) &&
 	    true
     } &&
     trap cleanup EXIT &&
-    if [ -z "$(docker-image-id $(uuid-parser --domain images --key read-only-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	docker image load --quiet --input "${STORE_DIR}/images/read-only-pass.tar" &&
-	    true
-    fi &&
-    if [ -z "$(docker-image-id $(uuid-parser --domain images --key read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
-    then
-	docker image load --quiet --input "${STORE_DIR}/images/read-write-pass.tar" &&
-	    true
-    fi &&
+    docker-image-load \
+	--key read-only-pass \
+	--data-file "${STORE_DIR}/uuids.json" \
+	--image-file "${STORE_DIR}/images/read-only-pass.tar" &&
+    docker-image-load \
+        --key read-write-pass \
+	--data-file "${STORE_DIR}/uuids.json" \
+	--image-file "${STORE_DIR}/images/read-write-pass.tar" &&
     start-read-only-pass-container \
 	--key system-secrets-read-only-pass-container \
 	--data-file "${STORE_DIR}/uuids.json" \

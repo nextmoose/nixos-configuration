@@ -80,6 +80,16 @@ rec {
       pkgs.coreutils
     ];
   });
+  docker-image-load = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "docker-image-load";
+    src = ./scripts/docker-image-load;
+    dependencies = [
+      pkgs.coreutils
+      docker-image-id
+      pkgs.docker
+    ];
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
@@ -207,6 +217,7 @@ rec {
     docker-health-check = docker-health-check;
     docker-container-start-and-wait-for-healthy = docker-container-start-and-wait-for-healthy;
     start-read-only-pass-container = start-read-only-pass-container;
+    docker-image-load = docker-image-load;
   });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
