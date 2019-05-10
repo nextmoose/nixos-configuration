@@ -21,6 +21,7 @@ WORK_DIR=$(mktemp -d) &&
 	--data-file "${STORE_DIR}/uuids.json" \
 	--remote https://github.com/nextmoose/secrets.git \
 	--branch master &&
+    exit 65 &&
     if [ -z "$(docker-container-id $(uuid-parser --domain containers --key system-secrets-read-write-pass --data-file ${STORE_DIR}/uuids.json))" ]
     then
 	CIDFILE="${WORK_DIR}/system-secrets-read-only-write.cid" &&

@@ -226,6 +226,7 @@ rec {
       docker-container-start-and-wait-for-healthy
       uuid-parser
       docker-image-id
+      docker-container-id
     ];
   });
   system-secrets-read-only-pass = (import ./secrets/default.nix {
