@@ -29,6 +29,27 @@ do
     esac &&
 	true
 done &&
+    if [ -z "${DOMAIN}" ]
+    then
+	echo Unspecified DOMAIN &&
+	    exit 64 &&
+	    true
+    elif [ -z "${KEY}" ]
+    then
+	echo Unspecified KEY &&
+	    exit 64 &&
+	    true
+    elif [ -z "${DATA_FILE}" ]
+    then
+	echo Unspecified DATA_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${DATA_FILE}" ]
+    then
+	echo Nonexistant DATA_FILE "${DATA_FILE}" &&
+	    exit 64 &&
+	    true
+    fi &&
     WORK_DIR=$(mktemp -d) &&
     cleanup() {
 	rm --recursive --force "${WORK_DIR}" &&
