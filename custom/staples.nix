@@ -88,6 +88,7 @@ rec {
       pkgs.coreutils
       docker-image-id
       pkgs.docker
+      uuid-parser
     ];
   });
   gnupg-key-id = (import ./script-derivation.nix {
