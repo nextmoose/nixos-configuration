@@ -33,7 +33,7 @@ done &&
 		;;
 	    starting)
 		echo Waiting for container $(cat "${CIDFILE}") to start &&
-		    sleep 0.1s &&
+		    sleep 10s &&
 		    true
 		;;
 	    unhealthy)
@@ -45,7 +45,7 @@ done &&
 	    *)
 		echo Unknown Health Status for container $(cat "${CIDFILE}") &&
 		    echo "${STATUS}" &&
-		    sleep 1s &&
+		    sleep 60s &&
 		    true
 		;;
 	esac &&
