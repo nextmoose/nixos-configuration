@@ -66,7 +66,7 @@ done &&
 	    true
     } &&
     trap cleanup EXIT &&
-    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key ${KEY} --data-file "${DATA_FILE}")) ]
+    if [ -z "$(docker-container-id $(uuid-parser --domain containers --key ${KEY} --data-file ${DATA_FILE}))" ]
     then
 	CIDFILE="${WORK_DIR}/cid" &&
 	    UUID=$(uuid-parser --domain containers --key system-secrets-read-only-pass --data-file "${DATA_FILE}") &&
