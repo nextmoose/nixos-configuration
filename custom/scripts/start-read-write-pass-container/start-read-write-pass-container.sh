@@ -128,6 +128,8 @@ done &&
 		--restart always \
 		--label "uuid=${UUID}" \
 		"${IMAGE_ID}" \
+		--host "${HOST}" \
+		--user "${USER}" \
 		--remote "${REMOTE}" \
 		--branch "${BRANCH}" \
 		--committer-name "Emory Merryman" \
