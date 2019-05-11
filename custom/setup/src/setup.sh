@@ -19,17 +19,17 @@ WORK_DIR=$(mktemp -d) &&
 	--data-file "${STORE_DIR}/uuids.json" \
 	--remote https://github.com/nextmoose/secrets.git \
 	--branch master &&
-    fun() {
+    start-read-write-pass-container \
+	--key system-secrets-read-write-pass \
+	--data-file ${STORE_DIR}/uuids.json \
+	--host github.com \
+	--user git \
+	--remote origin:nextmoose/secrets.git \
+	--branch master \
+	--committer-name "Emory Merryman" \
+	--committer-email "emory.merryman@gmail.com" &&
+    fun() {	    
 	start-read-write-pass-container \
-	    --key system-secrets-read-write-pass \
-	    --data-file ${STORE_DIR}/uuids.json \
-	    --host github.com \
-	    --user git \
-	    --remote origin:nextmoose/secrets.git \
-	    --branch master \
-	    --committer-name "Emory Merryman" \
-	    --committer-email "emory.merryman@gmail.com" &&
-	    start-read-write-pass-container \
 		--key browser-secrets-read-write-pass \
 		--data-file "${STORE_DIR}/uuids.json" \
 		--host github.com \
