@@ -125,7 +125,6 @@ done &&
 		container \
 		create \
 		--cidfile "${CIDFILE}" \
-		--restart always \
 		--label "uuid=${UUID}" \
 		"${IMAGE_ID}" \
 		--host "${HOST}" \
@@ -134,7 +133,7 @@ done &&
 		--branch "${BRANCH}" \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
-	    # docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
+	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
 	    true
     fi &&
     true
