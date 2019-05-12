@@ -8,16 +8,6 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--id-rsa)
-	    ID_RSA="${2}" &&
-		shift 2 &&
-		true
-	    ;;
-	--user-known-hosts)
-	    USER_KNOWN_HOSTS="${2}" &&
-		shift 2 &&
-		true
-	    ;;
 	--user)
 	    USER="${2}" &&
 		shift 2 &&
@@ -85,13 +75,12 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    echo DONE && exit 65 &&
     init-gnupg &&
     init-dot-ssh &&
     add-ssh-domain \
 	--domain origin \
 	--host "${HOST}" \
-	--id-rsa "${ID_RSA}" \
-	--user-known-hosts "${USER_KNOWN_HOSTS}" \
 	--user "${USER}" &&
     ls -alh "${HOME}/.ssh" &&
     cat "${HOME}/.ssh/config" &&
