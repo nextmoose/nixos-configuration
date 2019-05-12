@@ -133,7 +133,7 @@ done &&
 		--branch "${BRANCH}" \
 		--committer-name "Emory Merryman" \
 		--committer-email "emory.merryman@gmail.com" &&
-	    docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
+	    echo docker-container-start-and-wait-for-healthy --cidfile "${CIDFILE}" &&
 	    true
     fi &&
     true
