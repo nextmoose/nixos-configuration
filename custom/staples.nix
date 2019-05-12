@@ -9,6 +9,7 @@ let
     };
     containers = {
       system-secrets-read-only-pass = "688e3276-08da-457f-9aa8-823b2e6acbf3";
+      system-secrets-read-only-pass2 = "8abb9457-0acd-43c3-85ea-7bcc19cfa293";
       system-secrets-read-write-pass = "87bb24b6-f9e1-46c1-8d49-d56940bcdd07";
       browser-secrets-read-write-pass = "bb0d1f53-73e9-4a8a-a7c6-e4b04dfcd2fa";
       challenge-secrets-read-write-pass = "9d51d00a-cfb4-4e7b-bd8c-2de732aa2003";
