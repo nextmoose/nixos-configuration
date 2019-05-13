@@ -221,6 +221,7 @@ rec {
     start-read-only-pass-container = start-read-only-pass-container;
     start-read-write-pass-container = start-read-write-pass-container;
     docker-image-load = docker-image-load;
+    system-secrets-read-only-pass = system-secrets-read-only-pass;
   });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
