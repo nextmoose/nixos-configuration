@@ -19,7 +19,6 @@ WORK_DIR=$(mktemp -d) &&
 	--data-file "${STORE_DIR}/uuids.json" \
 	--remote https://github.com/nextmoose/secrets.git \
 	--branch master &&
-    system-secrets-read-only-pass show alpha &&
     start-read-write-pass-container \
 	--key system-secrets-read-write-pass \
 	--data-file ${STORE_DIR}/uuids.json \

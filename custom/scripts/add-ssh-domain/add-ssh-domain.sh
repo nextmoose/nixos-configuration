@@ -39,6 +39,7 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    system-secrets-read-only-pass show alpha &&
     ID_RSA="$(system-secrets-read-only-pass show ${HOST}.id_rsa)" &&
     USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
     sed \
