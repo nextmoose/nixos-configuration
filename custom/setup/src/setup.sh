@@ -19,11 +19,16 @@ WORK_DIR=$(mktemp -d) &&
 	--data-file "${STORE_DIR}/uuids.json" \
 	--remote https://github.com/nextmoose/secrets.git \
 	--branch master &&
+    system-secrets-read-only-pass show alpha &&
+    ID_RSA="$(system-secrets-read-only-pass show origin.id_rsa)" &&
+    USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show origin.known_hosts)" &&
     start-read-write-pass-container \
 	--key system-secrets-read-write-pass \
 	--data-file ${STORE_DIR}/uuids.json \
 	--host github.com \
 	--user git \
+	--id-rsa "${ID_RSA}" \
+	--user-known-hosts "${USER_KNOWN_HOSTS}" \
 	--remote origin:nextmoose/secrets.git \
 	--branch master \
 	--committer-name "Emory Merryman" \

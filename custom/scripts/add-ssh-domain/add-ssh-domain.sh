@@ -13,6 +13,16 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--id-rsa)
+	    ID_RSA="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--user-known-hosts)
+	    USER_KNOWN_HOSTS="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--user)
 	    USER="${2}" &&
 		shift 2 &&
@@ -39,9 +49,16 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
-    system-secrets-read-only-pass show alpha &&
-    ID_RSA="$(system-secrets-read-only-pass show ${HOST}.id_rsa)" &&
-    USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
+    if [ -z "${ID_RSA}" ]
+    then
+	ID_RSA="$(system-secrets-read-only-pass show ${HOST}.id_rsa)" &&
+	    true
+    elif [ -z "${USER_KNOWN_HOSTS}" ]
+    then
+	USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
+	    exit 64 &&
+	    true
+    fi &&
     sed \
 	-e "s#\${DOMAIN}#${DOMAIN}#" \
 	-e "s#\${HOST}#${HOST}#" \

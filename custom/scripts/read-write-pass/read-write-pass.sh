@@ -75,13 +75,15 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    echo DONE && exit 65 &&
     init-gnupg &&
     init-dot-ssh &&
     add-ssh-domain \
 	--domain origin \
+	--id-rsa "${ID_RSA}" \
+	--user-known-hosts "${USER_KNOWN_HOSTS}" \
 	--host "${HOST}" \
 	--user "${USER}" &&
-    echo DONE && exit 65 &&
     pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
