@@ -266,13 +266,8 @@ rec {
     name = "system-secrets-read-only-pass";
     uuid = "uuid";
     run = ''
-      ${read-only-pass}/bin/read-only-pass \
-        --remote https://github.com/nextmoose/secrets.git \
-	--branch master &&
-        true
     '';
     entrypoint = ''
-      ${pkgs.pass}/bin/pass
     '';
   });
   uuid-parser = (import ./script-derivation.nix {
