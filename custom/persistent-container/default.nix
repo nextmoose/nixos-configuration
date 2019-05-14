@@ -8,7 +8,7 @@
 pkgs.stdenv.mkDerivation {
   name = name;
   src = ./src;
-  build-inputs = [ pkgs.makeWrapper ];
+  buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir "$out" &&
       cp --recursive . "$out/src" &&
