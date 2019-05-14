@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
   build-inputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir "$out" &&
-      cp --recursive "$out/src" &&
+      cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
