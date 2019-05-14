@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/entrypoint.sh" \
 	"$out/bin/entrypoint" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils ]" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils ]}" \
 	--set HOME "${home}" \
 	--set RUN "${run}" \
 	--set ENTRYPOINT "${entrypoint}" \
