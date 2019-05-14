@@ -95,7 +95,6 @@ in
       staples.homer
       staples.setup
       staples.system-secrets-read-only-pass
-      staples.teardown
       pkgs.jq
       pkgs.rkt
       pkgs.runc
