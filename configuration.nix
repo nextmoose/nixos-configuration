@@ -100,6 +100,8 @@ in
       staples.teardown
       pkgs.jq
       pkgs.rkt
+      pkgs.podman
+      pkgs.runc
     ];
   };
   virtualisation.docker = {
