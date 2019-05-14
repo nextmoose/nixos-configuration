@@ -264,7 +264,7 @@ rec {
   system-secrets-read-only-pass = (import ./persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
-    home = /home/user/system-secrets-read-only-pass;
+    home = /home/user/volumes/system-secrets-read-only-pass;
     run = ''
       ${read-only-pass}/bin/read-only-pass \
         --remote https://github.com/nextmoose/secrets.git \
