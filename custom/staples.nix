@@ -261,7 +261,7 @@ rec {
       docker-container-id
     ];
   });
-  system-secrets-read-only-pass = (import ./persistent-container {
+  system-secrets-read-only-pass = (import ./persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
     home = /home/user/system-secrets-read-only-pass;
