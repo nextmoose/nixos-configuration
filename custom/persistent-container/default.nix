@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils ]}" \
 	--set UUID "${uuid}" \
 	--set RUN "${run}" \
-	--set ENTRYPOINT "${entrypoint}" \
+	--set ENTRYPOINT "${entrypoint}" &&
       true
   '';
 }
