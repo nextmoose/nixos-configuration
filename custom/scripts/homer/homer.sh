@@ -3,9 +3,9 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--)
+	--entrypoint)
 	    shift &&
-		export ARGUMENTS="${@}" &&
+		export ENTRYPOINT="${@}" &&
 		shift "${#}" &&
 		true
 	    ;;
@@ -25,5 +25,5 @@ done &&
 	rm --recursive --force "${HOME}" &&
 	    true
     } &&
-    ${ARGUMENTS} &&
+    ${ENTRYPOINT} &&
     true

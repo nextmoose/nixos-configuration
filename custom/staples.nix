@@ -261,10 +261,19 @@ rec {
       docker-container-id
     ];
   });
-  system-secrets-read-only-pass = (import ./secrets/default.nix {
+  system-secrets-read-only-pass = (import ./persistent-container {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
-    uuid = uuids.containers.system-secrets-read-only-pass;
+    home = /home/user/system-secrets-read-only-pass;
+    run = ''
+      ${read-only-pass}/bin/read-only-pass \
+        --remote https://github.com/nextmoose/secrets.git \
+	--branch master &&
+        true
+    '';
+    entrypoint = ''
+      ${pkgs.pass}/bin/pass
+    '';
   });
   system-secrets-read-write-pass = (import ./secrets/default.nix {
     pkgs = pkgs;
