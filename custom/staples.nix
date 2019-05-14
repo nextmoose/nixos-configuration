@@ -117,6 +117,10 @@ rec {
     pkgs = pkgs;
     name = "homer";
     src = ./scripts/homer;
+    dependencies = [
+      pkgs.mktemp
+      pkgs.coreutils
+    ];
   });
   init-dot-ssh = (import ./script-derivation.nix {
     pkgs = pkgs;
