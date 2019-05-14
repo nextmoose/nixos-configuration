@@ -100,7 +100,6 @@ in
       staples.teardown
       pkgs.jq
       pkgs.rkt
-      pkgs.podman-1.0.0
       pkgs.runc
     ];
   };
