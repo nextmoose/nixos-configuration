@@ -2,7 +2,7 @@
 
 if [ ! -d "${HOME}" ]
 then
-    mkdir "${HOME}" &&
+    mkdir --parents "${HOME}" &&
 	${RUN} &&
 	true
 fi &&

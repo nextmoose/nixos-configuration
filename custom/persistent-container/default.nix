@@ -4,7 +4,7 @@
   home,
   run,
   entrypoint
-}
+} :
 pkgs.stdenv.mkDerivation {
   name = name;
   src = ./src;
