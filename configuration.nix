@@ -99,6 +99,7 @@ in
       staples.system-secrets-read-write-pass
       staples.teardown
       pkgs.jq
+      pkgs.rkt
     ];
   };
   virtualisation.docker = {
