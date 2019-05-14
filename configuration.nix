@@ -87,8 +87,6 @@ in
       pkgs.emacs
       pkgs.git
       pkgs.pass
-      staples.browser-secrets-read-write-pass
-      staples.challenge-secrets-read-write-pass
       staples.nmcli-wifi
       staples.install-nixos
       (import ./custom/rescue/default.nix {
@@ -97,7 +95,6 @@ in
       staples.homer
       staples.setup
       staples.system-secrets-read-only-pass
-      staples.system-secrets-read-write-pass
       staples.teardown
       pkgs.jq
       pkgs.rkt
