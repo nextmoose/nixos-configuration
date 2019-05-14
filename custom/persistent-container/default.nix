@@ -1,7 +1,7 @@
 {
   pkgs,
   name,
-  home,
+  uuid,
   run,
   entrypoint
 } :
@@ -16,9 +16,9 @@ pkgs.stdenv.mkDerivation {
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
-	"$out/bin/entrypoint" \
+	"$out/bin/name" \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils ]}" \
-	--set HOME "${home}" \
+	--set UUID "${uuid}" \
 	--set RUN "${run}" \
 	--set ENTRYPOINT "${entrypoint}" \
       true

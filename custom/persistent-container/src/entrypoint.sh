@@ -1,10 +1,15 @@
 #!/bin/sh
 
-if [ ! -d "${HOME}" ]
+if [ ! -d "${HOME}/volumes" ]
 then
-    mkdir --parents "${HOME}" &&
-	${RUN} &&
+    mkdir "${HOME}/volumes" &&
 	true
 fi &&
-    ${ENTRYPOINT} ${@} &&
+    if [ ! -d "${HOME}/volumes/${UUID}" ]
+    then
+	mkdir "${HOME}/volumes/${UUID}" &&
+	    HOME="${HOME}/volumes/${UUID}" ${RUN} &&
+	    true
+    fi &&
+    HOME="${HOME}/volumes/${UUID}" ${ENTRYPOINT} ${@} &&
     true

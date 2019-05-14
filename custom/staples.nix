@@ -264,7 +264,7 @@ rec {
   system-secrets-read-only-pass = (import ./persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
-    home = "/home/user/volumes/system-secrets-read-only-pass";
+    uuid = "uuid";
     run = ''
       ${read-only-pass}/bin/read-only-pass \
         --remote https://github.com/nextmoose/secrets.git \
@@ -274,15 +274,6 @@ rec {
     entrypoint = ''
       ${pkgs.pass}/bin/pass
     '';
-  });
-  system-secrets-read-write-pass = (import ./secrets/default.nix {
-    pkgs = pkgs;
-    name = "system-secrets-read-write-pass";
-    uuid = uuids.containers.system-secrets-read-write-pass;
-  });
-  teardown = (import ./teardown/default.nix {
-    pkgs = pkgs;
-    uuids = uuids;
   });
   uuid-parser = (import ./script-derivation.nix {
     pkgs = pkgs;
