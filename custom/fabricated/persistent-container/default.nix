@@ -13,8 +13,8 @@ pkgs.stdenv.mkDerivation {
     mkdir "$out" &&
       cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/entrypoint.sh" &&
-      echo "${run}" "$out/run.sh" &&
-      echo "${entrypoint}" "$out/entrypoint.sh" &&
+      echo "${run}" > "$out/run.sh" &&
+      echo "${entrypoint}" > "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
