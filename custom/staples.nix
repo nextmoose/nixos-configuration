@@ -225,21 +225,6 @@ rec {
       post-commit
     ];
   });
-  setup = (import ./setup/default.nix {
-    pkgs = pkgs;
-    uuids = uuids;
-    docker-image-id = docker-image-id;
-    docker-container-id = docker-container-id;
-    read-only-pass = read-only-pass;
-    read-write-pass = read-write-pass;
-    uuid-parser = uuid-parser;
-    docker-health-check = docker-health-check;
-    docker-container-start-and-wait-for-healthy = docker-container-start-and-wait-for-healthy;
-    start-read-only-pass-container = start-read-only-pass-container;
-    start-read-write-pass-container = start-read-write-pass-container;
-    docker-image-load = docker-image-load;
-    system-secrets-read-only-pass = system-secrets-read-only-pass;
-  });
   start-docker-container = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "start-docker-container";
