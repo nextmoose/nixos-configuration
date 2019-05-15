@@ -51,11 +51,11 @@ done &&
     fi &&
     if [ -z "${ID_RSA}" ]
     then
-	ID_RSA="$(system-secrets-read-only-pass show ${HOST}.id_rsa)" &&
+	ID_RSA="$(system-secrets-read-only-pass show ${DOMAIN}.id_rsa)" &&
 	    true
     elif [ -z "${USER_KNOWN_HOSTS}" ]
     then
-	USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
+	USER_KNOWN_HOSTS="$(system-secrets-read-only-pass show ${DOMAIN}.known_hosts)" &&
 	    exit 64 &&
 	    true
     fi &&
