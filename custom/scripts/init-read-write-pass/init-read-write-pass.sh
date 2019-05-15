@@ -75,7 +75,6 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
-    echo DONE && exit 65 &&
     init-gnupg &&
     init-dot-ssh &&
     add-ssh-domain \
