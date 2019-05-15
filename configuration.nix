@@ -92,8 +92,6 @@ in
       (import ./custom/rescue/default.nix {
       	 pkgs = pkgs;
       })
-      staples.homer
-      staples.setup
       staples.system-secrets-read-only-pass
       pkgs.jq
       pkgs.rkt
