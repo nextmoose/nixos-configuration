@@ -284,7 +284,7 @@ rec {
 	--committer-name "Emory Merryman" \
 	--committer-email "emory.merryman@gmail.com"
     '';
-  };
+  });
   uuid-parser = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "uuid-parser";
