@@ -279,9 +279,6 @@ rec {
     name = "system-secrets-read-only-pass";
     uuid = "uuid";
     run = ''
-      ${init-read-only-pass}/bin/init-read-only-pass \
-        --remote https://github.com/nextmoose/secrets.git \
-	--branch master \
     '';
     entrypoint = ''
     '';
