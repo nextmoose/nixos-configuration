@@ -166,6 +166,7 @@ rec {
       pkgs.pass
       pkgs.coreutils
       gnupg-key-id
+      pkgs.which
     ];
   });
   install-nixos = (import ./script-derivation.nix {
