@@ -154,6 +154,20 @@ rec {
       gnupg-key-id
     ];
   });
+  init-read-write-pass = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-read-write-pass";
+    src = ./scripts/init-read-write-pass;
+    dependencies = [
+      init-gnupg
+      init-dot-ssh
+      add-ssh-domain
+      post-commit
+      pkgs.pass
+      pkgs.coreutils
+      gnupg-key-id
+    ];
+  });
   install-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
