@@ -19,7 +19,7 @@ pkgs.stdenv.mkDerivation {
       makeWrapper \
         "$out/src/entrypoint.sh" \
 	"$out/bin/${name}" \
-	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils ]}" \
+	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.bash ]}" \
 	--set STORE_DIR "$out" \
 	--set UUID "${uuid}" &&
       true
