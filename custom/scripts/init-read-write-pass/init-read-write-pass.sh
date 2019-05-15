@@ -91,5 +91,5 @@ done &&
     pass git checkout "${BRANCH}" &&
     pass git config user.name "${COMMITTER_NAME}" &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
-    ln --symbolic $(which post-commit) "${HOME}/.git/hooks" &&
+    ln --symbolic $(which post-commit) "${HOME}/.password-store/.git/hooks" &&
     true
