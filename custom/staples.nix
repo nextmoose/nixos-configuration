@@ -287,7 +287,7 @@ rec {
   });
   system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
-    name = "system-secrets/read-write-pass";
+    name = "system-secrets-read-write-pass";
     uuid = "a000bdbe-d054-485e-bd6c-dcf7388de6b2";
     run = ''
       ${init-read-write-pass}/bin/init-read-write-pass \
