@@ -296,7 +296,7 @@ rec {
 	--branch master \
 	--host github.com \
 	--user git \
-	--committer-name "EmoryMerryman" \
+	--committer-name "Emory Merryman" \
 	--committer-email "emory.merryman@gmail.com"
     '';
     entrypoint = ''
