@@ -274,7 +274,7 @@ rec {
       docker-container-id
     ];
   });
-  system-secrets-read-only-pass = (import ./persistent-container/default.nix {
+  system-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
     uuid = "uuid";

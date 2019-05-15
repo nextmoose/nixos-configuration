@@ -1,1 +1,0 @@
-.images["read-only-pass"]
