@@ -142,6 +142,19 @@ rec {
       gnupg2-private-keys
     ];
   });
+  init-read-only-pass = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-read-only-pass";
+    src = ./scripts/init-read-only-pass;
+    dependencies = [
+      add-ssh-domain
+      init-dot-ssh
+      init-gnupg
+      pkgs.pass
+      pkgs.coreutils
+      gnupg-key-id
+    ];
+  });
   install-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "install-nixos";
@@ -266,6 +279,9 @@ rec {
     name = "system-secrets-read-only-pass";
     uuid = "uuid";
     run = ''
+      ${init-read-only-pass}/bin/init-read-only-pass \
+        --remote https://github.com/nextmoose/secrets.git \
+	--branch master \
     '';
     entrypoint = ''
     '';
