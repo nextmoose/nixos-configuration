@@ -20,8 +20,7 @@ rec {
   foo = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "add-ssh-domain";
-    src = ./scripts/add-ssh-domain;
-    binary-name = foo;
+    src = ./scripts/foo;
     configuration = {
       bar = 1;
       fuzz = 3;
