@@ -147,7 +147,7 @@ rec {
     configuration = {
       gpg = {
         key = ./injected/gnupg-private-keys.asc;
-	trust = ./injected/gpupg-ownertrust.asc;
+	trust = ./injected/gnupg-ownertrust.asc;
       };
       gpg2 = {
         key = ./injected/gnupg2-private-keys.asc;
