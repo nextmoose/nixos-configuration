@@ -96,7 +96,7 @@ done &&
     sed \
 	-e "s#\${HASHED_USER_PASSWORD}#${HASHED_USER_PASSWORD}#" \
 	-e "w${WORK_DIR}/nixos-configuration/custom/password.nix" \
-	"${STORE_DIR}/password.nix" &&
+	"${SOURCE_DIR}/password.nix" &&
     mkdir "${WORK_DIR}/backup" &&
     /run/wrappers/bin/sudo \
 	mv \

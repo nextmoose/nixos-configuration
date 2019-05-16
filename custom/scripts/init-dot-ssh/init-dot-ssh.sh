@@ -5,6 +5,6 @@ mkdir "${HOME}/.ssh" &&
     sed \
 	-e "s#\${HOME}#${HOME}#" \
 	-e "w${HOME}/.ssh/config" \
-	"${STORE_DIR}/config" &&
+	"${SOURCE_DIR}/config" &&
     chmod 0400 "${HOME}/.ssh/config" &&
     true

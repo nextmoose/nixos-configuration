@@ -65,7 +65,7 @@ done &&
 	-e "s#\${USER}#${USER}#" \
 	-e "s#\${HOME}#${HOME}#" \
 	-e "w${HOME}/.ssh/${DOMAIN}.conf" \
-	"${STORE_DIR}/config" &&
+	"${SOURCE_DIR}/config" &&
     echo "${ID_RSA}" > "${HOME}/.ssh/${DOMAIN}.id_rsa" &&
     echo "${USER_KNOWN_HOSTS}" > "${HOME}/.ssh/${DOMAIN}.known_hosts" &&
     chmod \
