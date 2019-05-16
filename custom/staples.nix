@@ -137,11 +137,23 @@ rec {
     name = "init-gnupg";
     src = ./scripts/init-gnupg;
     dependencies = [
-      gnupg-ownertrust
-      gnupg2-ownertrust
+      pkgs.gnupg
+      pkgs.jq
       gnupg-private-keys
       gnupg2-private-keys
+      gnupg-owner-trust
+      gnupg2-owner-trust
     ];
+    configuration = {
+      gpg = {
+        key = ../injected/gnupg-private-keys.asc;
+	trust = ../injected/gpupg-ownertrust.asc;
+      };
+      gpg2 = {
+        key = ../injected/gnupg2-private-keys.asc;
+	trust = ../injected/gnupg2-ownertrust.asc;
+      };
+    };
   });
   init-read-only-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
