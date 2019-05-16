@@ -146,12 +146,12 @@ rec {
     ];
     configuration = {
       gpg = {
-        key = ../injected/gnupg-private-keys.asc;
-	trust = ../injected/gpupg-ownertrust.asc;
+        key = ./injected/gnupg-private-keys.asc;
+	trust = ./injected/gpupg-ownertrust.asc;
       };
       gpg2 = {
-        key = ../injected/gnupg2-private-keys.asc;
-	trust = ../injected/gnupg2-ownertrust.asc;
+        key = ./injected/gnupg2-private-keys.asc;
+	trust = ./injected/gnupg2-ownertrust.asc;
       };
     };
   });
