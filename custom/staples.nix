@@ -141,8 +141,8 @@ rec {
       pkgs.jq
       gnupg-private-keys
       gnupg2-private-keys
-      gnupg-owner-trust
-      gnupg2-owner-trust
+      gnupg-ownertrust
+      gnupg2-ownertrust
     ];
     configuration = {
       gpg = {
