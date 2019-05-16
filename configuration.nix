@@ -83,7 +83,6 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
-      staples.foo
       pkgs.chromium
       pkgs.emacs
       pkgs.git

@@ -17,15 +17,6 @@ let
   };
 in
 rec {
-  foo = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "foo";
-    src = ./scripts/foo;
-    configuration = {
-      bar = 1;
-      fuzz = 3;
-    };
-  });
   add-ssh-domain = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "add-ssh-domain";

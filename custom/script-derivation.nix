@@ -3,7 +3,6 @@
    name,
    src,
    dependencies ? [],
-   binary-name ? name,
    configuration ? {}
 }:
 pkgs.stdenv.mkDerivation {
@@ -17,7 +16,7 @@ pkgs.stdenv.mkDerivation {
 	mkdir "$out/bin" &&
 	makeWrapper \
 	  "$out/src/${name}.sh" \
-	   "$out/bin/${binary-name}" \
+	   "$out/bin/${name}" \
 	   --set PATH "${pkgs.lib.makeBinPath dependencies}" \
            --set STORE_DIR "$out/src" &&
 	echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
