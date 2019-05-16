@@ -83,6 +83,7 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
+      staples.add-ssh-domain
       staples.init-gnupg
       pkgs.chromium
       pkgs.emacs
