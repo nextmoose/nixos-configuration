@@ -11,11 +11,11 @@ pkgs.stdenv.mkDerivation {
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
-        cp --recursive . "$out/src" &&
-	chmod 0500 "$out/src/${name}.sh" &&
+        cp --recursive "$out/src/${name}" "$out/script.sh" &&
+	chmod 0500 "$out/script.sh" &&
 	mkdir "$out/bin" &&
 	makeWrapper \
-	  "$out/src/${name}.sh" \
+	  "$out/script.sh" \
 	   "$out/bin/${name}" \
 	   --set PATH "${pkgs.lib.makeBinPath dependencies}" \
 	   --set SOURCE_DIR "$out" \
