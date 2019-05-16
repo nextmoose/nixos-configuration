@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
-        ln --symbolic . "$out" &&
+        ln --symbolic . "$out/src" &&
 	cp "$out/src/${name}.sh" "$out/script.sh" &&
 	chmod 0500 "$out/script.sh" &&
 	mkdir "$out/bin" &&
