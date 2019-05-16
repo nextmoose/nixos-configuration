@@ -20,7 +20,7 @@ pkgs.stdenv.mkDerivation {
 	   "$out/bin/${binary-name}" \
 	   --set PATH "${pkgs.lib.makeBinPath dependencies}" \
            --set STORE_DIR "$out/src" &&
-	echo '${builtins.toJSON configuration} > "$out/configuration.json" &&
+	echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
       true
    '';
 }
