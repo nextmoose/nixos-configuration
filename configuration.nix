@@ -100,7 +100,7 @@ in
       pkgs.rkt
       pkgs.runc
       staples.init-dot-ssh
-      pkgs.xsltproc
+      pkgs.libxslt
     ];
   };
   virtualisation.docker = {
