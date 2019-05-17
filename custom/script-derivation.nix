@@ -11,16 +11,15 @@ pkgs.stdenv.mkDerivation {
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
       mkdir $out &&
-        ln --symbolic . "$out/src" &&
-	cp "$out/src/${name}.sh" "$out/script.sh" &&
-	chmod 0500 "$out/script.sh" &&
+	cp --recursive . "$out/src" &&
+	chmod 0500 "$out/src/${name}.sh" &&
 	mkdir "$out/bin" &&
 	makeWrapper \
-	  "$out/script.sh" \
-	   "$out/bin/${name}" \
-	   --set PATH "${pkgs.lib.makeBinPath dependencies}" \
-	   --set SOURCE_DIR "${src}" \
-           --set STORE_DIR "$out" &&
+	  "$out/src/${name}.sh" \
+	  "$out/bin/${name}" \
+	  --set PATH "${pkgs.lib.makeBinPath dependencies}" \
+	  --set SOURCE_DIR "$out/src" \
+          --set STORE_DIR "$out" &&
 	echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
       true
    '';
