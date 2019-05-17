@@ -141,12 +141,12 @@ rec {
 	  identityFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    upstream.id_rsa
+	    "upstream.id_rsa"
 	  ];
 	  userKnownHostsFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    upstream.known_hosts
+	    "upstream.known_hosts"
 	  ];
         }
         {
@@ -156,12 +156,12 @@ rec {
 	  identityFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    origin.id_rsa
+	    "origin.id_rsa"
 	  ];
 	  userKnownHostsFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    origin.known_hosts
+	    "origin.known_hosts"
 	  ];
         }
         {
@@ -171,12 +171,12 @@ rec {
 	  identityFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    report.id_rsa
+	    "report.id_rsa"
 	  ];
 	  userKnownHostsFile = [
 	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
 	    "show"
-	    report.known_hosts
+	    "report.known_hosts"
 	  ];
         }
       ];
