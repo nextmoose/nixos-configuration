@@ -99,6 +99,7 @@ in
       pkgs.jq
       pkgs.rkt
       pkgs.runc
+      pkgs.init-dot-ssh
     ];
   };
   virtualisation.docker = {

@@ -130,7 +130,57 @@ rec {
     dependencies = [
       pkgs.coreutils
       pkgs.gnused
+      pkgs.jq
     ];
+    configuration = {
+      remotes = [
+        {
+          host = "upstream";
+          hostName = "github.com";
+	  user = "git";
+	  identityFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    upstream.id_rsa
+	  ];
+	  userKnownHostsFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    upstream.known_hosts
+	  ];
+        }
+        {
+          host = "origin";
+          hostName = "github.com";
+	  user = "git";
+	  identityFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    origin.id_rsa
+	  ];
+	  userKnownHostsFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    origin.known_hosts
+	  ];
+        }
+        {
+          host = "report";
+          hostName = "github.com";
+	  user = "git";
+	  identityFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    report.id_rsa
+	  ];
+	  userKnownHostsFile = [
+	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
+	    "show"
+	    report.known_hosts
+	  ];
+        }
+      ];
+    };
   });
   init-gnupg = (import ./script-derivation.nix {
     pkgs = pkgs;
