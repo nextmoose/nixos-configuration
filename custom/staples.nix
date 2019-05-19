@@ -348,6 +348,32 @@ rec {
       ${pkgs.pass}/bin/pass
     '';
   });
+  browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "browser-secrets-read-only-pass";
+    uuid = "327caca0-abce-4dcc-afc3-e54eee6c9af8";
+    run = ''
+      ${init-read-only-pass}/bin/init-read-only-pass \
+        --remote https://github.com/nextmoose/browser-secrets.git \
+	--branch master
+    '';
+    entrypoint = ''
+      ${pkgs.pass}/bin/pass
+    '';
+  });
+  old-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "old-secrets-read-only-pass";
+    uuid = "90152adb-aa3f-41e6-9ef3-e8151012ed3a";
+    run = ''
+      ${init-read-only-pass}/bin/init-read-only-pass \
+        --remote https://github.com/desertedscorpion/password-store.git \
+	--branch master
+    '';
+    entrypoint = ''
+      ${pkgs.pass}/bin/pass
+    '';
+  });
   system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-write-pass";

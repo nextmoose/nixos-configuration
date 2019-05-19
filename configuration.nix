@@ -101,6 +101,8 @@ in
       pkgs.runc
       staples.init-dot-ssh
       pkgs.libxslt
+      staples.browser-secrets-read-only-pass
+      staples.old-secrets-read-only-pass
     ];
   };
   virtualisation.docker = {
