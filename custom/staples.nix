@@ -367,7 +367,7 @@ rec {
     uuid = "90152adb-aa3f-41e6-9ef3-e8151012ed3a";
     run = ''
       ${init-read-only-pass}/bin/init-read-only-pass \
-        --remote https://github.com/desertedscorpion/password-store.git \
+        --remote https://github.com/desertedscorpion/passwordstore.git \
 	--branch master
     '';
     entrypoint = ''
