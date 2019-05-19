@@ -13,7 +13,7 @@ pkgs.stdenv.mkDerivation {
     mkdir "$out" &&
       cp --recursive . "$out/src" &&
       chmod 0500 "$out/src/entrypoint.sh" &&
-      echo -n "${run}" > "$out/run.sh" &&
+      echo "${run}" > "$out/run.sh" &&
       echo -n "${entrypoint}" > "$out/entrypoint.sh" &&
       cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
