@@ -103,6 +103,7 @@ in
       pkgs.libxslt
       staples.browser-secrets-read-only-pass
       staples.old-secrets-read-only-pass
+      pkgs.gnome-terminal
     ];
   };
   virtualisation.docker = {
