@@ -104,7 +104,6 @@ in
       staples.browser-secrets-read-only-pass
       staples.old-secrets-read-only-pass
       pkgs.gnome3.gnome-terminal
-      staples.foo
     ];
   };
   virtualisation.docker = {
