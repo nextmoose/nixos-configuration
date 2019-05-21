@@ -42,6 +42,6 @@ done &&
     pass git config http.sslVerify false &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
-    touch "${HOME}/.health-check" &&
+    ln --symbolic $(which pre-commit) "${HOME}/.password-store/.git/hooks" &&
     sleep inf &&
     true

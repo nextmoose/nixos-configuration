@@ -272,6 +272,11 @@ rec {
       pkgs.coreutils
     ];
   });
+  pre-commit = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "pre-commit";
+    src = ./scripts/pre-commit;
+  });
   read-only-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "read-only-pass";
@@ -283,6 +288,8 @@ rec {
       pkgs.pass
       pkgs.coreutils
       gnupg-key-id
+      pre-commit
+      pkgs.which
     ];
   });
   read-write-pass = (import ./script-derivation.nix {
