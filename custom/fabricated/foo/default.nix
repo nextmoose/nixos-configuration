@@ -6,7 +6,7 @@
 pkgs.stdenv.mkDerivation {
    name = "foo";
    src = ./src;
-   buildInputs = [ pkgs.makeWrapper init-gnupg gnupg-key-id pkgs.coreutils pkgs.bash pkgs.pass ];
+   buildInputs = [ pkgs.makeWrapper init-gnupg gnupg-key-id pkgs.coreutils pkgs.bash pkgs.pass pkgs.ca-cert ];
    installPhase = ''
       mkdir $out &&
 	cp --recursive . "$out/src" &&
