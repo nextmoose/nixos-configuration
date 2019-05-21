@@ -396,4 +396,7 @@ rec {
     src = ./scripts/uuid-parser;
     dependencies = [ pkgs.jq pkgs.mktemp pkgs.coreutils ];
   });
+  foo = (import ./fabricated/foo/default.nix {
+    pkgs = pkgs;
+  });
 }
