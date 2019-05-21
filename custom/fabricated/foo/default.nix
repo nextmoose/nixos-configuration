@@ -23,6 +23,7 @@ pkgs.stdenv.mkDerivation {
 	echo AAAAAAAAAAA 00100 &&
     	pass git checkout origin/master &&
 	echo AAAAAAAAAAA 00200 &&
+	stat $out/home/.gnupg/S.gpg-agent.sh &&
 	makeWrapper \
 	  "$out/src/foo.sh" \
 	  "$out/bin/foo" \
