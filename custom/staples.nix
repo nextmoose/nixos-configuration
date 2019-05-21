@@ -351,9 +351,7 @@ rec {
         --remote https://github.com/nextmoose/secrets.git \
 	--branch master
     '';
-    entrypoint = ''
-      ${pkgs.pass}/bin/pass
-    '';
+    entrypoint = "${pkgs.pass}/bin/pass";
   });
   browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
