@@ -15,7 +15,7 @@ pkgs.stdenv.mkDerivation {
 	makeWrapper \
 	  "$out/src/foo.sh" \
 	  "$out/bin/foo" \
-	  --set PATH "${pkgs.lib.makeBinPath [ init-gnupg gnupg-key-id kgs.coreutils pkgs.mktemp pkgs.bash ] }" \
+	  --set PATH "${pkgs.lib.makeBinPath [ init-gnupg gnupg-key-id pkgs.coreutils pkgs.mktemp pkgs.bash ] }" \
 	  --set STORE_DIR "$out" &&
         true
    '';
