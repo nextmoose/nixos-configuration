@@ -19,6 +19,7 @@ pkgs.stdenv.mkDerivation {
     	pass git init &&
     	pass git remote add origin https://github.com/nextmoose/secrets.git &&
     	pass git fetch origin master &&
+    	pass git config http.sslVerify false &&
     	pass git checkout origin/master &&
 	makeWrapper \
 	  "$out/src/foo.sh" \
