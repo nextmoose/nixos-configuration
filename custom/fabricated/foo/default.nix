@@ -2,7 +2,7 @@
    pkgs,
 }:
 pkgs.stdenv.mkDerivation {
-   name = name;
+   name = "foo";
    src = ./src;
    buildInputs = [ pkgs.makeWrapper ];
    installPhase = ''
