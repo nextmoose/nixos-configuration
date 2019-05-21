@@ -21,6 +21,7 @@ pkgs.stdenv.mkDerivation {
     	pass git config http.sslVerify false &&
     	pass git fetch origin master &&
     	pass git checkout origin/master &&
+	gpg --decrypt "$out/home/.passwordstore/alpha" &&
 	pass show alpha &&
 	rm --recursive --force "$out/home" &&
 	makeWrapper \
