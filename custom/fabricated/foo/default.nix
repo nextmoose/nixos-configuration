@@ -14,7 +14,9 @@ pkgs.stdenv.mkDerivation {
 	mkdir "$out/bin" &&
 	mkdir "$out/home" &&
 	export HOME="$out/home" &&
+	echo AAAAAAAAAAA 00100 &&
 	init-gnupg &&
+	echo AAAAAAAAAAA 00200 &&
     	pass init $(gnupg-key-id) &&
     	pass git init &&
     	pass git remote add origin https://github.com/nextmoose/secrets.git &&
