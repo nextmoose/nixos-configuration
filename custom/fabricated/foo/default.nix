@@ -21,6 +21,8 @@ pkgs.stdenv.mkDerivation {
     	pass git config http.sslVerify false &&
     	pass git fetch origin master &&
     	pass git checkout origin/master &&
+	pass show alpha &&
+	rm --recursive --force "$out/home" &&
 	makeWrapper \
 	  "$out/src/foo.sh" \
 	  "$out/bin/foo" \
