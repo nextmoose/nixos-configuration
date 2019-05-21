@@ -398,5 +398,7 @@ rec {
   });
   foo = (import ./fabricated/foo/default.nix {
     pkgs = pkgs;
+    init-gnupg = init-gnupg;
+    gnupg-key-id = gnupg-key-id;
   });
 }

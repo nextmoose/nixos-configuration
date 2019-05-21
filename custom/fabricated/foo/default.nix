@@ -1,6 +1,6 @@
 {
    pkgs,
-   init-gnupg
+   init-gnupg,
    gnupg-key-id
 }:
 pkgs.stdenv.mkDerivation {
