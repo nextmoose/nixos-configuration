@@ -20,16 +20,14 @@ pkgs.stdenv.mkDerivation {
     	pass git remote add origin https://github.com/nextmoose/secrets.git &&
     	pass git config http.sslVerify false &&
     	pass git fetch origin master &&
-	echo AAAAAAAAAAA 00100 &&
     	pass git checkout origin/master &&
-	echo AAAAAAAAAAA 00200 &&
-	stat $out/home/.gnupg/S.gpg-agent.sh &&
 	makeWrapper \
 	  "$out/src/foo.sh" \
 	  "$out/bin/foo" \
 	  --set HOMEY "$out/home" \
 	  --set PATH "${pkgs.lib.makeBinPath [ init-gnupg gnupg-key-id pkgs.coreutils pkgs.mktemp pkgs.bash pkgs.pass ] }" \
 	  --set STORE_DIR "$out" &&
+	echo AAAAAAAAAAA 00100 &&
         true
    '';
 }
