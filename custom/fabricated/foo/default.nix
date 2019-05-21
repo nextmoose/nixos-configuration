@@ -24,7 +24,7 @@ pkgs.stdenv.mkDerivation {
 	makeWrapper \
 	  "$out/src/foo.sh" \
 	  "$out/bin/foo" \
-	  --set HOME "$out/home" &&
+	  --set HOME "$out/home" \
 	  --set PATH "${pkgs.lib.makeBinPath [ init-gnupg gnupg-key-id pkgs.coreutils pkgs.mktemp pkgs.bash pkgs.pass ] }" \
 	  --set STORE_DIR "$out" &&
         true
