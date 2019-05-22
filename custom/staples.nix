@@ -73,26 +73,6 @@ rec {
       pkgs.docker
     ];
   });
-  docker-container-start-and-wait-for-healthy = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "docker-container-start-and-wait-for-healthy";
-    src = ./scripts/docker-container-start-and-wait-for-healthy;
-    dependencies = [
-      pkgs.docker
-      pkgs.coreutils
-    ];
-  });
-  docker-image-load = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "docker-image-load";
-    src = ./scripts/docker-image-load;
-    dependencies = [
-      pkgs.coreutils
-      docker-image-id
-      pkgs.docker
-      uuid-parser
-    ];
-  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
