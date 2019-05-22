@@ -3,6 +3,14 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--host)
+	    HOST="${2}" &&
+		shift 2 &&
+	    ;;
+	--user)
+	    USER="${2}" &&
+		shift 2 &&
+	    ;;
 	--question)
 	    QUESTION="${2}" &&
 		shift 2 &&
@@ -19,5 +27,7 @@ do
     esac &&
 	true
 done &&
-    pass genera
+    PASSWORD=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -n 1) &&
+    echo "${PASSWORD}" | pass insert --multiline "${HOST}/${USER}/${QUESTION}" &&
+    pass generate --no-symbols 
     

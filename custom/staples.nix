@@ -83,6 +83,14 @@ rec {
     name = "build-entrypoint";
     src = ./scripts/build-entrypoint;
   });
+  challenge = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "challenge";
+    src = ./scripts/challenge;
+    dependencies = [
+      pkgs.coreutils
+    ];
+  });
   challenge-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
     name = "challenge-secrets-read-only-pass";
@@ -206,6 +214,7 @@ rec {
       system-secrets-read-only-pass
       pass-expiry
       phonetic
+      challenge
     ];
   });
   install-nixos = (import ./script-derivation.nix {

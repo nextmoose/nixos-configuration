@@ -108,4 +108,5 @@ done &&
     mkdir "${HOME}/.password-store/.extensions" &&
     ln --symbolic $(which phonetic) "${HOME}/.password-store/.extensions/phonetic.bash" &&
     ln --symbolic $(which pass-expiry) "${HOME}/.password-store/.extensions/pass-expiry.bash" &&
+    ln --symbolic $(which challenge) "${HOME}/.password-store/.extensions/challenge.bash" &&
     true
