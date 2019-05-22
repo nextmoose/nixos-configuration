@@ -73,6 +73,11 @@ rec {
       pkgs.docker
     ];
   });
+  build-entrypoint = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "build-entrypoint";
+    src = ./scripts/build-entrypoint;
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";

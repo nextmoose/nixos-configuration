@@ -3,12 +3,12 @@
   name,
   uuid,
   run,
-  entrypoint
+  build-entrypoint
 } :
 pkgs.stdenv.mkDerivation {
   name = name;
   src = ./src;
-  buildInputs = [ pkgs.makeWrapper ];
+  buildInputs = [ pkgs.makeWrapper entrypoint ];
   installPhase = ''
     mkdir "$out" &&
       cp --recursive . "$out/src" &&
@@ -17,10 +17,7 @@ pkgs.stdenv.mkDerivation {
 ${run}
 EOF
       ) &&
-      (cat > "$out/entrypoint.sh" <<EOF
-${entrypoint} \${@} && true
-EOF
-      ) &&
+      build-entrypoint "${entrypoint}" > "${out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
