@@ -18,7 +18,7 @@ ${run}
 EOF
       ) &&
       echo "${entrypoint} " > "$out/entrypoint.sh" &&
-      cat "${STORE_DIR}/src/at.txt" >> "$out/entrypoint.sh" &&
+      cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
