@@ -177,6 +177,7 @@ rec {
       pkgs.pass
       pkgs.coreutils
       gnupg-key-id
+      phonetic
     ];
   });
   init-read-write-pass = (import ./script-derivation.nix {
@@ -194,6 +195,7 @@ rec {
       pkgs.which
       system-secrets-read-only-pass
       pass-expiry
+      phonetic
     ];
   });
   install-nixos = (import ./script-derivation.nix {
