@@ -18,7 +18,7 @@ ${run}
 EOF
       ) &&
       (cat > "$out/entrypoint.sh" <<EOF
-${entrypoint}
+${entrypoint} \${@} && true
 EOF
       ) &&
       cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
