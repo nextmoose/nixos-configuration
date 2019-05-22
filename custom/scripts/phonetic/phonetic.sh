@@ -67,7 +67,7 @@ do
 	    echo -n 'SemiColon' &&
 		true
 	    ;;
-	"\'")
+	"'")
 	    echo -n 'SingleQuote' &&
 		true
 	    ;;
