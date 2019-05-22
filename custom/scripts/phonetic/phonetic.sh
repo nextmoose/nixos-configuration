@@ -107,7 +107,7 @@ do
 	    echo -n 'Colon' &&
 		true
 	    ;;
-	"\"")
+	'\"')
 	    echo -n "DoubleQuote" &&
 		true
 	    ;;
@@ -367,7 +367,10 @@ do
 	    echo -n 'zebra' &&
 		true
 	    ;;
-	
+	*)
+	    echo uNKOWNcHARACTER &&
+		true
+	    ;;
     esac &&
 	echo -n ' ' &&
 	true
