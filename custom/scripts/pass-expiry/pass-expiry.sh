@@ -6,6 +6,7 @@ NOW=$(date +%s) &&
 	LAST_COMMIT_DATE=$(pass git log -1 --format=%ct ${FILE}) &&
 	    AGE=$((${NOW} - ${LAST_COMMIT_DATE})) &&
 	    PASSWORD_SIZE=$(pass show ${FILE%.gpg} | wc -c) &&
+	    LOG_AGE=$(echo ${AGE} | wc -c) &&
 	    echo -e "${FILE%.gpg}\t${AGE}\t${PASSWORD_SIZE}" &&
 	    true
     done &&
