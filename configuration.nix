@@ -91,11 +91,6 @@ in
       pkgs.pass
       staples.nmcli-wifi
       staples.install-nixos
-      (import ./custom/rescue/default.nix {
-      	 pkgs = pkgs;
-      })
-      staples.system-secrets-read-only-pass
-#      staples.system-secrets-read-write-pass
       pkgs.jq
       pkgs.rkt
       pkgs.runc
