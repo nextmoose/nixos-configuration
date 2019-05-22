@@ -29,11 +29,6 @@ rec {
       system-secrets-read-only-pass
     ];
   });
-  challenge-secrets-read-write-pass = (import ./secrets/default.nix {
-    pkgs = pkgs;
-    name = "challenge-secrets-read-write-pass";
-    uuid = uuids.containers.challenge-secrets-read-write-pass;
-  });
   configure-nixos = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
