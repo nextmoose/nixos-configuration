@@ -290,6 +290,7 @@ rec {
       true
     '';
     entrypoint = "${pkgs.pass}/bin/pass";
+    build-entrypoint = build-entrypoint;
   });
   browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
@@ -301,6 +302,7 @@ rec {
 	--branch master
     '';
     entrypoint = "${pkgs.pass}/bin/pass";
+    build-entrypoint = build-entrypoint;
   });
   old-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
@@ -312,5 +314,6 @@ rec {
 	--branch master
     '';
     entrypoint = "${pkgs.pass}/bin/pass";
+    build-entrypoint = build-entrypoint;
   });
 }
