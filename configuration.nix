@@ -83,22 +83,16 @@ in
     extraUsers.user.uid = 1000;
     extraUsers.user.extraGroups = [ "wheel" "docker" ];
     extraUsers.user.packages = [
-      staples.add-ssh-domain
-      staples.init-gnupg
       pkgs.chromium
       pkgs.emacs
       pkgs.git
       pkgs.pass
       staples.nmcli-wifi
       staples.install-nixos
-      pkgs.jq
-      pkgs.rkt
-      pkgs.runc
-      staples.init-dot-ssh
-      pkgs.libxslt
-      staples.browser-secrets-read-only-pass
-      staples.old-secrets-read-only-pass
       pkgs.gnome3.gnome-terminal
+      (import ./rescue/default.nix {
+        pkgs = pkgs;
+      })
     ];
   };
   virtualisation.docker = {
