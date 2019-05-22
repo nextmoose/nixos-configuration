@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation {
 ${run}
 EOF
       ) &&
-      echo "${entrypoint} " > "$out/entrypoint.sh" &&
+#      echo "${entrypoint} " > "$out/entrypoint.sh" &&
       cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
