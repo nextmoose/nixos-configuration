@@ -184,6 +184,7 @@ rec {
       gnupg-key-id
       pkgs.which
       system-secrets-read-only-pass
+      pass-expiry
     ];
   });
   install-nixos = (import ./script-derivation.nix {
