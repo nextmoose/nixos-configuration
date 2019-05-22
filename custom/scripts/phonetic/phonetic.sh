@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pass show "${@" | fold -w1 | while read CHARACTER
+pass show "${@}" | fold -w1 | while read CHARACTER
 do
     case ${CHARACTER} in
 	'!')
@@ -67,10 +67,10 @@ do
 	    echo -n 'SemiColon' &&
 		true
 	    ;;
-	"\'")
-	    echo -n 'SingleQuote' &&
-		true
-	    ;;
+#	"\'")
+#	    echo -n 'SingleQuote' &&
+#		true
+#	    ;;
 	',')
 	    echo -n 'Comma' &&
 		true
@@ -107,10 +107,10 @@ do
 	    echo -n 'Colon' &&
 		true
 	    ;;
-	"\"")
-	    echo -n "DoubleQuote" &&
-		true
-	    ;;
+#	"\"")
+#	    echo -n "DoubleQuote" &&
+#		true
+#	    ;;
 	'<')
 	    echo -n 'LessThan' &&
 		true
