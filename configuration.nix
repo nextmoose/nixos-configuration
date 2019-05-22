@@ -93,6 +93,7 @@ in
       (import ./custom/rescue/default.nix {
         pkgs = pkgs;
       })
+      staples.browser-secrets-read-only-pass
       staples.system-secrets-read-only-pass
       staples.system-secrets-read-write-pass
     ];

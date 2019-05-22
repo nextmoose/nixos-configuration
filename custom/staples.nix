@@ -74,6 +74,13 @@ rec {
       pkgs.docker
     ];
   });
+  browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "browser-secrets-read-only-pass";
+    uuid = "327caca0-abce-4dcc-afc3-e54eee6c9af8";
+    run = "${init-read-only-pass}/bin/init-read-only-pass --remote https://github.com/nextmoose/browser-secrets.git --branch master";
+    entrypoint = "${pkgs.pass}/bin/pass";
+  });
   build-entrypoint = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "build-entrypoint";
@@ -284,17 +291,6 @@ rec {
     name = "system-secrets-read-write-pass";
     uuid = "4926ae80-5a69-4ac9-b42c-ea350021ce0d";
     run = ''${init-read-write-pass}/bin/init-read-write-pass --host origin --host-name github.com --user git --remote origin:nextmoose/secrets.git --branch master --committer-name \"Emory Merryman\" --committer-email emory.merryman@gmail.com'';
-    entrypoint = "${pkgs.pass}/bin/pass";
-  });
-  browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
-    pkgs = pkgs;
-    name = "browser-secrets-read-only-pass";
-    uuid = "327caca0-abce-4dcc-afc3-e54eee6c9af8";
-    run = ''
-      ${init-read-only-pass}/bin/init-read-only-pass \
-        --remote https://github.com/nextmoose/browser-secrets.git \
-	--branch master
-    '';
     entrypoint = "${pkgs.pass}/bin/pass";
   });
   old-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
