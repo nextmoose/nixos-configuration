@@ -93,6 +93,7 @@ in
       (import ./custom/rescue/default.nix {
         pkgs = pkgs;
       })
+      staples.system-secrets-read-only-pass
     ];
   };
   virtualisation.docker = {
