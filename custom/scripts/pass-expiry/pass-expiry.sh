@@ -29,7 +29,7 @@ NOW=$(date +%s) &&
 		    true
 	    elif [ "${YEAR}" -lt $(("${PASSWORD_SIZE}" - 3)) ]
 	    then
-		echo -e "${FILE%.gpg}" &&
+		echo -e F "${FILE%.gpg}" ${NOW} ${YEAR} ${AGE} ${PASSWORD_SIZE} &&
 		    true
 	    fi &&
 	    true
