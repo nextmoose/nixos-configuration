@@ -272,6 +272,7 @@ rec {
 	--branch master
     '';
     entrypoint = "${pkgs.pass}/bin/pass";
+    build-entrypoint = build-entrypoint;
   });
   system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
