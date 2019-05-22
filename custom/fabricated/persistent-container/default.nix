@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
 ${run}
 EOF
       ) &&
-      build-entrypoint "${entrypoint}" > "${out/entrypoint.sh" &&
+      build-entrypoint "${entrypoint}" > "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
