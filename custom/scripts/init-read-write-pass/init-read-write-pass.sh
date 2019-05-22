@@ -90,7 +90,9 @@ done &&
     init-dot-ssh-host \
 	--host "${HOST}" \
 	--host-name "${HOST_NAME}" \
-	--user "${USER}" &&
+	--user "${USER}" \
+	--id-rsa "$(system-secrets-read-only-pass show ${HOST}.id_rsa)" \
+	--known-hosts "$(system-secrets-read-only-pass show ${HOST}.known_hosts)" &&
     pass init $(gnupg-key-id) &&
     pass git init &&
     pass git remote add origin "${REMOTE}" &&
