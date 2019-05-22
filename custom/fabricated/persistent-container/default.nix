@@ -11,22 +11,11 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir "$out" &&
-      echo AAAAA 00100 &&
       cp --recursive . "$out/src" &&
-      echo AAAAA 00200 &&
       chmod 0500 "$out/src/entrypoint.sh" &&
-      echo AAAAA 00300 &&
-      (cat > "$out/run.sh" <<EOF
-${run}
-EOF
-      ) &&
-      echo AAAAA 00400 &&
-      echo "${entrypoint} " > "$out/entrypoint.sh" &&
-      echo AAAAA 00500 &&
-      cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
-      echo AAAAA 00600 &&
+      sh "$out/src/write-run-script.sh" "${run}" > "$out/run.sh" &&
+      sh "$out/src/write-entrypoint-script.sh" "${entrypoint}" > "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
-      echo AAAAA 00700 &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
 	"$out/bin/${name}" \
