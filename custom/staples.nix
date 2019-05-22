@@ -197,6 +197,7 @@ rec {
       pkgs.coreutils
       gnupg-key-id
       pkgs.which
+      system-secrets-read-only-pass
     ];
   });
   install-nixos = (import ./script-derivation.nix {
