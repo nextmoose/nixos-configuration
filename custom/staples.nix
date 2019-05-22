@@ -257,40 +257,6 @@ rec {
       post-commit
     ];
   });
-  start-docker-container = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "start-docker-container";
-    src = ./scripts/start-docker-container;
-    dependencies = [
-      pkgs.docker
-    ];
-  });
-  start-read-only-pass-container = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "start-read-only-pass-container";
-    src = ./scripts/start-read-only-pass-container;
-    dependencies = [
-      pkgs.docker
-      pkgs.coreutils
-      docker-container-start-and-wait-for-healthy
-      uuid-parser
-      docker-image-id
-      docker-container-id
-    ];
-  });
-  start-read-write-pass-container = (import ./script-derivation.nix {
-    pkgs = pkgs;
-    name = "start-read-write-pass-container";
-    src = ./scripts/start-read-write-pass-container;
-    dependencies = [
-      pkgs.docker
-      pkgs.coreutils
-      docker-container-start-and-wait-for-healthy
-      uuid-parser
-      docker-image-id
-      docker-container-id
-    ];
-  });
   system-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
