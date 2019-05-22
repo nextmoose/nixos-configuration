@@ -72,6 +72,7 @@ done &&
     git -C "${WORK_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
+    mkdir "${WORK_DIR}/nixos-configuration/custom/injected" &&
     system-secrets-read-only-pass show gpg.secret.key > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg-private-keys.asc" &&
     system-secrets-read-only-pass show gpg2.secret.key > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg2-private-keys.asc" &&
     system-secrets-read-only-pass show gpg.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg-ownertrust.asc" &&
