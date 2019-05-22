@@ -103,5 +103,5 @@ done &&
     pass git config user.email "${COMMITTER_EMAIL}" &&
     ln --symbolic $(which post-commit) "${HOME}/.password-store/.git/hooks" &&
     mkdir "${HOME}/.password-store/.extensions" &&
-    ln --symbolic $(which pass-expiry) "${HOME}/.password-store/.extensions" &&
+    ln --symbolic $(which pass-expiry) "${HOME}/.password-store/.extensions/pass-expiry.bash" &&
     true

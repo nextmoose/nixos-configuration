@@ -1,3 +1,5 @@
 #!/bin/sh
 
-echo hello
+pass show &&
+    echo hi &&
+    true
