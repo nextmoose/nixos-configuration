@@ -18,6 +18,7 @@ pkgs.stdenv.mkDerivation {
 	  "$out/src/${name}.sh" \
 	  "$out/bin/${name}" \
 	  --set PATH "${pkgs.lib.makeBinPath dependencies}" \
+	  --set PASSWORD_STORE_ENABLE_EXTENSIONS true \
 	  --set STORE_DIR "$out" &&
 	echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
 	(cat > "$out/configuration.xml" <<EOF
