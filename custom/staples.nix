@@ -171,7 +171,7 @@ rec {
     dependencies = [
       init-gnupg
       init-dot-ssh
-      add-ssh-domain
+      init-dot-ssh-host
       post-commit
       pkgs.pass
       pkgs.coreutils
