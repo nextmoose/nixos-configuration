@@ -64,8 +64,8 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
-    system-secrets-read-only-password show alpha &&
-    USER_PASSWORD="$(system-secrets-read-only-password show user/password)" &&
+    system-secrets-read-only-pass show alpha &&
+    USER_PASSWORD="$(system-secrets-read-only-pass show user/password)" &&
     mkdir "${WORK_DIR}/repository" &&
     git -C "${WORK_DIR}/repository" init &&
     git -C "${WORK_DIR}/repository" remote add canonical "${CANONICAL_REMOTE}" &&
