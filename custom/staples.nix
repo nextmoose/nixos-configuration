@@ -273,7 +273,7 @@ rec {
     pkgs = pkgs;
     name = "system-secrets-read-write-pass";
     uuid = "4926ae80-5a69-4ac9-b42c-ea350021ce0d";
-    run = ''${init-read-write-pass}/bin/init-read-write-pass --host origin --host-name github.com --user git --remote origin:nextmoose/secrets.git --branch master --committer-name "Emory Merryman" --committer-email emory.merryman@gmail.com'';
+    run = ''${init-read-write-pass}/bin/init-read-write-pass --host origin --host-name github.com --user git --remote origin:nextmoose/secrets.git --branch master --committer-name \"Emory Merryman\" --committer-email emory.merryman@gmail.com'';
     entrypoint = "${pkgs.pass}/bin/pass";
   });
   browser-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
