@@ -218,6 +218,13 @@ rec {
       pkgs.docker
     ];
   });
+  pass-expiry = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "pass-expiry";
+    src = ./scripts/pass-expiry;
+    dependencies = [
+    ];
+  });
   post-commit = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";

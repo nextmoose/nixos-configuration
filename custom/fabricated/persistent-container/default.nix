@@ -21,6 +21,7 @@ pkgs.stdenv.mkDerivation {
 	"$out/bin/${name}" \
 	--set PATH "${pkgs.lib.makeBinPath [ pkgs.coreutils pkgs.bash ]}" \
 	--set STORE_DIR "$out" \
+	--set PASSWORD_STORE_ENABLE_EXTENSIONS true \
 	--set UUID "${uuid}" &&
       true
   '';
