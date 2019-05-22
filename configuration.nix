@@ -95,6 +95,8 @@ in
       })
       staples.browser-secrets-read-only-pass
       staples.browser-secrets-read-write-pass
+      staples.challenge-secrets-read-only-pass
+      staples.challenge-secrets-read-write-pass
       staples.old-secrets-read-only-pass
       staples.system-secrets-read-only-pass
       staples.system-secrets-read-write-pass

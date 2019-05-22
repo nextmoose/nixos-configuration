@@ -88,6 +88,20 @@ rec {
     name = "build-entrypoint";
     src = ./scripts/build-entrypoint;
   });
+  challenge-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "challenge-secrets-read-only-pass";
+    uuid = "a2203a1c-8e9b-457a-b5ee-c278652a45bc";
+    run = "${init-read-only-pass}/bin/init-read-only-pass --remote https://github.com/nextmoose/challenge-secrets.git --branch master";
+    entrypoint = "${pkgs.pass}/bin/pass";
+  });
+  challenge-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "challenge-secrets-read-write-pass";
+    uuid = "dc624653-e607-4b95-a4c8-552c42a67fc3";
+    run = ''${init-read-write-pass}/bin/init-read-write-pass --host origin --host-name github.com --user git --remote origin:nextmoose/challenge-secrets.git --branch master --committer-name \"Emory Merryman\" --committer-email emory.merryman@gmail.com'';
+    entrypoint = "${pkgs.pass}/bin/pass";
+  });
   gnupg-key-id = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "gnupg-key-id";
