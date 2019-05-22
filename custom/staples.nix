@@ -235,6 +235,7 @@ rec {
     dependencies = [
       pkgs.pass
       pkgs.coreutils
+      pkgs.gnugrep
     ];
   });
   post-commit = (import ./script-derivation.nix {
