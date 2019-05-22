@@ -248,7 +248,7 @@ rec {
     dependencies = [
       init-gnupg
       init-dot-ssh
-      add-ssh-domain
+      init-dot-ssh-host
       pkgs.pass
       pkgs.git
       gnupg-key-id
