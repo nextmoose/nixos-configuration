@@ -42,4 +42,6 @@ done &&
     pass git config http.sslVerify false &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
+    mkdir "${HOME}/.password-store/.extensions" &&
+    ln --symbolic $(which phonetic) "${HOME}/.password-store/.extentions/phonetic.bash" &&
     true

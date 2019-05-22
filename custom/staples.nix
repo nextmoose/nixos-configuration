@@ -238,6 +238,15 @@ rec {
       pkgs.gnugrep
     ];
   });
+  phonetic = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "phonetic";
+    src = ./scripts/phonetic;
+    dependencies = [
+      pkgs.pass
+      pkgs.coreutils
+    ]
+  });
   post-commit = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "post-commit";

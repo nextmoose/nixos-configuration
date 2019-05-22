@@ -104,4 +104,5 @@ done &&
     ln --symbolic $(which post-commit) "${HOME}/.password-store/.git/hooks" &&
     mkdir "${HOME}/.password-store/.extensions" &&
     ln --symbolic $(which pass-expiry) "${HOME}/.password-store/.extensions/pass-expiry.bash" &&
+    ln --symbolic $(which phonetic) "${HOME}/.password-store/.extentions/phonetic.bash" &&
     true

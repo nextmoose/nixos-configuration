@@ -1,6 +1,6 @@
 #!/bin/sh
 
-tee | fold -w1 | while read CHARACTER
+pass show "${@" | fold -w1 | while read CHARACTER
 do
     case ${CHARACTER} in
 	'!')
