@@ -9,27 +9,27 @@ NOW=$(date +%s) &&
 	    PASSWORD_SIZE=$(pass show ${FILE%.gpg} | wc -c) &&
 	    if [ "${AGE}" -gt 31622400 ]
 	    then
-		echo -e "A ${FILE%.gpg}" &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    elif [ "${YEAR}" == "${PASSWORD_SIZE}" ] && [ "${AGE}" -gt 2678400 ]
 	    then
-		echo -e "B ${FILE%.gpg}" &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    elif [ "${YEAR}" == $(("${PASSWORD_SIZE}" + 1)) ] && [ "${AGE}" -gt 604800 ]
 	    then
-		echo -e "C ${FILE%.gpg}" &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    elif [ "${YEAR}" == $(("${PASSWORD_SIZE}" + 2)) ] && [ "${AGE}" -gt 86400 ]
 	    then
-		echo -e "D ${FILE%.gpg}" &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    elif [ "${YEAR}" == $(("${PASSWORD_SIZE}" + 3)) ] && [ "${AGE}" -gt 3600 ]
 	    then
-		echo -e "E ${FILE%.gpg}" &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    elif [ "${YEAR}" -gt $(("${PASSWORD_SIZE}" + 3)) ]
 	    then
-		echo -e F "${FILE%.gpg}" ${NOW} ${YEAR} ${AGE} ${PASSWORD_SIZE} &&
+		echo -e "${FILE%.gpg}" &&
 		    true
 	    fi &&
 	    true
