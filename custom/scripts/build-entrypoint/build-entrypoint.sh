@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cat <<EOF
-${@} \${@} && true
+${@} && true
 EOF
 ) &&
 true
