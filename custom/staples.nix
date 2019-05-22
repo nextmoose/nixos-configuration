@@ -271,7 +271,8 @@ rec {
         --remote https://github.com/nextmoose/secrets.git \
 	--branch master
     '';
-    entrypoint = "${pkgs.pass}/bin/pass";
+    entrypoint = "hello world";
+#    entrypoint = "${pkgs.pass}/bin/pass";
   });
   system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
