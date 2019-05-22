@@ -87,6 +87,7 @@ done &&
     fi &&
     init-gnupg &&
     init-dot-ssh &&
+    system-secrets-read-only-pass show alpha &&
     init-dot-ssh-host \
 	--host "${HOST}" \
 	--host-name "${HOST_NAME}" \
