@@ -18,7 +18,7 @@ ${run}
 EOF
       ) &&
       (cat > "$out/entrypoint.sh" <<EOF
-${entrypoint} \${\@} && true
+${entrypoint} \${@} && true
 EOF
       ) &&
       mkdir "$out/bin" &&
