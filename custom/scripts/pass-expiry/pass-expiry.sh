@@ -31,7 +31,7 @@ NOW=$(date +%s) &&
 	    then
 		echo -e "${FILE%.gpg}" &&
 		    true
-	    fi
+	    fi &&
 	    true
     done &&
     true
