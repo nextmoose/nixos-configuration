@@ -72,12 +72,10 @@ done &&
     git -C "${WORK_DIR}/repository" fetch --depth 1 canonical "${BRANCH}" &&
     git -C "${WORK_DIR}/repository" archive --prefix nixos-configuration/ --output "${WORK_DIR}/nixos-configuration.tar" "canonical/${BRANCH}" &&
     tar --extract --file "${WORK_DIR}/nixos-configuration.tar" --directory "${WORK_DIR}" &&
-
-    system-secrets-read-only-pass show alpha &&
-    system-secrets-read-only-pass show gpg.secret.key > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-private-keys/src/gnupg-private-keys.asc" &&
-    system-secrets-read-only-pass show gpg2.secret.key > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-private-keys/src/gnupg2-private-keys.asc" &&
-    system-secrets-read-only-pass show gpg.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg-ownertrust/src/gnupg-ownertrust.asc" &&
-    system-secrets-read-only-pass show gpg2.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injectable/gnupg2-ownertrust/src/gnupg2-ownertrust.asc" &&
+    system-secrets-read-only-pass show gpg.secret.key > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg-private-keys.asc" &&
+    system-secrets-read-only-pass show gpg2.secret.key > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg2-private-keys.asc" &&
+    system-secrets-read-only-pass show gpg.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg-ownertrust.asc" &&
+    system-secrets-read-only-pass show gpg2.owner.trust > "${WORK_DIR}/nixos-configuration/custom/injected/gnupg2-ownertrust.asc" &&
 
     HASHED_USER_PASSWORD="$(echo ${USER_PASSWORD} | mkpasswd --stdin -m sha-512)" &&
     sed \
