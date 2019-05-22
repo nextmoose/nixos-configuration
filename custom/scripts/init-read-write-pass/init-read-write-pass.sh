@@ -8,6 +8,11 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--host-name)
+	    HOST_NAME="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--user)
 	    USER="${2}" &&
 		shift 2 &&
@@ -49,6 +54,11 @@ done &&
 	echo Unspecified HOST &&
 	    exit 64 &&
 	    true
+    elif [ -z "${HOST_NAME}" ]
+    then
+	echo Unspecified HOST_NAME &&
+	    exit 64 &&
+	    true
     elif [ -z "${USER}" ]
     then
 	echo Unspecified USER &&
@@ -77,11 +87,9 @@ done &&
     fi &&
     init-gnupg &&
     init-dot-ssh &&
-    add-ssh-domain \
-	--domain origin \
-	--id-rsa "${ID_RSA}" \
-	--user-known-hosts "${USER_KNOWN_HOSTS}" \
+    init-dot-ssh-host \
 	--host "${HOST}" \
+	--host-name "${HOST_NAME}" \
 	--user "${USER}" &&
     pass init $(gnupg-key-id) &&
     pass git init &&

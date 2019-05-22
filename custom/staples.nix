@@ -132,54 +132,22 @@ rec {
       pkgs.gnused
       pkgs.jq
     ];
+  });
+  init-dot-ssh-upstream = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "init-dot-ssh-upstream";
+    src = ./scripts/init-dot-ssh-domain;
+    dependencies = [
+      pkgs.coreutils
+      pkgs.gnused
+      pkgs.jq
+    ];
     configuration = {
-      remotes = [
-        {
-          host = "upstream";
-          hostName = "github.com";
-	  user = "git";
-	  identityFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "upstream.id_rsa"
-	  ];
-	  userKnownHostsFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "upstream.known_hosts"
-	  ];
-        }
-        {
-          host = "origin";
-          hostName = "github.com";
-	  user = "git";
-	  identityFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "origin.id_rsa"
-	  ];
-	  userKnownHostsFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "origin.known_hosts"
-	  ];
-        }
-        {
-          host = "report";
-          hostName = "github.com";
-	  user = "git";
-	  identityFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "report.id_rsa"
-	  ];
-	  userKnownHostsFile = [
-	    "${system-secrets-read-only-pass}/bin/system-secrets-read-only-pass"
-	    "show"
-	    "report.known_hosts"
-	  ];
-        }
-      ];
+      name = "upstream";
+      hostName = "github.com";
+      user = "git";
+      identityFile = "";
+      userKnownHostsFile = "";
     };
   });
   init-gnupg = (import ./script-derivation.nix {
@@ -350,6 +318,23 @@ rec {
       ${init-read-only-pass}/bin/init-read-only-pass \
         --remote https://github.com/nextmoose/secrets.git \
 	--branch master
+    '';
+    entrypoint = "${pkgs.pass}/bin/pass";
+  });
+  system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
+    pkgs = pkgs;
+    name = "system-secrets-read-write-pass";
+    uuid = "4926ae80-5a69-4ac9-b42c-ea350021ce0d";
+    run = ''
+      ${init-read-write-pass}/bin/init-read-write-pass \
+        --host origin \
+	--host-name github.com \
+	--user git \
+	--remote origin:nextmoose/secrets.git \
+	--branch master \
+	--committer-name "Emory Merryman" \
+	--committer-email emory.merryman@gmail.com &&
+      true
     '';
     entrypoint = "${pkgs.pass}/bin/pass";
   });
