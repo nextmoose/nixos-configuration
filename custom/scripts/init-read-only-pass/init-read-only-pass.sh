@@ -43,6 +43,5 @@ done &&
     pass git fetch canonical "${BRANCH}" &&
     pass git checkout "canonical/${BRANCH}" &&
     mkdir "${HOME}/.password-store/.extensions" &&
-    ls -alh "${HOME}/.password-store/.extensions" &&
     ln --symbolic $(which phonetic) "${HOME}/.password-store/.extensions/phonetic.bash" &&
     true

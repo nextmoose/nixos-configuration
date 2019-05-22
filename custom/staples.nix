@@ -177,6 +177,7 @@ rec {
       pkgs.pass
       pkgs.coreutils
       gnupg-key-id
+      pkgs.which
       phonetic
     ];
   });
