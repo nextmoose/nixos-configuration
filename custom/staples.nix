@@ -234,6 +234,7 @@ rec {
     src = ./scripts/pass-expiry;
     dependencies = [
       pkgs.pass
+      pkgs.coreutils
     ];
   });
   post-commit = (import ./script-derivation.nix {
