@@ -90,7 +90,7 @@ in
       staples.nmcli-wifi
       staples.install-nixos
       pkgs.gnome3.gnome-terminal
-      (import ./rescue/default.nix {
+      (import ./custom/rescue/default.nix {
         pkgs = pkgs;
       })
     ];
