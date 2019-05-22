@@ -266,11 +266,7 @@ rec {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";
     uuid = "d5949af7-cdeb-4924-9050-435278cbb445";
-    run = ''
-      ${init-read-only-pass}/bin/init-read-only-pass \
-        --remote https://github.com/nextmoose/secrets.git \
-	--branch master
-    '';
+    run = "${init-read-only-pass}/bin/init-read-only-pass --remote https://github.com/nextmoose/secrets.git --branch master";
     entrypoint = "${pkgs.pass}/bin/pass";
   });
   system-secrets-read-write-pass = (import ./fabricated/persistent-container/default.nix {
