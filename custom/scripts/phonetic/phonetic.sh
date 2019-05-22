@@ -107,7 +107,7 @@ do
 	    echo -n 'Colon' &&
 		true
 	    ;;
-	'\"')
+	"\"")
 	    echo -n "DoubleQuote" &&
 		true
 	    ;;
