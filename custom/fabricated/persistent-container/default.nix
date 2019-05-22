@@ -23,8 +23,8 @@ EOF
       echo AAAAA 00400 &&
       echo "${entrypoint} " > "$out/entrypoint.sh" &&
       echo AAAAA 00500 &&
-      cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
-      echo AAAAA 00600 &&
+#      cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
+#      echo AAAAA 00600 &&
 #      mkdir "$out/bin" &&
 #      echo AAAAA 00700 &&
 #      makeWrapper \
