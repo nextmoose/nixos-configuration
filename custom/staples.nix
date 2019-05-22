@@ -50,6 +50,7 @@ rec {
       pkgs.gnutar
       pkgs.mkpasswd
       pkgs.gnused
+      system-secrets-read-only-pass
     ];
   });
   docker-health-check = (import ./script-derivation.nix {

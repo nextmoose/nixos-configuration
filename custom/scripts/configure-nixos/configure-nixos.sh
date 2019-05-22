@@ -64,21 +64,8 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
-    read -s -p "USER PASSWORD? " USER_PASSWORD &&
-    echo &&
-    read -s -p "VERIFY USER PASSWORD? " VERIFY_USER_PASSWORD &&
-    echo &&
-    if [ -z "${USER_PASSWORD}" ]
-    then
-	echo Empty USER_PASSWORD &&
-	    exit 64 &&
-	    true
-    elif [ "${USER_PASSWORD}" != "${VERIFY_USER_PASSWORD}" ]
-    then
-	echo USER_PASSWORD not verified &&
-	    exit 64 &&
-	    true
-    fi &&
+    system-secrets-read-only-password show alpha &&
+    USER_PASSWORD="$(system-secrets-read-only-password show user/password)" &&
     mkdir "${WORK_DIR}/repository" &&
     git -C "${WORK_DIR}/repository" init &&
     git -C "${WORK_DIR}/repository" remote add canonical "${CANONICAL_REMOTE}" &&
