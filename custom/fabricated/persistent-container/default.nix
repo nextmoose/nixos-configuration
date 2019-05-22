@@ -18,10 +18,9 @@ ${run}
 EOF
       ) &&
       (cat > "$out/entrypoint.sh" <<EOF
-${entrypoint} \$\{\@\} && true
+${entrypoint} \${\@} && true
 EOF
       ) &&
-      cat "$out/src/at.txt" >> "$out/entrypoint.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/entrypoint.sh" \
