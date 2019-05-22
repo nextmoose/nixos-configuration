@@ -245,7 +245,7 @@ rec {
     dependencies = [
       pkgs.pass
       pkgs.coreutils
-    ]
+    ];
   });
   post-commit = (import ./script-derivation.nix {
     pkgs = pkgs;
