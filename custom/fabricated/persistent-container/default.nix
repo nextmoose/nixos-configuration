@@ -3,8 +3,7 @@
   name,
   uuid,
   run,
-  entrypoint,
-  build-entrypoint
+  entrypoint
 } :
 pkgs.stdenv.mkDerivation {
   name = name;
