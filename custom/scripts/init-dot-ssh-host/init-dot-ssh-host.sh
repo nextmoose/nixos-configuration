@@ -64,6 +64,7 @@ done &&
 	    exit 64 &&
 	    true
     fi &&
+    echo AAAAAAAAAAAAAA 00100 &&
     sed \
 	-e "s#\${HOST}#${HOST}#" \
 	-e "s#\${HOST_NAME}#${HOST_NAME}#" \
@@ -71,11 +72,15 @@ done &&
 	-e "s#\${HOME}#${HOME}#" \
 	-e "w${HOME}/.ssh/${HOST}.conf" \
 	"${STORE_DIR}/src/config" &&
+    echo AAAAAAAAAAAAAA 00200 &&
     echo "${ID_RSA}" > "${HOME}/.ssh/${HOST}.id_rsa" &&
+    echo AAAAAAAAAAAAAA 00300 &&
     echo "${USER_KNOWN_HOSTS}" > "${HOME}/.ssh/${HOST}.known_hosts" &&
+    echo AAAAAAAAAAAAAA 00400 &&
     chmod \
 	0400 \
 	"${HOME}/.ssh/${HOST}.conf" \
 	"${HOME}/.ssh/${HOST}.id_rsa" \
 	"${HOME}/.ssh/${HOST}.known_hosts" &&
+    echo AAAAAAAAAAAAAA 00500 &&
     true
