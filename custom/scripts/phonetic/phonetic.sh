@@ -67,10 +67,10 @@ do
 	    echo -n 'SemiColon' &&
 		true
 	    ;;
-#	"\'")
-#	    echo -n 'SingleQuote' &&
-#		true
-#	    ;;
+	"\'")
+	    echo -n 'SingleQuote' &&
+		true
+	    ;;
 	',')
 	    echo -n 'Comma' &&
 		true
@@ -107,10 +107,10 @@ do
 	    echo -n 'Colon' &&
 		true
 	    ;;
-#	"\"")
-#	    echo -n "DoubleQuote" &&
-#		true
-#	    ;;
+	"\"")
+	    echo -n "DoubleQuote" &&
+		true
+	    ;;
 	'<')
 	    echo -n 'LessThan' &&
 		true
@@ -121,6 +121,14 @@ do
 	    ;;
 	'?')
 	    echo -n 'QuestionMark' &&
+		true
+	    ;;
+	'`')
+	    echo -n 'Grave' &&
+		true
+	    ;;
+	'~')
+	    echo -n 'Tilde' &&
 		true
 	    ;;
 	'1')
@@ -368,7 +376,7 @@ do
 		true
 	    ;;
 	*)
-	    echo uNKOWNcHARACTER &&
+	    echo -n uNKNOWN &&
 		true
 	    ;;
     esac &&
