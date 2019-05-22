@@ -113,10 +113,10 @@ rec {
       pkgs.jq
     ];
   });
-  init-dot-ssh-upstream = (import ./script-derivation.nix {
+  init-dot-ssh-host = (import ./script-derivation.nix {
     pkgs = pkgs;
-    name = "init-dot-ssh-upstream";
-    src = ./scripts/init-dot-ssh-domain;
+    name = "init-dot-ssh-host";
+    src = ./scripts/init-dot-ssh-host;
     dependencies = [
       pkgs.coreutils
       pkgs.gnused
