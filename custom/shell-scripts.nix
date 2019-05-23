@@ -3,7 +3,7 @@
   staples
 } :
 {
-  pass = (import ./script-derivation.nix {
+  read-only-pass = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "pass";
     src = ./scripts/pass;
