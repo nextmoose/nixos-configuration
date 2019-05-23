@@ -6,7 +6,6 @@ export HOME="$(mktemp -d)" &&
 	    true
     } &&
     trap cleanup EXIT &&
-    echo AAA 00100 &&
     cd "${HOME}" &&
     init-gnupg &&
 #    pass init "$(gnupg-key-id)" &&
