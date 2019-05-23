@@ -330,6 +330,7 @@ rec {
     dependencies = [
       pkgs.git
       init-dot-ssh
+      init-dot-ssh-host
       pkgs.coreutils
       pkgs.bash
       pkgs.emacs
