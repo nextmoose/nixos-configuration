@@ -332,6 +332,8 @@ rec {
       init-dot-ssh
       pkgs.coreutils
       pkgs.bash
+      pkgs.emacs
+      pkgs.atom
     ];
   });
   dev-env = (import ./fabricated/transient-container/default.nix {
