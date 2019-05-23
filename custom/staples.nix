@@ -229,8 +229,8 @@ rec {
     name = "pass";
     src = ./scripts/pass;
     dependencies = [
-      docker-container-id
-      pkgs.docker
+      pkgs.coreutils
+      pkgs.bash
     ];
   });
   pass-expiry = (import ./script-derivation.nix {
