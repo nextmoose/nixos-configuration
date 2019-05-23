@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo AAA 00100 &&
 export HOME="$(mktemp -d)" &&
     cleanup() {
 	rm --recursive --force "${HOME}" &&
