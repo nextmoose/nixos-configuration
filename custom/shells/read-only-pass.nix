@@ -7,5 +7,5 @@
   branch ? "master"
 }:
 pkgs.mkShell {
-  shellHook = "${staples.shells.homer}/bin/homer";
+  shellHook = "${staples.shells.read-only-pass}/bin/read-only-pass";
 }
