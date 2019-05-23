@@ -102,6 +102,7 @@ in
       staples.system-secrets-read-write-pass
       pkgs.jq
       staples.foo
+      staples.dev-env
     ];
   };
   virtualisation.docker = {

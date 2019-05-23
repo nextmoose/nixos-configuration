@@ -321,6 +321,21 @@ rec {
   foo = (import ./fabricated/transient-container/default.nix {
     pkgs = pkgs;
     name = "foo";
-    entrypoint = ''FOO=BAR ${pkgs.bash}/bin/bash'';
+    entrypoint = ''${pkgs.bash}/bin/bash'';
+  });
+  development-environment = (import ./script-derivation.nix {
+    pkgs = pkgs;
+    name = "development-environment";
+    src = ./scripts/development-environment;
+    dependencies = [
+      pkgs.git
+      init-dot-ssh
+      pkgs.coreutils
+    ];
+  });
+  dev-env = (import ./fabricated/transient-container/default.nix {
+    pkgs = pkgs;
+    name = "development-environment";
+    entrypoint = ''${development-environment}/bin/development-environment'';
   });
 }
