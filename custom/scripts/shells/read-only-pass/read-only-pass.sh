@@ -8,7 +8,7 @@ export HOME="$(mktemp -d)" &&
     trap cleanup EXIT &&
     echo AAA 00100 &&
     cd "${HOME}" &&
-#    init-gnupg &&
+    init-gnupg &&
 #    pass init "$(gnupg-key-id)" &&
 #    pass git init &&
 #    pass git remote add canonical "${1}" &&
