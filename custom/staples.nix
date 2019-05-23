@@ -305,6 +305,8 @@ rec {
       dependencies = [
         pkgs.mktemp
 	pkgs.coreutils
+	pkgs.bash
+	pkgs.cowsay
       ];
     });
     read-only-pass = (import ./script-derivation.nix {
