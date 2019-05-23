@@ -1,6 +1,6 @@
 {
   pkgs ? import <nixpkgs> {},
-  staples ? import ./staples.nix {
+  staples ? import ../staples.nix {
     pkgs = pkgs;
   },
   canonical-remote ? "https://github.com/nextmoose/secrets.git",
