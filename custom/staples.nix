@@ -300,8 +300,8 @@ rec {
   shells = {
     read-only-pass = (import ./script-derivation.nix {
       pkgs = pkgs;
-      name = "pass";
-      src = ./scripts/pass;
+      name = "read-only-pass";
+      src = ./scripts/shells/read-only-pass;
       dependencies = [
         pkgs.coreutils
         pkgs.bash
