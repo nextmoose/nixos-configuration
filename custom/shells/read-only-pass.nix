@@ -1,7 +1,11 @@
 {
   pkgs ? import <nixpkgs> {},
+  staples ? import ./staples.nix {
+    pkgs = pkgs;
+  },
   shell-scripts ? import /etc/nixos/custom/shell-scripts.nix {
     pkgs = pkgs;
+    staples = staples;
   },
   canonical-remote ? "https://github.com/nextmoose/secrets.git",
   branch ? "master"
