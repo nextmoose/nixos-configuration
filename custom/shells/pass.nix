@@ -3,17 +3,10 @@
   staples ? import /etc/nixos/custom/staples.nix {
     pkgs = pkgs;
   },
-  foo ? "alaska"
+  canonical-url ? "https://github.com/nextmoose/secrets.git",
+  branch ? "master"
 }:
 pkgs.mkShell {
-  inputsFrom = [ pkgs.bash ];
-  buildInputs = [ pkgs.bash pkgs.cowsay ];
-  shellHook = ''
-    echo hello ${foo} | cowsay &&
-      cleanup() {
-        echo bye | cowsay &&
-	  true
-      } &&
-      trap cleanup EXIT
-  '';
+  buildInputs = [ pkgs.cowsay pkgs.pass pkgs.mktemp ];
+  shellHook = "${staples.pass}/bin/pass ";
 }

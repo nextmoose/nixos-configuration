@@ -1,13 +1,10 @@
 #!/bin/sh
 
-UUID="${1}" &&
-    shift &&
-    docker \
-	container \
-	exec \
-	--interactive \
-	--tty \
-	$(docker-container-id "${UUID}") \
-	pass \
-	${@} &&
+export HOME="$(mktemp -d)" &&
+    cleanup(){
+	rm --recursive --force "${HOME}" &&
+	    true
+    } &&
+    trap cleanup EXIT &&
+    bash &&
     true
