@@ -297,6 +297,17 @@ rec {
       post-commit
     ];
   });
+  shells = {
+    read-only-pass = (import ./script-derivation.nix {
+      pkgs = pkgs;
+      name = "pass";
+      src = ./scripts/pass;
+      dependencies = [
+        pkgs.coreutils
+        pkgs.bash
+      ];
+    });
+  };
   system-secrets-read-only-pass = (import ./fabricated/persistent-container/default.nix {
     pkgs = pkgs;
     name = "system-secrets-read-only-pass";

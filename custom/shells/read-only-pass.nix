@@ -3,14 +3,10 @@
   staples ? import ./staples.nix {
     pkgs = pkgs;
   },
-  shell-scripts ? import /etc/nixos/custom/shell-scripts.nix {
-    pkgs = pkgs;
-    staples = staples;
-  },
   canonical-remote ? "https://github.com/nextmoose/secrets.git",
   branch ? "master"
 }:
 pkgs.mkShell {
-  buildInputs = [ shell-scripts ];
-  shellHook = "${shell-scripts.pass}/bin/pass ${canonical-remote} ${branch}";
+  buildInputs = [ staples.read-only-pass ];
+  shellHook = "${staples.read-only-pass}/bin/read-only-pass ${canonical-remote} ${branch}";
 }
