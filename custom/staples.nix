@@ -177,11 +177,11 @@ rec {
     configuration = {
       gpg = {
         key = ./injected/gnupg-private-keys.asc;
-	trust = ./injected/gnupg-ownertrust.asc;
+	ownertrust = ./injected/gnupg-ownertrust.asc;
       };
       gpg2 = {
         key = ./injected/gnupg2-private-keys.asc;
-	trust = ./injected/gnupg2-ownertrust.asc;
+	ownertrust = ./injected/gnupg2-ownertrust.asc;
       };
     };
   });
