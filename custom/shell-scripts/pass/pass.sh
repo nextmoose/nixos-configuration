@@ -6,6 +6,5 @@ export HOME="$(mktemp -d)" &&
 	    true
     } &&
     trap cleanup EXIT &&
-    echo ${1} &&
     bash &&
     true

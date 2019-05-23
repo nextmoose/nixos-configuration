@@ -1,12 +1,11 @@
 {
   pkgs ? import <nixpkgs> {},
-  staples ? import /etc/nixos/custom/staples.nix {
+  shell-scripts ? import /etc/nixos/custom/shell-scripts.nix {
     pkgs = pkgs;
-  },
-  canonical-url ? "https://github.com/nextmoose/secrets.git",
-  branch ? "master"
+    canonical-remote ? https://github.com/nextmoose/secrets.git;
+  }
 }:
 pkgs.mkShell {
-  buildInputs = [ pkgs.cowsay pkgs.pass pkgs.mktemp ];
-  shellHook = "${staples.pass}/bin/pass ";
+  buildInputs = [ shell-scripts ];
+  shellHook = "${shell-scripts.pass}/bin/pass ${canonical-remote}";
 }
