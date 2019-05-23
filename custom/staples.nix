@@ -114,18 +114,6 @@ rec {
       pkgs.coreutils
     ];
   });
-  gnupg-ownertrust = (import ./injectable/gnupg-ownertrust/default.nix {
-    pkgs = pkgs;
-  });
-  gnupg2-ownertrust = (import ./injectable/gnupg2-ownertrust/default.nix {
-    pkgs = pkgs;
-  });
-  gnupg-private-keys = (import ./injectable/gnupg-private-keys/default.nix {
-    pkgs = pkgs;
-  });
-  gnupg2-private-keys = (import ./injectable/gnupg2-private-keys/default.nix {
-    pkgs = pkgs;
-  });
   homer = (import ./script-derivation.nix {
     pkgs = pkgs;
     name = "homer";
