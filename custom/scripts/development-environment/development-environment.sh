@@ -22,7 +22,7 @@ init-dot-ssh &&
     mkdir project &&
     git -C project init &&
     git -C project remote add upstream upstream:rebelplutonium/nixos-configuration.git &&
-    git -C project remote add upstream origin:nextmoose/nixos-configuration.git &&
+    git -C project remote add origin origin:nextmoose/nixos-configuration.git &&
     git -C project remote add report report:rebelplutonium/nixos-configuration.git &&
     git -C project committer.name "Emory Merryman" &&
     git -C project committer.email "emory.merryman@gmail.com" &&
