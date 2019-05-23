@@ -377,6 +377,7 @@ rec {
       src = ./scripts/user/homer;
       dependencies = [
         pkgs.nix
+	pkgs.coreutils
       ];
     });
   };
