@@ -298,6 +298,15 @@ rec {
     ];
   });
   shells = {
+    homer = (import ./script-derivation.nix {
+      pkgs = pkgs;
+      name = "homer";
+      src = ./scripts/shells/homer;
+      dependencies = [
+        pkgs.mktemp
+	pkgs.coreutils
+      ]
+    });
     read-only-pass = (import ./script-derivation.nix {
       pkgs = pkgs;
       name = "read-only-pass";
