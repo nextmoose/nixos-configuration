@@ -1,12 +1,12 @@
 #!/bin/sh
 
-echo AAA 00100 &&
 export HOME="$(mktemp -d)" &&
     cleanup() {
 	rm --recursive --force "${HOME}" &&
 	    true
     } &&
     trap cleanup EXIT &&
+    echo AAA 00100 &&
     cd "${HOME}" &&
 #    init-gnupg &&
 #    pass init "$(gnupg-key-id)" &&
