@@ -8,5 +8,6 @@ export HOME="$(mktemp -d)" &&
     } &&
     trap cleanup EXIT &&
     echo hello | cowsay &&
+    cd "${HOME}" &&
     bash &&
     true
