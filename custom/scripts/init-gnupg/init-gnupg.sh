@@ -1,7 +1,7 @@
 #!/bin/sh
 
 jq -r . ${STORE_DIR}/configuration.json &&
-    echo STORE_DIR} &&
+    echo ${STORE_DIR} &&
     echo A 00000 &&
     gpg --batch --import $(jq -r .gpg.key ${STORE_DIR}/configuration.json) &&
     echo A 00100 &&
