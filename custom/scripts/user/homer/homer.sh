@@ -1,4 +1,4 @@
 #!/bin/sh
 
-nix-shell --pure --run homer /etc/nixos/custom/shells/homer.nix &&
+nix-shell --pure /etc/nixos/custom/shells/homer.nix &&
     true

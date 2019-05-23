@@ -160,12 +160,12 @@ rec {
     ];
     configuration = {
       gpg = {
-        key = ./injected/gnupg-private-keys.asc;
-	ownertrust = ./injected/gnupg-ownertrust.asc;
+        key = /etc/nixos/custom/injected/gnupg-private-keys.asc;
+	ownertrust = /etc/nixos/custom/injected/gnupg-ownertrust.asc;
       };
       gpg2 = {
-        key = ./injected/gnupg2-private-keys.asc;
-	ownertrust = ./injected/gnupg2-ownertrust.asc;
+        key = /etc/nixos/custom/injected/gnupg2-private-keys.asc;
+	ownertrust = /etc/nixos/custom/injected/gnupg2-ownertrust.asc;
       };
     };
   });
