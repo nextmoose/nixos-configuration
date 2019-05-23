@@ -7,6 +7,6 @@
   branch ? "master"
 }:
 pkgs.mkShell {
-  buildInputs = [ staples.read-only-pass ];
-  shellHook = "${staples.read-only-pass}/bin/read-only-pass ${canonical-remote} ${branch}";
+  buildInputs = [ staples.shells.read-only-pass ];
+  shellHook = "${staples.shells.read-only-pass}/bin/read-only-pass ${canonical-remote} ${branch}";
 }
