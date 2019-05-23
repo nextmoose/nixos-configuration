@@ -305,6 +305,11 @@ rec {
       dependencies = [
         pkgs.coreutils
         pkgs.bash
+	init-gnupg
+	pkgs.pass
+	pre-commit
+	pkgs.which
+	gnupg-key-id
       ];
     });
   };
