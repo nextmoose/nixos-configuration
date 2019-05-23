@@ -157,10 +157,6 @@ rec {
     dependencies = [
       pkgs.gnupg
       pkgs.jq
-      gnupg-private-keys
-      gnupg2-private-keys
-      gnupg-ownertrust
-      gnupg2-ownertrust
     ];
     configuration = {
       gpg = {
