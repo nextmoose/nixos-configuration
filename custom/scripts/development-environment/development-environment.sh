@@ -4,15 +4,21 @@ init-dot-ssh &&
     init-dot-ssh-host \
 	--host upstream \
 	--host-name github.com \
-	--user git &&
+	--user git \
+	--id-rsa "$(system-secrets-read-only-pass show upstream.id_rsa)" \
+	--known-hosts "$(system-secrets-read-only-pass show upstream.known_hosts)" &&
     init-dot-ssh-host \
 	--host origin \
 	--host-name github.com \
-	--user git &&
+	--user git \
+	--id-rsa "$(system-secrets-read-only-pass show origin.id_rsa)" \
+	--known-hosts "$(system-secrets-read-only-pass show origin.known_hosts)" &&
     init-dot-ssh-host \
 	--host report \
 	--host-name github.com \
-	--user git &&
+	--user git \
+	--id-rsa "$(system-secrets-read-only-pass show report.id_rsa)" \
+	--known-hosts "$(system-secrets-read-only-pass show report.known_hosts)" &&
     mkdir project &&
     git -C project init &&
     git -C project remote add upstream upstream:rebelplutonium/nixos-configuration.git &&
