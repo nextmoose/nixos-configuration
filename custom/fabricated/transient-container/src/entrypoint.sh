@@ -6,5 +6,6 @@ export HOME=$(mktemp -d) &&
 	    true
     } &&
     trap cleanup EXIT &&
+    cd "${HOME}" &&
     ${ENTRYPOINT} &&
     true
