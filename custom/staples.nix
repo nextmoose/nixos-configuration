@@ -331,11 +331,12 @@ rec {
       pkgs.git
       init-dot-ssh
       pkgs.coreutils
+      pkgs.bash
     ];
   });
   dev-env = (import ./fabricated/transient-container/default.nix {
     pkgs = pkgs;
-    name = "development-environment";
+    name = "dev-env";
     entrypoint = ''${development-environment}/bin/development-environment'';
   });
 }
