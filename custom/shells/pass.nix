@@ -2,16 +2,17 @@
   pkgs ? import <nixpkgs> {},
   staples ? import /etc/nixos/custom/staples.nix {
     pkgs = pkgs;
-  }
+  },
+  foo ? "alaska"
 }:
 pkgs.mkShell {
   inputsFrom = [ pkgs.bash ];
   buildInputs = [ pkgs.bash pkgs.cowsay ];
   shellHook = ''
-    echo hello | cowsay &&
+    echo hello ${foo} | cowsay &&
       cleanup() {
         echo bye | cowsay &&
-	 true
+	  true
       } &&
       trap cleanup EXIT
   '';
