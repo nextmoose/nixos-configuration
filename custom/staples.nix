@@ -321,6 +321,6 @@ rec {
   foo = (import ./fabricated/transient-container/default.nix {
     pkgs = pkgs;
     name = "foo";
-    entrypoint = ''${pkgs.bash}/bin/bash'';
+    entrypoint = ''${init-dot-ssh}/bin/init-dot-ssh && ${pkgs.bash}/bin/bash'';
   });
 }
