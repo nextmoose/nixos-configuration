@@ -331,6 +331,7 @@ rec {
       pkgs.git
       init-dot-ssh
       init-dot-ssh-host
+      system-secrets-read-only-pass
       pkgs.coreutils
       pkgs.bash
       pkgs.emacs
