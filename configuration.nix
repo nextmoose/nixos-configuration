@@ -101,6 +101,7 @@ in
       staples.system-secrets-read-only-pass
       staples.system-secrets-read-write-pass
       pkgs.jq
+      staples.foo
     ];
   };
   virtualisation.docker = {

@@ -318,4 +318,9 @@ rec {
     run = ''${init-read-only-pass}/bin/init-read-only-pass --remote https://github.com/desertedscorpion/passwordstore.git --branch master'';
     entrypoint = "${pkgs.pass}/bin/pass";
   });
+  foo = (import ./fabricated/transient-container/default.nix {
+    pkgs = pkgs;
+    name = "foo";
+    entrypoint = ''${pkgs.bash}/bin/bash'';
+  });
 }
