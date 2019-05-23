@@ -370,4 +370,14 @@ rec {
     name = "dev-env";
     entrypoint = ''${development-environment}/bin/development-environment'';
   });
+  user = {
+    homer = (import ./script-derivation.nix {
+      pkgs = pkgs;
+      name = "homer";
+      src = ./scripts/user/homer;
+      dependencies = [
+        pkgs.nix
+      ]
+    });
+  };
 }

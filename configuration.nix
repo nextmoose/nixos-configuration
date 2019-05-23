@@ -103,6 +103,7 @@ in
       pkgs.jq
       staples.foo
       staples.dev-env
+      staples.user.homer
     ];
   };
   virtualisation.docker = {
