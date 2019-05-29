@@ -6,6 +6,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./custom/software-configuration.nix
+    ./public/software-configuration.nix
   ];
 }

@@ -76,7 +76,7 @@
       extraGroups = [ "wheel" "docker" ];
       packages = [
       ];
-      passwordFile = ./injected/password.asc
+      passwordFile = ../private/user-password.hashed.asc;
     };
   };
 }
