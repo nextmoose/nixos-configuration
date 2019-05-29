@@ -76,7 +76,7 @@
       extraGroups = [ "wheel" "docker" ];
       packages = [
       ];
-      passwordFile = "../private/user-password.hashed.asc";
+      password = "$6$grTXox.mSau$BlWV8Yuv3KBXlmg6T/giApXNXM.vkm2YnpTtTw1iduMMguu8zCcp5AR/JvWM6N33A0Dn5RrcffquDd6OhNVLj1";
     };
   };
 }
