@@ -1,5 +1,0 @@
-Host ${DOMAIN}
-HostName ${HOST}
-User ${USER}
-IdentityFile ${HOME}/.ssh/${DOMAIN}.id_rsa
-UserKnownHostsFile ${HOME}/.ssh/${DOMAIN}.known_hosts
