@@ -58,7 +58,7 @@ done &&
     cp \
 	--recursive \
 	"${SOURCE_DIR}/configuration.nix" \
-	"${SOURCE_DIR}/custom" \
+	"${SOURCE_DIR}/public" \
 	"${WORK_DIR}" &&
     mkdir "${WORK_DIR}/private" &&
     echo "${USER_PASSWORD}" | mkpasswd --stdin -m sha-512 > "${WORK_DIR}/private/user-password.hashed.asc" && 
