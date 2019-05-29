@@ -16,9 +16,6 @@
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
-  imports = [
-    ./custom/password.nix
-  ];
   networking = {
     networkmanager = {
       enable = true;
@@ -73,11 +70,14 @@
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
-    extraUsers.user.isNormalUser = true;
-    extraUsers.user.uid = 1000;
-    extraUsers.user.extraGroups = [ "wheel" "docker" ];
-    extraUsers.user.packages = [
-    ];
+    extraUsers.user = {
+      isNormalUser = true;
+      uid = 1000;
+      extraGroups = [ "wheel" "docker" ];
+      packages = [
+      ];
+      passwordFile = ./injected/password.asc
+    };
   };
 }
 # lpadmin -p myprinter -E -v ipp://10.1.10.113/ipp/print -m everywhere
