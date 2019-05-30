@@ -22,22 +22,17 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
   testScript = ''
     $machine->start;
     $machine->waitForUnit('multi-user.target');
+    $machine->waitUntilSucceeds("pgrep -f 'agetty.*tty1'");
+    $machine->screenshot("postboot");
+
     $machine->sendChars("user\n");
-    $machine->waitUntilSucceeds("sleep 1");
+    $machine->waitUntilTTYMatches(1, "login: user");
+    $machine->waitUntilSucceeds("pgrep login");
+    $machine->waitUntilTTYMatches(1, "Password: ");
     $machine->sendChars("password\n");
-    $machine->waitUntilSucceeds("sleep 2");
-    $machine->sendChars("mkdir /tmp/source\n");
-    $machine->sendChars("mkdir /tmp/source/public\n");
-    $machine->sendChars("touch /tmp/source/configuration.nix\n");
-    $machine->sendChars("mkdir /tmp/work\n");
-    $machine->sendChars("configure-nixos --work-dir /tmp/work --source-dir /tmp/source\n");
-    $machine->waitUntilSucceeds("sleep 3");
-    $machine->screenshot('shot00100');
-    if($machine->getScreenText('whatever', 'wtf') == "Y") {
-      print("YES");
-    }else{
-      print("NO");
-    }
+    $machine->waitUntilSucceeds("pgrep -u user bash");
+    $machine->screenshot("postlogin");
+
     $machine->shutdown;
   '';
 }
