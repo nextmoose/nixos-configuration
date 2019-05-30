@@ -3,11 +3,6 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--work-dir)
-	    WORK_DIR="${2}" &&
-		shift 2 &&
-		true
-	    ;;
 	--source-dir)
 	    SOURCE_DIR="${2}" &&
 		shift 2 &&
@@ -15,6 +10,11 @@ do
 	    ;;
 	--user-password)
 	    USER_PASSWORD="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--work-dir)
+	    WORK_DIR="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -29,17 +29,7 @@ do
     esac &&
 	true
 done &&
-    if [ -z "${WORK_DIR}" ]
-    then
-	echo Unspecified WORK_DIR &&
-	    exit 64 &&
-	    true
-    elif [ ! -d "${WORK_DIR}" ]
-    then
-	echo Nonexistent WORK_DIR &&
-	    exit 64 &&
-	    true
-    elif [ -z "${SOURCE_DIR}" ]
+    if [ -z "${SOURCE_DIR}" ]
     then
 	echo Unspecified SOURCE_DIR &&
 	    exit 64 &&
@@ -52,6 +42,16 @@ done &&
     elif [ -z "${USER_PASSWORD}" ]
     then
 	echo Unspecified USER_PASSWORD &&
+	    exit 64 &&
+	    true
+    elif [ -z "${WORK_DIR}" ]
+    then
+	echo Unspecified WORK_DIR &&
+	    exit 64 &&
+	    true
+    elif [ ! -d "${WORK_DIR}" ]
+    then
+	echo Nonexistent WORK_DIR &&
 	    exit 64 &&
 	    true
     fi &&
