@@ -25,13 +25,15 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
     $machine->waitUntilSucceeds("pgrep -f 'agetty.*tty1'");
     $machine->screenshot("postboot");
 
-    $machine->sendChars("user\n");
-    $machine->waitUntilTTYMatches(1, "login: user");
-    $machine->waitUntilSucceeds("pgrep login");
-    $machine->waitUntilTTYMatches(1, "Password: ");
-    $machine->sendChars("password\n");
-    $machine->waitUntilSucceeds("pgrep -u user bash");
-    $machine->screenshot("postlogin");
+    subtest "login", sub {
+      $machine->sendChars("user\n");
+      $machine->waitUntilTTYMatches(1, "login: user");
+      $machine->waitUntilSucceeds("pgrep login");
+      $machine->waitUntilTTYMatches(1, "Password: ");
+      $machine->sendChars("password\n");
+      $machine->waitUntilSucceeds("pgrep -u user bash");
+      $machine->screenshot("postlogin");
+    };
 
     $machine->shutdown;
   '';
