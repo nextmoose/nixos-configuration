@@ -25,6 +25,12 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
     $machine->waitUntilSucceeds("sleep 10");
     $machine->sendChars("password\n");
     $machine->waitUntilSucceeds("sleep 10");
+    $machine->sendChars("mkdir /tmp/source\n");
+    $machine->sendChars("mkdir /tmp/source/public\n");
+    $machine->sendChars("touch /tmp/source/configuration.nix\n");
+    $machine->sendChars("mkdir /tmp/work\n");
+    $machine->sendChars("configure-nixos --work-dir /tmp/wor --source-dir /tmp/source\n");
+    $machine->waitUntilSucceeds("sleep 10");
     $machine->screenshot('shot00100');
     $machine->shutdown;
   '';
