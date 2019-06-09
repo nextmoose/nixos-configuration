@@ -1,8 +1,5 @@
 import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e256/nixos/nixos/tests/make-test.nix {
   machine = { pkgs, ... } : {
-    environment.systemPackages = [
-      pkgs.which
-    ];
     users = {
       mutableUsers = false;
       extraUsers.user = {
@@ -18,7 +15,6 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       };
     };
   };
-  enableOCR = true;
   testScript = ''
     $machine->start;
     $machine->waitForUnit('multi-user.target');
@@ -54,10 +50,16 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilSucceeds("chown user:users /tmp/work");
       $machine->waitUntilSucceeds("touch /tmp/source/configuration.nix");
       $machine->waitUntilSucceeds("mkdir /tmp/source/public");
-      $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password password --work-dir /tmp/work\n");
+      $machine->waitUntilSucceeds("touch /tmp/source/public/stuff.txt");
+      $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password 4dcf1fe1-7973-467e-beb9-222eaeeb21ab --work-dir /tmp/work\n");
       $machine->waitForFile("/tmp/work/configuration.nix");
+      $machine->waitForFile("/tmp/work/public/stuff.txt");
+      $machine->waitForFile("/tmp/work/private/user-password.hashed.asc");
       $machine->screenshot("post5");
 
+      $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
+      $machine->waitUntilSucceeds("sleep 20s");
+      $machine->screenshot("post6");
 
     $machine->shutdown;
   '';
