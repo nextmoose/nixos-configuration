@@ -62,7 +62,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->screenshot("shot7");
 
       $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
-      $machine->waitUntilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
+#      $machine->waitUntilTTYMatches(1, '$6$D1V7GGg0DjvHW4TY$v163wrp9KU/GBooAuoxD7tzG.NSjS71AExx.I0aWtrSPZ.CBRSPS3e9Wp6l8gTkjen4u3mL4NtyrHGPbWJ5B50');
       $machine->screenshot("short8");
 
     $machine->shutdown;
