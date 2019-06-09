@@ -55,7 +55,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilSucceeds("touch /tmp/source/configuration.nix");
       $machine->waitUntilSucceeds("mkdir /tmp/source/public");
       $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password password --work-dir /tmp/work\n");
-      $machine->waitUntilSucceeds("sleep 10s");
+      $machine->waitForFile("/tmp/work/configuration.nix");
       $machine->screenshot("post5");
 
 
