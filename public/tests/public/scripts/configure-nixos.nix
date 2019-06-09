@@ -48,7 +48,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
 
       $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY --source-dir /tmp/source --user-password password\n");
       $machine->waitUntilTTYMatches(1, "Unspecified WORK_DIR");
-      $machine->screenshot("post4");
+      $machine->screenshot("shot6");
 
       $machine->waitUntilSucceeds("mkdir /tmp/work");
       $machine->waitUntilSucceeds("chown user:users /tmp/work");
@@ -59,11 +59,11 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitForFile("/tmp/work/configuration.nix");
       $machine->waitForFile("/tmp/work/public/73e14034-7857-4a49-b437-55ac609630e1");
       $machine->waitForFile("/tmp/work/private/user-password.hashed.asc");
-      $machine->screenshot("post5");
+      $machine->screenshot("shot7");
 
       $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
-#      $machine->waitUntilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
-      $machine->screenshot("post6");
+      $machine->waitUntilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
+      $machine->screenshot("short8");
 
     $machine->shutdown;
   '';
