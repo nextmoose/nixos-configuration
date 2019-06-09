@@ -6,5 +6,9 @@ rec {
     pkgs = pkgs;
     name = "configure-nixos";
     src = scripts/configure-nixos;
+    dependencies = [
+      pkgs.coreutils
+      pkgs.mkpasswd
+    ];
   });
 }

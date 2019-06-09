@@ -10,7 +10,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
         uid = 1000;
         extraGroups = [ "wheel" ];
         packages = [
-          (import ../../../../staples.nix {
+          (import ../../../staples.nix {
             pkgs = pkgs;
           }).configure-nixos
         ];
@@ -49,6 +49,14 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password password\n");
       $machine->waitUntilTTYMatches(1, "Unspecified WORK_DIR");
       $machine->screenshot("post4");
+
+      $machine->waitUntilSucceeds("mkdir /tmp/work");
+      $machine->waitUntilSucceeds("chown user:users /tmp/work");
+      $machine->waitUntilSucceeds("touch /tmp/source/configuration.nix");
+      $machine->waitUntilSucceeds("mkdir /tmp/source/public");
+      $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password password --work-dir /tmp/work\n");
+      $machine->waitUntilSucceeds("sleep 10s");
+      $machine->screenshot("post5");
 
 
     $machine->shutdown;
