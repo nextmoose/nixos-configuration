@@ -48,18 +48,18 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
 
       $machine->waitUntilSucceeds("mkdir /tmp/work");
       $machine->waitUntilSucceeds("chown user:users /tmp/work");
-      $machine->waitUntilSucceeds("touch /tmp/source/configuration.nix");
+      $machine->waitUntilSucceeds("echo 6e124f0a-3fd8-4d04-b5b0-96c585c70bbc > /tmp/source/configuration.nix");
       $machine->waitUntilSucceeds("mkdir /tmp/source/public");
-      $machine->waitUntilSucceeds("touch /tmp/source/public/stuff.txt");
+      $machine->waitUntilSucceeds("echo 98f867b0-2265-4ac5-b642-d898414799eb > /tmp/source/public/73e14034-7857-4a49-b437-55ac609630e1");
       $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password 4dcf1fe1-7973-467e-beb9-222eaeeb21ab --work-dir /tmp/work\n");
       $machine->waitForFile("/tmp/work/configuration.nix");
-      $machine->waitForFile("/tmp/work/public/stuff.txt");
+      $machine->waitForFile("/tmp/work/public/73e14034-7857-4a49-b437-55ac609630e1");
       $machine->waitForFile("/tmp/work/private/user-password.hashed.asc");
       $machine->screenshot("post5");
 
       $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
-      $machine->waitUntilSucceeds("sleep 20s");
       # this is a perl comment
+      #machine->waitUtilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
       $machine->screenshot("post6");
 
     $machine->shutdown;
