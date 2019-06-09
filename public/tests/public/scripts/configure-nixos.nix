@@ -69,9 +69,8 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilTTYMatches(1, "98f867b0-2265-4ac5-b642-d898414799eb");
       $machine->screenshot("shot09");
 
-      $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
-#      $machine->waitUntilTTYMatches(1, '$6$D1V7GGg0DjvHW4TY$v163wrp9KU/GBooAuoxD7tzG.NSjS71AExx.I0aWtrSPZ.CBRSPS3e9Wp6l8gTkjen4u3mL4NtyrHGPbWJ5B50');
-      $machine->waitUntilSucceeds("sleep 10s");
+      $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc | base64\n");
+      $machine->waitUntilTTYMatches(1, "MGFXdHJTUFouQ0JSU1BTM2U5V3A2bDhnVGtqZW40dTNtTDROdHlySEdQYldKNUI1MAo=");
       $machine->screenshot("shot10");
 
 
