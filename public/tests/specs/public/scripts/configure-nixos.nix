@@ -50,14 +50,6 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilTTYMatches(1, "Unspecified WORK_DIR");
       $machine->screenshot("post4");
 
-      $machine->sendChars("configure-nixos --source-dir /tmp/source\n --user-password password --work-dir /tmp/work");
-      $machine->waitUntilTTYMatches(1, "Nonexistent WORK_DIR");
-      $machine->screenshot("post2");
-
-      $machine->waitUntilSucceeds("mkdir /tmp/work");
-      $machine->sendChars("configure-nixos --source-dir /tmp/source\n --user-password password --work-dir /tmp/work");
-      $machine->waitUntilTTYMatches(1, "Nonexistent WORK_DIR");
-      $machine->screenshot("post2");
 
     $machine->shutdown;
   '';

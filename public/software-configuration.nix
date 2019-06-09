@@ -70,13 +70,15 @@
   time.timeZone = "US/Eastern";
   users = {
     mutableUsers = false;
-    extraUsers.user = {
-      isNormalUser = true;
-      uid = 1000;
-      extraGroups = [ "wheel" "docker" ];
-      packages = [
-      ];
-      password = "$6$grTXox.mSau$BlWV8Yuv3KBXlmg6T/giApXNXM.vkm2YnpTtTw1iduMMguu8zCcp5AR/JvWM6N33A0Dn5RrcffquDd6OhNVLj1";
+    extraUsers = {
+      user = {
+        isNormalUser = true;
+        uid = 1000;
+        extraGroups = [ "wheel" "docker" ];
+        packages = [
+        ];
+        password = "$6$grTXox.mSau$BlWV8Yuv3KBXlmg6T/giApXNXM.vkm2YnpTtTw1iduMMguu8zCcp5AR/JvWM6N33A0Dn5RrcffquDd6OhNVLj1";
+      };
     };
   };
 }
