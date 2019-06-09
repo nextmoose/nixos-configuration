@@ -59,6 +59,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
 
       $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
       $machine->waitUntilSucceeds("sleep 20s");
+      # this is a perl comment
       $machine->screenshot("post6");
 
     $machine->shutdown;
