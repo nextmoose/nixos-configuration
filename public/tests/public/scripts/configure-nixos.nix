@@ -27,22 +27,26 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilTTYMatches(1, "Password: ");
       $machine->sendChars("password\n");
       $machine->waitUntilSucceeds("pgrep -u user bash");
-      $machine->screenshot("postlogin");
+      $machine->screenshot("shot1");
 
       $machine->sendChars("configure-nixos\n");
-      $machine->waitUntilTTYMatches(1, "Unspecified SOURCE_DIR");
-      $machine->screenshot("post1");
+      $machine->waitUntilTTYMatches(1, "Unspecified SALT");
+      $machine->screenshot("shot2");
 
-      $machine->sendChars("configure-nixos --source-dir /tmp/source\n");
+      $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY\n");
+      $machine->waitUntilTTYMatches(1, "Unspecified SOURCE_DIR");
+      $machine->screenshot("shot3");
+
+      $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY --source-dir /tmp/source\n");
       $machine->waitUntilTTYMatches(1, "Nonexistent SOURCE_DIR");
-      $machine->screenshot("post2");
+      $machine->screenshot("shot4");
 
       $machine->waitUntilSucceeds("mkdir /tmp/source");
-      $machine->sendChars("configure-nixos --source-dir /tmp/source\n");
+      $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY --source-dir /tmp/source\n");
       $machine->waitUntilTTYMatches(1, "Unspecified USER_PASSWORD");
-      $machine->screenshot("post3");
+      $machine->screenshot("shot5");
 
-      $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password password\n");
+      $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY --source-dir /tmp/source --user-password password\n");
       $machine->waitUntilTTYMatches(1, "Unspecified WORK_DIR");
       $machine->screenshot("post4");
 
@@ -51,15 +55,14 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilSucceeds("echo 6e124f0a-3fd8-4d04-b5b0-96c585c70bbc > /tmp/source/configuration.nix");
       $machine->waitUntilSucceeds("mkdir /tmp/source/public");
       $machine->waitUntilSucceeds("echo 98f867b0-2265-4ac5-b642-d898414799eb > /tmp/source/public/73e14034-7857-4a49-b437-55ac609630e1");
-      $machine->sendChars("configure-nixos --source-dir /tmp/source --user-password 4dcf1fe1-7973-467e-beb9-222eaeeb21ab --work-dir /tmp/work\n");
+      $machine->sendChars("configure-nixos --salt D1V7GGg0DjvHW4TY --source-dir /tmp/source --user-password 4dcf1fe1-7973-467e-beb9-222eaeeb21ab --work-dir /tmp/work\n");
       $machine->waitForFile("/tmp/work/configuration.nix");
       $machine->waitForFile("/tmp/work/public/73e14034-7857-4a49-b437-55ac609630e1");
       $machine->waitForFile("/tmp/work/private/user-password.hashed.asc");
       $machine->screenshot("post5");
 
       $machine->sendChars("cat /tmp/work/private/user-password.hashed.asc\n");
-      # this is a perl comment
-      #machine->waitUtilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
+#      $machine->waitUntilTTYMatches(1, "\$6\$3jNNP/WOPu\$1Dv9Xn8wmU4yHUHrsZavoD/Se18e4dm5rlR4M1khi49MdoIodH5sTSYrttnrvGmxPLtnxVpQ10o424nbHqwyk/");
       $machine->screenshot("post6");
 
     $machine->shutdown;

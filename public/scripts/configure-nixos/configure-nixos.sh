@@ -3,6 +3,11 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--salt)
+	    SALT="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--source-dir)
 	    SOURCE_DIR="${2}" &&
 		shift 2 &&
@@ -29,7 +34,12 @@ do
     esac &&
 	true
 done &&
-    if [ -z "${SOURCE_DIR}" ]
+    if [ -z "${SALT}" ]
+    then
+	echo Unspecified SALT &&
+	    exit 64 &&
+	    true
+    elif [ -z "${SOURCE_DIR}" ]
     then
 	echo Unspecified SOURCE_DIR &&
 	    exit 64 &&
@@ -61,5 +71,5 @@ done &&
 	"${SOURCE_DIR}/public" \
 	"${WORK_DIR}" &&
     mkdir "${WORK_DIR}/private" &&
-    echo "${USER_PASSWORD}" | mkpasswd --stdin -m sha-512 > "${WORK_DIR}/private/user-password.hashed.asc" && 
+    echo "${USER_PASSWORD}" | mkpasswd --stdin -m sha-512 --salt "${SALT}" > "${WORK_DIR}/private/user-password.hashed.asc" && 
     true
