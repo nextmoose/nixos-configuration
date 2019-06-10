@@ -73,6 +73,10 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
       $machine->waitUntilTTYMatches(1, "MGFXdHJTUFouQ0JSU1BTM2U5V3A2bDhnVGtqZW40dTNtTDROdHlySEdQYldKNUI1MAo=");
       $machine->screenshot("shot10");
 
+      $machine->sendChars("echo $foo\n") &&
+      $machine->waitUntilSucceeds("sleep 10s") &&
+      $machine->screenshot("shot11");
+
 
     $machine->shutdown;
   '';
