@@ -7,7 +7,7 @@ import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e25
         uid = 1000;
         extraGroups = [ "wheel" ];
         packages = [
-          (import ../../../staples.nix {
+          (import ${SOURCE_DIR}/public/staples.nix {
             pkgs = pkgs;
           }).configure-nixos
         ];
