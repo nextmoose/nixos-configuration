@@ -7,13 +7,13 @@ import <nixpkgs/nixos/tests/make-test.nix> {
         uid = 1000;
         extraGroups = [ "wheel" ];
         packages = [
-          (import ../../../staples.nix {
-            pkgs = pkgs;
-          }).configure-nixos
+	  (import ./package.nix {
+	    pkgs = pkgs;
+	  })
         ];
         password = "password";
       };
     };
   };
-  testScript = (builtins.readFile ${TEST_SCRIPT});
+  testScript = (builtins.readFile ./test-script.pl);
 }

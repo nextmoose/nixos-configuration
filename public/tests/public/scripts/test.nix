@@ -12,9 +12,6 @@ import <nixpkgs/nixos/tests/make-test.nix> {
 	      pkgs = pkgs;
 	    });
 	  })
-#          (import ../../../staples.nix {
-#            pkgs = pkgs;
-#          }).configure-nixos
         ];
         password = "password";
       };
