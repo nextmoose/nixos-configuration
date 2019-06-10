@@ -7,9 +7,14 @@ import <nixpkgs/nixos/tests/make-test.nix> {
         uid = 1000;
         extraGroups = [ "wheel" ];
         packages = [
-          (import ../../../staples.nix {
-            pkgs = pkgs;
-          }).configure-nixos
+	  (import ./expression.nix {
+	    staples = (import ../../../staples.nix {
+	      pkgs = pkgs;
+	    });
+	  })
+#          (import ../../../staples.nix {
+#            pkgs = pkgs;
+#          }).configure-nixos
         ];
         password = "password";
       };
