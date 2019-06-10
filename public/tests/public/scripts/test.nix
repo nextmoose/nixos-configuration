@@ -1,4 +1,3 @@
-# import /nix/store/wl7y85xg46dsl5a7jjvqqdg1zbf678zn-nixos-18.03.133389.b551f89e256/nixos/nixos/tests/make-test.nix {
 import <nixpkgs/nixos/tests/make-test.nix> {
   machine = { pkgs, ... } : {
     users = {
@@ -16,5 +15,5 @@ import <nixpkgs/nixos/tests/make-test.nix> {
       };
     };
   };
-  testScript = import ./configure-nixos.pl;
+  testScript = (builtins.readFile ./configure-nixos.pl);
 }

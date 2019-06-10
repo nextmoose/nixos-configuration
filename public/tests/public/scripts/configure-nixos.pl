@@ -1,4 +1,3 @@
-''
     $machine->start;
     $machine->waitForUnit('multi-user.target');
     $machine->waitUntilSucceeds("pgrep -f 'agetty.*tty1'");
@@ -56,10 +55,8 @@
       $machine->waitUntilTTYMatches(1, "MGFXdHJTUFouQ0JSU1BTM2U5V3A2bDhnVGtqZW40dTNtTDROdHlySEdQYldKNUI1MAo=");
       $machine->screenshot("shot10");
 
-      print(foo);
       $machine->waitUntilSucceeds("sleep 10s") &&
       $machine->screenshot("shot11");
 
 
     $machine->shutdown;
-''
