@@ -7,11 +7,11 @@ import <nixpkgs/nixos/tests/make-test.nix> {
         uid = 1000;
         extraGroups = [ "wheel" ];
         packages = [
-	  (import ./expression.nix {
-	    staples = (import (builtins.getEnv "SOURCE_DIR") {
+	  (import ./package.nix {
+	    staples = (import (builtins.getEnv "STAPLES") {
 	      pkgs = pkgs;
 	    });
-	  })
+          })
         ];
         password = "password";
       };

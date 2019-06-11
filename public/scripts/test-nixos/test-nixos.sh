@@ -5,11 +5,17 @@ do
     case "${1}" in
 	--source-dir)
 	    SOURCE_DIR="${2}" &&
+		export STAPLES_FILE="${SOURCE_DIR}/public/staples.nix" &&
 		shift 2 &&
 		true
 	    ;;
-	--test-file)
-	    TEST_FILE="${2}" &&
+	--test-directory)
+	    export TEST_DIRECTORY="${2}" &&
+		shift 2 &&
+		true
+	    ;;
+	--timeout)
+	    export TIMEOUT="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -37,13 +43,17 @@ done &&
     then
 	echo "Nonexistant SOURCE_DIR ${SOURCE_DIR}" &&
 	    exit 64
-    elif [ -z "${TEST_FILE}" ]
+    elif [ -z "${TEST_DIRECTORY}" ]
     then
-	echo Unspecified TEST_FILE &&
+	echo Unspecified TEST_DIRECTORY &&
 	    exit 64
-    elif [ ! -f "${TEST_FILE}" ]
+    elif [ ! -f "${TEST_DIRECTORY}" ]
     then
-	echo "Nonexistant TEST_FILE ${TEST_FILE}" &&
+	echo "Nonexistant TEST_DIRECTORY ${TEST_DIRECTORY}" &&
+	    exit 64
+    elif [ -z "${TIMEOUT}" ]
+    then
+	echo Unspecified TIMEOUT &&
 	    exit 64
     elif [ -z "${WORK_DIR}" ]
     then
@@ -54,16 +64,21 @@ done &&
 	echo "Nonexistant WORK_DIR ${WORK_DIR}" &&
 	    exit 64
     fi &&
-    sed \
-	-e "s###" \
-	-e "s###" \
-	-e "w${WORK_DIR}/package.nix \
-	"${STORE_DIR}/package.nix" &&
-    sed \
-	-e "s#\${MAKE_TEST_FILE}#${MAKE_TEST_FILE}#" \
-	-e "s#\${TEST_MACHINE_PASSWORD}#${TEST_MACHINE_PASSWORD}#" \
-	-e "s#import \${SOURCE_DIR}/public/staples.nix#import ${SOURCE_DIR}/public/stagples.nix#" \
-	-e "w${WORK_DIR}/test.nix" \
-	"${STORE_DIR}" &&
-    nix-build "${WORK_DIR}/test.nix" &&
+    find "${TEST_DIR}" -mindepth 1 -maxdepth 1 -name *.pl | while read TEST_FILE
+    do
+	(
+	    PACKAGE="$(basename ${TEST_FILE%.*})" &&
+		mkdir "${WORK_DIR}/${PACKAGE}" &&
+		sed \
+		    -e "s#\${PACKAGE}#${PACKAGE}#" \
+		    -e "w${WORK_DIR}/${PACKAGE}/package.nix" \
+		    "${STORE_DIR}/package.nix" &&
+		cat "${STORE_DIR}/test-nixos.nix" > "${WORK_DIR}/${PACKAGE}/test-nixos.nix" &&
+		export TEST_SCRIPT="${TEST_FILE}" &&
+		cd "${WORK_DIR}/${PACKAGE}" &&
+		nix-build --timeout "${TIMEOUT}" "test-nixos.nix" &&
+		true
+	) ||
+	    exit 64
+    done &&
     true

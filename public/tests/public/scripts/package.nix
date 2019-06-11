@@ -1,0 +1,4 @@
+{
+  staples
+} :
+staples.configure-nixos

@@ -8,12 +8,14 @@ import <nixpkgs/nixos/tests/make-test.nix> {
         extraGroups = [ "wheel" ];
         packages = [
 	  (import ./package.nix {
-	    pkgs = pkgs;
+	    staples = (import (builtins.getEnv "STAPLES_FILE") {
+	      pkgs = pkgs;
+	    })
 	  })
         ];
         password = "password";
       };
     };
   };
-  testScript = (builtins.readFile ./test-script.pl);
+  testScript = (builtins.readFile $(builtins.getEnv "TEST_SCRIPT"));
 }

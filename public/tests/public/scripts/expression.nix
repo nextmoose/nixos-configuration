@@ -1,4 +1,8 @@
 {
-  staples
+  pkgs,
+  staples-file,
+  package-name
 } :
-staples.configure-nixos
+(import staples-file {
+  pkgs = pkgs;
+}).package-name
