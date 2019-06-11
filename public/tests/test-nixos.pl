@@ -21,7 +21,11 @@
 
       $machine->sendChars("mkdir source\n");
       $machine->sendChars("test-nixos --source-dir source\n");
-      $machine->waitUntilTTYMatches(1, "Nonexistant SOURCE_DIR source");
-      $machine->screenshot("shot03");
+      $machine->waitUntilTTYMatches(1, "Unspecified TEST_DIR");
+      $machine->screenshot("shot04");
+
+      $machine->sendChars("test-nixos --source-dir source --test-dir test\n");
+      $machine->waitUntilTTYMatches(1, "Nonexistant TEST_DIR");
+      $machine->screenshot("shot04");
 
     $machine->shutdown;
