@@ -8,7 +8,7 @@ import <nixpkgs/nixos/tests/make-test.nix> {
         extraGroups = [ "wheel" ];
         packages = [
 	  (import ./expression.nix {
-	    staples = (import ../../../staples.nix {
+	    staples = (import (builtins.getEnv "SOURCE_DIR") {
 	      pkgs = pkgs;
 	    });
 	  })

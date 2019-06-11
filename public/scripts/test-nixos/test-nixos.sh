@@ -55,6 +55,11 @@ done &&
 	    exit 64
     fi &&
     sed \
+	-e "s###" \
+	-e "s###" \
+	-e "w${WORK_DIR}/package.nix \
+	"${STORE_DIR}/package.nix" &&
+    sed \
 	-e "s#\${MAKE_TEST_FILE}#${MAKE_TEST_FILE}#" \
 	-e "s#\${TEST_MACHINE_PASSWORD}#${TEST_MACHINE_PASSWORD}#" \
 	-e "s#import \${SOURCE_DIR}/public/staples.nix#import ${SOURCE_DIR}/public/stagples.nix#" \
