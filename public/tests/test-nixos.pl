@@ -12,7 +12,16 @@
       $machine->screenshot("shot01");
 
       $machine->sendChars("test-nixos\n");
-      $machine->waitUntilTTYMatches(1, "Unspecified SALT");
+      $machine->waitUntilTTYMatches(1, "Unspecified SOURCE_DIR");
       $machine->screenshot("shot02");
+
+      $machine->sendChars("test-nixos --source-dir source\n");
+      $machine->waitUntilTTYMatches(1, "Nonexistant SOURCE_DIR source");
+      $machine->screenshot("shot03");
+
+      $machine->sendChars("mkdir source\n");
+      $machine->sendChars("test-nixos --source-dir source\n");
+      $machine->waitUntilTTYMatches(1, "Nonexistant SOURCE_DIR source");
+      $machine->screenshot("shot03");
 
     $machine->shutdown;

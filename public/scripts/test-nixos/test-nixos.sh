@@ -9,8 +9,8 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--test-directory)
-	    export TEST_DIRECTORY="${2}" &&
+	--test-dir)
+	    export TEST_DIR="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -43,13 +43,13 @@ done &&
     then
 	echo "Nonexistant SOURCE_DIR ${SOURCE_DIR}" &&
 	    exit 64
-    elif [ -z "${TEST_DIRECTORY}" ]
+    elif [ -z "${TEST_DIR}" ]
     then
-	echo Unspecified TEST_DIRECTORY &&
+	echo Unspecified TEST_DIR &&
 	    exit 64
-    elif [ ! -f "${TEST_DIRECTORY}" ]
+    elif [ ! -d "${TEST_DIR}" ]
     then
-	echo "Nonexistant TEST_DIRECTORY ${TEST_DIRECTORY}" &&
+	echo "Nonexistant TEST_DIR ${TEST_DIR}" &&
 	    exit 64
     elif [ -z "${TIMEOUT}" ]
     then
@@ -72,8 +72,8 @@ done &&
 		sed \
 		    -e "s#\${PACKAGE}#${PACKAGE}#" \
 		    -e "w${WORK_DIR}/${PACKAGE}/package.nix" \
-		    "${STORE_DIR}/package.nix" &&
-		cat "${STORE_DIR}/test-nixos.nix" > "${WORK_DIR}/${PACKAGE}/test-nixos.nix" &&
+		    "${STORE_DIR}/src/package.nix" &&
+		cat "${STORE_DIR}/src/test-nixos.nix" > "${WORK_DIR}/${PACKAGE}/test-nixos.nix" &&
 		export TEST_SCRIPT="${TEST_FILE}" &&
 		cd "${WORK_DIR}/${PACKAGE}" &&
 		nix-build --timeout "${TIMEOUT}" "test-nixos.nix" &&

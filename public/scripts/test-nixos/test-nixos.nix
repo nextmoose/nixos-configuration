@@ -10,12 +10,12 @@ import <nixpkgs/nixos/tests/make-test.nix> {
 	  (import ./package.nix {
 	    staples = (import (builtins.getEnv "STAPLES_FILE") {
 	      pkgs = pkgs;
-	    })
+	    });
 	  })
         ];
         password = "password";
       };
     };
   };
-  testScript = (builtins.readFile $(builtins.getEnv "TEST_SCRIPT"));
+  testScript = (builtins.readFile (builtins.getEnv "TEST_SCRIPT"));
 }
