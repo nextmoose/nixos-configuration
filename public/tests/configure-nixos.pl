@@ -11,10 +11,11 @@
       $machine->waitUntilSucceeds("pgrep -u user1 bash");
       $machine->screenshot("shot02");
 
-      $machine->sendChars("configure-nixos ee1295c8-b797-442a-ba79-2ecebb60b430\n");
-#      $machine->waitUntilTTYMatches(1, "UnsupportedOption");
-#      $machine->waitUntilTTYMatches(1, "ee1295c8-b797-442a-ba79-2ecebb60b430");
-#      $machine->waitUntilSucceeds("sleep 10s");
+      $machine->sendChars("configure-nixos ee1295c8-b797-442a-ba79-2ecebb60b430 059cec2e-e3a5-4d5a-bba9-b5112a7fed17\n");
+      $machine->waitUntilTTYMatches(1, "Unsupported Option");
+      $machine->waitUntilTTYMatches(1, "ee1295c8-b797-442a-ba79-2ecebb60b430");
+      $machine->waitUntilTTYMatches(1, "ee1295c8-b797-442a-ba79-2ecebb60b430 059cec2e-e3a5-4d5a-bba9-b5112a7fed17");
+      $machine->waitUntilSucceeds("sleep 10s");
       $machine->screenshot("shot03");
 
       $machine->sendChars("configure-nixos\n");

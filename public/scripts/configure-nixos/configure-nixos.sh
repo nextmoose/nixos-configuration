@@ -26,8 +26,8 @@ do
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&
-		echo "${0}" &&
 		echo "${@}" &&
+		echo "${0}" &&
 		exit 64 &&
 		true
 	    ;;
