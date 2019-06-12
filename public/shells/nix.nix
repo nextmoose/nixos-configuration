@@ -7,5 +7,6 @@
 pkgs.mkShell {
   buildInputs = [
     staples.configure-nixos.impl
-   ];
+    staples.configure-nixos.test
+  ];
 }
