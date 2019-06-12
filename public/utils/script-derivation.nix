@@ -1,14 +1,15 @@
 {
    pkgs,
    name,
-   src,
+   implementation,
+   test-script,
    dependencies ? [],
    configuration ? {},
 }:
 rec {
-  implementation = pkgs.stdenv.mkDerivation {
+  impl = pkgs.stdenv.mkDerivation {
      name = name;
-     src = src/implementation;
+     src = implementation;
      buildInputs = [ pkgs.makeWrapper ];
      installPhase = ''
         mkdir $out &&
@@ -23,7 +24,7 @@ rec {
 	  echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
           true
      '';
-  },
+  };
   test = import <nixpkgs/nixos/tests/make-test.nix> {
     machine = { pkgs, ... } : {
       users = {
@@ -39,6 +40,6 @@ rec {
         };
       };
     };
-    testScript = (builtins.readFile src/test-script.pl);
-  }
+    testScript = (builtins.readFile test-script);
+  };
 }
