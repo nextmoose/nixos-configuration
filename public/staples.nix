@@ -18,6 +18,8 @@ rec {
     dependencies = [
       pkgs.jq
       pkgs.chromium
+      pkgs.gnugrep
+      pkgs.coreutils
     ];
     configuration = {
       configure-nixos = (import ./utils/test-script-derivation.nix {
