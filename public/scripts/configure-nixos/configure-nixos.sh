@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo AAAA 0001000 &&
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
@@ -35,7 +34,6 @@ do
     esac &&
 	true
 done &&
-echo AAAA 0002000 &&
     if [ -z "${SALT}" ]
     then
 	echo Unspecified SALT &&
@@ -67,16 +65,12 @@ echo AAAA 0002000 &&
 	    exit 64 &&
 	    true
     fi &&
-echo AAAA 0003000 &&
     cp \
 	--recursive \
 	"${SOURCE_DIR}/configuration.nix" \
 	"${SOURCE_DIR}/public" \
 	"${WORK_DIR}" &&
     mkdir "${WORK_DIR}/private" &&
-echo AAAA 0004000 &&
     echo "${USER_PASSWORD}" | mkpasswd --stdin -m sha-512 --salt "${SALT}" > "${WORK_DIR}/private/user-password.hashed.asc" &&
-echo AAAA 0005000 &&
     echo YES &&
-echo AAAA 0006000 &&
     true
