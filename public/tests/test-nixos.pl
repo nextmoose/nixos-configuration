@@ -28,22 +28,4 @@
       $machine->waitUntilTTYMatches(1, "Nonexistant TEST_DIR");
       $machine->screenshot("shot04");
 
-      $machine->sendChars("mkdir test\n");
-      $machine->sendChars("test-nixos --source-dir source --test-dir test\n");
-      $machine->waitUntilTTYMatches(1, "Unspecified TIMEOUT");
-      $machine->screenshot("shot04");
-
-      $machine->sendChars("test-nixos --source-dir source --test-dir test --timeout 10\n");
-      $machine->waitUntilTTYMatches(1, "Unspecified WORK_DIR");
-      $machine->screenshot("shot04");
-
-      $machine->sendChars("test-nixos --source-dir source --test-dir test --timeout 10 --work-dir work\n");
-      $machine->waitUntilTTYMatches(1, "Nonexistant WORK_DIR");
-      $machine->screenshot("shot04");
-
-      $machine->sendChars("mkdir work\n");
-      $machine->sendChars("test-nixos --source-dir source --test-dir test --timeout 10 --work-dir work\n");
-      $machine->waitUntilTTYMatches(1, "");
-      $machine->screenshot("shot05");
-
     $machine->shutdown;
