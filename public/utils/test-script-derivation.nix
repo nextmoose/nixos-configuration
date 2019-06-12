@@ -2,7 +2,7 @@
   implementation,
   test-script
 } :
-import <nixpkgs/nixos/tests/make-test.nix> {
+(import <nixpkgs/nixos/tests/make-test.nix> {
   machine = { pkgs, ... } : {
     users = {
       mutableUsers = false;
@@ -16,4 +16,4 @@ import <nixpkgs/nixos/tests/make-test.nix> {
     };
   };
   testScript = (builtins.readFile test-script);
-};
+})

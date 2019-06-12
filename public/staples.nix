@@ -11,4 +11,17 @@ rec {
       pkgs.mkpasswd
     ];
   });
+  tests = (import ./utils/script-derivation.nix {
+    pkgs = pkgs;
+    name = "tests";
+    src = scripts/tests;
+    configuration = {
+      configure-nixos = (import ./utils/test-script-derivation.nix {
+        implementation = configure-nixos;
+	test-script = ./tests/configure-nixos.pl;
+      } {
+        pkgs = pkgs;
+      });
+    };
+  });
 }

@@ -22,4 +22,4 @@ pkgs.stdenv.mkDerivation {
       echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
       true
    '';
-};
+}
