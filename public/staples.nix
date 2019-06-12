@@ -15,6 +15,10 @@ rec {
     pkgs = pkgs;
     name = "tests";
     src = scripts/tests;
+    dependencies = [
+      pkgs.jq
+      pkgs.chromium
+    ];
     configuration = {
       configure-nixos = (import ./utils/test-script-derivation.nix {
         implementation = configure-nixos;

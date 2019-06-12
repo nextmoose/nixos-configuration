@@ -6,12 +6,18 @@
   machine = { pkgs, ... } : {
     users = {
       mutableUsers = false;
-      extraUsers.user = {
-        isNormalUser = true;
-        uid = 1000;
-        extraGroups = [ "wheel" ];
-        packages = [ implementation ];
-        password = "password";
+      extraUsers = {
+        user1 = {
+          isNormalUser = true;
+          uid = 1001;
+          packages = [ implementation ];
+          password = "password1";
+        };
+        user2 = {
+          isNormalUser = true;
+          uid = 1002;
+          password = "password2";
+        };
       };
     };
   };
