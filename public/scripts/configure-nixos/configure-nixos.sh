@@ -72,5 +72,4 @@ done &&
 	"${WORK_DIR}" &&
     mkdir "${WORK_DIR}/private" &&
     echo "${USER_PASSWORD}" | mkpasswd --stdin -m sha-512 --salt "${SALT}" > "${WORK_DIR}/private/user-password.hashed.asc" &&
-    echo YES &&
     true
