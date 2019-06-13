@@ -2,7 +2,7 @@
   pkgs
 } :
 rec {
-  configure-nixos = (import ./utils/script-derivations.nix {
+  configure-nixos = (import ./utilities/script-derivations.nix {
     pkgs = pkgs;
     name = "configure-nixos";
     src = scripts/configure-nixos;
