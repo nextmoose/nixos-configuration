@@ -12,4 +12,16 @@ rec {
     ];
     test-script = ./tests/configure-nixos.pl;
   });
+  tests = (import ./utilities/script-derivations.nix {
+    pkgs = pkgs;
+    name = "tests";
+    src = scripts/tests;
+    dependencies = [
+      pkgs.jq
+      pkgs.chromium
+      pkgs.gnugrep
+      pkgs.coreutils
+    ];
+    test-script = ./tests/configure-nixos.pl;
+  });
 }
