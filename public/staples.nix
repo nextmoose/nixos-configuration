@@ -24,6 +24,7 @@ rec {
     ];
     configuration = {
       configure-nixos = {
+        implementation = configure-nixos.implementation;
         results = configure-nixos.testing.results;
       };
     };
