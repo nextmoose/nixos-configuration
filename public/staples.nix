@@ -2,7 +2,7 @@
   pkgs
 } :
 rec {
-  configure-nixos = (import ./utilities/script-derivations.nix {
+  configure-nixos = (import ./utilities/script-implementation-derivation.nix {
     pkgs = pkgs;
     name = "configure-nixos";
     src = scripts/configure-nixos;
@@ -10,9 +10,8 @@ rec {
       pkgs.coreutils
       pkgs.mkpasswd
     ];
-    test-script = ./tests/configure-nixos.pl;
   });
-  tests = (import ./utilities/script-derivations.nix {
+  tests = (import ./utilities/script-implementation-derivation.nix {
     pkgs = pkgs;
     name = "tests";
     src = scripts/tests;
@@ -22,6 +21,11 @@ rec {
       pkgs.gnugrep
       pkgs.coreutils
     ];
-    test-script = ./tests/configure-nixos.pl;
+    configuration = {
+      xconfigure-nixos = (import ./utilities/script-test.nix {
+        implementation = configure-nixos.implementation;
+	test-script = ./tests/configure-nixos.pl;
+      });
+    };
   });
 }
