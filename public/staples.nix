@@ -23,7 +23,9 @@ rec {
       pkgs.coreutils
     ];
     configuration = {
-      configure-nixos = configure-nixos.testing.results;
+      configure-nixos = {
+        results = configure-nixos.testing.results;
+      };
     };
     test-script = ./tests/configure-nixos.pl;
   });

@@ -3,9 +3,11 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--instrument)
+	;;
 	--results)
-	    chromium $(jq --raw-output ".[\"${@}\"]" "${STORE_DIR}/configuration.json")/log.html &&
-		shift &&
+	    chromium $(jq --raw-output ".[\"${2}\"].results" "${STORE_DIR}/configuration.json")/log.html &&
+		shift 2 &&
 		true
 	    ;;
 	*)
