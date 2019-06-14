@@ -23,7 +23,7 @@ rec {
     ];
     configuration = {
       xconfigure-nixos = (import ./utilities/script-test.nix {
-        implementation = configure-nixos.implementation;
+        implementation = configure-nixos;
 	test-script = ./tests/configure-nixos.pl;
       });
     };
