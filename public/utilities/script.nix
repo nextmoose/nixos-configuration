@@ -14,10 +14,13 @@ rec {
     dependencies = dependencies;
     configuration = configuration;
   });
-  testing = {
+  testing = rec {
     instrument = (import ./script-test.nix {
       implementation = implementation;
       test-script = test-script;
     });
+    results = instrument {
+      pkgs = pkgs;
+    };
   };
 }
