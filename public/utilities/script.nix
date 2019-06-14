@@ -14,8 +14,10 @@ rec {
     dependencies = dependencies;
     configuration = configuration;
   });
-  test = (import ./script-test.nix {
-    implementation = implementation;
-    test-script = test-script;
-  });
+  testing = {
+    instrument = (import ./script-test.nix {
+      implementation = implementation;
+      test-script = test-script;
+    });
+  };
 }
