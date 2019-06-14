@@ -5,8 +5,9 @@
    dependencies ? [],
    configuration ? {},
    test-script
-}: {
-  impl = (import ./script-implementation-derivation.nix {
+}:
+rec {
+  implementation = (import ./script-implementation-derivation.nix {
     pkgs = pkgs;
     name = name;
     src = src;
