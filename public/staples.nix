@@ -12,10 +12,10 @@ rec {
     ];
     test-script = ./tests/configure-nixos.pl;
   });
-  tests = (import ./utilities/script.nix {
+  test-scripts = (import ./utilities/script.nix {
     pkgs = pkgs;
     name = "tests";
-    src = scripts/tests;
+    src = scripts/test-scripts;
     dependencies = [
       pkgs.jq
       pkgs.chromium
@@ -23,12 +23,7 @@ rec {
       pkgs.coreutils
     ];
     configuration = {
-      configure-nixos = (import ./utilities/script-test.nix {
-        implementation = configure-nixos.implementation;
-	test-script = ./tests/configure-nixos.pl;
-      }) {
-        pkgs = pkgs;
-      };
+      configure-nixos = configure-nixos.testing.results;
     };
     test-script = ./tests/configure-nixos.pl;
   });
