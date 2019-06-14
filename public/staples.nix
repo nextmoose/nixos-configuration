@@ -14,7 +14,7 @@ rec {
   });
   test-scripts = (import ./utilities/script.nix {
     pkgs = pkgs;
-    name = "tests";
+    name = "test-scripts";
     src = scripts/test-scripts;
     dependencies = [
       pkgs.jq
