@@ -22,10 +22,12 @@ rec {
       pkgs.coreutils
     ];
     configuration = {
-      xconfigure-nixos = (import ./utilities/script-test.nix {
+      configure-nixos = (import ./utilities/script-test.nix {
         implementation = configure-nixos;
 	test-script = ./tests/configure-nixos.pl;
-      });
+      }) {
+        pkgs = pkgs;
+      };
     };
   });
 }
