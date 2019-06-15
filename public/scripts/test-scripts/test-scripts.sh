@@ -3,6 +3,11 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--script)
+	    jq --raw-output ".[\"${2}\"].script" "${STORE_DIR}/configuration.json" &&
+		shift 2 &&
+		true
+	    ;;
 	--implementation)
 	    jq --raw-output ".[\"${2}\"].implementation" "${STORE_DIR}/configuration.json" &&
 		shift 2 &&

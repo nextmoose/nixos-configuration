@@ -23,4 +23,5 @@ rec {
       pkgs = pkgs;
     };
   };
+  script = test-script;
 }

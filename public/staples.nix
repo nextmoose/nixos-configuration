@@ -26,6 +26,7 @@ rec {
       configure-nixos = {
         implementation = configure-nixos.implementation;
         results = configure-nixos.testing.results;
+	script = configure-nixos.script;
       };
     };
     test-script = ./tests/configure-nixos.pl;
