@@ -24,4 +24,5 @@
     };
   };
   testScript = (builtins.readFile test-script);
-})
+}){
+}

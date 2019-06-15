@@ -3,8 +3,23 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--store)
+	    echo "${STORE_DIR}" &&
+		shift &&
+		true
+	    ;;
 	--script)
 	    jq --raw-output ".[\"${2}\"].script" "${STORE_DIR}/configuration.json" &&
+		shift 2 &&
+		true
+	    ;;
+	--nix)
+	    echo "${STORE_DIR}/test-scripts.sh" &&
+		shift &&
+		true
+	    ;;
+	--test)
+	    nix-build $(jq --raw-output ".[\"${2}\"].script" "${STORE_DIR}/configuration.json") &&
 		shift 2 &&
 		true
 	    ;;
