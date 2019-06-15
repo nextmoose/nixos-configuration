@@ -25,5 +25,10 @@ do
 	true
 done &&
     TEST_SCRIPT=$(jq --raw-output ".[\"${PACKAGE}\"].script" "${STORE_DIR}/configuration.json") &&
-    nix-build --arg implementation "\(import ${STAPLES_FILE} { pkgs = import <nixpkgs> {}; }\).${PACKAGE}.implementation" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/script-test.nix" &&
+    IMPLEMENTATION=$(cat <<EOF
+(import ${STAPLES_FILE} { pkgs = import <nixpkgs> {}; }).${PACKAGE}.implementation
+EOF
+    ) &&
+    echo nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix" &&
+    nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix" &&
     true
