@@ -29,6 +29,6 @@ done &&
 (import ${STAPLES_FILE} { pkgs = import <nixpkgs> {}; }).${PACKAGE}.implementation
 EOF
     ) &&
-    echo nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix" &&
-    nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix" &&
+    RESULT=$(nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix") &&
+    chromium "${RESULT}/log.html" &&
     true
