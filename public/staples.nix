@@ -21,6 +21,7 @@ rec {
       pkgs.chromium
       pkgs.gnugrep
       pkgs.coreutils
+      pkgs.nix
     ];
     configuration = {
       configure-nixos = {

@@ -3,36 +3,16 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--store)
-	    echo "${STORE_DIR}" &&
-		shift &&
-		true
-	    ;;
-	--script)
-	    jq --raw-output ".[\"${2}\"].script" "${STORE_DIR}/configuration.json" &&
-		shift 2 &&
-		true
-	    ;;
-	--nix)
-	    echo "${STORE_DIR}/test-scripts.sh" &&
-		shift &&
-		true
-	    ;;
-	--test)
-	    nix-build $(jq --raw-output ".[\"${2}\"].script" "${STORE_DIR}/configuration.json") &&
-		shift 2 &&
-		true
-	    ;;
-	--implementation)
-	    jq --raw-output ".[\"${2}\"].implementation" "${STORE_DIR}/configuration.json" &&
+	--staples-file)
+	    STAPLES_FILE="${2}" &&
 		shift 2 &&
 		true
 	;;
-	--results)
-	    chromium $(jq --raw-output ".[\"${2}\"].results" "${STORE_DIR}/configuration.json")/log.html &&
+	--package)
+	    PACKAGE="${2}" &&
 		shift 2 &&
 		true
-	    ;;
+	;;
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&
@@ -44,4 +24,6 @@ do
     esac &&
 	true
 done &&
+    TEST_SCRIPT=$(jq --raw-output ".[\"${PACKAGE}\"].script" "${STORE_DIR}/configuration.json") &&
+    nix-build --arg implementation "\(import ${STAPLES_FILE} { pkgs = import <nixpkgs> {}; }\).${PACKAGE}.implementation" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/script-test.nix" &&
     true
