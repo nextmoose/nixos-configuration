@@ -9,6 +9,7 @@ rec {
     dependencies = [
       pkgs.coreutils
       pkgs.mkpasswd
+      pkgs.chromium
     ];
     test-script = ./tests/configure-nixos.pl;
   });
@@ -28,6 +29,7 @@ rec {
         implementation = configure-nixos.implementation;
         results = configure-nixos.testing.results;
 	script = configure-nixos.script;
+	mutants = configure-nixos.mutants;
       };
     };
     test-script = ./tests/configure-nixos.pl;

@@ -7,12 +7,17 @@ do
 	    STAPLES_FILE="${2}" &&
 		shift 2 &&
 		true
-	;;
+	    ;;
 	--package)
 	    PACKAGE="${2}" &&
 		shift 2 &&
 		true
-	;;
+	    ;;
+	--configuration)
+	    jq "." "${STORE_DIR}/configuration.json" &&
+		shift &&
+		true
+	    ;;
 	*)
 	    echo Unsupported Option &&
 		echo "${1}" &&

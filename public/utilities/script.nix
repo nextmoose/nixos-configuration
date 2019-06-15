@@ -24,4 +24,5 @@ rec {
     };
   };
   script = test-script;
+  mutants = map (d : builtins.filter (x: x !=d) dependencies) dependencies;
 }
