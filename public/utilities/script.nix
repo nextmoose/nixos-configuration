@@ -9,29 +9,24 @@
   test-script
 }:
 rec {
-  implementation = pkgs.stdenv.mkDerivation {
+  implementation = (./import script-derivation.nix {
+    pkgs = pkgs;
     name = name;
     src = src;
-    buildInputs = [ pkgs.makeWrapper ];
-    installPhase = ''
-      mkdir $out &&
-        cp --recursive . "$out/src" &&
-        chmod 0500 "$out/src/${name}.sh" &&
-        mkdir "$out/bin" &&
-        makeWrapper \
-          "$out/src/${name}.sh" \
-	  "$out/bin/${name}" \
-	   --set PATH "${pkgs.lib.makeBinPath dependencies}" \
-	   --set STORE_DIR "$out" &&
-        echo '${builtins.toJSON configuration}' > "$out/configuration.json" &&
-        true
-     '';
-  };
+    dependencies = dependencies;
+    configuration = configuration;
+  });
   testing = {
     results = (import ./script-test.nix {
       implementation = implementation;
       test-script = test-script;
     });
-    mutants = map (d: builtins.filter (x: x!=d) dependencies) dependencies;
+    mutants = map (d: (./import script-derivation.nix {
+      pkgs = pkgs;
+      name = name;
+      src = src;
+      dependencies = builtins.filter (x: x!=d) dependencies;
+      configuration = configuration;
+    }));
   };
 }

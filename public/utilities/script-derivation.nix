@@ -3,8 +3,7 @@
   name,
   src,
   dependencies ? [],
-  configuration ? {},
-  test-script
+  configuration ? {}
 }:
 pkgs.stdenv.mkDerivation {
   name = name;
