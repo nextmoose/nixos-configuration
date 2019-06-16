@@ -26,7 +26,7 @@ rec {
       pkgs = pkgs;
       name = name;
       src = src;
-      dependencies = [d];
+      dependencies = builtins.filter (x: x!=d) dependencies;
       configuration = configuration;
     })) dependencies;
   };
