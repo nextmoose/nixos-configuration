@@ -1,9 +1,11 @@
 {
-  pkgs ? import <nixpkgs> {},
-  script-derivation ? import ./utilities/script-derivation.nix {
-    pkgs = pkgs;
-  }
+  pkgs ? import <nixpkgs> {}
 } :
+let
+script-derivation = import ./utilities/script-derivation.nix {
+  pkgs = pkgs;
+};
+in
 rec {
   configure-nixos = (script-derivation {
     name = "configure-nixos";
@@ -13,17 +15,7 @@ rec {
       pkgs.mkpasswd
       pkgs.chromium
     ];
-  });
-  mutation-tests = (script-derivation {
-    name = "mutation-tests";
-    src = scripts/mutation-tests;
-    dependencies = [
-      pkgs.jq
-      pkgs.chromium
-      pkgs.gnugrep
-      pkgs.coreutils
-      pkgs.nix
-    ];
+    test-script = ./tests/configure-nixos.pl;
   });
   test-scripts = (script-derivation {
     name = "test-scripts";
@@ -35,5 +27,9 @@ rec {
       pkgs.coreutils
       pkgs.nix
     ];
+    configuration = {
+      configure-nixos = configure-nixos.testing;
+    };
+    test-script = ./tests/configure-nixos.pl;
   });
 }
