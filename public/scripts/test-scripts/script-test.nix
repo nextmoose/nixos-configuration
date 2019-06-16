@@ -1,6 +1,6 @@
 {
   make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
-  staples-file
+  implementation,
   test-script
 } :
 (make-test {
@@ -12,10 +12,7 @@
         user1 = {
           isNormalUser = true;
           uid = 1001;
-          packages = [ (import staples-file {
-	    pkgs = pkgs;
-	    script-implementation-derivation = script-implementation-derivation;
-	  }];
+          packages = [ implementation ];
           password = "password1";
         };
         user2 = {

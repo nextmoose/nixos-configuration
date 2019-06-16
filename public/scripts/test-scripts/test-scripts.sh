@@ -3,8 +3,8 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
-	--test-script)
-	    TEST_SCRIPT="${2}" &&
+	--package)
+	    PACKAGE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -13,8 +13,8 @@ do
 		shift 2 &&
 		true
 	    ;;
-	--package)
-	    PACKAGE="${2}" &&
+	--test-script-file)
+	    TEST_SCRIPT_FILE="${2}" &&
 		shift 2 &&
 		true
 	    ;;
@@ -29,11 +29,36 @@ do
     esac &&
 	true
 done &&
-    
+    if [ -z "${PACKAGE}" ]
+    then
+	echo Unspecified PACKAGE &&
+	    exit 64 &&
+	    true
+    elif [ -z "${STAPLES_FILE}" ]
+    then
+	echo Unspecified STAPLES_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${STAPLES_FILE}" ]
+    then
+	echo "Nonexistant STAPLES_FILE ${STAPLES_FILE}" &&
+	    exit 64 &&
+	    true
+    elif [ -z "${TEST_SCRIPT_FILE}" ]
+    then
+	echo Unspecified TEST_SCRIPT_FILE &&
+	    exit 64 &&
+	    true
+    elif [ ! -f "${TEST_SCRIPT_FILE}" ]
+    then
+	echo "Nonexistant TEST_SCRIPT_FILE ${TEST_SCRIPT_FILE}" &&
+	    exit 64 &&
+	    true
+    fi &&
     IMPLEMENTATION=$(cat <<EOF
-(import ${STAPLES_FILE} {}).${PACKAGE}.implementation
+(import ${STAPLES_FILE} {}).${PACKAGE}
 EOF
-    ) &&
-    RESULT=$(nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix") &&
+		  ) &&
+    RESULT=$(nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT_FILE}" "${STORE_DIR}/src/script-test.nix") &&
     chromium "${RESULT}/log.html" &&
     true

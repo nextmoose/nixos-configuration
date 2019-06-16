@@ -1,12 +1,11 @@
 {
   pkgs ? import <nixpkgs> {},
-  script-implementation-derivation ? import ./utilities/script-implementation-derivation.nix {
+  script-derivation ? import ./utilities/script-derivation.nix {
     pkgs = pkgs;
   }
 } :
 rec {
-  configure-nixos = (script-implementation-derivation {
-    pkgs = pkgs;
+  configure-nixos = (script-derivation {
     name = "configure-nixos";
     src = scripts/configure-nixos;
     dependencies = [
@@ -15,8 +14,7 @@ rec {
       pkgs.chromium
     ];
   });
-  test-scripts = (script-implementation-derivation {
-    pkgs = pkgs;
+  test-scripts = (script-derivation {
     name = "test-scripts";
     src = scripts/test-scripts;
     dependencies = [
