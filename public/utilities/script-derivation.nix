@@ -32,6 +32,6 @@ rec {
       implementation = implementation;
       test-script = test-script;
     });
-    mutants = {};
+    mutants = map (d: builtins.filter (x: x!=d) dependencies) dependencies;
   };
 }
