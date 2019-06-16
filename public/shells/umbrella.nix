@@ -8,5 +8,6 @@ pkgs.mkShell {
   buildInputs = [
     staples.configure-nixos
     staples.test-scripts
+    staples.mutation-tests
   ];
 }

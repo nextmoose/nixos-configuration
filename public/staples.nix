@@ -14,6 +14,17 @@ rec {
       pkgs.chromium
     ];
   });
+  mutation-tests = (script-derivation {
+    name = "mutation-tests";
+    src = scripts/mutation-tests;
+    dependencies = [
+      pkgs.jq
+      pkgs.chromium
+      pkgs.gnugrep
+      pkgs.coreutils
+      pkgs.nix
+    ];
+  });
   test-scripts = (script-derivation {
     name = "test-scripts";
     src = scripts/test-scripts;
@@ -24,9 +35,5 @@ rec {
       pkgs.coreutils
       pkgs.nix
     ];
-    configuration = {
-      configure-nixos = {
-      };
-    };
   });
 }
