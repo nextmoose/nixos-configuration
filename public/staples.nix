@@ -2,12 +2,12 @@
   pkgs ? import <nixpkgs> {}
 } :
 let
-script-derivation = import ./utilities/script-derivation.nix {
+script = import ./utilities/script.nix {
   pkgs = pkgs;
 };
 in
 rec {
-  configure-nixos = (script-derivation {
+  configure-nixos = (script {
     name = "configure-nixos";
     src = scripts/configure-nixos;
     dependencies = [
@@ -17,7 +17,7 @@ rec {
     ];
     test-script = ./tests/configure-nixos.pl;
   });
-  test-scripts = (script-derivation {
+  test-scripts = (script {
     name = "test-scripts";
     src = scripts/test-scripts;
     dependencies = [
