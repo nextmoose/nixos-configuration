@@ -13,6 +13,11 @@ do
 		shift 2 &&
 		true
 	    ;;
+	--mutator)
+	    MUTATOR="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--configuration)
 	    jq "." "${STORE_DIR}/configuration.json" &&
 		shift &&

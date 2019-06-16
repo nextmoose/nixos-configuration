@@ -24,5 +24,11 @@ rec {
     };
   };
   script = test-script;
-  mutants = map (d : builtins.filter (x: x !=d) dependencies) dependencies;
+  mutants = map (d : import ./script-implementation-derivation.nix {
+    pkgs = pkgs;
+    name = name;
+    src = src;
+    dependencies = builtins.filter (x: x !=d) dependencies;
+    configuration = configuration;
+  }) dependencies;
 }
