@@ -13,7 +13,6 @@ rec {
     dependencies = [
       pkgs.coreutils
       pkgs.mkpasswd
-      pkgs.chromium
     ];
     test-script = ./tests/configure-nixos.pl;
   });

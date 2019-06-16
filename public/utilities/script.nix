@@ -22,12 +22,15 @@ rec {
       implementation = implementation;
       test-script = test-script;
     });
-    mutants = map (d: (import ./script-derivation.nix {
-      pkgs = pkgs;
-      name = name;
-      src = src;
-      dependencies = builtins.filter (x: x!=d) dependencies;
-      configuration = configuration;
-    })) dependencies;
+    mutants = map (d: (builtins.tryEval (import ./script-test.nix {
+      implementation = (import ./script-derivation.nix {
+        pkgs = pkgs;
+        name = name;
+        src = src;
+        dependencies = builtins.filter (x: x!=d) dependencies;
+        configuration = configuration;
+      });
+      test-script = test-script;
+    }))) dependencies;
   };
 }
