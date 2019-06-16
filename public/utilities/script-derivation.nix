@@ -32,5 +32,6 @@ rec {
       implementation = implementation;
       test-script = test-script;
     });
+    mutants = {};
   };
 }
