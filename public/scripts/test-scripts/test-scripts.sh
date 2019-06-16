@@ -3,6 +3,11 @@
 while [ "${#}" -gt 0 ]
 do
     case "${1}" in
+	--test-script)
+	    TEST_SCRIPT="${2}" &&
+		shift 2 &&
+		true
+	    ;;
 	--staples-file)
 	    STAPLES_FILE="${2}" &&
 		shift 2 &&
@@ -11,16 +16,6 @@ do
 	--package)
 	    PACKAGE="${2}" &&
 		shift 2 &&
-		true
-	    ;;
-	--mutator)
-	    MUTATOR="${2}" &&
-		shift 2 &&
-		true
-	    ;;
-	--configuration)
-	    jq "." "${STORE_DIR}/configuration.json" &&
-		shift &&
 		true
 	    ;;
 	*)
@@ -34,9 +29,9 @@ do
     esac &&
 	true
 done &&
-    TEST_SCRIPT=$(jq --raw-output ".[\"${PACKAGE}\"].script" "${STORE_DIR}/configuration.json") &&
+    
     IMPLEMENTATION=$(cat <<EOF
-(import ${STAPLES_FILE} { pkgs = import <nixpkgs> {}; }).${PACKAGE}.implementation
+(import ${STAPLES_FILE} {}).${PACKAGE}.implementation
 EOF
     ) &&
     RESULT=$(nix-build --arg implementation "${IMPLEMENTATION}" --arg test-script "${TEST_SCRIPT}" "${STORE_DIR}/src/script-test.nix") &&
