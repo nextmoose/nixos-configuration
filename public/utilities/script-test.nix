@@ -1,9 +1,13 @@
 {
-  make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
+  pkgs,
+  make-test ? (import ./testing/make-test.nix {
+    pkgs = pkgs;
+  }),
   implementation,
   test-script
 } :
 (make-test {
+  pkgs = pkgs;
   name = "configure-nixos";
   machine = { pkgs, ... } : {
     users = {
