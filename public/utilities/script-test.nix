@@ -1,5 +1,6 @@
 {
-  make-test ? import ./testing/nixos/tests/make-test.nix,
+#  make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
+  make-test ? import ./testing/tests/make-test.nix,
   implementation,
   test-script
 } :
