@@ -1,5 +1,6 @@
 {
-  pkgs
+  pkgs,
+  make-test
 }:
 {
   name,
@@ -21,16 +22,8 @@ rec {
     results = (import ./script-test.nix {
       implementation = implementation;
       test-script = test-script;
+      pkgs = pkgs;
+      make-test = make-test;
     });
-    mutants = map (d: (builtins.tryEval (import ./script-test.nix {
-      implementation = (import ./script-derivation.nix {
-        pkgs = pkgs;
-        name = name;
-        src = src;
-        dependencies = builtins.filter (x: x!=d) dependencies;
-        configuration = configuration;
-      });
-      test-script = test-script;
-    }))) dependencies;
   };
 }

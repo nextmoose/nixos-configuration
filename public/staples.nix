@@ -1,9 +1,12 @@
 {
-  pkgs ? import <nixpkgs> {}
+  pkgs ? import <nixpkgs> {},
+#  make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
+  make-test ? import ./utilities/testing/nixos/tests/make-test.nix
 } :
 let
 script = import ./utilities/script.nix {
   pkgs = pkgs;
+  make-test = make-test;
 };
 in
 rec {

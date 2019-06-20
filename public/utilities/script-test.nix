@@ -1,10 +1,11 @@
 {
-#  make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
-  make-test ? import ./testing/nixos/tests/make-test.nix,
   implementation,
-  test-script
+  test-script,
+  pkgs,
+  make-test
 } :
 (make-test {
+  makeCoverageReport = false;
   name = "configure-nixos";
   machine = { pkgs, ... } : {
     users = {
@@ -26,4 +27,5 @@
   };
   testScript = (builtins.readFile test-script);
 }){
+  pkgs = pkgs;
 }
