@@ -27,5 +27,5 @@
   };
   testScript = (builtins.readFile test-script);
 }){
-  pkgs = pkgs;
+  pkgs = pkgs // { makePerlPath = 5;};
 }
