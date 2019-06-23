@@ -1,6 +1,6 @@
 {
   pkgs,
-  implementation ? pkgs.chromium,
+  implementation ? pkgs.bc,
   bats-script ? ../bats/configure-nixos/hello.sh
 } :
 let
