@@ -8,5 +8,6 @@ pkgs.mkShell {
   buildInputs = [
     staples.configure-nixos.implementation
     staples.test-scripts.implementation
+    pkgs.docker
   ];
 }
