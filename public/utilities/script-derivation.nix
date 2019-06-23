@@ -1,15 +1,18 @@
 {
   pkgs,
   name,
-  src
+  src,
+  dependencies ? [],
+  configuration ? {}
 }:
 pkgs.stdenv.mkDerivation {
   name = name;
   src = src;
-  buildInputs = [ ];
+  buildInputs = [ pkgs.makeWrapper ];
   installPhase = ''
     mkdir $out &&
       cp --recursive . "$out/src" &&
+      chmod 0500 "$out/src/${name}.sh" &&
       mkdir "$out/bin" &&
       makeWrapper \
         "$out/src/${name}.sh" \

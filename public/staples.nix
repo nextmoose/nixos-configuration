@@ -1,12 +1,9 @@
 {
-  pkgs ? import <nixpkgs> {},
-#  make-test ? import <nixpkgs/nixos/tests/make-test.nix>,
-  make-test ? import ./utilities/testing/nixos/tests/make-test.nix
+  pkgs ? import <nixpkgs> {}
 } :
 let
 script = import ./utilities/script.nix {
   pkgs = pkgs;
-  make-test = make-test;
 };
 in
 rec {
@@ -17,7 +14,7 @@ rec {
       pkgs.coreutils
       pkgs.mkpasswd
     ];
-    test-script = ./tests/configure-nixos.pl;
+    test-script = ./bats/configure-nixos.sh;
   });
   test-scripts = (script {
     name = "test-scripts";
@@ -32,6 +29,6 @@ rec {
     configuration = {
       configure-nixos = configure-nixos.testing;
     };
-    test-script = ./tests/configure-nixos.pl;
+    test-script = ./bats/configure-nixos.sh;
   });
 }

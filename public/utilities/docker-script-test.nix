@@ -1,11 +1,11 @@
 {
   pkgs,
-  implementation ? pkgs.bc,
-  bats-script ? ../bats/configure-nixos/hello.sh
+  implementation,
+  test-script
 } :
 let
   script-derivation = pkgs.writeShellScriptBin "bats" ''
-    ${pkgs.bats}/bin/bats ${bats-script} &&
+    ${pkgs.bats}/bin/bats ${test-script} &&
       true
   '';
 in

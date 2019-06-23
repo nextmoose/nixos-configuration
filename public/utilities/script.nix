@@ -1,6 +1,5 @@
 {
-  pkgs,
-  make-test
+  pkgs
 }:
 {
   name,
@@ -18,7 +17,7 @@ rec {
     configuration = configuration;
   });
   testing = {
-    results = (import ./script-test.nix {
+    results = (import ./docker-script-test.nix {
       pkgs = pkgs;
       implementation = implementation;
       test-script = test-script;
