@@ -18,12 +18,10 @@ rec {
     configuration = configuration;
   });
   testing = {
-    implementation = implementation;
     results = (import ./script-test.nix {
+      pkgs = pkgs;
       implementation = implementation;
       test-script = test-script;
-      pkgs = pkgs;
-      make-test = make-test;
     });
   };
 }
